@@ -20,10 +20,10 @@ async def dashboard(request: Request, db: AsyncSession = Depends(get_db)):
     source_count = (await db.execute(select(func.count()).select_from(Source))).scalar()
     candidate_count = (await db.execute(select(func.count()).select_from(CandidateDomain))).scalar()
     dead_count = (await db.execute(
-        select(func.count()).where(CandidateDomain.is_dead_link == True)
+        select(func.count()).where(CandidateDomain.is_domain_alive == False)
     )).scalar()
     alive_count = (await db.execute(
-        select(func.count()).where(CandidateDomain.is_dead_link == False)
+        select(func.count()).where(CandidateDomain.is_domain_alive == True)
     )).scalar()
 
     # Availability counts

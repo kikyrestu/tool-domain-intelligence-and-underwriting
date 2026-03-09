@@ -25,7 +25,7 @@
     </form>
     <form method="post" action="/whois/{{ source.id }}">
         <button type="submit" class="px-4 py-2 bg-emerald-600 text-white text-sm font-medium rounded-lg hover:bg-emerald-700">
-            Check WHOIS
+            Check RDAP
         </button>
     </form>
     <form method="post" action="/wayback/{{ source.id }}">
@@ -117,10 +117,12 @@
                         <a href="/candidates/{{ c.id }}" class="text-indigo-600 hover:underline">{{ c.domain }}</a>
                     </td>
                     <td class="px-5 py-3 text-sm">
-                        {% if c.is_dead_link %}
+                        {% if c.is_domain_alive == false %}
                         <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-red-100 text-red-700">Dead</span>
-                        {% else %}
+                        {% elif c.is_domain_alive == true %}
                         <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-700">Alive</span>
+                        {% else %}
+                        <span class="text-gray-400">—</span>
                         {% endif %}
                     </td>
                     <td class="px-5 py-3 text-sm">

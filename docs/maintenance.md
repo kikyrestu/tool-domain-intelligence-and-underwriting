@@ -21,7 +21,7 @@ app/
 │
 ├── services/            ← LOGIC UTAMA (modular, 1 file = 1 concern)
 │   ├── crawl_service.py     ← Crawl & extract domain dari halaman
-│   ├── whois_service.py     ← WHOIS lookup & availability check
+│   ├── whois_service.py     ← RDAP lookup & availability check
 │   ├── wayback_service.py   ← Wayback Machine API & content analysis
 │   ├── toxicity_service.py  ← Keyword scanner & risk flags
 │   ├── scoring_service.py   ← Scoring engine & label assignment
@@ -57,14 +57,12 @@ app/
 | Maksimum kandidat per crawl | `app/config.py` → `MAX_CANDIDATES_PER_CRAWL` |
 | Tombol trigger di UI | `app/templates/sources/detail.html` |
 
-### 2. WHOIS & Availability Check
+### 2. RDAP & Availability Check
 
 | Mau update apa? | Edit file |
 |-----------------|-----------|
-| Logic penentuan status (available/expired/dll) | `app/services/whois_service.py` → `_determine_status()` |
-| Batas hari untuk expiring_soon vs watchlist | `app/services/whois_service.py` → angka 30 dan 90 |
-| Delay antar WHOIS query | `app/config.py` → `WHOIS_DELAY_SECONDS` |
-| DNS check logic | `app/services/whois_service.py` → `_check_dns()` |
+| Logic penentuan status (available/expired/dll) | `app/services/whois_service.py` → `_rdap_lookup()` |
+| Delay antar RDAP query | `app/config.py` → `RDAP_DELAY_SECONDS` |
 
 ### 3. Wayback Machine Audit
 

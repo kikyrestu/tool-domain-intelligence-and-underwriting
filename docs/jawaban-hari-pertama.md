@@ -16,7 +16,7 @@ Tanggal: 9 Maret 2026
 | **ORM** | SQLAlchemy 2.x + Alembic | Migrasi schema terstruktur, mature, type-safe |
 | **Dashboard** | Jinja2 + HTMX + Tailwind CSS | Server-side rendering, cepat develop, interaktif tanpa complexity SPA |
 | **Crawling** | httpx (async) + BeautifulSoup4 | Async HTTP client + HTML parser yang battle-tested |
-| **Domain Check** | python-whois + dnspython + tldextract | WHOIS lookup, DNS resolution, domain parsing |
+| **Domain Check** | RDAP (via rdap.org) + dnspython + tldextract | RDAP lookup (HTTP-based, no dependency), DNS resolution, domain parsing |
 | **Historical Data** | Wayback Machine CDX API | Gratis, cukup untuk ambil 3–5 snapshot timestamps |
 | **Language Detection** | langdetect | Deteksi bahasa dominan dari snapshot content |
 | **Toxicity Flags** | Custom rules + regex patterns | Deteksi parking page, adult content, gambling, pharma, malware indicators |

@@ -1,16 +1,17 @@
 """
-Crawl Service — fetch source page, extract outbound links, detect dead links,
-filter domains, and save candidates to DB.
+Crawl Service — fetch source page, extract outbound links, check domain
+liveness (DNS + HTTP root), filter domains, and save candidates to DB.
 """
 
 import asyncio
 import logging
 import random
-import socket
 import time
 from datetime import datetime, timezone
 from urllib.parse import urljoin, urlparse
 
+import dns.asyncresolver
+import dns.exception
 import httpx
 from bs4 import BeautifulSoup
 from sqlalchemy import select
@@ -121,66 +122,96 @@ def _extract_outbound_links(html: str, source_url: str) -> list[tuple[str, str]]
     return results
 
 
-async def _check_link(url: str, semaphore: asyncio.Semaphore) -> tuple[int | None, bool]:
-    """Check if a link is dead. Returns (http_status, is_dead).
+async def _check_domain(domain: str, semaphore: asyncio.Semaphore) -> dict:
+    """Check if a DOMAIN is alive by checking DNS + HTTP root.
+    If domain is dead, immediately check RDAP for buy availability.
 
-    A link is dead when:
-    - Connection/DNS fails entirely (timeout, refused, DNS error)
-    - Server returns 404, 410, or 5xx
-    A link is alive when:
-    - Server responds with 2xx/3xx
-    - Server returns 403 (bot-protection like Cloudflare — site is live)
-    - HTTP fails but DNS resolves (site exists, blocking bots)
+    Returns dict with:
+      - dns_resolves: bool — does the domain have A/AAAA records?
+      - http_status: int|None — status code of GET https://domain/
+      - is_domain_alive: bool — combined verdict
+      - availability_status: str|None — RDAP result for dead domains
+      - whois_registrar: str|None
+      - whois_created_date: date|None
+      - whois_expiry_date: date|None
+      - whois_days_left: int|None
     """
-    # Status codes that indicate the server is alive even if access is denied
-    ALIVE_STATUSES = {401, 402, 403, 405, 407, 429}
+    from app.services.whois_service import _rdap_lookup
 
-    if not is_safe_url(url):
-        return None, False
+    # HTTP status codes that mean server is alive (even if blocking)
+    ALIVE_STATUSES = {200, 201, 204, 301, 302, 303, 307, 308,
+                      401, 402, 403, 405, 407, 429}
+
+    result = {"dns_resolves": False, "http_status": None, "is_domain_alive": False,
+              "availability_status": None, "whois_registrar": None,
+              "whois_created_date": None, "whois_expiry_date": None,
+              "whois_days_left": None}
 
     async with semaphore:
-        proxy = proxy_service.get_random()
+        # --- Layer 1: DNS Resolution ---
         try:
-            async with httpx.AsyncClient(proxy=proxy, headers=_get_headers(),
-                                         follow_redirects=True, http2=True) as client:
-                resp = await client.head(url, timeout=TIMEOUT)
-                if resp.status_code in (403, 405):
-                    resp = await client.get(url, timeout=TIMEOUT)
-                status = resp.status_code
-                is_dead = status >= 400 and status not in ALIVE_STATUSES
-                return status, is_dead
-        except Exception:
+            answers = await dns.asyncresolver.resolve(domain, "A")
+            if answers:
+                result["dns_resolves"] = True
+        except (dns.exception.DNSException, Exception):
             pass
 
-        # Fallback direct
-        try:
-            async with httpx.AsyncClient(headers=_get_headers(),
-                                         follow_redirects=True, http2=True) as client:
-                resp = await client.head(url, timeout=TIMEOUT)
-                if resp.status_code in (403, 405):
-                    resp = await client.get(url, timeout=TIMEOUT)
-                status = resp.status_code
-                is_dead = status >= 400 and status not in ALIVE_STATUSES
-                return status, is_dead
-        except Exception:
-            pass
-
-        # DNS fallback — if HTTP completely fails, check if domain resolves
-        # If DNS resolves → site exists but blocks bots (alive)
-        # If DNS fails → truly dead
-        domain = urlparse(url).hostname
-        if domain:
+        if not result["dns_resolves"]:
             try:
-                result = await asyncio.get_event_loop().run_in_executor(
-                    None, socket.getaddrinfo, domain, None
-                )
-                if result:
-                    logger.debug("DNS resolved for %s — alive (bot-blocked)", domain)
-                    return None, False  # DNS resolves → alive
-            except socket.gaierror:
-                pass  # DNS failed → truly dead
+                answers = await dns.asyncresolver.resolve(domain, "AAAA")
+                if answers:
+                    result["dns_resolves"] = True
+            except (dns.exception.DNSException, Exception):
+                pass
 
-        return None, True  # Nothing worked → dead
+        # No DNS = domain is truly dead → check if buyable
+        if not result["dns_resolves"]:
+            rdap = await _rdap_lookup(domain)
+            result["availability_status"] = rdap["status"]
+            result["whois_registrar"] = rdap.get("registrar")
+            result["whois_created_date"] = rdap.get("created_date")
+            result["whois_expiry_date"] = rdap.get("expiry_date")
+            result["whois_days_left"] = rdap.get("days_left")
+            logger.info("  Dead domain %s → RDAP: %s", domain, rdap["status"])
+            return result
+
+        # --- Layer 2: HTTP root domain check ---
+        root_url = f"https://{domain}/"
+        if not is_safe_url(root_url):
+            result["is_domain_alive"] = True  # DNS resolves, assume alive
+            return result
+
+        # Try HTTPS first
+        for url in [f"https://{domain}/", f"http://{domain}/"]:
+            try:
+                async with httpx.AsyncClient(headers=_get_headers(),
+                                             follow_redirects=True, http2=True) as client:
+                    resp = await client.get(url, timeout=TIMEOUT)
+                    result["http_status"] = resp.status_code
+                    result["is_domain_alive"] = resp.status_code in ALIVE_STATUSES
+                    if not result["is_domain_alive"]:
+                        # Server responds but with error → dead, check buyable
+                        rdap = await _rdap_lookup(domain)
+                        result["availability_status"] = rdap["status"]
+                        result["whois_registrar"] = rdap.get("registrar")
+                        result["whois_created_date"] = rdap.get("created_date")
+                        result["whois_expiry_date"] = rdap.get("expiry_date")
+                        result["whois_days_left"] = rdap.get("days_left")
+                        logger.info("  Dead domain %s (HTTP %s) → RDAP: %s", domain, resp.status_code, rdap["status"])
+                    return result
+            except Exception:
+                continue
+
+        # DNS resolves but HTTP completely failed → dead, check buyable
+        result["is_domain_alive"] = False
+        rdap = await _rdap_lookup(domain)
+        result["availability_status"] = rdap["status"]
+        result["whois_registrar"] = rdap.get("registrar")
+        result["whois_created_date"] = rdap.get("created_date")
+        result["whois_expiry_date"] = rdap.get("expiry_date")
+        result["whois_days_left"] = rdap.get("days_left")
+        logger.info("  Dead domain %s (HTTP fail) → RDAP: %s", domain, rdap["status"])
+        return result
 
 
 async def run_crawl(source_id: int, db: AsyncSession):
@@ -220,16 +251,20 @@ async def run_crawl(source_id: int, db: AsyncSession):
         links = links[:settings.MAX_CANDIDATES_PER_CRAWL]
         job.total_links_found = len(links)
 
-        # 3. Check dead links concurrently
+        # 3. Check domains concurrently (using ROOT domain, not specific URL)
         semaphore = asyncio.Semaphore(MAX_CONCURRENT)
-        check_tasks = [_check_link(url, semaphore) for url, _ in links]
-        results = await asyncio.gather(*check_tasks)
+        # Deduplicate domains for checking (avoid checking same domain twice)
+        unique_domains = list({domain for _, domain in links})
+        check_tasks = [_check_domain(d, semaphore) for d in unique_domains]
+        check_results = await asyncio.gather(*check_tasks)
+        domain_status = dict(zip(unique_domains, check_results))
 
         # 4. Save candidates
         dead_count = 0
         saved = 0
-        for (url, domain), (http_status, is_dead) in zip(links, results):
-            if is_dead:
+        for (url, domain) in links:
+            status = domain_status[domain]
+            if not status["is_domain_alive"]:
                 dead_count += 1
 
             # Check if domain already exists for this source
@@ -249,8 +284,15 @@ async def run_crawl(source_id: int, db: AsyncSession):
                 source_url_found=source.url,
                 original_link=url,
                 niche=source.niche,
-                http_status=http_status,
-                is_dead_link=is_dead,
+                http_status=status["http_status"],
+                dns_resolves=status["dns_resolves"],
+                is_domain_alive=status["is_domain_alive"],
+                availability_status=status.get("availability_status"),
+                whois_registrar=status.get("whois_registrar"),
+                whois_created_date=status.get("whois_created_date"),
+                whois_expiry_date=status.get("whois_expiry_date"),
+                whois_days_left=status.get("whois_days_left"),
+                whois_checked_at=datetime.now(timezone.utc) if status.get("availability_status") else None,
             )
             db.add(candidate)
             saved += 1

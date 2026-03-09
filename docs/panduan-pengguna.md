@@ -35,9 +35,10 @@
 ### Warna Label:
 | Label | Warna | Arti |
 |-------|-------|------|
-| **Buy** | 🟢 Hijau | Domain layak dibeli — skor tinggi, history bagus, bersih |
-| **Review** | 🟡 Kuning | Perlu review manual — ada hal yang perlu diperiksa |
-| **Discard** | 🔴 Merah | Tidak direkomendasikan — skor rendah atau ada masalah serius |
+| **Available** | 🟢 Hijau | Domain bisa dibeli — dead + available/expired |
+| **Watchlist** | 🔵 Biru | Perlu dipantau — expiring soon / dead + registered |
+| **Uncertain** | 🟡 Kuning | Data belum cukup — belum ada cek availability |
+| **Discard** | 🔴 Merah | Tidak direkomendasikan — masih aktif + registered, atau toxic |
 
 ### Skor (0-100):
 Skor terdiri dari 3 komponen:
@@ -62,15 +63,15 @@ Skor terdiri dari 3 komponen:
 2. Gunakan filter bar di atas tabel:
    - **Search**: ketik nama domain
    - **Availability**: filter berdasarkan status (Available, Registered, dll)
-   - **Label**: filter berdasarkan rekomendasi (Buy, Review, Discard)
-   - **Link Status**: filter Dead atau Alive
+   - **Label**: filter berdasarkan rekomendasi (Available, Watchlist, Uncertain, Discard)
+   - **Domain Status**: filter Dead atau Alive
    - **Niche**: filter berdasarkan kategori
    - **Sort**: urutkan berdasarkan Newest, Domain, atau Score
 3. Klik **Filter** untuk menerapkan
 4. Klik **Reset** untuk mereset semua filter
 
 ### Klik Summary Cards:
-- Klik card **Buy/Review/Discard** di atas tabel untuk langsung filter
+- Klik card **Available/Watchlist/Uncertain/Discard** di atas tabel untuk langsung filter
 
 ---
 
@@ -81,7 +82,7 @@ Skor terdiri dari 3 komponen:
    - **Score circle** — skor besar + label warna
    - **Score Breakdown** — bar chart 3 komponen
    - **Toxicity Flags** — badge peringatan (jika ada)
-   - **WHOIS Info** — registrar, tanggal kadaluarsa, DNS
+   - **RDAP Info** — registrar, tanggal kadaluarsa, DNS
    - **Historical Continuity** — total snapshot, tahun aktif, bahasa dominan
    - **Owner Notes** — catatan pribadi Anda
 
@@ -94,16 +95,16 @@ Skor terdiri dari 3 komponen:
 2. File akan otomatis terdownload
 
 ### Export dengan filter:
-1. Di halaman Candidates, set filter yang diinginkan (misal: Label = Buy)
+1. Di halaman Candidates, set filter yang diinginkan (misal: Label = Available)
 2. Klik **"Export CSV"** di bagian atas
 3. Atau buka URL langsung:
-   - `http://localhost:8000/export/xlsx?label=Buy`
-   - `http://localhost:8000/export/csv?label=Buy`
+   - `http://localhost:8000/export/xlsx?label=Available`
+   - `http://localhost:8000/export/csv?label=Available`
 
 ### Isi file export:
 Domain, Niche, Availability, Link Status, Score, Label, Reason, Registrar, Created, Expires, Days Left, DNS, Snapshots, First Seen, Last Seen, Language, Source URL, Notes, Discovered
 
-File XLSX sudah diformat: header biru bold, baris hijau (Buy), kuning (Review), merah (Discard).
+File XLSX sudah diformat: header biru bold, baris hijau (Available), biru (Watchlist), kuning (Uncertain), merah (Discard).
 
 ---
 
@@ -121,11 +122,11 @@ File XLSX sudah diformat: header biru bold, baris hijau (Buy), kuning (Review), 
 Urutan operasi yang direkomendasikan:
 
 1. **Add Source** → masukkan URL target
-2. **Run Crawl** → sistem menemukan domain dari link yang rusak
-3. **Check WHOIS** → cek apakah domain bisa dibeli
+2. **Run Crawl** → sistem menemukan domain dari link yang rusak, dead domain langsung dicek availability via RDAP
+3. **Check RDAP** → cek availability untuk domain yang belum dicek
 4. **Wayback Audit** → analisis sejarah domain
 5. **Score All** → hitung skor dan label
-6. **Review shortlist** → filter Buy candidates
+6. **Review shortlist** → filter Available candidates
 7. **Export XLSX** → download untuk tim
 
 Tombol aksi tersedia di halaman Source detail dan halaman Candidates.
@@ -137,14 +138,14 @@ Tombol aksi tersedia di halaman Source detail dan halaman Candidates.
 **Q: Berapa lama proses crawl?**
 A: 15-60 detik tergantung jumlah link di halaman target.
 
-**Q: Berapa lama WHOIS check?**
-A: Sekitar 3-5 detik per domain. 10 domain ≈ 30-50 detik.
+**Q: Berapa lama RDAP check?**
+A: Sekitar 1-3 detik per domain. Dead domain langsung dicek saat crawl.
 
 **Q: Kenapa ada domain yang "check_failed"?**
-A: Beberapa TLD tidak support WHOIS query standar. Domain tetap bisa di-review manual.
+A: Beberapa domain RDAP server timeout atau tidak support. Domain tetap bisa di-review manual.
 
 **Q: Bisa menambah domain secara manual?**
 A: Saat ini domain hanya ditemukan via crawl otomatis. Fitur manual entry bisa ditambahkan di fase 2.
 
 **Q: Bagaimana skor dihitung?**
-A: Skor = (Availability × 30%) + (Continuity × 40%) + (Cleanliness × 30%). Skor ≥ 80 = Buy, 40-79 = Review, < 40 = Discard.
+A: Skor = (Availability × 30%) + (Continuity × 40%) + (Cleanliness × 30%). Label ditentukan berdasarkan status domain (alive/dead) dan availability (available/registered).

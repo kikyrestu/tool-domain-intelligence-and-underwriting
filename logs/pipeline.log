@@ -1,0 +1,453 @@
+2026-03-09 15:43:29,669 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 15:43:51,923 [INFO] app.services.wayback_service: Starting Wayback check for 86 candidates
+2026-03-09 15:44:11,163 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 7 dead links
+2026-03-09 15:44:11,164 [INFO] app.routes.crawl: Crawl done for source 11, starting WHOIS check…
+2026-03-09 15:44:11,296 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 15:44:11,336 [INFO] app.routes.crawl: WHOIS done for source 11, starting Wayback check…
+2026-03-09 15:44:11,574 [INFO] app.services.wayback_service: Starting Wayback check for 86 candidates
+2026-03-09 15:44:16,637 [INFO] app.services.wayback_service: Wayback [1/86] gizmodo.com: 50 snapshots, lang=en
+2026-03-09 15:44:18,807 [INFO] app.services.scoring_service: Scored 103 candidates
+2026-03-09 15:44:24,822 [INFO] app.services.wayback_service: Wayback [1/86] gizmodo.com: 50 snapshots, lang=en
+2026-03-09 15:44:36,010 [INFO] app.services.wayback_service: Wayback [2/86] latimes.com: 50 snapshots, lang=en
+2026-03-09 15:44:37,639 [INFO] app.services.wayback_service: Wayback [2/86] latimes.com: 50 snapshots, lang=en
+2026-03-09 15:44:39,602 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 15:44:40,340 [INFO] app.services.wayback_service: Starting Wayback check for 96 candidates
+2026-03-09 15:44:41,755 [INFO] app.services.scoring_service: Scored 115 candidates
+2026-03-09 15:44:46,845 [INFO] app.services.wayback_service: Wayback [1/96] agent-safehouse.dev: 1 snapshots, lang=en
+2026-03-09 15:45:01,889 [INFO] app.services.wayback_service: Wayback [3/86] chime.com: 50 snapshots, lang=en
+2026-03-09 15:45:06,134 [INFO] app.services.wayback_service: Wayback [3/86] chime.com: 50 snapshots, lang=en
+2026-03-09 15:45:19,404 [WARNING] app.services.wayback_service: CDX API error for offlinemark.com: 
+2026-03-09 15:45:19,405 [INFO] app.services.wayback_service: Wayback [2/96] offlinemark.com: 0 snapshots, lang=None
+2026-03-09 15:45:25,496 [INFO] app.services.wayback_service: Wayback [4/86] geek.org: 50 snapshots, lang=en
+2026-03-09 15:45:27,358 [INFO] app.services.wayback_service: Wayback [4/86] geek.org: 50 snapshots, lang=en
+2026-03-09 15:45:50,853 [WARNING] app.services.wayback_service: CDX API error for bryananthonio.com: 
+2026-03-09 15:45:50,854 [INFO] app.services.wayback_service: Wayback [3/96] bryananthonio.com: 0 snapshots, lang=None
+2026-03-09 15:45:59,403 [WARNING] app.services.wayback_service: CDX API error for wired.com: 
+2026-03-09 15:45:59,403 [INFO] app.services.wayback_service: Wayback [5/86] wired.com: 0 snapshots, lang=None
+2026-03-09 15:46:10,333 [INFO] app.services.wayback_service: Wayback [5/86] wired.com: 50 snapshots, lang=en
+2026-03-09 15:46:12,073 [INFO] app.services.wayback_service: Wayback [4/96] ethanhein.com: 50 snapshots, lang=en
+2026-03-09 15:46:20,133 [INFO] app.services.wayback_service: Wayback [6/86] irishtimes.com: 50 snapshots, lang=en
+2026-03-09 15:46:33,738 [INFO] app.services.wayback_service: Wayback [5/96] economist.com: 50 snapshots, lang=en
+2026-03-09 15:46:41,953 [WARNING] app.services.wayback_service: CDX API error for irishtimes.com: 
+2026-03-09 15:46:41,953 [INFO] app.services.wayback_service: Wayback [6/86] irishtimes.com: 0 snapshots, lang=None
+2026-03-09 15:46:52,767 [INFO] app.services.wayback_service: Wayback [7/86] robotstxt.org: 50 snapshots, lang=en
+2026-03-09 15:46:53,965 [WARNING] app.services.wayback_service: CDX API error for scotsman.com: 502 Bad Gateway
+2026-03-09 15:46:53,966 [INFO] app.services.wayback_service: Wayback [8/86] scotsman.com: 0 snapshots, lang=None
+2026-03-09 15:46:55,184 [WARNING] app.services.wayback_service: CDX API error for dddmag.com: 502 Bad Gateway
+2026-03-09 15:46:55,184 [INFO] app.services.wayback_service: Wayback [9/86] dddmag.com: 0 snapshots, lang=None
+2026-03-09 15:46:56,418 [WARNING] app.services.wayback_service: CDX API error for physicsworld.com: 502 Bad Gateway
+2026-03-09 15:46:56,418 [INFO] app.services.wayback_service: Wayback [10/86] physicsworld.com: 0 snapshots, lang=None
+2026-03-09 15:46:57,624 [WARNING] app.services.wayback_service: CDX API error for doi.org: 502 Bad Gateway
+2026-03-09 15:46:57,624 [INFO] app.services.wayback_service: Wayback [11/86] doi.org: 0 snapshots, lang=None
+2026-03-09 15:46:58,891 [WARNING] app.services.wayback_service: CDX API error for jta.org: 502 Bad Gateway
+2026-03-09 15:46:58,891 [INFO] app.services.wayback_service: Wayback [12/86] jta.org: 0 snapshots, lang=None
+2026-03-09 15:46:59,542 [INFO] app.services.wayback_service: Wayback [6/96] jonathan-frere.com: 21 snapshots, lang=en
+2026-03-09 15:47:00,572 [WARNING] app.services.wayback_service: CDX API error for CitySites.com: 502 Bad Gateway
+2026-03-09 15:47:00,572 [INFO] app.services.wayback_service: Wayback [13/86] CitySites.com: 0 snapshots, lang=None
+2026-03-09 15:47:01,177 [WARNING] app.services.wayback_service: CDX API error for kawasakirobotics.com: 502 Bad Gateway
+2026-03-09 15:47:01,177 [INFO] app.services.wayback_service: Wayback [7/96] kawasakirobotics.com: 0 snapshots, lang=None
+2026-03-09 15:47:02,153 [WARNING] app.services.wayback_service: CDX API error for citysites.com: 502 Bad Gateway
+2026-03-09 15:47:02,153 [INFO] app.services.wayback_service: Wayback [14/86] citysites.com: 0 snapshots, lang=None
+2026-03-09 15:47:02,761 [WARNING] app.services.wayback_service: CDX API error for dailydot.com: 502 Bad Gateway
+2026-03-09 15:47:02,762 [INFO] app.services.wayback_service: Wayback [8/96] dailydot.com: 0 snapshots, lang=None
+2026-03-09 15:47:03,753 [WARNING] app.services.wayback_service: CDX API error for worldcat.org: 502 Bad Gateway
+2026-03-09 15:47:03,753 [INFO] app.services.wayback_service: Wayback [15/86] worldcat.org: 0 snapshots, lang=None
+2026-03-09 15:47:04,362 [WARNING] app.services.wayback_service: CDX API error for lynnandtonic.com: 502 Bad Gateway
+2026-03-09 15:47:04,363 [INFO] app.services.wayback_service: Wayback [9/96] lynnandtonic.com: 0 snapshots, lang=None
+2026-03-09 15:47:05,323 [WARNING] app.services.wayback_service: CDX API error for nytimes.com: 502 Bad Gateway
+2026-03-09 15:47:05,323 [INFO] app.services.wayback_service: Wayback [16/86] nytimes.com: 0 snapshots, lang=None
+2026-03-09 15:47:05,924 [WARNING] app.services.wayback_service: CDX API error for quesma.com: 502 Bad Gateway
+2026-03-09 15:47:05,925 [INFO] app.services.wayback_service: Wayback [10/96] quesma.com: 0 snapshots, lang=None
+2026-03-09 15:47:05,995 [INFO] app.services.wayback_service: Wayback [7/86] robotstxt.org: 50 snapshots, lang=en
+2026-03-09 15:47:07,062 [WARNING] app.services.wayback_service: CDX API error for ajr.org: 502 Bad Gateway
+2026-03-09 15:47:07,062 [INFO] app.services.wayback_service: Wayback [17/86] ajr.org: 0 snapshots, lang=None
+2026-03-09 15:47:07,666 [WARNING] app.services.wayback_service: CDX API error for mufeedvh.com: 502 Bad Gateway
+2026-03-09 15:47:07,667 [INFO] app.services.wayback_service: Wayback [11/96] mufeedvh.com: 0 snapshots, lang=None
+2026-03-09 15:47:08,282 [WARNING] app.services.wayback_service: CDX API error for scotsman.com: 502 Bad Gateway
+2026-03-09 15:47:08,283 [INFO] app.services.wayback_service: Wayback [8/86] scotsman.com: 0 snapshots, lang=None
+2026-03-09 15:47:08,905 [WARNING] app.services.wayback_service: CDX API error for l-ware.com: 502 Bad Gateway
+2026-03-09 15:47:08,906 [INFO] app.services.wayback_service: Wayback [18/86] l-ware.com: 0 snapshots, lang=None
+2026-03-09 15:47:09,515 [WARNING] app.services.wayback_service: CDX API error for yoshuawuyts.com: 502 Bad Gateway
+2026-03-09 15:47:09,516 [INFO] app.services.wayback_service: Wayback [12/96] yoshuawuyts.com: 0 snapshots, lang=None
+2026-03-09 15:47:10,128 [WARNING] app.services.wayback_service: CDX API error for dddmag.com: 502 Bad Gateway
+2026-03-09 15:47:10,129 [INFO] app.services.wayback_service: Wayback [9/86] dddmag.com: 0 snapshots, lang=None
+2026-03-09 15:47:10,761 [WARNING] app.services.wayback_service: CDX API error for sito.org: 502 Bad Gateway
+2026-03-09 15:47:10,762 [INFO] app.services.wayback_service: Wayback [19/86] sito.org: 0 snapshots, lang=None
+2026-03-09 15:47:11,732 [WARNING] app.services.wayback_service: CDX API error for physicsworld.com: 502 Bad Gateway
+2026-03-09 15:47:11,733 [INFO] app.services.wayback_service: Wayback [10/86] physicsworld.com: 0 snapshots, lang=None
+2026-03-09 15:47:12,382 [WARNING] app.services.wayback_service: CDX API error for bloomberg.com: 502 Bad Gateway
+2026-03-09 15:47:12,382 [INFO] app.services.wayback_service: Wayback [13/96] bloomberg.com: 0 snapshots, lang=None
+2026-03-09 15:47:13,007 [WARNING] app.services.wayback_service: CDX API error for xerox.com: 502 Bad Gateway
+2026-03-09 15:47:13,007 [INFO] app.services.wayback_service: Wayback [20/86] xerox.com: 0 snapshots, lang=None
+2026-03-09 15:47:13,615 [WARNING] app.services.wayback_service: CDX API error for doi.org: 502 Bad Gateway
+2026-03-09 15:47:13,615 [INFO] app.services.wayback_service: Wayback [11/86] doi.org: 0 snapshots, lang=None
+2026-03-09 15:47:14,259 [WARNING] app.services.wayback_service: CDX API error for internetlivestats.com: 502 Bad Gateway
+2026-03-09 15:47:14,260 [INFO] app.services.wayback_service: Wayback [14/96] internetlivestats.com: 0 snapshots, lang=None
+2026-03-09 15:47:14,860 [WARNING] app.services.wayback_service: CDX API error for photo.net: 502 Bad Gateway
+2026-03-09 15:47:14,860 [INFO] app.services.wayback_service: Wayback [21/86] photo.net: 0 snapshots, lang=None
+2026-03-09 15:47:15,475 [WARNING] app.services.wayback_service: CDX API error for jta.org: 502 Bad Gateway
+2026-03-09 15:47:15,476 [INFO] app.services.wayback_service: Wayback [12/86] jta.org: 0 snapshots, lang=None
+2026-03-09 15:47:16,082 [WARNING] app.services.wayback_service: CDX API error for vlib.org: 502 Bad Gateway
+2026-03-09 15:47:16,082 [INFO] app.services.wayback_service: Wayback [15/96] vlib.org: 0 snapshots, lang=None
+2026-03-09 15:47:16,691 [WARNING] app.services.wayback_service: CDX API error for goertzel.org: 502 Bad Gateway
+2026-03-09 15:47:16,691 [INFO] app.services.wayback_service: Wayback [22/86] goertzel.org: 0 snapshots, lang=None
+2026-03-09 15:47:17,320 [WARNING] app.services.wayback_service: CDX API error for CitySites.com: 502 Bad Gateway
+2026-03-09 15:47:17,321 [INFO] app.services.wayback_service: Wayback [13/86] CitySites.com: 0 snapshots, lang=None
+2026-03-09 15:47:17,928 [WARNING] app.services.wayback_service: CDX API error for inetventures.com: 502 Bad Gateway
+2026-03-09 15:47:17,928 [INFO] app.services.wayback_service: Wayback [16/96] inetventures.com: 0 snapshots, lang=None
+2026-03-09 15:47:18,551 [WARNING] app.services.wayback_service: CDX API error for expasy.org: 502 Bad Gateway
+2026-03-09 15:47:18,552 [INFO] app.services.wayback_service: Wayback [23/86] expasy.org: 0 snapshots, lang=None
+2026-03-09 15:47:19,531 [WARNING] app.services.wayback_service: CDX API error for chabad.org: 502 Bad Gateway
+2026-03-09 15:47:19,531 [INFO] app.services.wayback_service: Wayback [17/96] chabad.org: 0 snapshots, lang=None
+2026-03-09 15:47:20,134 [WARNING] app.services.wayback_service: CDX API error for zinebook.com: 502 Bad Gateway
+2026-03-09 15:47:20,134 [INFO] app.services.wayback_service: Wayback [24/86] zinebook.com: 0 snapshots, lang=None
+2026-03-09 15:47:20,135 [WARNING] app.services.wayback_service: CDX API error for citysites.com: 502 Bad Gateway
+2026-03-09 15:47:20,136 [INFO] app.services.wayback_service: Wayback [14/86] citysites.com: 0 snapshots, lang=None
+2026-03-09 15:47:21,594 [WARNING] app.services.wayback_service: CDX API error for chime.com: 502 Bad Gateway
+2026-03-09 15:47:21,594 [INFO] app.services.wayback_service: Wayback [18/96] chime.com: 0 snapshots, lang=None
+2026-03-09 15:47:22,201 [WARNING] app.services.wayback_service: CDX API error for oldest.org: 502 Bad Gateway
+2026-03-09 15:47:22,201 [INFO] app.services.wayback_service: Wayback [25/86] oldest.org: 0 snapshots, lang=None
+2026-03-09 15:47:22,202 [WARNING] app.services.wayback_service: CDX API error for worldcat.org: 502 Bad Gateway
+2026-03-09 15:47:22,202 [INFO] app.services.wayback_service: Wayback [15/86] worldcat.org: 0 snapshots, lang=None
+2026-03-09 15:47:23,741 [WARNING] app.services.wayback_service: CDX API error for pqarchiver.com: 502 Bad Gateway
+2026-03-09 15:47:23,741 [INFO] app.services.wayback_service: Wayback [19/96] pqarchiver.com: 0 snapshots, lang=None
+2026-03-09 15:47:24,348 [WARNING] app.services.wayback_service: CDX API error for alliedartists.com: 502 Bad Gateway
+2026-03-09 15:47:24,386 [INFO] app.services.wayback_service: Wayback [26/86] alliedartists.com: 0 snapshots, lang=None
+2026-03-09 15:47:24,388 [WARNING] app.services.wayback_service: CDX API error for nytimes.com: 502 Bad Gateway
+2026-03-09 15:47:24,388 [INFO] app.services.wayback_service: Wayback [16/86] nytimes.com: 0 snapshots, lang=None
+2026-03-09 15:47:25,876 [WARNING] app.services.wayback_service: CDX API error for geek.org: 502 Bad Gateway
+2026-03-09 15:47:25,877 [INFO] app.services.wayback_service: Wayback [20/96] geek.org: 0 snapshots, lang=None
+2026-03-09 15:47:26,478 [WARNING] app.services.wayback_service: CDX API error for ajr.org: 502 Bad Gateway
+2026-03-09 15:47:26,479 [INFO] app.services.wayback_service: Wayback [17/86] ajr.org: 0 snapshots, lang=None
+2026-03-09 15:47:26,480 [WARNING] app.services.wayback_service: CDX API error for ama.org: 502 Bad Gateway
+2026-03-09 15:47:26,480 [INFO] app.services.wayback_service: Wayback [27/86] ama.org: 0 snapshots, lang=None
+2026-03-09 15:47:27,972 [WARNING] app.services.wayback_service: CDX API error for wired.com: 502 Bad Gateway
+2026-03-09 15:47:27,972 [INFO] app.services.wayback_service: Wayback [21/96] wired.com: 0 snapshots, lang=None
+2026-03-09 15:47:28,573 [WARNING] app.services.wayback_service: CDX API error for l-ware.com: 502 Bad Gateway
+2026-03-09 15:47:28,573 [INFO] app.services.wayback_service: Wayback [18/86] l-ware.com: 0 snapshots, lang=None
+2026-03-09 15:47:28,574 [WARNING] app.services.wayback_service: CDX API error for versionmuseum.com: 502 Bad Gateway
+2026-03-09 15:47:28,575 [INFO] app.services.wayback_service: Wayback [28/86] versionmuseum.com: 0 snapshots, lang=None
+2026-03-09 15:47:30,042 [WARNING] app.services.wayback_service: CDX API error for irishtimes.com: 502 Bad Gateway
+2026-03-09 15:47:30,042 [INFO] app.services.wayback_service: Wayback [22/96] irishtimes.com: 0 snapshots, lang=None
+2026-03-09 15:47:30,650 [WARNING] app.services.wayback_service: CDX API error for sito.org: 502 Bad Gateway
+2026-03-09 15:47:30,650 [INFO] app.services.wayback_service: Wayback [19/86] sito.org: 0 snapshots, lang=None
+2026-03-09 15:47:31,681 [WARNING] app.services.wayback_service: CDX API error for robotstxt.org: 502 Bad Gateway
+2026-03-09 15:47:31,681 [INFO] app.services.wayback_service: Wayback [23/96] robotstxt.org: 0 snapshots, lang=None
+2026-03-09 15:47:32,300 [WARNING] app.services.wayback_service: CDX API error for xerox.com: 502 Bad Gateway
+2026-03-09 15:47:32,301 [INFO] app.services.wayback_service: Wayback [20/86] xerox.com: 0 snapshots, lang=None
+2026-03-09 15:47:33,299 [WARNING] app.services.wayback_service: CDX API error for scotsman.com: 502 Bad Gateway
+2026-03-09 15:47:33,299 [INFO] app.services.wayback_service: Wayback [24/96] scotsman.com: 0 snapshots, lang=None
+2026-03-09 15:47:33,362 [WARNING] app.services.wayback_service: CDX API error for freeform.org: 502 Bad Gateway
+2026-03-09 15:47:33,362 [INFO] app.services.wayback_service: Wayback [29/86] freeform.org: 0 snapshots, lang=None
+2026-03-09 15:47:33,891 [WARNING] app.services.wayback_service: CDX API error for photo.net: 502 Bad Gateway
+2026-03-09 15:47:33,892 [INFO] app.services.wayback_service: Wayback [21/86] photo.net: 0 snapshots, lang=None
+2026-03-09 15:47:35,405 [WARNING] app.services.wayback_service: CDX API error for britannica.com: 502 Bad Gateway
+2026-03-09 15:47:35,406 [INFO] app.services.wayback_service: Wayback [30/86] britannica.com: 0 snapshots, lang=None
+2026-03-09 15:47:36,018 [WARNING] app.services.wayback_service: CDX API error for goertzel.org: 502 Bad Gateway
+2026-03-09 15:47:36,019 [INFO] app.services.wayback_service: Wayback [22/86] goertzel.org: 0 snapshots, lang=None
+2026-03-09 15:47:37,049 [WARNING] app.services.wayback_service: CDX API error for economist.com: 502 Bad Gateway
+2026-03-09 15:47:37,050 [INFO] app.services.wayback_service: Wayback [31/86] economist.com: 0 snapshots, lang=None
+2026-03-09 15:47:37,173 [WARNING] app.services.wayback_service: CDX API error for expasy.org: 502 Bad Gateway
+2026-03-09 15:47:37,174 [INFO] app.services.wayback_service: Wayback [23/86] expasy.org: 0 snapshots, lang=None
+2026-03-09 15:47:38,578 [WARNING] app.services.wayback_service: CDX API error for einet.net: 502 Bad Gateway
+2026-03-09 15:47:38,578 [INFO] app.services.wayback_service: Wayback [32/86] einet.net: 0 snapshots, lang=None
+2026-03-09 15:47:39,774 [WARNING] app.services.wayback_service: CDX API error for bbc.com: 502 Bad Gateway
+2026-03-09 15:47:39,775 [INFO] app.services.wayback_service: Wayback [33/86] bbc.com: 0 snapshots, lang=None
+2026-03-09 15:47:39,835 [WARNING] app.services.wayback_service: CDX API error for zinebook.com: 502 Bad Gateway
+2026-03-09 15:47:39,835 [INFO] app.services.wayback_service: Wayback [24/86] zinebook.com: 0 snapshots, lang=None
+2026-03-09 15:47:41,535 [WARNING] app.services.wayback_service: CDX API error for oldest.org: 502 Bad Gateway
+2026-03-09 15:47:41,536 [INFO] app.services.wayback_service: Wayback [25/86] oldest.org: 0 snapshots, lang=None
+2026-03-09 15:47:42,386 [WARNING] app.services.wayback_service: CDX API error for crwflags.com: 502 Bad Gateway
+2026-03-09 15:47:42,386 [INFO] app.services.wayback_service: Wayback [34/86] crwflags.com: 0 snapshots, lang=None
+2026-03-09 15:47:43,005 [WARNING] app.services.wayback_service: CDX API error for alliedartists.com: 502 Bad Gateway
+2026-03-09 15:47:43,005 [INFO] app.services.wayback_service: Wayback [26/86] alliedartists.com: 0 snapshots, lang=None
+2026-03-09 15:47:43,973 [WARNING] app.services.wayback_service: CDX API error for thocp.net: 502 Bad Gateway
+2026-03-09 15:47:43,973 [INFO] app.services.wayback_service: Wayback [35/86] thocp.net: 0 snapshots, lang=None
+2026-03-09 15:47:44,584 [WARNING] app.services.wayback_service: CDX API error for ama.org: 502 Bad Gateway
+2026-03-09 15:47:44,584 [INFO] app.services.wayback_service: Wayback [27/86] ama.org: 0 snapshots, lang=None
+2026-03-09 15:47:45,743 [WARNING] app.services.wayback_service: CDX API error for versionmuseum.com: 502 Bad Gateway
+2026-03-09 15:47:45,744 [INFO] app.services.wayback_service: Wayback [28/86] versionmuseum.com: 0 snapshots, lang=None
+2026-03-09 15:47:46,914 [WARNING] app.services.wayback_service: CDX API error for freeform.org: 502 Bad Gateway
+2026-03-09 15:47:46,914 [INFO] app.services.wayback_service: Wayback [29/86] freeform.org: 0 snapshots, lang=None
+2026-03-09 15:47:48,118 [WARNING] app.services.wayback_service: CDX API error for britannica.com: 502 Bad Gateway
+2026-03-09 15:47:48,119 [INFO] app.services.wayback_service: Wayback [30/86] britannica.com: 0 snapshots, lang=None
+2026-03-09 15:47:49,814 [WARNING] app.services.wayback_service: CDX API error for economist.com: 502 Bad Gateway
+2026-03-09 15:47:49,814 [INFO] app.services.wayback_service: Wayback [31/86] economist.com: 0 snapshots, lang=None
+2026-03-09 15:47:56,618 [INFO] app.services.wayback_service: Wayback [25/96] dddmag.com: 50 snapshots, lang=en
+2026-03-09 15:48:05,112 [INFO] app.services.wayback_service: Wayback [36/86] verisign.com: 50 snapshots, lang=en
+2026-03-09 15:48:10,216 [INFO] app.services.wayback_service: Wayback [32/86] einet.net: 50 snapshots, lang=en
+2026-03-09 15:48:11,440 [WARNING] app.services.wayback_service: CDX API error for bbc.com: 502 Bad Gateway
+2026-03-09 15:48:11,441 [INFO] app.services.wayback_service: Wayback [33/86] bbc.com: 0 snapshots, lang=None
+2026-03-09 15:48:12,617 [WARNING] app.services.wayback_service: CDX API error for crwflags.com: 502 Bad Gateway
+2026-03-09 15:48:12,618 [INFO] app.services.wayback_service: Wayback [34/86] crwflags.com: 0 snapshots, lang=None
+2026-03-09 15:48:13,830 [WARNING] app.services.wayback_service: CDX API error for thocp.net: 502 Bad Gateway
+2026-03-09 15:48:13,831 [INFO] app.services.wayback_service: Wayback [35/86] thocp.net: 0 snapshots, lang=None
+2026-03-09 15:48:16,074 [WARNING] app.services.wayback_service: CDX API error for verisign.com: 502 Bad Gateway
+2026-03-09 15:48:16,075 [INFO] app.services.wayback_service: Wayback [36/86] verisign.com: 0 snapshots, lang=None
+2026-03-09 15:48:18,255 [WARNING] app.services.wayback_service: CDX API error for epcostello.net: 502 Bad Gateway
+2026-03-09 15:48:18,256 [INFO] app.services.wayback_service: Wayback [37/86] epcostello.net: 0 snapshots, lang=None
+2026-03-09 15:48:20,397 [INFO] app.services.wayback_service: Wayback [38/86] innerviews.org: 0 snapshots, lang=None
+2026-03-09 15:48:21,607 [WARNING] app.services.wayback_service: CDX API error for lawinfo.com: 502 Bad Gateway
+2026-03-09 15:48:21,607 [INFO] app.services.wayback_service: Wayback [39/86] lawinfo.com: 0 snapshots, lang=None
+2026-03-09 15:48:41,431 [INFO] app.services.wayback_service: Wayback [26/96] physicsworld.com: 50 snapshots, lang=en
+2026-03-09 15:48:45,562 [INFO] app.services.wayback_service: Wayback [40/86] sayeverything.com: 50 snapshots, lang=en
+2026-03-09 15:48:46,706 [WARNING] app.services.wayback_service: CDX API error for thenervousbreakdown.com: 502 Bad Gateway
+2026-03-09 15:48:46,707 [INFO] app.services.wayback_service: Wayback [41/86] thenervousbreakdown.com: 0 snapshots, lang=None
+2026-03-09 15:48:51,061 [INFO] app.services.wayback_service: Wayback [37/86] epcostello.net: 50 snapshots, lang=en
+2026-03-09 15:48:52,147 [WARNING] app.services.wayback_service: CDX API error for innerviews.org: 502 Bad Gateway
+2026-03-09 15:48:52,148 [INFO] app.services.wayback_service: Wayback [38/86] innerviews.org: 0 snapshots, lang=None
+2026-03-09 15:48:53,211 [WARNING] app.services.wayback_service: CDX API error for lawinfo.com: 502 Bad Gateway
+2026-03-09 15:48:53,211 [INFO] app.services.wayback_service: Wayback [39/86] lawinfo.com: 0 snapshots, lang=None
+2026-03-09 15:48:55,314 [WARNING] app.services.wayback_service: CDX API error for sayeverything.com: 502 Bad Gateway
+2026-03-09 15:48:55,315 [INFO] app.services.wayback_service: Wayback [40/86] sayeverything.com: 0 snapshots, lang=None
+2026-03-09 15:48:56,442 [WARNING] app.services.wayback_service: CDX API error for thenervousbreakdown.com: 502 Bad Gateway
+2026-03-09 15:48:56,443 [INFO] app.services.wayback_service: Wayback [41/86] thenervousbreakdown.com: 0 snapshots, lang=None
+2026-03-09 15:48:57,526 [WARNING] app.services.wayback_service: CDX API error for davidworlock.com: 502 Bad Gateway
+2026-03-09 15:48:57,526 [INFO] app.services.wayback_service: Wayback [42/86] davidworlock.com: 0 snapshots, lang=None
+2026-03-09 15:48:58,629 [WARNING] app.services.wayback_service: CDX API error for thehistoryofseo.com: 502 Bad Gateway
+2026-03-09 15:48:58,629 [INFO] app.services.wayback_service: Wayback [43/86] thehistoryofseo.com: 0 snapshots, lang=None
+2026-03-09 15:48:59,684 [WARNING] app.services.wayback_service: CDX API error for megadeth.com: 502 Bad Gateway
+2026-03-09 15:48:59,685 [INFO] app.services.wayback_service: Wayback [44/86] megadeth.com: 0 snapshots, lang=None
+2026-03-09 15:49:00,770 [WARNING] app.services.wayback_service: CDX API error for businessinsider.com: 502 Bad Gateway
+2026-03-09 15:49:00,771 [INFO] app.services.wayback_service: Wayback [45/86] businessinsider.com: 0 snapshots, lang=None
+2026-03-09 15:49:02,901 [WARNING] app.services.wayback_service: CDX API error for museumofbadart.org: 502 Bad Gateway
+2026-03-09 15:49:02,901 [INFO] app.services.wayback_service: Wayback [46/86] museumofbadart.org: 0 snapshots, lang=None
+2026-03-09 15:49:04,036 [WARNING] app.services.wayback_service: CDX API error for nineplanets.org: 502 Bad Gateway
+2026-03-09 15:49:04,037 [INFO] app.services.wayback_service: Wayback [47/86] nineplanets.org: 0 snapshots, lang=None
+2026-03-09 15:49:05,301 [WARNING] app.services.wayback_service: CDX API error for scientificamerican.com: 502 Bad Gateway
+2026-03-09 15:49:05,302 [INFO] app.services.wayback_service: Wayback [48/86] scientificamerican.com: 0 snapshots, lang=None
+2026-03-09 15:49:06,488 [WARNING] app.services.wayback_service: CDX API error for ajrarchive.org: 502 Bad Gateway
+2026-03-09 15:49:06,488 [INFO] app.services.wayback_service: Wayback [49/86] ajrarchive.org: 0 snapshots, lang=None
+2026-03-09 15:49:07,665 [WARNING] app.services.wayback_service: CDX API error for pulitzer.org: 502 Bad Gateway
+2026-03-09 15:49:07,666 [INFO] app.services.wayback_service: Wayback [50/86] pulitzer.org: 0 snapshots, lang=None
+2026-03-09 15:49:08,846 [WARNING] app.services.wayback_service: CDX API error for phish.net: 502 Bad Gateway
+2026-03-09 15:49:08,846 [INFO] app.services.wayback_service: Wayback [51/86] phish.net: 0 snapshots, lang=None
+2026-03-09 15:49:09,628 [INFO] app.services.wayback_service: Wayback [42/86] davidworlock.com: 50 snapshots, lang=en
+2026-03-09 15:49:10,233 [WARNING] app.services.wayback_service: CDX API error for jambands.com: 502 Bad Gateway
+2026-03-09 15:49:10,233 [INFO] app.services.wayback_service: Wayback [52/86] jambands.com: 0 snapshots, lang=None
+2026-03-09 15:49:11,118 [WARNING] app.services.wayback_service: CDX API error for thehistoryofseo.com: 502 Bad Gateway
+2026-03-09 15:49:11,119 [INFO] app.services.wayback_service: Wayback [43/86] thehistoryofseo.com: 0 snapshots, lang=None
+2026-03-09 15:49:11,617 [WARNING] app.services.wayback_service: CDX API error for interesting-people.org: 502 Bad Gateway
+2026-03-09 15:49:11,618 [INFO] app.services.wayback_service: Wayback [53/86] interesting-people.org: 0 snapshots, lang=None
+2026-03-09 15:49:12,488 [WARNING] app.services.wayback_service: CDX API error for megadeth.com: 502 Bad Gateway
+2026-03-09 15:49:12,488 [INFO] app.services.wayback_service: Wayback [44/86] megadeth.com: 0 snapshots, lang=None
+2026-03-09 15:49:12,992 [WARNING] app.services.wayback_service: CDX API error for powells.com: 502 Bad Gateway
+2026-03-09 15:49:12,993 [INFO] app.services.wayback_service: Wayback [54/86] powells.com: 0 snapshots, lang=None
+2026-03-09 15:49:13,934 [WARNING] app.services.wayback_service: CDX API error for businessinsider.com: 502 Bad Gateway
+2026-03-09 15:49:13,934 [INFO] app.services.wayback_service: Wayback [45/86] businessinsider.com: 0 snapshots, lang=None
+2026-03-09 15:49:14,431 [WARNING] app.services.wayback_service: CDX API error for rutartan.com: 502 Bad Gateway
+2026-03-09 15:49:14,431 [INFO] app.services.wayback_service: Wayback [55/86] rutartan.com: 0 snapshots, lang=None
+2026-03-09 15:49:15,357 [WARNING] app.services.wayback_service: CDX API error for museumofbadart.org: 502 Bad Gateway
+2026-03-09 15:49:15,357 [INFO] app.services.wayback_service: Wayback [46/86] museumofbadart.org: 0 snapshots, lang=None
+2026-03-09 15:49:15,869 [WARNING] app.services.wayback_service: CDX API error for artnet.com: 502 Bad Gateway
+2026-03-09 15:49:15,870 [INFO] app.services.wayback_service: Wayback [56/86] artnet.com: 0 snapshots, lang=None
+2026-03-09 15:49:16,844 [WARNING] app.services.wayback_service: CDX API error for nineplanets.org: 502 Bad Gateway
+2026-03-09 15:49:16,844 [INFO] app.services.wayback_service: Wayback [47/86] nineplanets.org: 0 snapshots, lang=None
+2026-03-09 15:49:17,348 [WARNING] app.services.wayback_service: CDX API error for blogspot.com: 502 Bad Gateway
+2026-03-09 15:49:17,348 [INFO] app.services.wayback_service: Wayback [57/86] blogspot.com: 0 snapshots, lang=None
+2026-03-09 15:49:18,105 [WARNING] app.services.wayback_service: CDX API error for scientificamerican.com: 502 Bad Gateway
+2026-03-09 15:49:18,105 [INFO] app.services.wayback_service: Wayback [48/86] scientificamerican.com: 0 snapshots, lang=None
+2026-03-09 15:49:19,227 [WARNING] app.services.wayback_service: CDX API error for ajrarchive.org: 502 Bad Gateway
+2026-03-09 15:49:19,228 [INFO] app.services.wayback_service: Wayback [49/86] ajrarchive.org: 0 snapshots, lang=None
+2026-03-09 15:49:20,347 [WARNING] app.services.wayback_service: CDX API error for pulitzer.org: 502 Bad Gateway
+2026-03-09 15:49:20,348 [INFO] app.services.wayback_service: Wayback [50/86] pulitzer.org: 0 snapshots, lang=None
+2026-03-09 15:49:21,389 [WARNING] app.services.wayback_service: CDX API error for phish.net: 502 Bad Gateway
+2026-03-09 15:49:21,390 [INFO] app.services.wayback_service: Wayback [51/86] phish.net: 0 snapshots, lang=None
+2026-03-09 15:49:21,900 [INFO] app.services.wayback_service: Wayback [27/96] doi.org: 50 snapshots, lang=en
+2026-03-09 15:49:22,798 [WARNING] app.services.wayback_service: CDX API error for jambands.com: 502 Bad Gateway
+2026-03-09 15:49:22,798 [INFO] app.services.wayback_service: Wayback [52/86] jambands.com: 0 snapshots, lang=None
+2026-03-09 15:49:23,298 [WARNING] app.services.wayback_service: CDX API error for semanticscholar.org: 502 Bad Gateway
+2026-03-09 15:49:23,299 [INFO] app.services.wayback_service: Wayback [28/96] semanticscholar.org: 0 snapshots, lang=None
+2026-03-09 15:49:24,196 [WARNING] app.services.wayback_service: CDX API error for interesting-people.org: 502 Bad Gateway
+2026-03-09 15:49:24,197 [INFO] app.services.wayback_service: Wayback [53/86] interesting-people.org: 0 snapshots, lang=None
+2026-03-09 15:49:24,716 [WARNING] app.services.wayback_service: CDX API error for sito.org: 502 Bad Gateway
+2026-03-09 15:49:24,717 [INFO] app.services.wayback_service: Wayback [29/96] sito.org: 0 snapshots, lang=None
+2026-03-09 15:49:25,787 [WARNING] app.services.wayback_service: CDX API error for xerox.com: 502 Bad Gateway
+2026-03-09 15:49:25,788 [INFO] app.services.wayback_service: Wayback [30/96] xerox.com: 0 snapshots, lang=None
+2026-03-09 15:49:26,623 [WARNING] app.services.wayback_service: CDX API error for powells.com: 502 Bad Gateway
+2026-03-09 15:49:26,624 [INFO] app.services.wayback_service: Wayback [54/86] powells.com: 0 snapshots, lang=None
+2026-03-09 15:49:27,144 [WARNING] app.services.wayback_service: CDX API error for photo.net: 502 Bad Gateway
+2026-03-09 15:49:27,144 [INFO] app.services.wayback_service: Wayback [31/96] photo.net: 0 snapshots, lang=None
+2026-03-09 15:49:28,062 [WARNING] app.services.wayback_service: CDX API error for rutartan.com: 502 Bad Gateway
+2026-03-09 15:49:28,062 [INFO] app.services.wayback_service: Wayback [55/86] rutartan.com: 0 snapshots, lang=None
+2026-03-09 15:49:28,593 [WARNING] app.services.wayback_service: CDX API error for greenspun.com: 502 Bad Gateway
+2026-03-09 15:49:28,593 [INFO] app.services.wayback_service: Wayback [32/96] greenspun.com: 0 snapshots, lang=None
+2026-03-09 15:49:50,754 [INFO] app.services.wayback_service: Wayback [33/96] goertzel.org: 50 snapshots, lang=en
+2026-03-09 15:50:00,385 [INFO] app.services.wayback_service: Wayback [56/86] artnet.com: 50 snapshots, lang=en
+2026-03-09 15:50:18,107 [INFO] app.services.wayback_service: Wayback [34/96] expasy.org: 50 snapshots, lang=en
+2026-03-09 15:50:29,062 [INFO] app.services.wayback_service: Wayback [57/86] blogspot.com: 50 snapshots, lang=en
+2026-03-09 15:50:45,632 [INFO] app.services.wayback_service: Wayback [35/96] zinebook.com: 50 snapshots, lang=en
+2026-03-09 15:51:16,870 [INFO] app.services.wayback_service: Wayback [36/96] augusta.com: 50 snapshots, lang=en
+2026-03-09 15:51:46,626 [INFO] app.services.wayback_service: Wayback [37/96] oldest.org: 50 snapshots, lang=en
+2026-03-09 15:52:18,049 [WARNING] app.services.wayback_service: CDX API error for alliedartists.com: 
+2026-03-09 15:52:18,050 [INFO] app.services.wayback_service: Wayback [38/96] alliedartists.com: 0 snapshots, lang=None
+2026-03-09 15:52:34,578 [INFO] app.services.wayback_service: Wayback [39/96] ama.org: 50 snapshots, lang=en
+2026-03-09 15:53:00,109 [INFO] app.services.wayback_service: Wayback [40/96] versionmuseum.com: 50 snapshots, lang=en
+2026-03-09 15:53:31,084 [INFO] app.services.wayback_service: Wayback [41/96] graffiti.org: 50 snapshots, lang=en
+2026-03-09 15:53:55,915 [INFO] app.services.wayback_service: Wayback [42/96] vice.com: 50 snapshots, lang=en
+2026-03-09 15:54:11,259 [INFO] app.services.wayback_service: Wayback [43/96] freeform.org: 50 snapshots, lang=en
+2026-03-09 15:54:38,836 [INFO] app.services.wayback_service: Wayback [44/96] britannica.com: 50 snapshots, lang=en
+2026-03-09 15:55:16,001 [INFO] app.services.wayback_service: Wayback [45/96] jta.org: 50 snapshots, lang=en
+2026-03-09 15:55:43,392 [INFO] app.services.wayback_service: Wayback [46/96] CitySites.com: 50 snapshots, lang=en
+2026-03-09 15:56:03,085 [INFO] app.services.wayback_service: Wayback [47/96] citysites.com: 50 snapshots, lang=en
+2026-03-09 15:56:20,028 [INFO] app.services.wayback_service: Wayback [48/96] worldcat.org: 50 snapshots, lang=en
+2026-03-09 15:56:38,504 [INFO] app.services.wayback_service: Wayback [49/96] nytimes.com: 50 snapshots, lang=en
+2026-03-09 15:56:59,231 [INFO] app.services.wayback_service: Wayback [50/96] go2net.com: 50 snapshots, lang=en
+2026-03-09 15:57:38,383 [INFO] app.services.wayback_service: Wayback [51/96] ajr.org: 50 snapshots, lang=en
+2026-03-09 15:58:09,877 [WARNING] app.services.wayback_service: CDX API error for l-ware.com: 
+2026-03-09 15:58:09,877 [INFO] app.services.wayback_service: Wayback [52/96] l-ware.com: 0 snapshots, lang=None
+2026-03-09 15:58:36,895 [INFO] app.services.wayback_service: Wayback [53/96] time.com: 50 snapshots, lang=en
+2026-03-09 15:58:55,706 [INFO] app.services.wayback_service: Wayback [54/96] economist.com: 50 snapshots, lang=en
+2026-03-09 15:59:27,239 [WARNING] app.services.wayback_service: CDX API error for einet.net: 
+2026-03-09 15:59:27,240 [INFO] app.services.wayback_service: Wayback [55/96] einet.net: 0 snapshots, lang=None
+2026-03-09 15:59:52,711 [INFO] app.services.wayback_service: Wayback [56/96] bbc.com: 50 snapshots, lang=None
+2026-03-09 16:00:25,012 [INFO] app.services.wayback_service: Wayback [57/96] folklib.net: 50 snapshots, lang=en
+2026-03-09 16:00:43,137 [INFO] app.services.wayback_service: Wayback [58/96] crwflags.com: 50 snapshots, lang=en
+2026-03-09 16:01:01,834 [INFO] app.services.wayback_service: Wayback [59/96] thocp.net: 50 snapshots, lang=en
+2026-03-09 16:01:38,522 [INFO] app.services.wayback_service: Wayback [60/96] verisign.com: 50 snapshots, lang=en
+2026-03-09 16:01:54,636 [INFO] app.services.wayback_service: Wayback [61/96] zakon.org: 50 snapshots, lang=en
+2026-03-09 16:02:09,883 [INFO] app.services.wayback_service: Wayback [62/96] epcostello.net: 50 snapshots, lang=en
+2026-03-09 16:02:12,191 [INFO] app.services.wayback_service: Wayback [63/96] innerviews.org: 0 snapshots, lang=None
+2026-03-09 16:02:29,783 [INFO] app.services.wayback_service: Wayback [64/96] lawinfo.com: 50 snapshots, lang=en
+2026-03-09 16:02:50,009 [INFO] app.services.wayback_service: Wayback [65/96] lawyermarketing.com: 50 snapshots, lang=en
+2026-03-09 16:03:05,505 [INFO] app.services.wayback_service: Wayback [66/96] sayeverything.com: 50 snapshots, lang=en
+2026-03-09 16:03:44,310 [INFO] app.services.wayback_service: Wayback [67/96] thenervousbreakdown.com: 50 snapshots, lang=en
+2026-03-09 16:04:00,351 [INFO] app.services.wayback_service: Wayback [68/96] davidworlock.com: 50 snapshots, lang=en
+2026-03-09 16:04:14,341 [INFO] app.services.wayback_service: Wayback [69/96] thehistoryofseo.com: 50 snapshots, lang=en
+2026-03-09 16:04:37,329 [INFO] app.services.wayback_service: Wayback [70/96] megadeth.com: 50 snapshots, lang=en
+2026-03-09 16:04:56,045 [INFO] app.services.wayback_service: Wayback [71/96] metalinjection.net: 50 snapshots, lang=en
+2026-03-09 16:05:16,336 [INFO] app.services.wayback_service: Wayback [72/96] businessinsider.com: 50 snapshots, lang=en
+2026-03-09 16:05:38,565 [INFO] app.services.wayback_service: Wayback [73/96] museumofbadart.org: 50 snapshots, lang=en
+2026-03-09 16:06:01,653 [INFO] app.services.wayback_service: Wayback [74/96] nineplanets.org: 50 snapshots, lang=en
+2026-03-09 16:06:32,759 [INFO] app.services.wayback_service: Wayback [75/96] scientificamerican.com: 50 snapshots, lang=en
+2026-03-09 16:06:54,758 [INFO] app.services.wayback_service: Wayback [76/96] ajrarchive.org: 50 snapshots, lang=en
+2026-03-09 16:07:32,870 [INFO] app.services.wayback_service: Wayback [77/96] pulitzer.org: 50 snapshots, lang=en
+2026-03-09 16:07:53,718 [INFO] app.services.wayback_service: Wayback [78/96] people.com: 50 snapshots, lang=en
+2026-03-09 16:08:09,464 [INFO] app.services.wayback_service: Wayback [79/96] phish.net: 50 snapshots, lang=en
+2026-03-09 16:08:34,451 [INFO] app.services.wayback_service: Wayback [80/96] jambands.com: 50 snapshots, lang=en
+2026-03-09 16:08:56,911 [INFO] app.services.wayback_service: Wayback [81/96] interesting-people.org: 50 snapshots, lang=en
+2026-03-09 16:09:27,211 [INFO] app.services.wayback_service: Wayback [82/96] portlandtribune.com: 50 snapshots, lang=en
+2026-03-09 16:09:49,376 [INFO] app.services.wayback_service: Wayback [83/96] powells.com: 50 snapshots, lang=en
+2026-03-09 16:10:07,776 [INFO] app.services.wayback_service: Wayback [84/96] artnet.com: 50 snapshots, lang=en
+2026-03-09 16:10:39,292 [INFO] app.services.wayback_service: Wayback [85/96] blogspot.com: 50 snapshots, lang=en
+2026-03-09 16:12:01,666 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:12:24,168 [INFO] app.services.wayback_service: Starting Wayback check for 10 candidates
+2026-03-09 16:12:50,694 [INFO] app.services.scoring_service: Scored 102 candidates
+2026-03-09 16:12:56,079 [WARNING] app.services.wayback_service: CDX API error for playphilly.com: 
+2026-03-09 16:12:56,079 [INFO] app.services.wayback_service: Wayback [1/10] playphilly.com: 0 snapshots, lang=None
+2026-03-09 16:13:00,022 [INFO] app.services.crawl_service: Crawl completed: 1 candidates, 6 dead links
+2026-03-09 16:13:00,023 [INFO] app.routes.crawl: Crawl done for source 11, starting RDAP check…
+2026-03-09 16:13:00,158 [INFO] app.services.whois_service: Starting RDAP check for 1 candidates
+2026-03-09 16:13:01,458 [INFO] app.services.whois_service:   [1/1] blogspot.com → registered
+2026-03-09 16:13:02,595 [INFO] app.services.whois_service: RDAP check completed: 1/1
+2026-03-09 16:13:02,596 [INFO] app.routes.crawl: RDAP done for source 11, starting Wayback check…
+2026-03-09 16:13:02,710 [INFO] app.services.wayback_service: Starting Wayback check for 10 candidates
+2026-03-09 16:13:11,112 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:13:11,787 [INFO] app.services.wayback_service: Starting Wayback check for 10 candidates
+2026-03-09 16:13:13,114 [INFO] app.services.scoring_service: Scored 115 candidates
+2026-03-09 16:13:16,791 [INFO] app.services.wayback_service: Wayback [2/10] tedkennedy.org: 50 snapshots, lang=en
+2026-03-09 16:13:26,880 [INFO] app.services.wayback_service: Wayback [1/10] blogspot.com: 50 snapshots, lang=en
+2026-03-09 16:13:27,786 [INFO] app.services.wayback_service: Wayback [1/10] blogspot.com: 50 snapshots, lang=en
+2026-03-09 16:13:39,030 [INFO] app.services.wayback_service: Wayback [2/10] tedkennedy.org: 50 snapshots, lang=en
+2026-03-09 16:13:39,605 [INFO] app.services.wayback_service: Wayback [2/10] tedkennedy.org: 50 snapshots, lang=en
+2026-03-09 16:13:48,339 [WARNING] app.services.wayback_service: CDX API error for whois.com: 
+2026-03-09 16:13:48,339 [INFO] app.services.wayback_service: Wayback [3/10] whois.com: 0 snapshots, lang=None
+2026-03-09 16:14:04,265 [INFO] app.services.wayback_service: Wayback [3/10] whois.com: 50 snapshots, lang=en
+2026-03-09 16:14:04,814 [INFO] app.services.wayback_service: Wayback [4/10] internethistorypodcast.com: 50 snapshots, lang=en
+2026-03-09 16:14:11,131 [WARNING] app.services.wayback_service: CDX API error for whois.com: 
+2026-03-09 16:14:11,131 [INFO] app.services.wayback_service: Wayback [3/10] whois.com: 0 snapshots, lang=None
+2026-03-09 16:14:25,930 [INFO] app.services.wayback_service: Wayback [4/10] internethistorypodcast.com: 50 snapshots, lang=en
+2026-03-09 16:14:29,332 [INFO] app.services.wayback_service: Wayback [4/10] internethistorypodcast.com: 50 snapshots, lang=en
+2026-03-09 16:14:36,276 [WARNING] app.services.wayback_service: CDX API error for wikimediafoundation.org: 
+2026-03-09 16:14:36,277 [INFO] app.services.wayback_service: Wayback [5/10] wikimediafoundation.org: 0 snapshots, lang=None
+2026-03-09 16:14:47,301 [INFO] app.services.wayback_service: Wayback [5/10] wikimediafoundation.org: 50 snapshots, lang=en
+2026-03-09 16:14:52,737 [INFO] app.services.wayback_service: Wayback [5/10] wikimediafoundation.org: 50 snapshots, lang=en
+2026-03-09 16:14:59,063 [INFO] app.services.wayback_service: Wayback [6/10] mediawiki.org: 3 snapshots, lang=en
+2026-03-09 16:15:05,039 [INFO] app.services.wayback_service: Wayback [6/10] mediawiki.org: 3 snapshots, lang=en
+2026-03-09 16:15:06,347 [WARNING] app.services.wayback_service: CDX API error for webdesignmuseum.org: 502 Bad Gateway
+2026-03-09 16:15:06,347 [INFO] app.services.wayback_service: Wayback [7/10] webdesignmuseum.org: 0 snapshots, lang=None
+2026-03-09 16:15:10,674 [WARNING] app.services.wayback_service: CDX API error for epolitics.com: 502 Bad Gateway
+2026-03-09 16:15:10,674 [INFO] app.services.wayback_service: Wayback [8/10] epolitics.com: 0 snapshots, lang=None
+2026-03-09 16:15:11,930 [WARNING] app.services.wayback_service: CDX API error for sirius.com: 502 Bad Gateway
+2026-03-09 16:15:11,930 [INFO] app.services.wayback_service: Wayback [9/10] sirius.com: 0 snapshots, lang=None
+2026-03-09 16:15:12,799 [INFO] app.services.wayback_service: Wayback [6/10] mediawiki.org: 3 snapshots, lang=en
+2026-03-09 16:15:13,790 [WARNING] app.services.wayback_service: CDX API error for entrepreneur.com: 502 Bad Gateway
+2026-03-09 16:15:13,791 [INFO] app.services.wayback_service: Wayback [10/10] entrepreneur.com: 0 snapshots, lang=None
+2026-03-09 16:15:13,910 [INFO] app.services.wayback_service: Wayback check complete: 10/10
+2026-03-09 16:15:14,009 [WARNING] app.services.wayback_service: CDX API error for webdesignmuseum.org: 502 Bad Gateway
+2026-03-09 16:15:14,010 [INFO] app.services.wayback_service: Wayback [7/10] webdesignmuseum.org: 0 snapshots, lang=None
+2026-03-09 16:15:15,248 [WARNING] app.services.wayback_service: CDX API error for epolitics.com: 502 Bad Gateway
+2026-03-09 16:15:15,249 [INFO] app.services.wayback_service: Wayback [8/10] epolitics.com: 0 snapshots, lang=None
+2026-03-09 16:15:16,508 [WARNING] app.services.wayback_service: CDX API error for sirius.com: 502 Bad Gateway
+2026-03-09 16:15:16,509 [INFO] app.services.wayback_service: Wayback [9/10] sirius.com: 0 snapshots, lang=None
+2026-03-09 16:15:17,717 [WARNING] app.services.wayback_service: CDX API error for entrepreneur.com: 502 Bad Gateway
+2026-03-09 16:15:17,718 [INFO] app.services.wayback_service: Wayback [10/10] entrepreneur.com: 0 snapshots, lang=None
+2026-03-09 16:15:17,879 [INFO] app.services.wayback_service: Wayback check complete: 10/10
+2026-03-09 16:15:17,880 [INFO] app.routes.crawl: Wayback done for source 11, starting scoring…
+2026-03-09 16:15:18,435 [INFO] app.services.scoring_service: Scored 102 candidates
+2026-03-09 16:15:18,436 [INFO] app.routes.crawl: Full pipeline complete for source 11 ✓
+2026-03-09 16:15:36,370 [INFO] app.services.wayback_service: Wayback [7/10] webdesignmuseum.org: 50 snapshots, lang=en
+2026-03-09 16:15:37,641 [WARNING] app.services.wayback_service: CDX API error for epolitics.com: 502 Bad Gateway
+2026-03-09 16:15:37,642 [INFO] app.services.wayback_service: Wayback [8/10] epolitics.com: 0 snapshots, lang=None
+2026-03-09 16:15:38,885 [WARNING] app.services.wayback_service: CDX API error for sirius.com: 502 Bad Gateway
+2026-03-09 16:15:38,886 [INFO] app.services.wayback_service: Wayback [9/10] sirius.com: 0 snapshots, lang=None
+2026-03-09 16:15:40,313 [WARNING] app.services.wayback_service: CDX API error for entrepreneur.com: 502 Bad Gateway
+2026-03-09 16:15:40,314 [INFO] app.services.wayback_service: Wayback [10/10] entrepreneur.com: 0 snapshots, lang=None
+2026-03-09 16:15:40,431 [INFO] app.services.wayback_service: Wayback check complete: 10/10
+2026-03-09 16:15:56,667 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:16:35,771 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-09 16:16:35,771 [INFO] app.routes.crawl: Crawl done for source 12, starting RDAP check…
+2026-03-09 16:16:35,906 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:16:35,944 [INFO] app.routes.crawl: RDAP done for source 12, starting Wayback check…
+2026-03-09 16:16:36,076 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:16:36,119 [INFO] app.routes.crawl: Wayback done for source 12, starting scoring…
+2026-03-09 16:16:36,342 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 16:16:36,342 [INFO] app.routes.crawl: Full pipeline complete for source 12 ✓
+2026-03-09 16:16:50,125 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:17:10,858 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:17:36,815 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 16:17:55,787 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:17:56,460 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:17:57,358 [INFO] app.services.scoring_service: Scored 114 candidates
+2026-03-09 16:44:36,031 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-09 16:44:36,032 [INFO] app.routes.crawl: Crawl done for source 12, starting RDAP check…
+2026-03-09 16:44:36,115 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:44:36,159 [INFO] app.routes.crawl: RDAP done for source 12, starting Wayback check…
+2026-03-09 16:44:36,249 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:44:36,293 [INFO] app.routes.crawl: Wayback done for source 12, starting scoring…
+2026-03-09 16:44:36,464 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 16:44:36,464 [INFO] app.routes.crawl: Full pipeline complete for source 12 ✓
+2026-03-09 16:44:49,557 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:45:10,405 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:45:36,304 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 16:45:54,931 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:45:55,526 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:45:56,358 [INFO] app.services.scoring_service: Scored 113 candidates
+2026-03-09 16:50:51,047 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-09 16:50:51,048 [INFO] app.routes.crawl: Crawl done for source 12, starting RDAP check…
+2026-03-09 16:50:51,130 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:50:51,169 [INFO] app.routes.crawl: RDAP done for source 12, starting Wayback check…
+2026-03-09 16:50:51,307 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:50:51,350 [INFO] app.routes.crawl: Wayback done for source 12, starting scoring…
+2026-03-09 16:50:51,514 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 16:50:51,515 [INFO] app.routes.crawl: Full pipeline complete for source 12 ✓
+2026-03-09 16:51:04,652 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:51:25,498 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:51:51,318 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 16:52:08,773 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:52:09,337 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:52:10,222 [INFO] app.services.scoring_service: Scored 112 candidates
+2026-03-09 16:57:11,471 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-09 16:57:11,472 [INFO] app.routes.crawl: Crawl done for source 12, starting RDAP check…
+2026-03-09 16:57:11,557 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:57:11,598 [INFO] app.routes.crawl: RDAP done for source 12, starting Wayback check…
+2026-03-09 16:57:11,679 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:57:11,719 [INFO] app.routes.crawl: Wayback done for source 12, starting scoring…
+2026-03-09 16:57:11,887 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 16:57:11,888 [INFO] app.routes.crawl: Full pipeline complete for source 12 ✓
+2026-03-09 16:57:25,532 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:57:46,356 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:58:12,276 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 16:58:30,363 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 16:58:30,880 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 16:58:31,729 [INFO] app.services.scoring_service: Scored 111 candidates

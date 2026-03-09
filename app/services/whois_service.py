@@ -1,14 +1,17 @@
 """
-WHOIS Service — availability check + DNS resolution + status tagging.
+RDAP Service — domain availability check via RDAP protocol (ICANN standard).
+
+Replaces python-whois with direct RDAP queries:
+  - GET https://rdap.org/domain/{domain}
+  - 200 = registered (parse registrar, dates, status)
+  - 404 = available (not registered)
 """
 
 import asyncio
 import logging
-import time
-from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, date, timezone
 
-import whois
+import httpx
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -17,11 +20,12 @@ from app.config import get_settings
 
 logger = logging.getLogger(__name__)
 
-_executor = ThreadPoolExecutor(max_workers=3)
+RDAP_BASE = "https://rdap.org/domain"
+RDAP_TIMEOUT = 15
 
 
-def _whois_lookup(domain: str) -> dict:
-    """Blocking WHOIS lookup for a single domain."""
+async def _rdap_lookup(domain: str) -> dict:
+    """RDAP lookup for a single domain. Fully async, no threads needed."""
     result = {
         "status": "unknown",
         "registrar": None,
@@ -31,92 +35,88 @@ def _whois_lookup(domain: str) -> dict:
     }
 
     try:
-        w = whois.whois(domain)
+        async with httpx.AsyncClient(follow_redirects=True) as client:
+            resp = await client.get(f"{RDAP_BASE}/{domain}", timeout=RDAP_TIMEOUT)
 
-        if not w or not w.domain_name:
+        if resp.status_code == 404:
             result["status"] = "available"
             return result
 
-        creation = w.creation_date
-        expiration = w.expiration_date
-        if isinstance(creation, list):
-            creation = creation[0]
-        if isinstance(expiration, list):
-            expiration = expiration[0]
+        if resp.status_code != 200:
+            result["status"] = "check_failed"
+            logger.warning("RDAP HTTP %d for %s", resp.status_code, domain)
+            return result
 
-        result["registrar"] = w.registrar
+        data = resp.json()
 
-        if creation:
-            result["created_date"] = creation.date() if isinstance(creation, datetime) else creation
+        # Extract registrar from entities
+        for entity in data.get("entities", []):
+            if "registrar" in entity.get("roles", []):
+                vcard = entity.get("vcardArray", [None, []])
+                if len(vcard) > 1:
+                    for field in vcard[1]:
+                        if field[0] == "fn":
+                            result["registrar"] = field[3]
+                            break
+                # fallback to handle
+                if not result["registrar"]:
+                    result["registrar"] = entity.get("handle")
+                break
 
-        if expiration:
-            if isinstance(expiration, datetime):
-                exp_dt = expiration
-            else:
-                exp_dt = datetime.combine(expiration, datetime.min.time())
+        # Extract dates from events
+        for event in data.get("events", []):
+            action = event.get("eventAction", "")
+            date_str = event.get("eventDate", "")
+            if not date_str:
+                continue
 
-            result["expiry_date"] = exp_dt.date() if isinstance(exp_dt, datetime) else expiration
+            try:
+                dt = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
+            except (ValueError, TypeError):
+                continue
 
-            now = datetime.now(timezone.utc)
-            if exp_dt.tzinfo is None:
-                exp_dt = exp_dt.replace(tzinfo=timezone.utc)
-            delta = exp_dt - now
-            result["days_left"] = delta.days
+            if action == "registration":
+                result["created_date"] = dt.date()
+            elif action == "expiration":
+                result["expiry_date"] = dt.date()
 
-            if delta.days < 0:
-                result["status"] = "expired"
-            elif delta.days < 30:
-                result["status"] = "expiring_soon"
-            elif delta.days < 90:
-                result["status"] = "expiring_watchlist"
-            else:
-                result["status"] = "registered"
-        else:
+                now = datetime.now(timezone.utc)
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                delta = dt - now
+                result["days_left"] = delta.days
+
+                if delta.days < 0:
+                    result["status"] = "expired"
+                elif delta.days < 30:
+                    result["status"] = "expiring_soon"
+                elif delta.days < 90:
+                    result["status"] = "expiring_watchlist"
+                else:
+                    result["status"] = "registered"
+
+        # If we got 200 but no expiration event, it's still registered
+        if result["status"] == "unknown":
             result["status"] = "registered"
 
-    except whois.parser.PywhoisError:
-        result["status"] = "available"
+    except httpx.TimeoutException:
+        result["status"] = "check_failed"
+        logger.warning("RDAP timeout for %s", domain)
     except Exception as e:
         result["status"] = "check_failed"
-        logger.warning("WHOIS error for %s: %s", domain, e)
+        logger.warning("RDAP error for %s: %s", domain, e)
 
     return result
 
 
-def _dns_check(domain: str) -> bool:
-    """Check if domain has DNS records (simple socket resolution)."""
-    import socket
-    try:
-        socket.getaddrinfo(domain, None, socket.AF_INET)
-        return True
-    except socket.gaierror:
-        return False
-
-
-def _check_domain(domain: str) -> dict:
-    """Combined WHOIS + DNS check with status tagging."""
-    whois_data = _whois_lookup(domain)
-    dns_has_records = _dns_check(domain)
-
-    # Refine status with DNS data
-    if whois_data["status"] == "available" and not dns_has_records:
-        whois_data["status"] = "available"  # confirmed
-    elif whois_data["status"] == "available" and dns_has_records:
-        whois_data["status"] = "registered"  # WHOIS missed it but DNS resolves
-
-    whois_data["dns_has_records"] = dns_has_records
-    return whois_data
-
-
 async def check_single(domain: str) -> dict:
-    """Async wrapper for single domain check."""
-    loop = asyncio.get_event_loop()
-    return await loop.run_in_executor(_executor, _check_domain, domain)
+    """Async RDAP lookup for a single domain."""
+    return await _rdap_lookup(domain)
 
 
 async def check_candidates(db: AsyncSession, source_id: int | None = None):
     """
-    Batch WHOIS check for all unchecked candidates.
+    Batch RDAP check for all unchecked candidates.
     Updates DB directly.
     """
     settings = get_settings()
@@ -132,19 +132,18 @@ async def check_candidates(db: AsyncSession, source_id: int | None = None):
         logger.info("No unchecked candidates found")
         return 0
 
-    logger.info("Starting WHOIS check for %d candidates", len(candidates))
+    logger.info("Starting RDAP check for %d candidates", len(candidates))
     checked = 0
 
     for candidate in candidates:
         try:
-            data = await check_single(candidate.domain)
+            data = await _rdap_lookup(candidate.domain)
 
             candidate.availability_status = data["status"]
             candidate.whois_registrar = data.get("registrar")
             candidate.whois_created_date = data.get("created_date")
             candidate.whois_expiry_date = data.get("expiry_date")
             candidate.whois_days_left = data.get("days_left")
-            candidate.dns_has_records = data.get("dns_has_records")
             candidate.whois_checked_at = datetime.now(timezone.utc)
 
             checked += 1
@@ -153,11 +152,12 @@ async def check_candidates(db: AsyncSession, source_id: int | None = None):
         except Exception as e:
             candidate.availability_status = "check_failed"
             candidate.whois_checked_at = datetime.now(timezone.utc)
-            logger.error("WHOIS failed for %s: %s", candidate.domain, e)
+            logger.error("RDAP failed for %s: %s", candidate.domain, e)
 
         # Throttle
-        await asyncio.sleep(settings.WHOIS_DELAY_SECONDS)
+        await asyncio.sleep(settings.RDAP_DELAY_SECONDS)
 
-    await db.commit()
-    logger.info("WHOIS check completed: %d/%d", checked, len(candidates))
+        await db.commit()
+
+    logger.info("RDAP check completed: %d/%d", checked, len(candidates))
     return checked

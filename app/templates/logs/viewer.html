@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Pipeline Logs — Domain IQ{% endblock %}
+{% block nav_logs %}font-semibold text-indigo-600{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center mb-4">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900">Pipeline Logs</h1>
+        <p class="text-sm text-gray-500 mt-1">Real-time output from crawl, RDAP, Wayback, and scoring pipeline</p>
+    </div>
+    <div class="flex gap-2">
+        <form method="post" action="/logs/clear" hx-post="/logs/clear" hx-swap="none"
+              hx-on::after-request="document.getElementById('logBox').textContent='Log cleared.'">
+            <button type="submit" class="px-3 py-2 bg-red-600 text-white text-xs font-medium rounded-lg hover:bg-red-700">Clear Logs</button>
+        </form>
+    </div>
+</div>
+
+<div class="bg-gray-900 rounded-lg shadow p-4 font-mono text-xs text-green-400 overflow-auto"
+     style="height: 75vh; white-space: pre-wrap; word-break: break-all;">
+    <pre id="logBox"
+         hx-get="/logs/content"
+         hx-trigger="load, every 3s"
+         hx-swap="innerHTML">Loading logs...</pre>
+</div>
+
+<script>
+// Auto-scroll to bottom when new content loads
+document.body.addEventListener('htmx:afterSwap', function(evt) {
+    if (evt.detail.target.id === 'logBox') {
+        evt.detail.target.parentElement.scrollTop = evt.detail.target.parentElement.scrollHeight;
+    }
+});
+</script>
+{% endblock %}

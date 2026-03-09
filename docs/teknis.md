@@ -9,7 +9,7 @@ Browser (localhost:8000)
 FastAPI (Jinja2 + HTMX)
   │
   ├── Routes:  dashboard, sources, candidates, crawl, export
-  ├── Services: crawl, whois, wayback, toxicity, scoring, export
+  ├── Services: crawl, rdap, wayback, toxicity, scoring, export
   ├── Auth:    HTTP Basic Auth middleware
   │
   ▼
@@ -64,15 +64,16 @@ PostgreSQL (Neon cloud)
 | source_id | INTEGER FK | Referensi ke sources |
 | niche | VARCHAR | Kategori niche |
 | link_url | VARCHAR | URL link yang mengandung domain |
-| link_status | VARCHAR | dead/alive |
+| is_domain_alive | BOOLEAN | Domain masih hidup? |
+| dns_resolves | BOOLEAN | DNS resolve? |
 | http_status | INTEGER | HTTP status code |
-| availability | VARCHAR | available/expired/registered/dll |
-| registrar | VARCHAR | Nama registrar |
-| creation_date | DATE | Tanggal registrasi |
-| expiry_date | DATE | Tanggal expired |
-| days_until_expiry | INTEGER | Sisa hari sebelum expired |
-| dns_active | BOOLEAN | DNS aktif? |
-| whois_checked_at | DATETIME | Waktu cek WHOIS terakhir |
+| is_parked | BOOLEAN | Domain parking? |
+| availability_status | VARCHAR | available/registered/expired/dll |
+| whois_registrar | VARCHAR | Nama registrar |
+| whois_created_date | DATE | Tanggal registrasi |
+| whois_expiry_date | DATE | Tanggal expired |
+| whois_days_left | INTEGER | Sisa hari sebelum expired |
+| whois_checked_at | DATETIME | Waktu cek RDAP terakhir |
 | wayback_total_snapshots | INTEGER | Jumlah snapshot Wayback |
 | first_seen | DATE | Tanggal pertama di Wayback |
 | last_seen | DATE | Tanggal terakhir di Wayback |
@@ -84,7 +85,7 @@ PostgreSQL (Neon cloud)
 | score_continuity | FLOAT | Skor continuity (0-100) |
 | score_cleanliness | FLOAT | Skor cleanliness (0-100) |
 | score_total | FLOAT | Skor total (0-100) |
-| label | VARCHAR | Buy/Review/Discard |
+| label | VARCHAR | Available/Watchlist/Uncertain/Discard |
 | label_reason | TEXT | Alasan label |
 | owner_notes | TEXT | Catatan owner |
 | created_at | DATETIME | Waktu ditemukan |
@@ -110,13 +111,9 @@ AUTH_PASSWORD=ganti_password_kuat
 PROXY_ENABLED=true
 PROXY_FILE=proxies.txt
 
-# Scoring thresholds
-SCORE_BUY_THRESHOLD=80
-SCORE_DISCARD_THRESHOLD=40
-
 # Rate limiting
 CRAWL_DELAY_SECONDS=2.0
-WHOIS_DELAY_SECONDS=1.5
+RDAP_DELAY_SECONDS=1.0
 WAYBACK_DELAY_SECONDS=1.0
 
 # Limits
@@ -190,13 +187,12 @@ http://user2:pass2@proxy2.webshare.io:80
 
 ## Kustomisasi Scoring
 
-### Ubah threshold label
-Edit `.env`:
-```env
-SCORE_BUY_THRESHOLD=80     # skor >= ini = Buy
-SCORE_DISCARD_THRESHOLD=40  # skor < ini = Discard
-# Skor di antara keduanya = Review
-```
+### Label Logic
+Label ditentukan berdasarkan status domain dan availability:
+- **Available**: domain dead + RDAP menunjukkan available/expired
+- **Watchlist**: domain dead + registered (atau expiring soon)
+- **Uncertain**: belum ada data RDAP
+- **Discard**: domain alive + registered, atau ada toxicity flag berat
 
 ### Bobot komponen skor
 Edit `app/services/scoring_service.py`:
@@ -274,8 +270,8 @@ DOMAIN_BLACKLIST = {
 | GET | `/candidates/{id}` | Detail kandidat domain |
 | POST | `/candidates/{id}/notes` | Update catatan owner |
 | POST | `/crawl/{source_id}` | Trigger crawl |
-| POST | `/crawl/whois/{source_id}` | WHOIS check per source |
-| POST | `/crawl/whois-all` | WHOIS check semua domain |
+| POST | `/crawl/whois/{source_id}` | RDAP check per source |
+| POST | `/crawl/whois-all` | RDAP check semua domain |
 | POST | `/crawl/wayback/{source_id}` | Wayback audit per source |
 | POST | `/crawl/wayback-all` | Wayback audit semua |
 | POST | `/crawl/score/{source_id}` | Scoring per source |
@@ -293,8 +289,8 @@ Error: Connection refused to database
 ```
 → Cek DATABASE_URL di `.env`. Pastikan PostgreSQL running.
 
-### WHOIS check_failed untuk banyak domain
-→ Normal untuk TLD tertentu (`.io`, `.dev`, `.app`). WHOIS server mereka sering rate-limit.
+### RDAP check_failed untuk banyak domain
+→ Normal untuk TLD tertentu yang RDAP server-nya tidak stabil. Dead domain dicek otomatis saat crawl.
 
 ### Wayback audit tidak menemukan snapshot
 → Domain mungkin belum pernah diindeks Wayback Machine. Ini bukan error.
@@ -306,7 +302,7 @@ Error: ProxyError
 → Cek `proxies.txt`. Pastikan format benar dan proxy masih aktif. Set `PROXY_ENABLED=false` untuk disable.
 
 ### Skor semua 0
-→ Jalankan pipeline secara berurutan: Crawl → WHOIS → Wayback → Score. Scoring memerlukan data WHOIS dan Wayback.
+→ Jalankan pipeline secara berurutan: Crawl → RDAP → Wayback → Score. Dead domain sudah otomatis dicek RDAP saat crawl. Scoring memerlukan data RDAP dan Wayback.
 
 ### Memory error pada crawl besar
 → Kurangi `MAX_CANDIDATES_PER_CRAWL` di `.env` (default: 500).

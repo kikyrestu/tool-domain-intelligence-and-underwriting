@@ -20,9 +20,11 @@ class CandidateDomain(Base):
     original_link: Mapped[str | None] = mapped_column(String(2048), nullable=True)
     niche: Mapped[str] = mapped_column(String(100), nullable=False)
 
-    # Link Status
+    # Domain Status (root domain check)
     http_status: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    is_dead_link: Mapped[bool] = mapped_column(Boolean, default=False)
+    dns_resolves: Mapped[bool | None] = mapped_column(Boolean, nullable=True)
+    is_domain_alive: Mapped[bool | None] = mapped_column(Boolean, nullable=True)
+    is_parked: Mapped[bool] = mapped_column(Boolean, default=False)
 
     # Availability (Week 2)
     availability_status: Mapped[str | None] = mapped_column(String(30), nullable=True)

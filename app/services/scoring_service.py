@@ -7,10 +7,10 @@ Components:
   3. Cleanliness (30%) — toxicity flags
 
 Labels (intent-based):
-  Available  — domain benar-benar bisa ditindaklanjuti (dead link + available/expired)
+  Available  — domain benar-benar bisa ditindaklanjuti (dead domain + available/expired)
   Watchlist  — domain menarik tapi masih aktif/taken, perlu dipantau
   Uncertain  — data belum cukup / status belum yakin
-  Discard    — jelas tidak layak (live+registered, toxic, dll)
+  Discard    — jelas tidak layak (alive+registered, toxic, dll)
 """
 
 import logging
@@ -94,44 +94,44 @@ def _determine_label(candidate: CandidateDomain, total: float,
     """
     Determine label based on domain context, not just score.
 
-    Available  = dead link + (available/expired) — benar-benar bisa dibeli
-    Watchlist  = expiring soon/watchlist, atau dead link + registered — pantau
+    Available  = domain dead + (available/expired) — benar-benar bisa dibeli
+    Watchlist  = expiring soon/watchlist, atau domain dead + registered — pantau
     Uncertain  = data belum cukup (no WHOIS, check_failed, no wayback)
-    Discard    = live link + registered, high toxicity, skor sangat rendah
+    Discard    = domain alive + registered, high toxicity, skor sangat rendah
     """
     has_high_toxicity = any(f.get("severity") == "high" for f in toxicity_flags)
     status = candidate.availability_status or ""
-    is_dead = candidate.is_dead_link
+    is_alive = candidate.is_domain_alive
 
     # AUTO-DISCARD: high-severity toxicity
     if has_high_toxicity:
         return "Discard"
 
-    # AUTO-DISCARD: link masih live + domain registered (bukan kandidat beli)
-    if not is_dead and status == "registered":
+    # AUTO-DISCARD: domain masih alive + registered (bukan kandidat beli)
+    if is_alive and status == "registered":
         return "Discard"
 
     # UNCERTAIN: belum ada data WHOIS atau check gagal
     if not status or status == "check_failed":
         return "Uncertain"
 
-    # AVAILABLE: dead link + domain bisa diambil
-    if is_dead and status in ("available", "expired"):
+    # AVAILABLE: domain dead + bisa diambil
+    if not is_alive and status in ("available", "expired"):
         return "Available"
 
-    # AVAILABLE: link down + expiring_soon (sangat dekat expired)
-    if is_dead and status == "expiring_soon":
+    # AVAILABLE: domain down + expiring_soon (sangat dekat expired)
+    if not is_alive and status == "expiring_soon":
         return "Available"
 
     # WATCHLIST: domain expiring (tapi belum pasti bisa diambil)
     if status in ("expiring_soon", "expiring_watchlist"):
         return "Watchlist"
 
-    # WATCHLIST: dead link + registered — domain menarik tapi belum bisa dibeli
-    if is_dead and status == "registered":
+    # WATCHLIST: domain dead + registered — menarik tapi belum bisa dibeli
+    if not is_alive and status == "registered":
         return "Watchlist"
 
-    # AVAILABLE: not dead but available/expired (rare edge case)
+    # AVAILABLE: alive but available/expired (rare edge case)
     if status in ("available", "expired"):
         return "Available"
 
@@ -158,10 +158,10 @@ def calculate_score(candidate: CandidateDomain, toxicity_flags: list[dict]) -> d
     # Build reason
     reasons = []
     status = candidate.availability_status or "unknown"
-    is_dead = candidate.is_dead_link
+    is_alive = candidate.is_domain_alive
 
-    # Link status context
-    reasons.append("Dead link" if is_dead else "Live link")
+    # Domain status context
+    reasons.append("Domain alive" if is_alive else "Domain dead")
     reasons.append(status.replace("_", " ").title())
 
     snaps = candidate.wayback_total_snapshots or 0

@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from app.database import engine, Base
-from app.routes import dashboard, sources, crawl, candidates, export
+from app.routes import dashboard, sources, crawl, candidates, export, logs
 from app.auth import BasicAuthMiddleware
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
@@ -41,3 +41,4 @@ app.include_router(sources.router)
 app.include_router(crawl.router)
 app.include_router(candidates.router)
 app.include_router(export.router)
+app.include_router(logs.router)

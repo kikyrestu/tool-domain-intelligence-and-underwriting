@@ -33,9 +33,9 @@ async def list_candidates(
 
     # Filters
     if status == "dead":
-        query = query.where(CandidateDomain.is_dead_link == True)
+        query = query.where(CandidateDomain.is_domain_alive == False)
     elif status == "alive":
-        query = query.where(CandidateDomain.is_dead_link == False)
+        query = query.where(CandidateDomain.is_domain_alive == True)
 
     if availability:
         query = query.where(CandidateDomain.availability_status == availability)
@@ -71,7 +71,7 @@ async def list_candidates(
     # Summary counts
     total_all = (await db.execute(select(func.count()).select_from(CandidateDomain))).scalar()
     dead_all = (await db.execute(
-        select(func.count()).where(CandidateDomain.is_dead_link == True)
+        select(func.count()).where(CandidateDomain.is_domain_alive == False)
     )).scalar()
     alive_all = total_all - dead_all
 

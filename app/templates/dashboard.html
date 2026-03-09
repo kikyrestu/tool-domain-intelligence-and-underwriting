@@ -19,7 +19,7 @@
         <p class="text-3xl font-bold text-gray-900 mt-1">{{ candidate_count }}</p>
     </div>
     <div class="bg-white rounded-lg border border-gray-200 p-5">
-        <p class="text-sm text-gray-500">Dead Links</p>
+        <p class="text-sm text-gray-500">Domain Dead</p>
         <p class="text-3xl font-bold text-red-600 mt-1">{{ dead_count }}</p>
     </div>
     <div class="bg-white rounded-lg border border-gray-200 p-5">
@@ -195,8 +195,9 @@
                     </td>
                     <td class="px-5 py-3 text-sm text-gray-500">{{ c.niche }}</td>
                     <td class="px-5 py-3 text-xs">
-                        {% if c.is_dead_link %}<span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700">Dead</span>
-                        {% else %}<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Alive</span>{% endif %}
+                        {% if c.is_domain_alive == false %}<span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700">Dead</span>
+                        {% elif c.is_domain_alive == true %}<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Alive</span>
+                        {% else %}<span class="text-gray-400">—</span>{% endif %}
                     </td>
                 </tr>
                 {% endfor %}

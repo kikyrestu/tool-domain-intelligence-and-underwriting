@@ -10,7 +10,7 @@ class CandidateResponse(BaseModel):
     niche: str
     source_url_found: str | None
     http_status: int | None
-    is_dead_link: bool
+    is_domain_alive: bool | None
     availability_status: str | None
     score_total: float | None
     label: str | None

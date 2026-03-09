@@ -1,8 +1,8 @@
 httpx[http2]
+dnspython
 beautifulsoup4
 tldextract
 python-dotenv
-python-whois
 langdetect
 openpyxl
 

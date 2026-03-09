@@ -62,7 +62,7 @@ r = client.get("/")
 check("Dashboard load", r.status_code == 200)
 check("Ada card Sources", "Sources" in r.text)
 check("Ada card Candidates", "Candidates" in r.text)
-check("Ada card Dead Links", "Dead Links" in r.text or "Dead" in r.text)
+check("Ada card Domain Dead", "Domain Dead" in r.text or "Dead" in r.text)
 check("Ada label Available", "Available" in r.text)
 check("Ada label Watchlist", "Watchlist" in r.text)
 check("Ada label Uncertain", "Uncertain" in r.text)
@@ -103,7 +103,7 @@ if source_ids:
     r = client.get(f"/sources/{sid}")
     check(f"Source detail /{sid} load", r.status_code == 200)
     check("Ada tombol Run Crawl", "Run Crawl" in r.text or "Crawl" in r.text)
-    check("Ada tombol Check WHOIS", "WHOIS" in r.text)
+    check("Ada tombol Check RDAP", "RDAP" in r.text)
     check("Ada tombol Wayback Audit", "Wayback" in r.text)
     check("Ada tombol Score All", "Score All" in r.text or "Score" in r.text)
 
@@ -130,12 +130,12 @@ candidate_count = len(set(candidate_ids))
 check(f"Ada kandidat domain ({candidate_count} found)", candidate_count > 0, f"found {candidate_count}")
 
 # ════════════════════════════════════════════════════════════
-header("5. WHOIS CHECK")
+header("5. RDAP CHECK")
 # ════════════════════════════════════════════════════════════
 
 r = client.post(f"/whois/{sid}")
-check("Trigger WHOIS per source accepted", r.status_code == 200)
-print("  ⏳ Menunggu WHOIS selesai (20s)...")
+check("Trigger RDAP per source accepted", r.status_code == 200)
+print("  ⏳ Menunggu RDAP selesai (20s)...")
 time.sleep(20)
 
 r = client.get("/candidates")
@@ -290,7 +290,7 @@ header("13. BULK OPERATIONS")
 # ════════════════════════════════════════════════════════════
 
 r = client.post("/whois-all")
-check("WHOIS All trigger accepted", r.status_code == 200)
+check("RDAP All trigger accepted", r.status_code == 200)
 
 r = client.post("/wayback-all")
 check("Wayback All trigger accepted", r.status_code == 200)
@@ -364,7 +364,20 @@ else:
     check("Domain age test skipped", False)
 
 # ════════════════════════════════════════════════════════════
-header("18. EDGE CASES")
+header("18. LOG VIEWER")
+# ════════════════════════════════════════════════════════════
+
+r = client.get("/logs")
+check("Log viewer page load", r.status_code == 200)
+check("Ada judul Pipeline Logs", "Pipeline Logs" in r.text)
+check("Ada auto-refresh HTMX", "hx-get" in r.text and "hx-trigger" in r.text)
+check("Ada Clear Logs button", "Clear Logs" in r.text)
+
+r = client.get("/logs/content")
+check("Log content endpoint → 200", r.status_code == 200)
+
+# ════════════════════════════════════════════════════════════
+header("19. EDGE CASES")
 # ════════════════════════════════════════════════════════════
 
 r = client.get("/candidates/99999")

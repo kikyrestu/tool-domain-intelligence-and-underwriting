@@ -28,7 +28,7 @@ class Settings(BaseSettings):
 
     # Rate limiting
     CRAWL_DELAY_SECONDS: float = 2.0
-    WHOIS_DELAY_SECONDS: float = 1.5
+    RDAP_DELAY_SECONDS: float = 1.0
     WAYBACK_DELAY_SECONDS: float = 1.0
 
     # Limits
