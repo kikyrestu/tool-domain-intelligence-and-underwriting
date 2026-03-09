@@ -1,0 +1,21 @@
+<!-- Partial: crawl status indicator (polled via HTMX) -->
+{% if job.status == 'completed' %}
+<span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-700">
+    ✓ Done — {{ job.total_candidates }} candidates, {{ job.total_dead_links }} dead
+</span>
+{% elif job.status == 'running' %}
+<span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-yellow-100 text-yellow-700"
+      hx-get="/crawl/status/{{ job.id }}"
+      hx-trigger="every 3s"
+      hx-swap="outerHTML">
+    ⟳ Crawling...
+</span>
+{% elif job.status == 'failed' %}
+<span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-red-100 text-red-700">
+    ✗ Failed: {{ job.error_message or 'Unknown error' }}
+</span>
+{% else %}
+<span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-700">
+    Pending
+</span>
+{% endif %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Domain IQ{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <style>
+        [hx-indicator] .htmx-indicator { display: none; }
+        .htmx-request .htmx-indicator { display: inline-block; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-14 items-center">
+                <div class="flex items-center space-x-6">
+                    <a href="/" class="text-lg font-bold text-indigo-600">Domain IQ</a>
+                    <a href="/" class="text-sm text-gray-600 hover:text-gray-900 {% block nav_dashboard %}{% endblock %}">Dashboard</a>
+                    <a href="/sources" class="text-sm text-gray-600 hover:text-gray-900 {% block nav_sources %}{% endblock %}">Sources</a>
+                    <a href="/candidates" class="text-sm text-gray-600 hover:text-gray-900 {% block nav_candidates %}{% endblock %}">Candidates</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <!-- Flash notification for background tasks -->
+        <div id="flash-banner" class="hidden mb-4 px-4 py-3 rounded-lg bg-blue-50 border border-blue-200 text-blue-700 text-sm flex items-center gap-2">
+            <svg class="animate-spin h-4 w-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+            <span id="flash-text">Processing in background... Refresh the page to see updates.</span>
+        </div>
+        {% block content %}{% endblock %}
+    </main>
+
+    <script>
+        // Show flash banner when forms with POST method are submitted (background tasks)
+        document.querySelectorAll('form[method="post"]').forEach(form => {
+            form.addEventListener('submit', () => {
+                const banner = document.getElementById('flash-banner');
+                if (banner) {
+                    banner.classList.remove('hidden');
+                    setTimeout(() => banner.classList.add('hidden'), 15000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

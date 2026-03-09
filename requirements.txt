@@ -1,0 +1,20 @@
+httpx
+beautifulsoup4
+tldextract
+python-dotenv
+python-whois
+langdetect
+openpyxl
+
+# FastAPI + server
+fastapi
+uvicorn[standard]
+jinja2
+python-multipart
+
+# Database
+sqlalchemy
+asyncpg
+aiosqlite
+alembic
+pydantic-settings

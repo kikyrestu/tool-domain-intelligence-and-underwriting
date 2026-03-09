@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% block title %}{{ source.url[:50] }} — Domain IQ{% endblock %}
+{% block nav_sources %}font-semibold text-indigo-600{% endblock %}
+
+{% block content %}
+<div class="mb-6">
+    <div class="flex items-center gap-2 text-sm text-gray-500 mb-2">
+        <a href="/sources" class="hover:text-gray-700">Sources</a>
+        <span>›</span>
+        <span class="text-gray-900">Detail</span>
+    </div>
+    <h1 class="text-xl font-bold text-gray-900 break-all">{{ source.url }}</h1>
+    <div class="flex items-center gap-3 mt-2">
+        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-blue-100 text-blue-700">{{ source.niche }}</span>
+        <span class="text-sm text-gray-400">Added {{ source.created_at.strftime('%d %b %Y') }}</span>
+    </div>
+</div>
+
+<!-- Actions -->
+<div class="flex gap-3 mb-6">
+    <form method="post" action="/crawl/{{ source.id }}">
+        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700">
+            Run Crawl
+        </button>
+    </form>
+    <form method="post" action="/whois/{{ source.id }}">
+        <button type="submit" class="px-4 py-2 bg-emerald-600 text-white text-sm font-medium rounded-lg hover:bg-emerald-700">
+            Check WHOIS
+        </button>
+    </form>
+    <form method="post" action="/wayback/{{ source.id }}">
+        <button type="submit" class="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700">
+            Wayback Audit
+        </button>
+    </form>
+    <form method="post" action="/score/{{ source.id }}">
+        <button type="submit" class="px-4 py-2 bg-amber-600 text-white text-sm font-medium rounded-lg hover:bg-amber-700">
+            Score All
+        </button>
+    </form>
+    <form method="post" action="/sources/{{ source.id }}/delete" onsubmit="return confirm('Delete this source and all its candidates? This cannot be undone.')">
+        <button type="submit" class="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700">
+            Delete Source
+        </button>
+    </form>
+</div>
+
+<!-- Crawl History -->
+{% if jobs %}
+<div class="bg-white rounded-lg border border-gray-200 mb-6">
+    <div class="px-5 py-4 border-b border-gray-200">
+        <h2 class="text-lg font-semibold text-gray-900">Crawl History</h2>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Links Found</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Candidates</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Dead Links</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Started</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {% for job in jobs %}
+                <tr class="hover:bg-gray-50">
+                    <td class="px-5 py-3 text-sm text-gray-500">#{{ job.id }}</td>
+                    <td class="px-5 py-3 text-sm">
+                        {% if job.status == 'completed' %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-700">Completed</span>
+                        {% elif job.status == 'running' %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-yellow-100 text-yellow-700">Running</span>
+                        {% elif job.status == 'failed' %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-red-100 text-red-700">Failed</span>
+                        {% else %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-700">Pending</span>
+                        {% endif %}
+                    </td>
+                    <td class="px-5 py-3 text-sm text-gray-900">{{ job.total_links_found }}</td>
+                    <td class="px-5 py-3 text-sm text-gray-900">{{ job.total_candidates }}</td>
+                    <td class="px-5 py-3 text-sm text-red-600">{{ job.total_dead_links }}</td>
+                    <td class="px-5 py-3 text-sm text-gray-500">
+                        {{ job.started_at.strftime('%d %b %H:%M') if job.started_at else '—' }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+
+<!-- Candidates from this source -->
+{% if candidates %}
+<div class="bg-white rounded-lg border border-gray-200">
+    <div class="px-5 py-4 border-b border-gray-200">
+        <h2 class="text-lg font-semibold text-gray-900">Candidates ({{ candidates|length }})</h2>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Domain</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Link Status</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Availability</th>
+                    <th class="px-5 py-3 text-center text-xs font-medium text-gray-500 uppercase">Score</th>
+                    <th class="px-5 py-3 text-center text-xs font-medium text-gray-500 uppercase">Label</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Discovered</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {% for c in candidates %}
+                <tr class="hover:bg-gray-50">
+                    <td class="px-5 py-3 text-sm font-medium">
+                        <a href="/candidates/{{ c.id }}" class="text-indigo-600 hover:underline">{{ c.domain }}</a>
+                    </td>
+                    <td class="px-5 py-3 text-sm">
+                        {% if c.is_dead_link %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-red-100 text-red-700">Dead</span>
+                        {% else %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-700">Alive</span>
+                        {% endif %}
+                    </td>
+                    <td class="px-5 py-3 text-sm">
+                        {% if c.availability_status == 'available' %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-700">Available</span>
+                        {% elif c.availability_status == 'expired' %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-orange-100 text-orange-700">Expired</span>
+                        {% elif c.availability_status == 'expiring_soon' %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-yellow-100 text-yellow-700">Expiring Soon</span>
+                        {% elif c.availability_status == 'expiring_watchlist' %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-blue-100 text-blue-700">Watchlist</span>
+                        {% elif c.availability_status == 'registered' %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-700">Registered</span>
+                        {% elif c.availability_status == 'check_failed' %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-red-100 text-red-700">Failed</span>
+                        {% else %}
+                        <span class="text-gray-400">—</span>
+                        {% endif %}
+                    </td>
+                    <td class="px-5 py-3 text-center">
+                        {% if c.score_total is not none %}
+                        <span class="text-sm font-bold
+                            {% if c.score_total >= 70 %}text-green-600
+                            {% elif c.score_total >= 40 %}text-yellow-600
+                            {% else %}text-red-600{% endif %}">{{ c.score_total|round(0)|int }}</span>
+                        {% else %}
+                        <span class="text-gray-400 text-xs">—</span>
+                        {% endif %}
+                    </td>
+                    <td class="px-5 py-3 text-center text-xs">
+                        {% if c.label == 'Available' %}
+                        <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-medium">Available</span>
+                        {% elif c.label == 'Watchlist' %}
+                        <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-medium">Watchlist</span>
+                        {% elif c.label == 'Uncertain' %}
+                        <span class="px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700 font-medium">Uncertain</span>
+                        {% elif c.label == 'Discard' %}
+                        <span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-medium">Discard</span>
+                        {% else %}
+                        <span class="text-gray-400">—</span>
+                        {% endif %}
+                    </td>
+                    <td class="px-5 py-3 text-sm text-gray-500">{{ c.created_at.strftime('%d %b %H:%M') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="bg-white rounded-lg border border-gray-200 p-8 text-center">
+    <p class="text-gray-400">No candidates yet. Click "Run Crawl" to start.</p>
+</div>
+{% endif %}
+{% endblock %}

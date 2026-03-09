@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% block title %}{{ c.domain }} — Domain IQ{% endblock %}
+{% block nav_candidates %}font-semibold text-indigo-600{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <a href="/candidates" class="text-sm text-indigo-600 hover:underline">&larr; Back to Candidates</a>
+</div>
+
+<!-- Domain Header Card -->
+<div class="bg-white rounded-lg shadow p-6 mb-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">{{ c.domain }}</h1>
+            <p class="text-sm text-gray-500 mt-1">Niche: {{ c.niche }} &middot; Source: <a href="/sources/{{ c.source_id }}" class="text-indigo-600 hover:underline">#{{ c.source_id }}</a></p>
+        </div>
+
+        <!-- Score Circle -->
+        <div class="flex items-center gap-6">
+            <form method="post" action="/candidates/{{ c.id }}/delete" onsubmit="return confirm('Delete this candidate?')">
+                <button type="submit" class="px-3 py-2 bg-red-600 text-white text-xs font-medium rounded-lg hover:bg-red-700">Delete</button>
+            </form>
+            {% if c.score_total is not none %}
+            <div class="text-center">
+                <div class="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold
+                    {% if c.label == 'Available' %}bg-green-100 text-green-700 border-4 border-green-400
+                    {% elif c.label == 'Watchlist' %}bg-blue-100 text-blue-700 border-4 border-blue-400
+                    {% elif c.label == 'Uncertain' %}bg-yellow-100 text-yellow-700 border-4 border-yellow-400
+                    {% else %}bg-red-100 text-red-700 border-4 border-red-400{% endif %}">
+                    {{ c.score_total|round(0)|int }}
+                </div>
+                <span class="text-xs font-medium mt-1 inline-block
+                    {% if c.label == 'Available' %}text-green-700
+                    {% elif c.label == 'Watchlist' %}text-blue-700
+                    {% elif c.label == 'Uncertain' %}text-yellow-700
+                    {% else %}text-red-700{% endif %}">
+                    {{ c.label }}
+                </span>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <div class="w-20 h-20 rounded-full flex items-center justify-center text-lg font-bold bg-gray-100 text-gray-400 border-4 border-gray-300">
+                    —
+                </div>
+                <span class="text-xs text-gray-400 mt-1 inline-block">Not Scored</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if c.label_reason %}
+    <p class="mt-3 text-sm text-gray-600 bg-gray-50 rounded px-3 py-2">{{ c.label_reason }}</p>
+    {% endif %}
+</div>
+
+<!-- Score Breakdown -->
+{% if c.score_total is not none %}
+<div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h2 class="text-lg font-semibold text-gray-800 mb-4">Score Breakdown</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Availability -->
+        <div class="border rounded-lg p-4">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-gray-600">Availability (30%)</span>
+                <span class="text-lg font-bold text-blue-600">{{ c.score_availability|round(0)|int }}</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-blue-500 h-2 rounded-full" style="width: {{ c.score_availability }}%"></div>
+            </div>
+        </div>
+        <!-- Continuity -->
+        <div class="border rounded-lg p-4">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-gray-600">Continuity (40%)</span>
+                <span class="text-lg font-bold text-purple-600">{{ c.score_continuity|round(0)|int }}</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-purple-500 h-2 rounded-full" style="width: {{ c.score_continuity }}%"></div>
+            </div>
+        </div>
+        <!-- Cleanliness -->
+        <div class="border rounded-lg p-4">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-gray-600">Cleanliness (30%)</span>
+                <span class="text-lg font-bold text-emerald-600">{{ c.score_cleanliness|round(0)|int }}</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-emerald-500 h-2 rounded-full" style="width: {{ c.score_cleanliness }}%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Flags -->
+{% if flags %}
+<div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h2 class="text-lg font-semibold text-gray-800 mb-3">Toxicity Flags</h2>
+    <div class="flex flex-wrap gap-2">
+        {% for f in flags %}
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+            {% if f.severity == 'high' %}bg-red-100 text-red-700{% else %}bg-yellow-100 text-yellow-700{% endif %}">
+            {% if f.severity == 'high' %}&#x1F534;{% else %}&#x26A0;&#xFE0F;{% endif %}
+            {{ f.category|replace('_', ' ')|title }}: {{ f.matched }}
+        </span>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<!-- Detail Sections -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <!-- WHOIS Info -->
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-lg font-semibold text-gray-800 mb-3">WHOIS / Availability</h2>
+        <dl class="space-y-2 text-sm">
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Status</dt>
+                <dd>
+                    {% if c.availability_status == 'available' %}
+                        <span class="px-2 py-0.5 rounded bg-green-100 text-green-700 font-medium">Available</span>
+                    {% elif c.availability_status == 'expired' %}
+                        <span class="px-2 py-0.5 rounded bg-orange-100 text-orange-700 font-medium">Expired</span>
+                    {% elif c.availability_status == 'expiring_soon' %}
+                        <span class="px-2 py-0.5 rounded bg-yellow-100 text-yellow-700 font-medium">Expiring Soon</span>
+                    {% elif c.availability_status == 'expiring_watchlist' %}
+                        <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-700 font-medium">Watchlist</span>
+                    {% elif c.availability_status == 'registered' %}
+                        <span class="px-2 py-0.5 rounded bg-red-100 text-red-700 font-medium">Registered</span>
+                    {% elif c.availability_status %}
+                        <span class="px-2 py-0.5 rounded bg-gray-100 text-gray-700 font-medium">{{ c.availability_status }}</span>
+                    {% else %}
+                        <span class="text-gray-400">Not checked</span>
+                    {% endif %}
+                </dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Registrar</dt>
+                <dd class="text-gray-900">{{ c.whois_registrar or '—' }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Created</dt>
+                <dd class="text-gray-900">{{ c.whois_created_date or '—' }}</dd>
+            </div>
+            {% if domain_age %}
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Domain Age</dt>
+                <dd class="text-gray-900">{{ domain_age }}</dd>
+            </div>
+            {% endif %}
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Expires</dt>
+                <dd class="text-gray-900">{{ c.whois_expiry_date or '—' }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Days Left</dt>
+                <dd class="text-gray-900">{{ c.whois_days_left if c.whois_days_left is not none else '—' }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-gray-500">DNS Records</dt>
+                <dd class="text-gray-900">
+                    {% if c.dns_has_records is none %}—{% elif c.dns_has_records %}Yes{% else %}No{% endif %}
+                </dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Link Status</dt>
+                <dd>
+                    {% if c.is_dead_link %}
+                        <span class="px-2 py-0.5 rounded bg-red-100 text-red-700 text-xs">Dead ({{ c.http_status }})</span>
+                    {% else %}
+                        <span class="px-2 py-0.5 rounded bg-green-100 text-green-700 text-xs">Alive ({{ c.http_status }})</span>
+                    {% endif %}
+                </dd>
+            </div>
+        </dl>
+    </div>
+
+    <!-- Wayback / History -->
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-lg font-semibold text-gray-800 mb-3">Historical Continuity</h2>
+        <dl class="space-y-2 text-sm">
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Total Snapshots</dt>
+                <dd class="text-gray-900 font-medium">{{ c.wayback_total_snapshots or 0 }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-gray-500">First Seen</dt>
+                <dd class="text-gray-900">{{ c.wayback_first_seen or '—' }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Last Seen</dt>
+                <dd class="text-gray-900">{{ c.wayback_last_seen or '—' }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Years Active</dt>
+                <dd class="text-gray-900">{{ c.wayback_years_active if c.wayback_years_active is not none else '—' }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Dominant Language</dt>
+                <dd class="text-gray-900">{{ (c.dominant_language or '—')|upper }}</dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Content Drift</dt>
+                <dd>
+                    {% if c.content_drift_detected %}
+                        <span class="px-2 py-0.5 rounded bg-yellow-100 text-yellow-700 text-xs">Detected</span>
+                    {% else %}
+                        <span class="px-2 py-0.5 rounded bg-green-100 text-green-700 text-xs">None</span>
+                    {% endif %}
+                </dd>
+            </div>
+            <div class="flex justify-between">
+                <dt class="text-gray-500">Checked At</dt>
+                <dd class="text-gray-900 text-xs">{{ c.wayback_checked_at.strftime('%Y-%m-%d %H:%M') if c.wayback_checked_at else '—' }}</dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<!-- Owner Notes -->
+<div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h2 class="text-lg font-semibold text-gray-800 mb-3">Owner Notes</h2>
+    <form method="post" action="/candidates/{{ c.id }}/notes">
+        <textarea name="owner_notes" rows="3" placeholder="Add your notes about this domain..."
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">{{ c.owner_notes or '' }}</textarea>
+        <div class="mt-2 flex justify-end">
+            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700">Save Notes</button>
+        </div>
+    </form>
+</div>
+
+<!-- Meta -->
+<div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h2 class="text-lg font-semibold text-gray-800 mb-3">Meta</h2>
+    <dl class="space-y-2 text-sm">
+        <div class="flex justify-between">
+            <dt class="text-gray-500">Original Link</dt>
+            <dd class="text-gray-900 truncate max-w-md">{{ c.original_link or '—' }}</dd>
+        </div>
+        <div class="flex justify-between">
+            <dt class="text-gray-500">Found On</dt>
+            <dd class="text-gray-900 truncate max-w-md">{{ c.source_url_found or '—' }}</dd>
+        </div>
+        <div class="flex justify-between">
+            <dt class="text-gray-500">Added</dt>
+            <dd class="text-gray-900">{{ c.created_at.strftime('%Y-%m-%d %H:%M') if c.created_at else '—' }}</dd>
+        </div>
+    </dl>
+</div>
+{% endblock %}
