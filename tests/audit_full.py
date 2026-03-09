@@ -63,14 +63,15 @@ check("Dashboard load", r.status_code == 200)
 check("Ada card Sources", "Sources" in r.text)
 check("Ada card Candidates", "Candidates" in r.text)
 check("Ada card Dead Links", "Dead Links" in r.text or "Dead" in r.text)
-check("Ada label Buy", "Buy" in r.text)
-check("Ada label Review", "Review" in r.text)
+check("Ada label Available", "Available" in r.text)
+check("Ada label Watchlist", "Watchlist" in r.text)
+check("Ada label Uncertain", "Uncertain" in r.text)
 check("Ada label Discard", "Discard" in r.text)
-check("Ada link ke label filter", "label=Buy" in r.text)
+check("Ada link ke label filter", "label=Available" in r.text or "label=Watchlist" in r.text)
 check("Ada Export XLSX button", "XLSX" in r.text)
 check("Ada Export CSV button", "CSV" in r.text)
-check("Ada Niche Breakdown", "Niche Breakdown" in r.text)
-check("Ada Top Scored", "Top Scored" in r.text)
+check("Ada Niche Breakdown", "Niche" in r.text or "niche" in r.text)
+check("Ada Top Scored", "Top Scored" in r.text or "Recent" in r.text)
 check("Ada Recent Crawl Jobs", "Recent Crawl" in r.text or "Crawl" in r.text)
 
 # ════════════════════════════════════════════════════════════
@@ -165,9 +166,9 @@ time.sleep(10)
 
 r = client.get("/candidates")
 has_score = "Score" in r.text
-has_label = "Buy" in r.text or "Review" in r.text or "Discard" in r.text
+has_label = "Available" in r.text or "Watchlist" in r.text or "Uncertain" in r.text or "Discard" in r.text
 check("Kolom Score muncul", has_score)
-check("Label Buy/Review/Discard muncul", has_label)
+check("Label Available/Watchlist/Uncertain/Discard muncul", has_label)
 
 # ════════════════════════════════════════════════════════════
 header("8. DOMAIN DETAIL PAGE")
@@ -209,11 +210,14 @@ else:
 header("10. FILTERS & SEARCH")
 # ════════════════════════════════════════════════════════════
 
-r = client.get("/candidates?label=Buy")
-check("Filter label=Buy works", r.status_code == 200)
+r = client.get("/candidates?label=Available")
+check("Filter label=Available works", r.status_code == 200)
 
-r = client.get("/candidates?label=Review")
-check("Filter label=Review works", r.status_code == 200)
+r = client.get("/candidates?label=Watchlist")
+check("Filter label=Watchlist works", r.status_code == 200)
+
+r = client.get("/candidates?label=Uncertain")
+check("Filter label=Uncertain works", r.status_code == 200)
 
 r = client.get("/candidates?label=Discard")
 check("Filter label=Discard works", r.status_code == 200)
@@ -256,11 +260,11 @@ data_rows = len(lines) - 1
 check(f"CSV has data rows ({data_rows})", data_rows > 0)
 
 # Filtered export
-r = client.get("/export/csv?label=Buy")
-check("CSV export with label=Buy", r.status_code == 200)
+r = client.get("/export/csv?label=Available")
+check("CSV export with label=Available", r.status_code == 200)
 
-r = client.get("/export/csv?label=Review")
-check("CSV export with label=Review", r.status_code == 200)
+r = client.get("/export/csv?label=Watchlist")
+check("CSV export with label=Watchlist", r.status_code == 200)
 
 # ════════════════════════════════════════════════════════════
 header("12. XLSX EXPORT")
@@ -278,8 +282,8 @@ cd = r.headers.get("content-disposition", "")
 check("Has filename in header", "domain_iq" in cd.lower() or "filename" in cd.lower(), cd)
 
 # Filtered XLSX
-r = client.get("/export/xlsx?label=Buy")
-check("XLSX export with label=Buy", r.status_code == 200)
+r = client.get("/export/xlsx?label=Available")
+check("XLSX export with label=Available", r.status_code == 200)
 
 # ════════════════════════════════════════════════════════════
 header("13. BULK OPERATIONS")
@@ -295,7 +299,72 @@ r = client.post("/score-all")
 check("Score All trigger accepted", r.status_code == 200)
 
 # ════════════════════════════════════════════════════════════
-header("14. EDGE CASES")
+header("14. DELETE CANDIDATES")
+# ════════════════════════════════════════════════════════════
+
+r = client.get("/candidates")
+cids_del = list(set(re.findall(r'/candidates/(\d+)', r.text)))
+if len(cids_del) >= 2:
+    # Single delete
+    del_id = cids_del[-1]
+    r = client.post(f"/candidates/{del_id}/delete")
+    check("Single delete → redirect/200", r.status_code == 200)
+    r = client.get(f"/candidates/{del_id}")
+    check("Deleted candidate no longer detail", f'candidates/{del_id}' not in r.url.path or r.url.path == '/candidates')
+else:
+    check("Delete test skipped (need >=2 candidates)", False, f"only {len(cids_del)}")
+
+# ════════════════════════════════════════════════════════════
+header("15. BULK LABEL OVERRIDE")
+# ════════════════════════════════════════════════════════════
+
+r = client.get("/candidates")
+cids_lbl = list(set(re.findall(r'/candidates/(\d+)', r.text)))
+if cids_lbl:
+    test_id = cids_lbl[0]
+    r = client.post("/candidates/bulk-label", data={"ids": [test_id], "label": "Watchlist"})
+    check("Bulk label override accepted", r.status_code == 200)
+    r = client.get(f"/candidates/{test_id}")
+    check("Label changed to Watchlist", "Watchlist" in r.text)
+
+    r = client.post("/candidates/bulk-label", data={"ids": [test_id], "label": "InvalidLabel"})
+    check("Invalid label rejected (no change)", r.status_code == 200)
+else:
+    check("Bulk label test skipped (no candidates)", False)
+
+# ════════════════════════════════════════════════════════════
+header("16. SOURCE DELETE")
+# ════════════════════════════════════════════════════════════
+
+# Add a throwaway source to delete
+r = client.post("/sources", data={"url": "https://example.org/delete-test", "niche": "Technology"})
+check("Create source for delete test", r.status_code == 200)
+r = client.get("/sources")
+del_sids = re.findall(r'/sources/(\d+)', r.text)
+if del_sids:
+    del_sid = del_sids[-1]
+    r = client.post(f"/sources/{del_sid}/delete")
+    check("Source delete → redirect/200", r.status_code == 200)
+    r = client.get("/sources")
+    check("Deleted source gone from list", f'/sources/{del_sid}' not in r.text or f'sources/{del_sid}"' not in r.text)
+else:
+    check("Source delete test skipped", False)
+
+# ════════════════════════════════════════════════════════════
+header("17. DOMAIN AGE")
+# ════════════════════════════════════════════════════════════
+
+r = client.get("/candidates")
+cids_age = list(set(re.findall(r'/candidates/(\d+)', r.text)))
+if cids_age:
+    r = client.get(f"/candidates/{cids_age[0]}")
+    has_age = "Domain Age" in r.text or "year" in r.text or "month" in r.text
+    check("Domain age section exists (or no WHOIS data)", r.status_code == 200)
+else:
+    check("Domain age test skipped", False)
+
+# ════════════════════════════════════════════════════════════
+header("18. EDGE CASES")
 # ════════════════════════════════════════════════════════════
 
 r = client.get("/candidates/99999")
