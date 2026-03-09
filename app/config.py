@@ -8,7 +8,15 @@ from functools import lru_cache
 
 class Settings(BaseSettings):
     # Database
-    DATABASE_URL: str = "postgresql+asyncpg://localhost:5432/domainiq"
+    DB_HOST: str = "localhost"
+    DB_PORT: int = 5432
+    DB_NAME: str = "domainiq_db"
+    DB_USER: str = "domainiq_user"
+    DB_PASSWORD: str = "passwordkuat"
+
+    @property
+    def DATABASE_URL(self) -> str:
+        return f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
 
     # App
     APP_HOST: str = "0.0.0.0"
