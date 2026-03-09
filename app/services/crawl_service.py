@@ -105,7 +105,18 @@ def _extract_outbound_links(html: str, source_url: str) -> list[tuple[str, str]]
 
 
 async def _check_link(url: str, semaphore: asyncio.Semaphore) -> tuple[int | None, bool]:
-    """Check if a link is dead. Returns (http_status, is_dead)."""
+    """Check if a link is dead. Returns (http_status, is_dead).
+
+    A link is dead when:
+    - Connection/DNS fails entirely (timeout, refused, DNS error)
+    - Server returns 404, 410, or 5xx
+    A link is alive when:
+    - Server responds with 2xx/3xx
+    - Server returns 403 (bot-protection like Cloudflare — site is live)
+    """
+    # Status codes that indicate the server is alive even if access is denied
+    ALIVE_STATUSES = {401, 402, 403, 405, 407, 429}
+
     if not is_safe_url(url):
         return None, False
 
@@ -116,7 +127,9 @@ async def _check_link(url: str, semaphore: asyncio.Semaphore) -> tuple[int | Non
                 resp = await client.head(url, timeout=TIMEOUT)
                 if resp.status_code in (403, 405):
                     resp = await client.get(url, timeout=TIMEOUT)
-                return resp.status_code, resp.status_code >= 400
+                status = resp.status_code
+                is_dead = status >= 400 and status not in ALIVE_STATUSES
+                return status, is_dead
         except Exception:
             pass
 
@@ -126,7 +139,9 @@ async def _check_link(url: str, semaphore: asyncio.Semaphore) -> tuple[int | Non
                 resp = await client.head(url, timeout=TIMEOUT)
                 if resp.status_code in (403, 405):
                     resp = await client.get(url, timeout=TIMEOUT)
-                return resp.status_code, resp.status_code >= 400
+                status = resp.status_code
+                is_dead = status >= 400 and status not in ALIVE_STATUSES
+                return status, is_dead
         except Exception:
             return None, True  # Timeout/connection error → dead
 
