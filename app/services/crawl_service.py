@@ -6,6 +6,7 @@ filter domains, and save candidates to DB.
 import asyncio
 import logging
 import random
+import socket
 import time
 from datetime import datetime, timezone
 from urllib.parse import urljoin, urlparse
@@ -113,6 +114,7 @@ async def _check_link(url: str, semaphore: asyncio.Semaphore) -> tuple[int | Non
     A link is alive when:
     - Server responds with 2xx/3xx
     - Server returns 403 (bot-protection like Cloudflare — site is live)
+    - HTTP fails but DNS resolves (site exists, blocking bots)
     """
     # Status codes that indicate the server is alive even if access is denied
     ALIVE_STATUSES = {401, 402, 403, 405, 407, 429}
@@ -143,7 +145,24 @@ async def _check_link(url: str, semaphore: asyncio.Semaphore) -> tuple[int | Non
                 is_dead = status >= 400 and status not in ALIVE_STATUSES
                 return status, is_dead
         except Exception:
-            return None, True  # Timeout/connection error → dead
+            pass
+
+        # DNS fallback — if HTTP completely fails, check if domain resolves
+        # If DNS resolves → site exists but blocks bots (alive)
+        # If DNS fails → truly dead
+        domain = urlparse(url).hostname
+        if domain:
+            try:
+                result = await asyncio.get_event_loop().run_in_executor(
+                    None, socket.getaddrinfo, domain, None
+                )
+                if result:
+                    logger.debug("DNS resolved for %s — alive (bot-blocked)", domain)
+                    return None, False  # DNS resolves → alive
+            except socket.gaierror:
+                pass  # DNS failed → truly dead
+
+        return None, True  # Nothing worked → dead
 
 
 async def run_crawl(source_id: int, db: AsyncSession):
