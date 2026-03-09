@@ -1,0 +1,4 @@
+200 |   11 ext domains | https://en.wikipedia.org/wiki/List_of_defunct_social_networking_services
+200 |  146 ext domains | https://en.wikipedia.org/wiki/List_of_websites_founded_before_1995
+200 | 1250 ext domains | https://github.com/awesome-selfhosted/awesome-selfhosted
+200 |   20 ext domains | https://news.ycombinator.com

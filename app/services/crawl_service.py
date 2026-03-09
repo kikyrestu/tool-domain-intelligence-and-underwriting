@@ -26,7 +26,7 @@ from app.config import get_settings
 
 logger = logging.getLogger(__name__)
 
-TIMEOUT = 15
+TIMEOUT = 20
 MAX_CONCURRENT = 5
 
 USER_AGENTS = [
@@ -39,10 +39,16 @@ USER_AGENTS = [
 def _get_headers() -> dict:
     return {
         "User-Agent": random.choice(USER_AGENTS),
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
         "Accept-Encoding": "gzip, deflate, br",
         "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
+        "Cache-Control": "max-age=0",
     }
 
 
@@ -53,13 +59,20 @@ def _make_client() -> httpx.AsyncClient:
 
 
 async def _fetch_page(url: str) -> str | None:
-    """Fetch a page with proxy, fallback to direct if proxy fails."""
+    """Fetch a page with proxy, fallback to direct if proxy fails.
+
+    Uses HTTP/2 by default — many sites (Wikipedia, etc.) require it.
+    Accepts any response that contains HTML content, even 403/404.
+    """
     # Try with proxy first
     proxy = proxy_service.get_next()
     if proxy:
         try:
-            async with httpx.AsyncClient(proxy=proxy, headers=_get_headers(), follow_redirects=True) as client:
+            async with httpx.AsyncClient(proxy=proxy, headers=_get_headers(),
+                                         follow_redirects=True, http2=True) as client:
                 resp = await client.get(url, timeout=TIMEOUT)
+                if len(resp.text) > 500:
+                    return resp.text
                 resp.raise_for_status()
                 return resp.text
         except Exception:
@@ -67,8 +80,11 @@ async def _fetch_page(url: str) -> str | None:
 
     # Fallback to direct
     try:
-        async with httpx.AsyncClient(headers=_get_headers(), follow_redirects=True) as client:
+        async with httpx.AsyncClient(headers=_get_headers(),
+                                     follow_redirects=True, http2=True) as client:
             resp = await client.get(url, timeout=TIMEOUT)
+            if len(resp.text) > 500:
+                return resp.text
             resp.raise_for_status()
             return resp.text
     except Exception as e:
@@ -125,7 +141,8 @@ async def _check_link(url: str, semaphore: asyncio.Semaphore) -> tuple[int | Non
     async with semaphore:
         proxy = proxy_service.get_random()
         try:
-            async with httpx.AsyncClient(proxy=proxy, headers=_get_headers(), follow_redirects=True) as client:
+            async with httpx.AsyncClient(proxy=proxy, headers=_get_headers(),
+                                         follow_redirects=True, http2=True) as client:
                 resp = await client.head(url, timeout=TIMEOUT)
                 if resp.status_code in (403, 405):
                     resp = await client.get(url, timeout=TIMEOUT)
@@ -137,7 +154,8 @@ async def _check_link(url: str, semaphore: asyncio.Semaphore) -> tuple[int | Non
 
         # Fallback direct
         try:
-            async with httpx.AsyncClient(headers=_get_headers(), follow_redirects=True) as client:
+            async with httpx.AsyncClient(headers=_get_headers(),
+                                         follow_redirects=True, http2=True) as client:
                 resp = await client.head(url, timeout=TIMEOUT)
                 if resp.status_code in (403, 405):
                     resp = await client.get(url, timeout=TIMEOUT)
