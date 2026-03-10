@@ -87,7 +87,11 @@
                     </td>
                     <td class="px-5 py-3 text-sm">
                         <div class="flex items-center gap-3">
-                            <button onclick="openApprove({{ sug.id }}, {{ sug.url | tojson }}, {{ sug.niche | tojson }})"
+                            <button
+                                data-id="{{ sug.id }}"
+                                data-url="{{ sug.url }}"
+                                data-niche="{{ sug.niche }}"
+                                onclick="openApprove(this)"
                                 class="text-green-600 hover:text-green-800 font-medium">Approve</button>
                             <form method="post" action="/sources/suggested/{{ sug.id }}/reject" class="inline"
                                 onsubmit="return confirm('Reject dan hapus suggestion ini?')">
@@ -191,7 +195,10 @@ function injectBulkIds(containerId) {
     return true;
 }
 
-function openApprove(id, url, niche) {
+function openApprove(btn) {
+    const id = btn.getAttribute('data-id');
+    const url = btn.getAttribute('data-url');
+    const niche = btn.getAttribute('data-niche');
     document.getElementById('approve-form').action = '/sources/suggested/' + id + '/approve';
     document.getElementById('approve-url-display').textContent = url;
     document.getElementById('approve-niche').value = niche;
