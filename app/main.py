@@ -66,8 +66,8 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 # Routes
 app.include_router(dashboard.router)
+app.include_router(suggested_sources.router)  # must be before sources (avoids /sources/{id} capturing /sources/suggested)
 app.include_router(sources.router)
-app.include_router(suggested_sources.router)
 app.include_router(crawl.router)
 app.include_router(candidates.router)
 app.include_router(export.router)
