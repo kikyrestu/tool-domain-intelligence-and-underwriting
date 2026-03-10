@@ -27,6 +27,8 @@ from app.utils.ssrf_guard import is_safe_url
 from app.utils.domain_filter import extract_domain, is_valid_candidate, BLACKLIST
 from app.config import get_settings
 
+logger = logging.getLogger(__name__)
+
 # Compiled parking patterns reused across requests
 _PARKING_RE = re.compile(
     "|".join(TOXICITY_PATTERNS["parking"]), re.IGNORECASE
