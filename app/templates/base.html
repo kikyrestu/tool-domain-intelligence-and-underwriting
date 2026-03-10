@@ -29,6 +29,9 @@
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <!-- Notification Banners (starred domain alerts) -->
+        <div id="notification-banners"></div>
+
         <!-- Flash notification for background tasks -->
         <div id="flash-banner" class="hidden mb-4 px-4 py-3 rounded-lg bg-blue-50 border border-blue-200 text-blue-700 text-sm flex items-center gap-2">
             <svg class="animate-spin h-4 w-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -41,7 +44,49 @@
     </main>
 
     <script>
-        // Show flash banner when forms with POST method are submitted (background tasks)
+        // ── Notification banners ──────────────────────────────────────────────
+        const DISMISSED_KEY = 'dismissedNotifs';
+        function getDismissed() {
+            try { return JSON.parse(sessionStorage.getItem(DISMISSED_KEY) || '[]'); } catch { return []; }
+        }
+        function dismiss(key) {
+            const d = getDismissed();
+            if (!d.includes(key)) d.push(key);
+            sessionStorage.setItem(DISMISSED_KEY, JSON.stringify(d));
+        }
+
+        const LEVEL_CLASSES = {
+            danger:  'bg-red-50 border-red-300 text-red-800',
+            warning: 'bg-orange-50 border-orange-300 text-orange-800',
+            success: 'bg-green-50 border-green-300 text-green-800',
+            info:    'bg-blue-50 border-blue-200 text-blue-700',
+        };
+
+        async function loadNotifications() {
+            try {
+                const res = await fetch('/api/notifications');
+                if (!res.ok) return;
+                const { alerts } = await res.json();
+                const container = document.getElementById('notification-banners');
+                if (!container || !alerts.length) return;
+                const dismissed = getDismissed();
+                let html = '';
+                for (const a of alerts) {
+                    const key = a.url + '|' + a.type;
+                    if (dismissed.includes(key)) continue;
+                    const cls = LEVEL_CLASSES[a.type] || LEVEL_CLASSES.info;
+                    html += `
+                    <div class="mb-2 px-4 py-3 rounded-lg border ${cls} text-sm flex items-center justify-between gap-2">
+                        <span><a href="${a.url}" class="font-medium underline hover:opacity-80">${a.message}</a></span>
+                        <button onclick="dismiss('${key}');this.closest('div').remove();" class="ml-4 text-lg leading-none opacity-60 hover:opacity-100">&times;</button>
+                    </div>`;
+                }
+                container.innerHTML = html;
+            } catch (_) {}
+        }
+        loadNotifications();
+
+        // ── Flash banner on POST submit ───────────────────────────────────────
         document.querySelectorAll('form[method="post"]').forEach(form => {
             form.addEventListener('submit', () => {
                 const banner = document.getElementById('flash-banner');

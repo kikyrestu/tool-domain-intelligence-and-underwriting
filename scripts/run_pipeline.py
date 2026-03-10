@@ -34,13 +34,14 @@ async def run_all():
 
     print("=== STEP 3: Scoring ===")
     try:
+        import json
         async with async_session() as db:
             result = await db.execute(select(CandidateDomain))
             candidates = result.scalars().all()
-            toxicity_map = {}
-            for c in candidates:
-                flags = scan_candidate(c, [])
-                toxicity_map[c.id] = flags
+            toxicity_map = {
+                c.id: json.loads(c.toxicity_flags) if c.toxicity_flags else scan_candidate(c, [])
+                for c in candidates
+            }
             n = await score_candidates(db, toxicity_map=toxicity_map)
             print(f"Scored: {n}")
     except Exception as e:

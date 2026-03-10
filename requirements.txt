@@ -1,4 +1,9 @@
-httpx[http2]
+httpx
+cloudscraper[http2]
+playwright
+playwright-stealth
+2captcha-python
+zenrows
 dnspython
 beautifulsoup4
 tldextract

@@ -1,8 +1,9 @@
 """Dashboard route — homepage summary."""
 
 from fastapi import APIRouter, Depends, Request
+from fastapi.responses import JSONResponse
 from fastapi.templating import Jinja2Templates
-from sqlalchemy import select, func
+from sqlalchemy import select, func, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
@@ -95,3 +96,67 @@ async def dashboard(request: Request, db: AsyncSession = Depends(get_db)):
         "top_candidates": top_candidates,
         "recent_candidates": recent_candidates,
     })
+
+
+@router.get("/api/notifications")
+async def get_notifications(db: AsyncSession = Depends(get_db)):
+    """Return notifications for starred domains that are expiring or newly available."""
+    alerts = []
+
+    # Starred + expiring soon (< 30 days)
+    result = await db.execute(
+        select(CandidateDomain).where(
+            CandidateDomain.is_starred == True,
+            CandidateDomain.availability_status == "expiring_soon",
+        )
+    )
+    for c in result.scalars().all():
+        alerts.append({
+            "type": "warning",
+            "message": f"⚠️ {c.domain} expires in {c.whois_days_left} days!",
+            "url": f"/candidates/{c.id}",
+        })
+
+    # Starred + expired
+    result = await db.execute(
+        select(CandidateDomain).where(
+            CandidateDomain.is_starred == True,
+            CandidateDomain.availability_status == "expired",
+        )
+    )
+    for c in result.scalars().all():
+        alerts.append({
+            "type": "danger",
+            "message": f"🔴 {c.domain} has EXPIRED — check if available to buy!",
+            "url": f"/candidates/{c.id}",
+        })
+
+    # Starred + now available (drop domain — was registered before)
+    result = await db.execute(
+        select(CandidateDomain).where(
+            CandidateDomain.is_starred == True,
+            CandidateDomain.availability_status == "available",
+        )
+    )
+    for c in result.scalars().all():
+        alerts.append({
+            "type": "success",
+            "message": f"🟢 {c.domain} is now AVAILABLE to buy!",
+            "url": f"/candidates/{c.id}",
+        })
+
+    # Expiring watchlist starred (< 90 days)
+    result = await db.execute(
+        select(CandidateDomain).where(
+            CandidateDomain.is_starred == True,
+            CandidateDomain.availability_status == "expiring_watchlist",
+        )
+    )
+    for c in result.scalars().all():
+        alerts.append({
+            "type": "info",
+            "message": f"📅 {c.domain} expires in {c.whois_days_left} days (watchlist)",
+            "url": f"/candidates/{c.id}",
+        })
+
+    return JSONResponse({"alerts": alerts})

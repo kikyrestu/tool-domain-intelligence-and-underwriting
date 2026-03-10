@@ -24,6 +24,7 @@ class CandidateDomain(Base):
     http_status: Mapped[int | None] = mapped_column(Integer, nullable=True)
     dns_resolves: Mapped[bool | None] = mapped_column(Boolean, nullable=True)
     is_domain_alive: Mapped[bool | None] = mapped_column(Boolean, nullable=True)
+    dns_mx_records: Mapped[bool | None] = mapped_column(Boolean, nullable=True)
     is_parked: Mapped[bool] = mapped_column(Boolean, default=False)
 
     # Availability (Week 2)
@@ -43,6 +44,7 @@ class CandidateDomain(Base):
     dominant_language: Mapped[str | None] = mapped_column(String(10), nullable=True)
     content_drift_detected: Mapped[bool] = mapped_column(Boolean, default=False)
     wayback_checked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    wayback_check_failed: Mapped[bool] = mapped_column(Boolean, default=False)
 
     # Scoring (Week 3)
     score_availability: Mapped[float | None] = mapped_column(Float, nullable=True)
@@ -52,7 +54,11 @@ class CandidateDomain(Base):
     label: Mapped[str | None] = mapped_column(String(20), nullable=True)
     label_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
 
+    # Toxicity flags (JSON list persisted from Wayback scan)
+    toxicity_flags: Mapped[str | None] = mapped_column(Text, nullable=True)
+
     # Owner
+    is_starred: Mapped[bool] = mapped_column(Boolean, default=False)
     owner_notes: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     # Meta

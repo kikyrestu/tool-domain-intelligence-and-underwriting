@@ -451,3 +451,1377 @@
 2026-03-09 16:58:30,363 [INFO] app.services.whois_service: No unchecked candidates found
 2026-03-09 16:58:30,880 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
 2026-03-09 16:58:31,729 [INFO] app.services.scoring_service: Scored 111 candidates
+2026-03-09 19:06:14,971 [INFO] app.services.crawl_service:   Dead domain jottings.com (HTTP fail) → RDAP: registered
+2026-03-09 19:06:18,356 [INFO] app.services.crawl_service:   Dead domain jottings.com (HTTP fail) → RDAP: registered
+2026-03-09 19:06:18,502 [INFO] app.services.crawl_service: Crawl completed: 14 candidates, 1 dead links
+2026-03-09 19:06:18,502 [INFO] app.routes.crawl: Crawl done for source 13, starting RDAP check…
+2026-03-09 19:06:18,673 [INFO] app.services.whois_service: Starting RDAP check for 13 candidates
+2026-03-09 19:06:19,723 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 1 dead links
+2026-03-09 19:06:19,725 [INFO] app.routes.crawl: Crawl done for source 13, starting RDAP check…
+2026-03-09 19:06:19,774 [INFO] app.services.whois_service:   [1/13] wikidata.org → registered
+2026-03-09 19:06:19,905 [INFO] app.services.whois_service: Starting RDAP check for 13 candidates
+2026-03-09 19:06:21,908 [INFO] app.services.whois_service:   [1/13] wikidata.org → registered
+2026-03-09 19:06:22,191 [INFO] app.services.whois_service:   [2/13] jstor.org → registered
+2026-03-09 19:06:24,100 [INFO] app.services.whois_service:   [2/13] jstor.org → registered
+2026-03-09 19:06:24,608 [INFO] app.services.whois_service:   [3/13] cambus.net → registered
+2026-03-09 19:06:26,354 [INFO] app.services.whois_service:   [3/13] cambus.net → registered
+2026-03-09 19:06:27,488 [INFO] app.services.whois_service:   [4/13] bsa.org → registered
+2026-03-09 19:06:28,524 [INFO] app.services.whois_service:   [4/13] bsa.org → registered
+2026-03-09 19:06:29,844 [INFO] app.services.whois_service:   [5/13] whois.com → registered
+2026-03-09 19:06:30,624 [INFO] app.services.whois_service:   [5/13] whois.com → registered
+2026-03-09 19:06:32,514 [INFO] app.services.whois_service:   [6/13] illumos.org → registered
+2026-03-09 19:06:33,113 [INFO] app.services.whois_service:   [6/13] illumos.org → registered
+2026-03-09 19:06:34,940 [INFO] app.services.whois_service:   [7/13] nanog.org → registered
+2026-03-09 19:06:36,336 [INFO] app.services.whois_service:   [7/13] nanog.org → registered
+2026-03-09 19:06:38,373 [INFO] app.services.whois_service:   [8/13] rfc-editor.org → registered
+2026-03-09 19:06:38,529 [INFO] app.services.whois_service:   [8/13] rfc-editor.org → registered
+2026-03-09 19:06:41,041 [INFO] app.services.whois_service:   [9/13] doi.org → registered
+2026-03-09 19:06:41,087 [INFO] app.services.whois_service:   [9/13] doi.org → registered
+2026-03-09 19:06:43,557 [INFO] app.services.whois_service:   [10/13] ietf.org → registered
+2026-03-09 19:06:43,828 [INFO] app.services.whois_service:   [10/13] ietf.org → registered
+2026-03-09 19:06:45,945 [INFO] app.services.whois_service:   [11/13] iana.org → registered
+2026-03-09 19:06:46,263 [INFO] app.services.whois_service:   [11/13] iana.org → registered
+2026-03-09 19:06:48,325 [INFO] app.services.whois_service:   [12/13] wikimediafoundation.org → registered
+2026-03-09 19:06:48,687 [INFO] app.services.whois_service:   [12/13] wikimediafoundation.org → registered
+2026-03-09 19:06:50,531 [INFO] app.services.whois_service:   [13/13] mediawiki.org → registered
+2026-03-09 19:06:50,867 [INFO] app.services.whois_service:   [13/13] mediawiki.org → registered
+2026-03-09 19:06:51,678 [INFO] app.services.whois_service: RDAP check completed: 13/13
+2026-03-09 19:06:51,680 [INFO] app.routes.crawl: RDAP done for source 13, starting Wayback check…
+2026-03-09 19:06:51,861 [INFO] app.services.wayback_service: Starting Wayback check for 14 candidates
+2026-03-09 19:06:52,190 [INFO] app.services.whois_service: RDAP check completed: 13/13
+2026-03-09 19:06:52,191 [INFO] app.routes.crawl: RDAP done for source 13, starting Wayback check…
+2026-03-09 19:06:52,362 [INFO] app.services.wayback_service: Starting Wayback check for 14 candidates
+2026-03-09 19:07:06,780 [INFO] app.services.wayback_service: Wayback [1/14] jottings.com: 50 snapshots, lang=en
+2026-03-09 19:07:22,854 [WARNING] app.services.wayback_service: CDX API error for jottings.com: 
+2026-03-09 19:07:22,854 [INFO] app.services.wayback_service: Wayback [1/14] jottings.com: 0 snapshots, lang=None
+2026-03-09 19:07:43,110 [INFO] app.services.wayback_service: Wayback [2/14] cambus.net: 50 snapshots, lang=en
+2026-03-09 19:07:54,729 [WARNING] app.services.wayback_service: CDX API error for cambus.net: 
+2026-03-09 19:07:54,729 [INFO] app.services.wayback_service: Wayback [2/14] cambus.net: 0 snapshots, lang=None
+2026-03-09 19:08:10,804 [INFO] app.services.wayback_service: Wayback [3/14] bsa.org: 50 snapshots, lang=en
+2026-03-09 19:08:15,608 [INFO] app.services.wayback_service: Wayback [3/14] bsa.org: 50 snapshots, lang=en
+2026-03-09 19:08:24,359 [INFO] app.services.wayback_service: Wayback [4/14] whois.com: 50 snapshots, lang=en
+2026-03-09 19:08:26,397 [INFO] app.services.wayback_service: Wayback [4/14] whois.com: 50 snapshots, lang=en
+2026-03-09 19:08:42,632 [INFO] app.services.wayback_service: Wayback [5/14] illumos.org: 50 snapshots, lang=en
+2026-03-09 19:08:43,440 [INFO] app.services.wayback_service: Wayback [5/14] illumos.org: 50 snapshots, lang=en
+2026-03-09 19:09:01,166 [INFO] app.services.wayback_service: Wayback [6/14] nanog.org: 50 snapshots, lang=en
+2026-03-09 19:09:28,469 [INFO] app.services.wayback_service: Wayback [6/14] nanog.org: 50 snapshots, lang=en
+2026-03-09 19:09:46,424 [INFO] app.services.wayback_service: Wayback [7/14] doi.org: 50 snapshots, lang=en
+2026-03-09 19:09:50,721 [INFO] app.services.wayback_service: Wayback [7/14] doi.org: 50 snapshots, lang=en
+2026-03-09 19:10:20,537 [INFO] app.services.wayback_service: Wayback [8/14] ietf.org: 50 snapshots, lang=en
+2026-03-09 19:10:20,645 [INFO] app.services.wayback_service: Wayback [8/14] ietf.org: 50 snapshots, lang=en
+2026-03-09 19:10:45,401 [INFO] app.services.wayback_service: Wayback [9/14] iana.org: 50 snapshots, lang=en
+2026-03-09 19:10:45,403 [INFO] app.services.wayback_service: Wayback [9/14] iana.org: 50 snapshots, lang=en
+2026-03-09 19:11:11,424 [INFO] app.services.wayback_service: Wayback [10/14] wikimediafoundation.org: 50 snapshots, lang=en
+2026-03-09 19:11:12,750 [INFO] app.services.wayback_service: Wayback [10/14] wikimediafoundation.org: 50 snapshots, lang=en
+2026-03-09 19:11:32,756 [INFO] app.services.wayback_service: Wayback [11/14] wikidata.org: 4 snapshots, lang=en
+2026-03-09 19:11:52,554 [INFO] app.services.wayback_service: Wayback [11/14] wikidata.org: 4 snapshots, lang=en
+2026-03-09 19:12:03,643 [WARNING] app.services.wayback_service: CDX API error for mediawiki.org: 
+2026-03-09 19:12:03,643 [INFO] app.services.wayback_service: Wayback [12/14] mediawiki.org: 0 snapshots, lang=None
+2026-03-09 19:12:20,288 [INFO] app.services.wayback_service: Wayback [12/14] mediawiki.org: 3 snapshots, lang=en
+2026-03-09 19:12:33,388 [INFO] app.services.wayback_service: Wayback [13/14] jstor.org: 50 snapshots, lang=en
+2026-03-09 19:12:33,775 [INFO] app.services.wayback_service: Wayback [13/14] jstor.org: 50 snapshots, lang=en
+2026-03-09 19:12:55,855 [INFO] app.services.wayback_service: Wayback [14/14] rfc-editor.org: 50 snapshots, lang=en
+2026-03-09 19:12:56,000 [INFO] app.services.wayback_service: Wayback check complete: 14/14
+2026-03-09 19:12:56,001 [INFO] app.routes.crawl: Wayback done for source 13, starting scoring…
+2026-03-09 19:12:56,391 [INFO] app.services.scoring_service: Scored 14 candidates
+2026-03-09 19:12:56,391 [INFO] app.routes.crawl: Full pipeline complete for source 13 ✓
+2026-03-09 19:13:09,286 [INFO] app.services.wayback_service: Wayback [14/14] rfc-editor.org: 50 snapshots, lang=en
+2026-03-09 19:13:09,429 [INFO] app.services.wayback_service: Wayback check complete: 14/14
+2026-03-09 19:13:09,430 [INFO] app.routes.crawl: Wayback done for source 13, starting scoring…
+2026-03-09 19:13:09,645 [INFO] app.services.scoring_service: Scored 14 candidates
+2026-03-09 19:13:09,646 [INFO] app.routes.crawl: Full pipeline complete for source 13 ✓
+2026-03-09 23:58:27,222 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-09 23:58:27,222 [INFO] app.routes.crawl: Crawl done for source 14, starting RDAP check…
+2026-03-09 23:58:27,342 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 23:58:27,380 [INFO] app.routes.crawl: RDAP done for source 14, starting Wayback check…
+2026-03-09 23:58:27,509 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 23:58:27,547 [INFO] app.routes.crawl: Wayback done for source 14, starting scoring…
+2026-03-09 23:58:27,759 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 23:58:27,759 [INFO] app.routes.crawl: Full pipeline complete for source 14 ✓
+2026-03-09 23:58:31,101 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-09 23:58:31,102 [INFO] app.routes.crawl: Crawl done for source 14, starting RDAP check…
+2026-03-09 23:58:31,180 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 23:58:31,217 [INFO] app.routes.crawl: RDAP done for source 14, starting Wayback check…
+2026-03-09 23:58:31,292 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 23:58:31,329 [INFO] app.routes.crawl: Wayback done for source 14, starting scoring…
+2026-03-09 23:58:31,480 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 23:58:31,480 [INFO] app.routes.crawl: Full pipeline complete for source 14 ✓
+2026-03-09 23:58:52,449 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-09 23:58:52,450 [INFO] app.routes.crawl: Crawl done for source 14, starting RDAP check…
+2026-03-09 23:58:52,526 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 23:58:52,564 [INFO] app.routes.crawl: RDAP done for source 14, starting Wayback check…
+2026-03-09 23:58:52,641 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 23:58:52,678 [INFO] app.routes.crawl: Wayback done for source 14, starting scoring…
+2026-03-09 23:58:52,830 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 23:58:52,830 [INFO] app.routes.crawl: Full pipeline complete for source 14 ✓
+2026-03-09 23:58:55,272 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 23:58:59,608 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 23:59:00,549 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 23:59:02,430 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-09 23:59:02,430 [INFO] app.routes.crawl: Crawl done for source 14, starting RDAP check…
+2026-03-09 23:59:02,509 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-09 23:59:02,549 [INFO] app.routes.crawl: RDAP done for source 14, starting Wayback check…
+2026-03-09 23:59:02,628 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-09 23:59:02,669 [INFO] app.routes.crawl: Wayback done for source 14, starting scoring…
+2026-03-09 23:59:02,849 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-09 23:59:02,849 [INFO] app.routes.crawl: Full pipeline complete for source 14 ✓
+2026-03-10 00:08:37,108 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:08:37,109 [INFO] app.routes.crawl: Crawl done for source 15, starting RDAP check…
+2026-03-10 00:08:37,257 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:08:37,301 [INFO] app.routes.crawl: RDAP done for source 15, starting Wayback check…
+2026-03-10 00:08:37,434 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:08:37,475 [INFO] app.routes.crawl: Wayback done for source 15, starting scoring…
+2026-03-10 00:08:37,699 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:08:37,700 [INFO] app.routes.crawl: Full pipeline complete for source 15 ✓
+2026-03-10 00:08:38,837 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:08:38,837 [INFO] app.routes.crawl: Crawl done for source 15, starting RDAP check…
+2026-03-10 00:08:38,921 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:08:38,963 [INFO] app.routes.crawl: RDAP done for source 15, starting Wayback check…
+2026-03-10 00:08:39,045 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:08:39,086 [INFO] app.routes.crawl: Wayback done for source 15, starting scoring…
+2026-03-10 00:08:39,260 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:08:39,260 [INFO] app.routes.crawl: Full pipeline complete for source 15 ✓
+2026-03-10 00:08:40,771 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:08:46,140 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:08:48,388 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:09:30,772 [INFO] app.services.crawl_service: Crawl completed: 3 candidates, 0 dead links
+2026-03-10 00:09:30,773 [INFO] app.routes.crawl: Crawl done for source 16, starting RDAP check…
+2026-03-10 00:09:30,915 [INFO] app.services.whois_service: Starting RDAP check for 3 candidates
+2026-03-10 00:09:32,275 [INFO] app.services.whois_service:   [1/3] wikidata.org → registered
+2026-03-10 00:09:34,619 [INFO] app.services.whois_service:   [2/3] wikimediafoundation.org → registered
+2026-03-10 00:09:37,056 [INFO] app.services.whois_service:   [3/3] mediawiki.org → registered
+2026-03-10 00:09:38,241 [INFO] app.services.whois_service: RDAP check completed: 3/3
+2026-03-10 00:09:38,241 [INFO] app.routes.crawl: RDAP done for source 16, starting Wayback check…
+2026-03-10 00:09:38,384 [INFO] app.services.wayback_service: Starting Wayback check for 3 candidates
+2026-03-10 00:10:17,403 [INFO] app.services.wayback_service: Wayback [1/3] wikidata.org: 4 snapshots, lang=en
+2026-03-10 00:10:45,362 [INFO] app.services.wayback_service: Wayback [2/3] wikimediafoundation.org: 50 snapshots, lang=en
+2026-03-10 00:10:56,545 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:10:56,545 [INFO] app.routes.crawl: Crawl done for source 15, starting RDAP check…
+2026-03-10 00:10:56,629 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:10:56,669 [INFO] app.routes.crawl: RDAP done for source 15, starting Wayback check…
+2026-03-10 00:10:56,814 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:10:56,856 [INFO] app.routes.crawl: Wayback done for source 15, starting scoring…
+2026-03-10 00:10:57,085 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:10:57,086 [INFO] app.routes.crawl: Full pipeline complete for source 15 ✓
+2026-03-10 00:11:09,322 [INFO] app.services.wayback_service: Wayback [3/3] mediawiki.org: 3 snapshots, lang=en
+2026-03-10 00:11:09,499 [INFO] app.services.wayback_service: Wayback check complete: 3/3
+2026-03-10 00:11:09,499 [INFO] app.routes.crawl: Wayback done for source 16, starting scoring…
+2026-03-10 00:11:09,759 [INFO] app.services.scoring_service: Scored 3 candidates
+2026-03-10 00:11:09,760 [INFO] app.routes.crawl: Full pipeline complete for source 16 ✓
+2026-03-10 00:11:21,016 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:11:21,016 [INFO] app.routes.crawl: Crawl done for source 17, starting RDAP check…
+2026-03-10 00:11:21,101 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:11:21,143 [INFO] app.routes.crawl: RDAP done for source 17, starting Wayback check…
+2026-03-10 00:11:21,227 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:11:21,268 [INFO] app.routes.crawl: Wayback done for source 17, starting scoring…
+2026-03-10 00:11:21,430 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:11:21,430 [INFO] app.routes.crawl: Full pipeline complete for source 17 ✓
+2026-03-10 00:11:23,332 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:11:23,332 [INFO] app.routes.crawl: Crawl done for source 17, starting RDAP check…
+2026-03-10 00:11:23,414 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:11:23,454 [INFO] app.routes.crawl: RDAP done for source 17, starting Wayback check…
+2026-03-10 00:11:23,538 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:11:23,579 [INFO] app.routes.crawl: Wayback done for source 17, starting scoring…
+2026-03-10 00:11:23,746 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:11:23,746 [INFO] app.routes.crawl: Full pipeline complete for source 17 ✓
+2026-03-10 00:12:05,991 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:12:05,992 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 00:12:06,077 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:12:06,119 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 00:12:06,201 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:12:06,242 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 00:12:06,408 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:12:06,409 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 00:12:07,768 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:12:07,768 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 00:12:07,860 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:12:07,901 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 00:12:07,984 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:12:08,029 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 00:12:08,192 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:12:08,192 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 00:15:17,220 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:15:17,220 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 00:15:17,535 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:15:17,575 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 00:15:17,829 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:15:17,873 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 00:15:18,208 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:15:18,209 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 00:15:18,511 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:15:18,512 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 00:15:18,763 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:15:18,802 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 00:15:19,054 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:15:19,094 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 00:15:19,429 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:15:19,429 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 00:18:35,253 [INFO] app.services.crawl_service: Fetched HTML: 31003 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 00:18:35,379 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:18:35,379 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 00:18:35,637 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:18:35,677 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 00:18:35,978 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:18:36,018 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 00:18:36,357 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:18:36,357 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 00:18:38,132 [INFO] app.services.crawl_service: Fetched HTML: 31044 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 00:18:38,256 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:18:38,257 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 00:18:38,520 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:18:38,561 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 00:18:38,815 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:18:38,855 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 00:18:39,205 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:18:39,205 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 00:20:39,703 [INFO] app.services.crawl_service: Fetched HTML: 31101 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 00:20:39,828 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:20:39,828 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 00:20:40,142 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:20:40,183 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 00:20:40,436 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:20:40,475 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 00:20:40,819 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:20:40,819 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 00:20:40,982 [INFO] app.services.crawl_service: Fetched HTML: 31026 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 00:20:41,103 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:20:41,103 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 00:20:41,375 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:20:41,413 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 00:20:41,669 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:20:41,709 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 00:20:42,038 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:20:42,038 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 00:21:58,664 [INFO] app.services.crawl_service: Fetched HTML: 30911 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 00:21:58,787 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:21:58,787 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 00:21:59,084 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:21:59,123 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 00:21:59,571 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:21:59,611 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 00:21:59,943 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:21:59,943 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 00:22:01,771 [INFO] app.services.crawl_service: Fetched HTML: 31078 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 00:22:01,852 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 00:22:01,853 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 00:22:02,151 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 00:22:02,192 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 00:22:02,395 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 00:22:02,439 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 00:22:02,772 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 00:22:02,772 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 08:50:43,258 [INFO] app.services.crawl_service: Fetched HTML: 6374 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 08:50:43,389 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 08:50:43,389 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 08:50:43,687 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 08:50:43,731 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 08:50:43,980 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 08:50:44,018 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 08:50:44,630 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 08:50:44,631 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 08:50:48,726 [INFO] app.services.crawl_service: Fetched HTML: 6259 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 08:50:48,806 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 08:50:48,806 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 08:50:49,011 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 08:50:49,050 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 08:50:49,248 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 08:50:49,288 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 08:50:49,333 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 08:50:49,646 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 08:50:49,647 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 08:53:25,261 [INFO] app.services.crawl_service: Fetched HTML: 3481 chars, extracted 0 links from https://gizmodo.com/100-websites-that-shaped-the-internet-as-we-know-it-1829634771
+2026-03-10 08:53:25,385 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 08:53:25,386 [INFO] app.routes.crawl: Crawl done for source 19, starting RDAP check…
+2026-03-10 08:53:25,652 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 08:53:25,694 [INFO] app.routes.crawl: RDAP done for source 19, starting Wayback check…
+2026-03-10 08:53:25,894 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 08:53:25,936 [INFO] app.routes.crawl: Wayback done for source 19, starting scoring…
+2026-03-10 08:53:26,219 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 08:53:26,220 [INFO] app.routes.crawl: Full pipeline complete for source 19 ✓
+2026-03-10 08:53:27,261 [INFO] app.services.crawl_service: Fetched HTML: 3487 chars, extracted 0 links from https://gizmodo.com/100-websites-that-shaped-the-internet-as-we-know-it-1829634771
+2026-03-10 08:53:27,390 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 08:53:27,390 [INFO] app.routes.crawl: Crawl done for source 19, starting RDAP check…
+2026-03-10 08:53:27,590 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 08:53:27,631 [INFO] app.routes.crawl: RDAP done for source 19, starting Wayback check…
+2026-03-10 08:53:27,833 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 08:53:27,872 [INFO] app.routes.crawl: Wayback done for source 19, starting scoring…
+2026-03-10 08:53:28,255 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 08:53:28,256 [INFO] app.routes.crawl: Full pipeline complete for source 19 ✓
+2026-03-10 09:04:36,280 [INFO] app.services.crawl_service: Fetched HTML: 3483 chars, extracted 0 links from https://gizmodo.com/100-websites-that-shaped-the-internet-as-we-know-it-1829634771
+2026-03-10 09:04:36,421 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 09:04:36,421 [INFO] app.routes.crawl: Crawl done for source 19, starting RDAP check…
+2026-03-10 09:04:36,738 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 09:04:36,794 [INFO] app.routes.crawl: RDAP done for source 19, starting Wayback check…
+2026-03-10 09:04:37,074 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 09:04:37,116 [INFO] app.routes.crawl: Wayback done for source 19, starting scoring…
+2026-03-10 09:04:37,482 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 09:04:37,482 [INFO] app.routes.crawl: Full pipeline complete for source 19 ✓
+2026-03-10 09:04:50,937 [INFO] app.services.crawl_service: Fetched HTML: 60881 chars, extracted 0 links from https://www.businessinsider.com/what-happened-to-early-2000s-websites-2016-10
+2026-03-10 09:04:51,032 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 09:04:51,033 [INFO] app.routes.crawl: Crawl done for source 20, starting RDAP check…
+2026-03-10 09:04:51,257 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 09:04:51,308 [INFO] app.routes.crawl: RDAP done for source 20, starting Wayback check…
+2026-03-10 09:04:51,745 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 09:04:51,790 [INFO] app.routes.crawl: Wayback done for source 20, starting scoring…
+2026-03-10 09:04:52,089 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 09:04:52,090 [INFO] app.routes.crawl: Full pipeline complete for source 20 ✓
+2026-03-10 09:04:52,265 [INFO] app.services.crawl_service: Fetched HTML: 60961 chars, extracted 0 links from https://www.businessinsider.com/what-happened-to-early-2000s-websites-2016-10
+2026-03-10 09:04:52,360 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 09:04:52,360 [INFO] app.routes.crawl: Crawl done for source 20, starting RDAP check…
+2026-03-10 09:04:52,676 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 09:04:52,720 [INFO] app.routes.crawl: RDAP done for source 20, starting Wayback check…
+2026-03-10 09:04:52,935 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 09:04:52,981 [INFO] app.routes.crawl: Wayback done for source 20, starting scoring…
+2026-03-10 09:04:53,350 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 09:04:53,351 [INFO] app.routes.crawl: Full pipeline complete for source 20 ✓
+2026-03-10 09:05:45,849 [INFO] app.services.crawl_service: Fetched HTML: 6246 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 09:05:45,982 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 09:05:45,983 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 09:05:46,188 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 09:05:46,231 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 09:05:46,660 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 09:05:46,702 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 09:05:47,007 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 09:05:47,008 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 09:05:47,857 [INFO] app.services.crawl_service: Fetched HTML: 6364 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 09:05:47,948 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 09:05:47,949 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 09:05:48,158 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 09:05:48,201 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 09:05:48,417 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 09:05:48,460 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 09:05:48,769 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 09:05:48,770 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 09:27:13,582 [INFO] app.services.crawl_service: Fetched HTML: 6256 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 09:27:13,714 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 09:27:13,714 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 09:27:14,020 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 09:27:14,063 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 09:27:14,528 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 09:27:14,570 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 09:27:14,926 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 09:27:14,926 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 09:27:15,813 [INFO] app.services.crawl_service: Fetched HTML: 6269 chars, extracted 0 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 09:27:15,902 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 0 dead links
+2026-03-10 09:27:15,902 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 09:27:16,216 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 09:27:16,259 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 09:27:16,474 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-10 09:27:16,517 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 09:27:16,863 [INFO] app.services.scoring_service: Scored 0 candidates
+2026-03-10 09:27:16,863 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 09:29:42,342 [INFO] app.services.crawl_service: ZenRows succeeded for https://www.businessinsider.com/what-happened-to-early-2000s-websites-2016-10 (372522 chars)
+2026-03-10 09:29:42,404 [INFO] app.services.crawl_service: Fetched HTML: 372522 chars, extracted 22 links from https://www.businessinsider.com/what-happened-to-early-2000s-websites-2016-10
+2026-03-10 09:29:44,909 [INFO] app.services.crawl_service: ZenRows succeeded for https://www.businessinsider.com/what-happened-to-early-2000s-websites-2016-10 (375794 chars)
+2026-03-10 09:29:44,959 [INFO] app.services.crawl_service: Fetched HTML: 375794 chars, extracted 22 links from https://www.businessinsider.com/what-happened-to-early-2000s-websites-2016-10
+2026-03-10 09:29:52,896 [INFO] app.services.crawl_service:   Dead domain myspace.com (HTTP fail) → RDAP: registered
+2026-03-10 09:29:53,175 [INFO] app.services.crawl_service:   Dead domain myspace.com (HTTP fail) → RDAP: registered
+2026-03-10 09:30:02,815 [INFO] app.services.crawl_service:   Dead domain hrwiki.org (HTTP fail) → RDAP: registered
+2026-03-10 09:30:02,835 [INFO] app.services.crawl_service:   Dead domain hrwiki.org (HTTP fail) → RDAP: registered
+2026-03-10 09:30:29,574 [INFO] app.services.crawl_service:   Dead domain livejournal.com (HTTP fail) → RDAP: expiring_watchlist
+2026-03-10 09:30:30,805 [INFO] app.services.crawl_service:   Dead domain livejournal.com (HTTP fail) → RDAP: expiring_watchlist
+2026-03-10 09:30:32,251 [INFO] app.services.crawl_service: Crawl completed: 22 candidates, 3 dead links
+2026-03-10 09:30:32,292 [INFO] app.routes.crawl: Crawl done for source 20, starting RDAP check…
+2026-03-10 09:30:32,843 [INFO] app.services.whois_service: Starting RDAP check for 19 candidates
+2026-03-10 09:30:34,123 [INFO] app.services.whois_service:   [1/19] snapchat.com → registered
+2026-03-10 09:30:35,703 [INFO] app.services.whois_service:   [2/19] onelink.me → available
+2026-03-10 09:30:38,321 [INFO] app.services.whois_service:   [3/19] nytimes.com → registered
+2026-03-10 09:30:41,135 [INFO] app.services.whois_service:   [4/19] match.com → expiring_watchlist
+2026-03-10 09:30:43,871 [INFO] app.services.whois_service:   [5/19] okcupid.com → expiring_watchlist
+2026-03-10 09:30:46,662 [INFO] app.services.whois_service:   [6/19] gotinder.com → registered
+2026-03-10 09:30:50,149 [INFO] app.services.whois_service:   [7/19] xanga.com → registered
+2026-03-10 09:30:53,267 [INFO] app.services.whois_service:   [8/19] ebaumsworld.com → registered
+2026-03-10 09:30:56,138 [INFO] app.services.whois_service:   [9/19] odditycentral.com → registered
+2026-03-10 09:30:59,113 [INFO] app.services.whois_service:   [10/19] searchengineland.com → registered
+2026-03-10 09:31:02,214 [INFO] app.services.whois_service:   [11/19] mtv.com → registered
+2026-03-10 09:31:05,052 [INFO] app.services.whois_service:   [12/19] altavista.com → registered
+2026-03-10 09:31:07,823 [INFO] app.services.whois_service:   [13/19] wsj.com → expiring_watchlist
+2026-03-10 09:31:10,751 [INFO] app.services.whois_service:   [14/19] parsintl.com → registered
+2026-03-10 09:31:13,371 [INFO] app.services.whois_service:   [15/19] finanzen.net → registered
+2026-03-10 09:31:16,242 [INFO] app.services.whois_service:   [16/19] insider.com → expiring_watchlist
+2026-03-10 09:31:19,529 [INFO] app.services.whois_service:   [17/19] whatsapp.com → registered
+2026-03-10 09:31:21,969 [INFO] app.services.whois_service:   [18/19] bsky.app → registered
+2026-03-10 09:31:24,900 [INFO] app.services.whois_service:   [19/19] threads.com → registered
+2026-03-10 09:31:26,184 [INFO] app.services.whois_service: RDAP check completed: 19/19
+2026-03-10 09:31:26,184 [INFO] app.routes.crawl: RDAP done for source 20, starting Wayback check…
+2026-03-10 09:31:26,511 [INFO] app.services.wayback_service: Starting Wayback check for 22 candidates
+2026-03-10 09:31:57,408 [WARNING] app.services.wayback_service: CDX API error for myspace.com: 
+2026-03-10 09:31:57,409 [INFO] app.services.wayback_service: Wayback [1/22] myspace.com: 0 snapshots, lang=None
+2026-03-10 09:32:34,387 [INFO] app.services.wayback_service: Wayback [2/22] livejournal.com: 50 snapshots, lang=en
+2026-03-10 09:33:04,192 [INFO] app.services.wayback_service: Wayback [3/22] nytimes.com: 50 snapshots, lang=en
+2026-03-10 09:33:20,324 [INFO] app.services.wayback_service: Wayback [4/22] match.com: 50 snapshots, lang=en
+2026-03-10 09:33:36,220 [INFO] app.services.wayback_service: Wayback [5/22] okcupid.com: 50 snapshots, lang=en
+2026-03-10 09:34:12,872 [INFO] app.services.wayback_service: Wayback [6/22] gotinder.com: 50 snapshots, lang=en
+2026-03-10 09:34:36,010 [INFO] app.services.wayback_service: Wayback [7/22] xanga.com: 50 snapshots, lang=en
+2026-03-10 09:34:51,600 [INFO] app.services.wayback_service: Wayback [8/22] ebaumsworld.com: 50 snapshots, lang=en
+2026-03-10 09:35:21,807 [INFO] app.services.wayback_service: Wayback [9/22] odditycentral.com: 50 snapshots, lang=en
+2026-03-10 09:35:40,521 [INFO] app.services.wayback_service: Wayback [10/22] snapchat.com: 50 snapshots, lang=en
+2026-03-10 09:35:56,135 [INFO] app.services.wayback_service: Wayback [11/22] hrwiki.org: 10 snapshots, lang=en
+2026-03-10 09:36:12,134 [INFO] app.services.wayback_service: Wayback [12/22] mtv.com: 50 snapshots, lang=en
+2026-03-10 09:36:31,985 [INFO] app.services.wayback_service: Wayback [13/22] wsj.com: 50 snapshots, lang=en
+2026-03-10 09:36:55,674 [INFO] app.services.wayback_service: Wayback [14/22] finanzen.net: 50 snapshots, lang=de
+2026-03-10 09:37:10,305 [INFO] app.services.wayback_service: Wayback [15/22] searchengineland.com: 50 snapshots, lang=en
+2026-03-10 09:37:28,608 [INFO] app.services.wayback_service: Wayback [16/22] altavista.com: 50 snapshots, lang=en
+2026-03-10 09:37:30,322 [INFO] app.services.wayback_service: Wayback [17/22] insider.com: 0 snapshots, lang=None
+2026-03-10 09:38:05,094 [INFO] app.services.wayback_service: Wayback [18/22] whatsapp.com: 50 snapshots, lang=en
+2026-03-10 09:38:22,318 [INFO] app.services.wayback_service: Wayback [19/22] bsky.app: 42 snapshots, lang=en
+2026-03-10 09:38:39,844 [INFO] app.services.wayback_service: Wayback [20/22] threads.com: 50 snapshots, lang=en
+2026-03-10 09:38:55,484 [INFO] app.services.wayback_service: Wayback [21/22] onelink.me: 6 snapshots, lang=en
+2026-03-10 09:39:08,955 [INFO] app.services.wayback_service: Wayback [22/22] parsintl.com: 50 snapshots, lang=en
+2026-03-10 09:39:09,216 [INFO] app.services.wayback_service: Wayback check complete: 22/22
+2026-03-10 09:39:09,217 [INFO] app.routes.crawl: Wayback done for source 20, starting scoring…
+2026-03-10 09:39:09,764 [INFO] app.services.scoring_service: Scored 22 candidates
+2026-03-10 09:39:09,765 [INFO] app.routes.crawl: Full pipeline complete for source 20 ✓
+2026-03-10 09:42:31,996 [INFO] app.services.crawl_service: ZenRows succeeded for https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/ (177731 chars)
+2026-03-10 09:42:32,117 [INFO] app.services.crawl_service: Fetched HTML: 177731 chars, extracted 16 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 09:42:35,652 [INFO] app.services.crawl_service: ZenRows succeeded for https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/ (177128 chars)
+2026-03-10 09:42:35,778 [INFO] app.services.crawl_service: Fetched HTML: 177128 chars, extracted 16 links from https://www.virtualpetlist.com/threads/top-10-websites-that-defined-the-early-2000s-internet.4203/
+2026-03-10 09:42:41,249 [INFO] app.services.crawl_service:   Dead domain myspace.com (HTTP fail) → RDAP: registered
+2026-03-10 09:42:45,137 [INFO] app.services.crawl_service:   Dead domain myspace.com (HTTP fail) → RDAP: registered
+2026-03-10 09:42:49,335 [INFO] app.services.crawl_service: Crawl completed: 16 candidates, 1 dead links
+2026-03-10 09:42:49,336 [INFO] app.routes.crawl: Crawl done for source 18, starting RDAP check…
+2026-03-10 09:42:49,645 [INFO] app.services.whois_service: Starting RDAP check for 15 candidates
+2026-03-10 09:42:50,992 [INFO] app.services.whois_service:   [1/15] ushost247.com → registered
+2026-03-10 09:42:53,588 [INFO] app.services.whois_service:   [2/15] howtogeek.com → registered
+2026-03-10 09:42:56,310 [INFO] app.services.whois_service:   [3/15] newgrounds.com → registered
+2026-03-10 09:42:58,973 [INFO] app.services.whois_service:   [4/15] steampowered.com → registered
+2026-03-10 09:43:01,668 [INFO] app.services.whois_service:   [5/15] mobygames.com → expiring_watchlist
+2026-03-10 09:43:04,384 [INFO] app.services.whois_service:   [6/15] neopets.com → registered
+2026-03-10 09:43:07,499 [INFO] app.services.whois_service:   [7/15] blogger.com → registered
+2026-03-10 09:43:10,104 [INFO] app.services.whois_service:   [8/15] xanga.com → registered
+2026-03-10 09:43:12,814 [INFO] app.services.whois_service:   [9/15] ask.com → registered
+2026-03-10 09:43:15,354 [INFO] app.services.whois_service:   [10/15] yahoo.com → registered
+2026-03-10 09:43:18,898 [INFO] app.services.whois_service:   [11/15] ebay.com → registered
+2026-03-10 09:43:21,655 [INFO] app.services.whois_service:   [12/15] miniclip.com → registered
+2026-03-10 09:43:24,603 [INFO] app.services.whois_service:   [13/15] msn.com → expiring_watchlist
+2026-03-10 09:43:27,304 [INFO] app.services.whois_service:   [14/15] xenforo.com → expiring_watchlist
+2026-03-10 09:43:29,944 [INFO] app.services.whois_service:   [15/15] themehouse.com → registered
+2026-03-10 09:43:31,208 [INFO] app.services.whois_service: RDAP check completed: 15/15
+2026-03-10 09:43:31,209 [INFO] app.routes.crawl: RDAP done for source 18, starting Wayback check…
+2026-03-10 09:43:31,459 [INFO] app.services.wayback_service: Starting Wayback check for 16 candidates
+2026-03-10 09:43:51,258 [INFO] app.services.wayback_service: Wayback [1/16] howtogeek.com: 50 snapshots, lang=en
+2026-03-10 09:44:09,325 [INFO] app.services.wayback_service: Wayback [2/16] newgrounds.com: 50 snapshots, lang=en
+2026-03-10 09:44:26,200 [INFO] app.services.wayback_service: Wayback [3/16] steampowered.com: 49 snapshots, lang=en
+2026-03-10 09:44:27,732 [INFO] app.services.wayback_service: Wayback [4/16] neopets.com: 0 snapshots, lang=None
+2026-03-10 09:44:45,129 [INFO] app.services.wayback_service: Wayback [5/16] blogger.com: 50 snapshots, lang=en
+2026-03-10 09:45:02,203 [INFO] app.services.wayback_service: Wayback [6/16] xanga.com: 50 snapshots, lang=en
+2026-03-10 09:45:31,618 [INFO] app.services.wayback_service: Wayback [7/16] ask.com: 50 snapshots, lang=en
+2026-03-10 09:45:52,477 [INFO] app.services.wayback_service: Wayback [8/16] yahoo.com: 50 snapshots, lang=en
+2026-03-10 09:46:17,577 [INFO] app.services.wayback_service: Wayback [9/16] ebay.com: 50 snapshots, lang=en
+2026-03-10 09:46:32,387 [INFO] app.services.wayback_service: Wayback [10/16] ushost247.com: 50 snapshots, lang=en
+2026-03-10 09:46:50,247 [INFO] app.services.wayback_service: Wayback [11/16] mobygames.com: 50 snapshots, lang=en
+2026-03-10 09:47:16,324 [INFO] app.services.wayback_service: Wayback [12/16] myspace.com: 50 snapshots, lang=en
+2026-03-10 09:47:41,954 [INFO] app.services.wayback_service: Wayback [13/16] miniclip.com: 50 snapshots, lang=en
+2026-03-10 09:48:25,920 [INFO] app.services.wayback_service: Wayback [14/16] msn.com: 50 snapshots, lang=en
+2026-03-10 09:48:57,303 [WARNING] app.services.wayback_service: CDX API error for xenforo.com: 
+2026-03-10 09:48:57,304 [INFO] app.services.wayback_service: Wayback [15/16] xenforo.com: 0 snapshots, lang=None
+2026-03-10 09:49:16,253 [INFO] app.services.wayback_service: Wayback [16/16] themehouse.com: 50 snapshots, lang=en
+2026-03-10 09:49:16,510 [INFO] app.services.wayback_service: Wayback check complete: 16/16
+2026-03-10 09:49:16,511 [INFO] app.routes.crawl: Wayback done for source 18, starting scoring…
+2026-03-10 09:49:16,951 [INFO] app.services.scoring_service: Scored 16 candidates
+2026-03-10 09:49:16,952 [INFO] app.routes.crawl: Full pipeline complete for source 18 ✓
+2026-03-10 11:02:38,160 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 11:17:00,994 [INFO] app.services.crawl_service: ZenRows[basic] succeeded for https://www.markhendriksen.com/the-best-old-websites/ (848875 chars)
+2026-03-10 11:17:01,142 [INFO] app.services.crawl_service: Fetched HTML: 848875 chars, extracted 47 links from https://www.markhendriksen.com/the-best-old-websites/
+2026-03-10 11:17:02,138 [INFO] app.services.crawl_service: ZenRows[basic] succeeded for https://www.markhendriksen.com/the-best-old-websites/ (848875 chars)
+2026-03-10 11:17:02,217 [INFO] app.services.crawl_service: Fetched HTML: 848875 chars, extracted 47 links from https://www.markhendriksen.com/the-best-old-websites/
+2026-03-10 11:17:12,052 [INFO] app.services.crawl_service:   Dead domain imdb.com (HTTP 202) → RDAP: registered
+2026-03-10 11:17:12,446 [INFO] app.services.crawl_service:   Dead domain imdb.com (HTTP 202) → RDAP: registered
+2026-03-10 11:17:21,361 [INFO] app.services.crawl_service:   Dead domain supidkids.com → RDAP: available
+2026-03-10 11:17:22,493 [INFO] app.services.crawl_service:   Dead domain supidkids.com → RDAP: available
+2026-03-10 11:17:38,424 [INFO] app.services.crawl_service:   Dead domain barnesandnoble.com (HTTP fail) → RDAP: registered
+2026-03-10 11:17:40,125 [INFO] app.services.crawl_service:   Dead domain googleapis.com (HTTP 404) → RDAP: registered
+2026-03-10 11:17:48,503 [INFO] app.services.crawl_service:   Dead domain googleapis.com (HTTP 404) → RDAP: registered
+2026-03-10 11:17:53,125 [INFO] app.services.crawl_service:   Dead domain gnu.org (HTTP fail) → RDAP: registered
+2026-03-10 11:17:53,549 [INFO] app.services.crawl_service:   Dead domain gstatic.com (HTTP 404) → RDAP: registered
+2026-03-10 11:17:53,779 [INFO] app.services.crawl_service:   Dead domain gstatic.com (HTTP 404) → RDAP: registered
+2026-03-10 11:17:54,030 [INFO] app.services.crawl_service:   Dead domain gnu.org (HTTP fail) → RDAP: registered
+2026-03-10 11:18:08,573 [INFO] app.services.crawl_service:   Dead domain mtv.com (HTTP fail) → RDAP: registered
+2026-03-10 11:18:09,159 [INFO] app.services.crawl_service:   Dead domain pepsi.com (HTTP fail) → RDAP: registered
+2026-03-10 11:18:31,239 [INFO] app.services.crawl_service:   Dead domain neopets.com (HTTP fail) → RDAP: registered
+2026-03-10 11:18:33,148 [INFO] app.services.crawl_service:   Dead domain craigslist.org (HTTP fail) → RDAP: registered
+2026-03-10 11:18:53,792 [INFO] app.services.crawl_service:   Dead domain craigslist.org (HTTP fail) → RDAP: registered
+2026-03-10 11:18:58,232 [INFO] app.services.crawl_service: Crawl completed: 47 candidates, 9 dead links
+2026-03-10 11:18:58,233 [INFO] app.routes.crawl: Crawl done for source 21, starting RDAP check…
+2026-03-10 11:18:58,541 [INFO] app.services.whois_service: Starting RDAP check for 38 candidates
+2026-03-10 11:19:00,322 [INFO] app.services.whois_service:   [1/38] elegantthemes.com → registered
+2026-03-10 11:19:05,728 [INFO] app.services.whois_service:   [2/38] siteground.com → registered
+2026-03-10 11:19:10,466 [INFO] app.services.whois_service:   [3/38] cloudways.com → registered
+2026-03-10 11:19:11,915 [INFO] app.services.crawl_service:   Dead domain mtv.com (HTTP fail) → RDAP: registered
+2026-03-10 11:19:14,363 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 8 dead links
+2026-03-10 11:19:14,364 [INFO] app.routes.crawl: Crawl done for source 21, starting RDAP check…
+2026-03-10 11:19:14,664 [INFO] app.services.whois_service: Starting RDAP check for 35 candidates
+2026-03-10 11:19:15,843 [INFO] app.services.whois_service:   [1/35] target.com → registered
+2026-03-10 11:19:17,979 [INFO] app.services.whois_service:   [4/38] target.com → registered
+2026-03-10 11:19:18,388 [INFO] app.services.whois_service:   [2/35] netflix.com → registered
+2026-03-10 11:19:20,459 [INFO] app.services.whois_service:   [5/38] netflix.com → registered
+2026-03-10 11:19:21,471 [INFO] app.services.whois_service:   [3/35] barnesandnoble.com → registered
+2026-03-10 11:19:23,482 [INFO] app.services.whois_service:   [6/38] barnesandnoble.com → registered
+2026-03-10 11:19:24,021 [INFO] app.services.whois_service:   [4/35] pbs.org → expiring_watchlist
+2026-03-10 11:19:25,964 [INFO] app.services.whois_service:   [7/38] pbs.org → expiring_watchlist
+2026-03-10 11:19:28,500 [INFO] app.services.whois_service:   [8/38] buzzfeed.com → registered
+2026-03-10 11:19:28,636 [INFO] app.services.whois_service:   [5/35] buzzfeed.com → registered
+2026-03-10 11:19:31,226 [INFO] app.services.whois_service:   [6/35] macys.com → registered
+2026-03-10 11:19:33,688 [INFO] app.services.whois_service:   [7/35] mashable.com → registered
+2026-03-10 11:19:36,350 [INFO] app.services.whois_service:   [8/35] aol.com → registered
+2026-03-10 11:19:38,450 [INFO] app.services.whois_service:   [9/38] macys.com → registered
+2026-03-10 11:19:38,749 [INFO] app.services.whois_service:   [9/35] mcdonalds.com → registered
+2026-03-10 11:19:40,845 [INFO] app.services.whois_service:   [10/38] mashable.com → registered
+2026-03-10 11:19:41,964 [INFO] app.services.whois_service:   [10/35] pinterest.com → registered
+2026-03-10 11:19:43,833 [INFO] app.services.whois_service:   [11/38] aol.com → registered
+2026-03-10 11:19:44,712 [WARNING] app.services.whois_service: RDAP all endpoints failed for wired.com (last status=None)
+2026-03-10 11:19:44,712 [INFO] app.services.whois_service:   [11/35] wired.com → check_failed
+2026-03-10 11:19:47,741 [INFO] app.services.whois_service:   [12/35] burgerking.com → registered
+2026-03-10 11:19:48,510 [INFO] app.services.whois_service:   [12/38] mcdonalds.com → registered
+2026-03-10 11:19:50,750 [INFO] app.services.whois_service:   [13/35] ted.com → registered
+2026-03-10 11:19:51,421 [INFO] app.services.whois_service:   [13/38] pinterest.com → registered
+2026-03-10 11:19:53,535 [INFO] app.services.whois_service:   [14/35] yahoo.com → registered
+2026-03-10 11:19:53,656 [INFO] app.services.whois_service:   [14/38] wired.com → registered
+2026-03-10 11:19:55,865 [INFO] app.services.whois_service:   [15/35] bbc.com → registered
+2026-03-10 11:19:56,016 [INFO] app.services.whois_service:   [15/38] burgerking.com → registered
+2026-03-10 11:19:58,518 [INFO] app.services.whois_service:   [16/35] ask.com → registered
+2026-03-10 11:20:00,288 [INFO] app.services.whois_service:   [16/38] ted.com → registered
+2026-03-10 11:20:02,306 [INFO] app.services.whois_service:   [17/35] lays.com → registered
+2026-03-10 11:20:02,855 [INFO] app.services.whois_service:   [17/38] yahoo.com → registered
+2026-03-10 11:20:05,188 [INFO] app.services.whois_service:   [18/35] tumblr.com → registered
+2026-03-10 11:20:05,942 [INFO] app.services.whois_service:   [18/38] bbc.com → registered
+2026-03-10 11:20:07,789 [INFO] app.services.whois_service:   [19/35] walmart.com → registered
+2026-03-10 11:20:08,512 [INFO] app.services.whois_service:   [19/38] ask.com → registered
+2026-03-10 11:20:11,583 [INFO] app.services.whois_service:   [20/38] lays.com → registered
+2026-03-10 11:20:12,620 [INFO] app.services.whois_service:   [20/35] gotmilk.com → registered
+2026-03-10 11:20:14,053 [INFO] app.services.whois_service:   [21/38] tumblr.com → registered
+2026-03-10 11:20:15,185 [INFO] app.services.whois_service:   [21/35] space.com → registered
+2026-03-10 11:20:16,651 [INFO] app.services.whois_service:   [22/38] walmart.com → registered
+2026-03-10 11:20:18,423 [INFO] app.services.whois_service:   [22/35] sephora.com → registered
+2026-03-10 11:20:19,121 [INFO] app.services.whois_service:   [23/38] gotmilk.com → registered
+2026-03-10 11:20:21,563 [INFO] app.services.whois_service:   [24/38] space.com → registered
+2026-03-10 11:20:22,131 [INFO] app.services.whois_service:   [23/35] coca-colacompany.com → registered
+2026-03-10 11:20:24,134 [INFO] app.services.whois_service:   [25/38] sephora.com → registered
+2026-03-10 11:20:26,565 [INFO] app.services.whois_service:   [26/38] coca-colacompany.com → registered
+2026-03-10 11:20:28,532 [INFO] app.services.whois_service:   [24/35] skype.com → expiring_watchlist
+2026-03-10 11:20:29,140 [INFO] app.services.whois_service:   [27/38] skype.com → expiring_watchlist
+2026-03-10 11:20:31,144 [INFO] app.services.whois_service:   [25/35] ebay.com → registered
+2026-03-10 11:20:31,589 [INFO] app.services.whois_service:   [28/38] ebay.com → registered
+2026-03-10 11:20:33,916 [INFO] app.services.whois_service:   [26/35] blockbuster.com → registered
+2026-03-10 11:20:35,634 [INFO] app.services.whois_service:   [29/38] blockbuster.com → registered
+2026-03-10 11:20:36,519 [INFO] app.services.whois_service:   [27/35] weather.com → registered
+2026-03-10 11:20:38,808 [INFO] app.services.whois_service:   [30/38] weather.com → registered
+2026-03-10 11:20:38,963 [INFO] app.services.whois_service:   [28/35] dunkindonuts.com → registered
+2026-03-10 11:20:41,729 [INFO] app.services.whois_service:   [29/35] starbucks.com → registered
+2026-03-10 11:20:43,444 [INFO] app.services.whois_service:   [31/38] dunkindonuts.com → registered
+2026-03-10 11:20:44,898 [INFO] app.services.whois_service:   [30/35] bloomberg.com → registered
+2026-03-10 11:20:46,649 [INFO] app.services.whois_service:   [32/38] starbucks.com → registered
+2026-03-10 11:20:47,448 [INFO] app.services.whois_service:   [31/35] slashdot.org → registered
+2026-03-10 11:20:49,204 [INFO] app.services.whois_service:   [33/38] bloomberg.com → registered
+2026-03-10 11:20:49,884 [INFO] app.services.whois_service:   [32/35] nytimes.com → registered
+2026-03-10 11:20:52,742 [INFO] app.services.whois_service:   [33/35] yoast.com → registered
+2026-03-10 11:20:55,107 [INFO] app.services.whois_service:   [34/38] slashdot.org → registered
+2026-03-10 11:20:55,499 [INFO] app.services.whois_service:   [34/35] gravatar.com → registered
+2026-03-10 11:20:57,530 [INFO] app.services.whois_service:   [35/35] wp-rocket.me → available
+2026-03-10 11:20:57,552 [INFO] app.services.whois_service:   [35/38] nytimes.com → registered
+2026-03-10 11:20:58,993 [INFO] app.services.whois_service: RDAP check completed: 35/35
+2026-03-10 11:20:58,994 [INFO] app.routes.crawl: RDAP done for source 21, starting Wayback check…
+2026-03-10 11:20:59,274 [INFO] app.services.wayback_service: Starting Wayback check for 47 candidates
+2026-03-10 11:21:01,941 [INFO] app.services.whois_service:   [36/38] yoast.com → registered
+2026-03-10 11:21:06,349 [INFO] app.services.whois_service:   [37/38] gravatar.com → registered
+2026-03-10 11:21:08,235 [INFO] app.services.whois_service:   [38/38] wp-rocket.me → available
+2026-03-10 11:21:09,501 [INFO] app.services.whois_service: RDAP check completed: 38/38
+2026-03-10 11:21:09,502 [INFO] app.routes.crawl: RDAP done for source 21, starting Wayback check…
+2026-03-10 11:21:09,879 [INFO] app.services.wayback_service: Starting Wayback check for 47 candidates
+2026-03-10 11:21:24,189 [INFO] app.services.wayback_service: Wayback [1/47] craigslist.org: 50 snapshots, lang=en
+2026-03-10 11:21:38,024 [INFO] app.services.wayback_service: Wayback [1/47] craigslist.org: 50 snapshots, lang=en
+2026-03-10 11:21:52,677 [INFO] app.services.wayback_service: Wayback [2/47] mtv.com: 50 snapshots, lang=en
+2026-03-10 11:21:52,722 [INFO] app.services.wayback_service: Wayback [2/47] mtv.com: 50 snapshots, lang=en
+2026-03-10 11:21:54,812 [INFO] app.services.wayback_service: Wayback [3/47] neopets.com: 0 snapshots, lang=None
+2026-03-10 11:21:55,553 [INFO] app.services.wayback_service: Wayback [3/47] neopets.com: 0 snapshots, lang=None
+2026-03-10 11:22:13,944 [INFO] app.services.wayback_service: Wayback [4/47] target.com: 50 snapshots, lang=en
+2026-03-10 11:22:19,332 [INFO] app.services.wayback_service: Wayback [4/47] target.com: 50 snapshots, lang=en
+2026-03-10 11:22:37,712 [INFO] app.services.wayback_service: Wayback [5/47] netflix.com: 50 snapshots, lang=en
+2026-03-10 11:22:38,249 [INFO] app.services.wayback_service: Wayback [5/47] netflix.com: 50 snapshots, lang=en
+2026-03-10 11:22:56,166 [INFO] app.services.wayback_service: Wayback [6/47] barnesandnoble.com: 50 snapshots, lang=en
+2026-03-10 11:23:00,125 [INFO] app.services.wayback_service: Wayback [6/47] barnesandnoble.com: 50 snapshots, lang=en
+2026-03-10 11:23:19,042 [INFO] app.services.wayback_service: Wayback [7/47] pbs.org: 50 snapshots, lang=en
+2026-03-10 11:23:21,558 [INFO] app.services.wayback_service: Wayback [7/47] pbs.org: 50 snapshots, lang=en
+2026-03-10 11:23:36,286 [INFO] app.services.wayback_service: Wayback [8/47] buzzfeed.com: 50 snapshots, lang=en
+2026-03-10 11:23:37,800 [INFO] app.services.wayback_service: Wayback [8/47] buzzfeed.com: 50 snapshots, lang=en
+2026-03-10 11:24:03,651 [INFO] app.services.wayback_service: Wayback [9/47] macys.com: 50 snapshots, lang=en
+2026-03-10 11:24:07,716 [WARNING] app.services.wayback_service: CDX API error for macys.com: 
+2026-03-10 11:24:07,717 [INFO] app.services.wayback_service: Wayback [9/47] macys.com: 0 snapshots, lang=None
+2026-03-10 11:24:24,278 [INFO] app.services.wayback_service: Wayback [10/47] pepsi.com: 50 snapshots, lang=en
+2026-03-10 11:24:24,279 [INFO] app.services.wayback_service: Wayback [10/47] pepsi.com: 50 snapshots, lang=en
+2026-03-10 11:24:43,385 [INFO] app.services.wayback_service: Wayback [11/47] pinterest.com: 50 snapshots, lang=en
+2026-03-10 11:24:43,595 [INFO] app.services.wayback_service: Wayback [11/47] pinterest.com: 50 snapshots, lang=en
+2026-03-10 11:24:47,196 [WARNING] app.services.wayback_service: CDX API error for wired.com: All connection attempts failed
+2026-03-10 11:24:47,197 [INFO] app.services.wayback_service: Wayback [12/47] wired.com: 0 snapshots, lang=None
+2026-03-10 11:24:47,916 [WARNING] app.services.wayback_service: CDX API error for wired.com: All connection attempts failed
+2026-03-10 11:24:47,917 [INFO] app.services.wayback_service: Wayback [12/47] wired.com: 0 snapshots, lang=None
+2026-03-10 11:24:53,689 [WARNING] app.services.wayback_service: CDX API error for imdb.com: All connection attempts failed
+2026-03-10 11:24:53,689 [INFO] app.services.wayback_service: Wayback [13/47] imdb.com: 0 snapshots, lang=None
+2026-03-10 11:25:00,194 [WARNING] app.services.wayback_service: CDX API error for imdb.com: All connection attempts failed
+2026-03-10 11:25:00,195 [INFO] app.services.wayback_service: Wayback [13/47] imdb.com: 0 snapshots, lang=None
+2026-03-10 11:25:17,668 [WARNING] app.services.wayback_service: CDX API error for bbc.com: All connection attempts failed
+2026-03-10 11:25:17,668 [INFO] app.services.wayback_service: Wayback [14/47] bbc.com: 0 snapshots, lang=None
+2026-03-10 11:25:43,258 [INFO] app.services.wayback_service: Wayback [14/47] bbc.com: 50 snapshots, lang=None
+2026-03-10 11:26:03,624 [INFO] app.services.wayback_service: Wayback [15/47] ask.com: 50 snapshots, lang=en
+2026-03-10 11:26:03,628 [INFO] app.services.wayback_service: Wayback [15/47] ask.com: 50 snapshots, lang=en
+2026-03-10 11:26:19,198 [INFO] app.services.wayback_service: Wayback [16/47] gotmilk.com: 50 snapshots, lang=en
+2026-03-10 11:26:19,251 [INFO] app.services.wayback_service: Wayback [16/47] gotmilk.com: 50 snapshots, lang=en
+2026-03-10 11:26:40,751 [INFO] app.services.wayback_service: Wayback [17/47] space.com: 50 snapshots, lang=en
+2026-03-10 11:26:40,982 [INFO] app.services.wayback_service: Wayback [17/47] space.com: 50 snapshots, lang=en
+2026-03-10 11:26:56,566 [INFO] app.services.wayback_service: Wayback [18/47] sephora.com: 50 snapshots, lang=en
+2026-03-10 11:26:56,680 [INFO] app.services.wayback_service: Wayback [18/47] sephora.com: 50 snapshots, lang=en
+2026-03-10 11:27:27,002 [INFO] app.services.wayback_service: Wayback [19/47] coca-colacompany.com: 50 snapshots, lang=en
+2026-03-10 11:27:27,278 [INFO] app.services.wayback_service: Wayback [19/47] coca-colacompany.com: 50 snapshots, lang=en
+2026-03-10 11:27:45,693 [INFO] app.services.wayback_service: Wayback [20/47] skype.com: 50 snapshots, lang=en
+2026-03-10 11:28:02,000 [WARNING] app.services.wayback_service: CDX API error for skype.com: 
+2026-03-10 11:28:02,000 [INFO] app.services.wayback_service: Wayback [20/47] skype.com: 0 snapshots, lang=None
+2026-03-10 11:28:08,727 [INFO] app.services.wayback_service: Wayback [21/47] ebay.com: 50 snapshots, lang=en
+2026-03-10 11:28:13,198 [INFO] app.services.wayback_service: Wayback [21/47] ebay.com: 50 snapshots, lang=en
+2026-03-10 11:28:34,849 [INFO] app.services.wayback_service: Wayback [22/47] weather.com: 50 snapshots, lang=en
+2026-03-10 11:28:35,750 [INFO] app.services.wayback_service: Wayback [22/47] weather.com: 50 snapshots, lang=en
+2026-03-10 11:28:56,247 [INFO] app.services.wayback_service: Wayback [23/47] starbucks.com: 50 snapshots, lang=en
+2026-03-10 11:28:56,249 [INFO] app.services.wayback_service: Wayback [23/47] starbucks.com: 50 snapshots, lang=en
+2026-03-10 11:29:20,121 [INFO] app.services.wayback_service: Wayback [24/47] bloomberg.com: 50 snapshots, lang=en
+2026-03-10 11:29:22,094 [INFO] app.services.wayback_service: Wayback [25/47] supidkids.com: 0 snapshots, lang=None
+2026-03-10 11:29:24,919 [INFO] app.services.wayback_service: Wayback [24/47] bloomberg.com: 50 snapshots, lang=en
+2026-03-10 11:29:26,755 [INFO] app.services.wayback_service: Wayback [25/47] supidkids.com: 0 snapshots, lang=None
+2026-03-10 12:34:13,781 [INFO] app.services.crawl_service: ZenRows[basic] ...5c1c3e OK https://content.time.com/time/specials/packages/completelist/0,29569,1949266,00.html (43241 chars)
+2026-03-10 12:34:13,820 [INFO] app.services.crawl_service: Fetched HTML: 43241 chars, extracted 8 links from https://content.time.com/time/specials/packages/completelist/0,29569,1949266,00.html
+2026-03-10 12:34:13,834 [INFO] app.services.crawl_service: ZenRows[basic] ...b36ad6 OK https://content.time.com/time/specials/packages/completelist/0,29569,1949266,00.html (43241 chars)
+2026-03-10 12:34:13,855 [INFO] app.services.crawl_service: Fetched HTML: 43241 chars, extracted 8 links from https://content.time.com/time/specials/packages/completelist/0,29569,1949266,00.html
+2026-03-10 12:34:33,486 [INFO] app.services.crawl_service:   Dead domain ti.me → RDAP: available
+2026-03-10 12:34:38,088 [INFO] app.services.crawl_service:   Dead domain buysub.com → RDAP: registered
+2026-03-10 12:34:38,088 [INFO] app.services.crawl_service:   Dead domain timeinc.com → RDAP: registered
+2026-03-10 12:34:38,090 [INFO] app.services.crawl_service:   Dead domain tumblr.com → RDAP: registered
+2026-03-10 12:34:38,102 [INFO] app.services.crawl_service:   Dead domain timeforkids.com → RDAP: registered
+2026-03-10 12:34:38,103 [INFO] app.services.crawl_service:   Dead domain timeinc.com → RDAP: registered
+2026-03-10 12:34:38,116 [INFO] app.services.crawl_service:   Dead domain buysub.com → RDAP: registered
+2026-03-10 12:34:38,155 [INFO] app.services.crawl_service:   Dead domain tumblr.com → RDAP: registered
+2026-03-10 12:34:44,425 [INFO] app.services.crawl_service:   Dead domain timeforkids.com → RDAP: registered
+2026-03-10 12:34:44,523 [INFO] app.services.crawl_service:   Dead domain pinterest.com → RDAP: registered
+2026-03-10 12:34:49,834 [INFO] app.services.crawl_service:   Dead domain timemediakit.com → RDAP: registered
+2026-03-10 12:34:49,854 [INFO] app.services.crawl_service:   Dead domain timemediakit.com → RDAP: registered
+2026-03-10 12:34:49,901 [INFO] app.services.crawl_service:   Dead domain timeincshop.com → RDAP: expiring_watchlist
+2026-03-10 12:34:49,904 [INFO] app.services.crawl_service:   Dead domain timeincshop.com → RDAP: expiring_watchlist
+2026-03-10 12:34:50,073 [INFO] app.services.crawl_service:   Alive domain pinterest.com (HTTP 200) → RDAP: registered
+2026-03-10 12:34:50,892 [INFO] app.services.crawl_service: Crawl completed: 8 candidates, 8 dead links
+2026-03-10 12:34:50,893 [INFO] app.routes.crawl: Crawl done for source 22, starting RDAP check…
+2026-03-10 12:34:51,137 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 12:34:51,178 [INFO] app.routes.crawl: RDAP done for source 22, starting Wayback check…
+2026-03-10 12:34:51,420 [INFO] app.services.wayback_service: Starting Wayback check for 8 candidates
+2026-03-10 12:34:56,133 [WARNING] app.services.whois_service: RDAP all endpoints failed for ti.me (last status=None)
+2026-03-10 12:34:56,134 [INFO] app.services.crawl_service:   Dead domain ti.me → RDAP: check_failed
+2026-03-10 12:34:56,712 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 7 dead links
+2026-03-10 12:34:56,713 [INFO] app.routes.crawl: Crawl done for source 22, starting RDAP check…
+2026-03-10 12:34:56,916 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 12:34:56,956 [INFO] app.routes.crawl: RDAP done for source 22, starting Wayback check…
+2026-03-10 12:34:57,211 [INFO] app.services.wayback_service: Starting Wayback check for 8 candidates
+2026-03-10 12:35:16,177 [INFO] app.services.wayback_service: Wayback [1/8] pinterest.com: 50 snapshots, lang=en, discovered=0
+2026-03-10 12:35:24,239 [INFO] app.services.wayback_service: Wayback [1/8] pinterest.com: 50 snapshots, lang=en, discovered=0
+2026-03-10 12:35:42,231 [INFO] app.services.wayback_service: Wayback [2/8] tumblr.com: 50 snapshots, lang=en, discovered=0
+2026-03-10 12:35:42,794 [INFO] app.services.wayback_service: Wayback [2/8] tumblr.com: 50 snapshots, lang=en, discovered=0
+2026-03-10 12:36:09,559 [INFO] app.services.wayback_service: Wayback [3/8] timeinc.com: 46 snapshots, lang=en, discovered=0
+2026-03-10 12:36:14,396 [WARNING] app.services.wayback_service: CDX API error for timeinc.com: 
+2026-03-10 12:36:14,397 [INFO] app.services.wayback_service: Wayback [3/8] timeinc.com: 0 snapshots, lang=None, discovered=0
+2026-03-10 12:36:38,050 [INFO] app.services.wayback_service: Wayback [4/8] timeforkids.com: 50 snapshots, lang=en, discovered=0
+2026-03-10 12:36:39,621 [INFO] app.services.wayback_service: Wayback [4/8] timeforkids.com: 50 snapshots, lang=en, discovered=0
+2026-03-10 12:37:09,134 [INFO] app.services.wayback_service: Wayback [5/8] timemediakit.com: 50 snapshots, lang=en, discovered=0
+2026-03-10 12:37:23,188 [INFO] app.services.wayback_service: Wayback [5/8] timemediakit.com: 50 snapshots, lang=en, discovered=0
+2026-03-10 12:37:29,105 [INFO] app.services.wayback_service: Wayback [6/8] buysub.com: 50 snapshots, lang=en, discovered=0
+2026-03-10 12:37:39,570 [INFO] app.services.wayback_service: Wayback [6/8] buysub.com: 50 snapshots, lang=en, discovered=0
+2026-03-10 12:38:00,449 [INFO] app.services.wayback_service: Wayback [7/8] ti.me: 0 snapshots, lang=None, discovered=0
+2026-03-10 12:38:01,351 [WARNING] app.services.wayback_service: CDX API error for ti.me: 
+2026-03-10 12:38:01,352 [INFO] app.services.wayback_service: Wayback [7/8] ti.me: 0 snapshots, lang=None, discovered=0
+2026-03-10 12:38:03,173 [INFO] app.services.wayback_service: Wayback [8/8] timeincshop.com: 0 snapshots, lang=None, discovered=0
+2026-03-10 12:38:03,492 [INFO] app.services.wayback_service: Wayback check complete: 8/8 candidates, 0 new sources discovered
+2026-03-10 12:38:03,493 [INFO] app.routes.crawl: Wayback done for source 22, starting scoring…
+2026-03-10 12:38:03,963 [INFO] app.services.wayback_service: Wayback [8/8] timeincshop.com: 0 snapshots, lang=None, discovered=0
+2026-03-10 12:38:04,260 [INFO] app.services.wayback_service: Wayback check complete: 8/8 candidates, 0 new sources discovered
+2026-03-10 12:38:04,261 [INFO] app.routes.crawl: Wayback done for source 22, starting scoring…
+2026-03-10 12:38:04,415 [INFO] app.services.scoring_service: Scored 8 candidates
+2026-03-10 12:38:04,416 [INFO] app.routes.crawl: Full pipeline complete for source 22 ✓
+2026-03-10 12:38:04,647 [INFO] app.services.scoring_service: Scored 8 candidates
+2026-03-10 12:38:04,648 [INFO] app.routes.crawl: Full pipeline complete for source 22 ✓
+2026-03-10 18:05:39,581 [INFO] app.routes.crawl: [Recheck All] Starting RDAP re-check for all candidates…
+2026-03-10 18:05:39,894 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-10 18:05:39,940 [INFO] app.routes.crawl: [Recheck All] RDAP done. Starting Wayback re-check…
+2026-03-10 18:05:40,272 [INFO] app.services.wayback_service: Starting Wayback check for 22 candidates
+2026-03-10 18:06:12,676 [INFO] app.services.wayback_service: Wayback [1/22] googleapis.com: 13 snapshots, lang=en, toxicity=0 flags, discovered=18
+2026-03-10 18:06:12,890 [INFO] app.services.wayback_service:   [Wayback] New source: https://groups.googleapis.com/ (from googleapis.com)
+2026-03-10 18:06:13,050 [INFO] app.services.wayback_service:   [Wayback] New source: https://google.com/ (from googleapis.com)
+2026-03-10 18:06:13,141 [INFO] app.services.wayback_service:   [Wayback] New source: https://images.googleapis.com/ (from googleapis.com)
+2026-03-10 18:06:13,260 [INFO] app.services.wayback_service:   [Wayback] New source: https://news.google.com/ (from googleapis.com)
+2026-03-10 18:06:13,354 [INFO] app.services.wayback_service:   [Wayback] New source: https://youtube.com/ (from googleapis.com)
+2026-03-10 18:06:13,448 [INFO] app.services.wayback_service:   [Wayback] New source: https://blogsearch.google.com/ (from googleapis.com)
+2026-03-10 18:06:13,544 [INFO] app.services.wayback_service:   [Wayback] New source: https://groups.google.com/ (from googleapis.com)
+2026-03-10 18:06:13,638 [INFO] app.services.wayback_service:   [Wayback] New source: https://sites.google.com/ (from googleapis.com)
+2026-03-10 18:06:13,735 [INFO] app.services.wayback_service:   [Wayback] New source: https://finance.google.com/ (from googleapis.com)
+2026-03-10 18:06:13,832 [INFO] app.services.wayback_service:   [Wayback] New source: https://books.google.com/ (from googleapis.com)
+2026-03-10 18:06:13,928 [INFO] app.services.wayback_service:   [Wayback] New source: https://picasaweb.google.com/ (from googleapis.com)
+2026-03-10 18:06:14,025 [INFO] app.services.wayback_service:   [Wayback] New source: https://mail.google.com/ (from googleapis.com)
+2026-03-10 18:06:14,118 [INFO] app.services.wayback_service:   [Wayback] New source: https://maps.google.com/ (from googleapis.com)
+2026-03-10 18:06:14,490 [INFO] app.services.wayback_service:   [Wayback] New source: https://docs.google.com/ (from googleapis.com)
+2026-03-10 18:06:14,587 [INFO] app.services.wayback_service:   [Wayback] New source: https://news.googleapis.com/ (from googleapis.com)
+2026-03-10 18:06:14,683 [INFO] app.services.wayback_service:   [Wayback] New source: https://images.google.com/ (from googleapis.com)
+2026-03-10 18:06:14,775 [INFO] app.services.wayback_service:   [Wayback] New source: https://scholar.google.com/ (from googleapis.com)
+2026-03-10 18:06:14,873 [INFO] app.services.wayback_service:   [Wayback] New source: https://video.google.com/ (from googleapis.com)
+2026-03-10 18:06:32,715 [INFO] app.services.wayback_service: Wayback [2/22] gstatic.com: 4 snapshots, lang=en, toxicity=0 flags, discovered=16
+2026-03-10 18:06:33,439 [INFO] app.services.wayback_service:   [Wayback] New source: https://archive.org/ (from gstatic.com)
+2026-03-10 18:06:52,534 [INFO] app.services.wayback_service: Wayback [3/22] gnu.org: 50 snapshots, lang=en, toxicity=0 flags, discovered=22
+2026-03-10 18:06:52,796 [INFO] app.services.wayback_service:   [Wayback] New source: https://lists.gnu.org/ (from gnu.org)
+2026-03-10 18:06:52,892 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:webmasters@gnu.org/ (from gnu.org)
+2026-03-10 18:06:52,986 [INFO] app.services.wayback_service:   [Wayback] New source: https://nol.net/ (from gnu.org)
+2026-03-10 18:06:53,078 [INFO] app.services.wayback_service:   [Wayback] New source: https://directory.fsf.org/ (from gnu.org)
+2026-03-10 18:06:53,170 [INFO] app.services.wayback_service:   [Wayback] New source: https://kb.cert.org/ (from gnu.org)
+2026-03-10 18:06:53,267 [INFO] app.services.wayback_service:   [Wayback] New source: https://patron.fsf.org/ (from gnu.org)
+2026-03-10 18:06:53,360 [INFO] app.services.wayback_service:   [Wayback] New source: https://fsf.org.in/ (from gnu.org)
+2026-03-10 18:06:53,451 [INFO] app.services.wayback_service:   [Wayback] New source: https://petitiononline.com/ (from gnu.org)
+2026-03-10 18:06:53,541 [INFO] app.services.wayback_service:   [Wayback] New source: https://savannah.gnu.org/ (from gnu.org)
+2026-03-10 18:06:53,632 [INFO] app.services.wayback_service:   [Wayback] New source: https://fsfeurope.org/ (from gnu.org)
+2026-03-10 18:06:53,726 [INFO] app.services.wayback_service:   [Wayback] New source: https://stallman.org/ (from gnu.org)
+2026-03-10 18:06:53,818 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:gnu@gnu.org/ (from gnu.org)
+2026-03-10 18:06:53,912 [INFO] app.services.wayback_service:   [Wayback] New source: https://digitalspeech.org/ (from gnu.org)
+2026-03-10 18:06:54,005 [INFO] app.services.wayback_service:   [Wayback] New source: https://order.fsf.org/ (from gnu.org)
+2026-03-10 18:06:54,098 [INFO] app.services.wayback_service:   [Wayback] New source: https://home.html/ (from gnu.org)
+2026-03-10 18:06:54,193 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:webmasters@www.gnu.org/ (from gnu.org)
+2026-03-10 18:06:54,285 [INFO] app.services.wayback_service:   [Wayback] New source: https://macnewsworld.com/ (from gnu.org)
+2026-03-10 18:06:54,383 [INFO] app.services.wayback_service:   [Wayback] New source: https://swpat.ffii.org/ (from gnu.org)
+2026-03-10 18:06:54,475 [INFO] app.services.wayback_service:   [Wayback] New source: https://donate.fsf.org/ (from gnu.org)
+2026-03-10 18:06:54,571 [INFO] app.services.wayback_service:   [Wayback] New source: https://petition.eurolinux.org/ (from gnu.org)
+2026-03-10 18:06:54,664 [INFO] app.services.wayback_service:   [Wayback] New source: https://eff.org/ (from gnu.org)
+2026-03-10 18:06:54,757 [INFO] app.services.wayback_service:   [Wayback] New source: https://member.fsf.org/ (from gnu.org)
+2026-03-10 18:07:09,327 [INFO] app.services.wayback_service: Wayback [4/22] slashdot.org: 50 snapshots, lang=en, toxicity=1 flags, discovered=121
+2026-03-10 18:07:09,642 [INFO] app.services.wayback_service:   [Wayback] New source: https://sourceforge.net/ (from slashdot.org)
+2026-03-10 18:07:09,732 [INFO] app.services.wayback_service:   [Wayback] New source: https://209.207.224.220/ (from slashdot.org)
+2026-03-10 18:07:09,828 [INFO] app.services.wayback_service:   [Wayback] New source: https://interviews.slashdot.org/ (from slashdot.org)
+2026-03-10 18:07:09,922 [INFO] app.services.wayback_service:   [Wayback] New source: https://cnnfn.com/ (from slashdot.org)
+2026-03-10 18:07:10,016 [INFO] app.services.wayback_service:   [Wayback] New source: https://8ik.com/ (from slashdot.org)
+2026-03-10 18:07:10,112 [INFO] app.services.wayback_service:   [Wayback] New source: https://imagegroup.com/ (from slashdot.org)
+2026-03-10 18:07:10,206 [INFO] app.services.wayback_service:   [Wayback] New source: https://geartest.com/ (from slashdot.org)
+2026-03-10 18:07:10,297 [INFO] app.services.wayback_service:   [Wayback] New source: https://aint-it-cool-news.com/ (from slashdot.org)
+2026-03-10 18:07:10,390 [INFO] app.services.wayback_service:   [Wayback] New source: https://themes.freshmeat.net/ (from slashdot.org)
+2026-03-10 18:07:10,481 [INFO] app.services.wayback_service:   [Wayback] New source: https://jonmasters.org/ (from slashdot.org)
+2026-03-10 18:07:10,577 [INFO] app.services.wayback_service:   [Wayback] New source: https://hemos.net/ (from slashdot.org)
+2026-03-10 18:07:10,669 [INFO] app.services.wayback_service:   [Wayback] New source: https://zimmers.net/ (from slashdot.org)
+2026-03-10 18:07:10,763 [INFO] app.services.wayback_service:   [Wayback] New source: https://nethack.devnull.net/ (from slashdot.org)
+2026-03-10 18:07:10,856 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:iws@heroesgonebad.com/ (from slashdot.org)
+2026-03-10 18:07:10,947 [INFO] app.services.wayback_service:   [Wayback] New source: https://bigempire.com/ (from slashdot.org)
+2026-03-10 18:07:11,041 [INFO] app.services.wayback_service:   [Wayback] New source: https://sun.com/ (from slashdot.org)
+2026-03-10 18:07:11,133 [INFO] app.services.wayback_service:   [Wayback] New source: https://internetnews.com/ (from slashdot.org)
+2026-03-10 18:07:11,229 [INFO] app.services.wayback_service:   [Wayback] New source: https://newsforge.com/ (from slashdot.org)
+2026-03-10 18:07:11,319 [INFO] app.services.wayback_service:   [Wayback] New source: https://sc.edu/ (from slashdot.org)
+2026-03-10 18:07:11,412 [INFO] app.services.wayback_service:   [Wayback] New source: https://theregister.co.uk/ (from slashdot.org)
+2026-03-10 18:07:11,506 [INFO] app.services.wayback_service:   [Wayback] New source: https://robotstories.net/ (from slashdot.org)
+2026-03-10 18:07:11,600 [INFO] app.services.wayback_service:   [Wayback] New source: https://apple.com/ (from slashdot.org)
+2026-03-10 18:07:11,693 [INFO] app.services.wayback_service:   [Wayback] New source: https://freshmeat.unreal.org/ (from slashdot.org)
+2026-03-10 18:07:11,791 [INFO] app.services.wayback_service:   [Wayback] New source: https://intrinsyc.com/ (from slashdot.org)
+2026-03-10 18:07:11,884 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:revscat@ughnolikeyspam.swbell.net/ (from slashdot.org)
+2026-03-10 18:07:11,979 [INFO] app.services.wayback_service:   [Wayback] New source: https://penny-arcade.com/ (from slashdot.org)
+2026-03-10 18:07:12,072 [INFO] app.services.wayback_service:   [Wayback] New source: https://setiathome.berkeley.edu/ (from slashdot.org)
+2026-03-10 18:07:12,167 [INFO] app.services.wayback_service:   [Wayback] New source: https://cmdrkey.com/ (from slashdot.org)
+2026-03-10 18:07:12,261 [INFO] app.services.wayback_service:   [Wayback] New source: https://salon.com/ (from slashdot.org)
+2026-03-10 18:07:12,356 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:hemos@slashdot.org/ (from slashdot.org)
+2026-03-10 18:07:12,447 [INFO] app.services.wayback_service:   [Wayback] New source: https://foodtv.com/ (from slashdot.org)
+2026-03-10 18:07:12,538 [INFO] app.services.wayback_service:   [Wayback] New source: https://tivo.com/ (from slashdot.org)
+2026-03-10 18:07:12,632 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:timothy@slashdot.org/ (from slashdot.org)
+2026-03-10 18:07:12,738 [INFO] app.services.wayback_service:   [Wayback] New source: https://ebtechniques.com/ (from slashdot.org)
+2026-03-10 18:07:12,832 [INFO] app.services.wayback_service:   [Wayback] New source: https://magusaptus.com/ (from slashdot.org)
+2026-03-10 18:07:12,929 [INFO] app.services.wayback_service:   [Wayback] New source: https://cmdrtaco.net/ (from slashdot.org)
+2026-03-10 18:07:13,019 [INFO] app.services.wayback_service:   [Wayback] New source: https://antfarm.ma.cx/ (from slashdot.org)
+2026-03-10 18:07:13,130 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:sfled.yahoo@com/ (from slashdot.org)
+2026-03-10 18:07:13,233 [INFO] app.services.wayback_service:   [Wayback] New source: https://animefu.com/ (from slashdot.org)
+2026-03-10 18:07:13,328 [INFO] app.services.wayback_service:   [Wayback] New source: https://distributed.net/ (from slashdot.org)
+2026-03-10 18:07:13,422 [INFO] app.services.wayback_service:   [Wayback] New source: https://freshmeat.net/ (from slashdot.org)
+2026-03-10 18:07:13,518 [INFO] app.services.wayback_service:   [Wayback] New source: https://suntimes.com/ (from slashdot.org)
+2026-03-10 18:07:13,609 [INFO] app.services.wayback_service:   [Wayback] New source: https://scientificgames.com/ (from slashdot.org)
+2026-03-10 18:07:13,703 [INFO] app.services.wayback_service:   [Wayback] New source: https://images.slashdot.org/ (from slashdot.org)
+2026-03-10 18:07:13,798 [INFO] app.services.wayback_service:   [Wayback] New source: https://house.gov/ (from slashdot.org)
+2026-03-10 18:07:13,890 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:michael@@slashdot.org/ (from slashdot.org)
+2026-03-10 18:07:13,984 [INFO] app.services.wayback_service:   [Wayback] New source: https://economist.com/ (from slashdot.org)
+2026-03-10 18:07:14,078 [INFO] app.services.wayback_service:   [Wayback] New source: https://davecentral.com/ (from slashdot.org)
+2026-03-10 18:07:14,171 [INFO] app.services.wayback_service:   [Wayback] New source: https://1up.com/ (from slashdot.org)
+2026-03-10 18:07:14,266 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:yosh@gimp.org/ (from slashdot.org)
+2026-03-10 18:07:14,360 [INFO] app.services.wayback_service:   [Wayback] New source: https://dunkels.com/ (from slashdot.org)
+2026-03-10 18:07:14,456 [INFO] app.services.wayback_service:   [Wayback] New source: https://mojoski.com/ (from slashdot.org)
+2026-03-10 18:07:14,550 [INFO] app.services.wayback_service:   [Wayback] New source: https://slashnet.org/ (from slashdot.org)
+2026-03-10 18:07:14,648 [INFO] app.services.wayback_service:   [Wayback] New source: https://courierpostonline.com/ (from slashdot.org)
+2026-03-10 18:07:14,740 [INFO] app.services.wayback_service:   [Wayback] New source: https://ads.osdn.com/ (from slashdot.org)
+2026-03-10 18:07:14,834 [INFO] app.services.wayback_service:   [Wayback] New source: https://sf.net/ (from slashdot.org)
+2026-03-10 18:07:14,928 [INFO] app.services.wayback_service:   [Wayback] New source: https://tetsujin.org/ (from slashdot.org)
+2026-03-10 18:07:15,023 [INFO] app.services.wayback_service:   [Wayback] New source: https://thebulletin.org/ (from slashdot.org)
+2026-03-10 18:07:15,117 [INFO] app.services.wayback_service:   [Wayback] New source: https://patft.uspto.gov/ (from slashdot.org)
+2026-03-10 18:07:15,209 [INFO] app.services.wayback_service:   [Wayback] New source: https://runix.ru/ (from slashdot.org)
+2026-03-10 18:07:15,302 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:simoniker@nospam.slashdot.org/ (from slashdot.org)
+2026-03-10 18:07:15,399 [INFO] app.services.wayback_service:   [Wayback] New source: https://thomas.loc.gov/ (from slashdot.org)
+2026-03-10 18:07:15,495 [INFO] app.services.wayback_service:   [Wayback] New source: https://openbsd.org/ (from slashdot.org)
+2026-03-10 18:07:15,587 [INFO] app.services.wayback_service:   [Wayback] New source: https://oldmanmurray.com/ (from slashdot.org)
+2026-03-10 18:07:15,683 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:keith.misson@fiendishfilms.com/ (from slashdot.org)
+2026-03-10 18:07:15,776 [INFO] app.services.wayback_service:   [Wayback] New source: https://blisstonia.com/ (from slashdot.org)
+2026-03-10 18:07:15,871 [INFO] app.services.wayback_service:   [Wayback] New source: https://everything2.com/ (from slashdot.org)
+2026-03-10 18:07:15,967 [INFO] app.services.wayback_service:   [Wayback] New source: https://scifi.com/ (from slashdot.org)
+2026-03-10 18:07:16,063 [INFO] app.services.wayback_service:   [Wayback] New source: https://caltech.edu/ (from slashdot.org)
+2026-03-10 18:07:16,159 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:dorr@startups.com/ (from slashdot.org)
+2026-03-10 18:07:16,253 [INFO] app.services.wayback_service:   [Wayback] New source: https://gnome.org/ (from slashdot.org)
+2026-03-10 18:07:16,350 [INFO] app.services.wayback_service:   [Wayback] New source: https://askreggie.com/ (from slashdot.org)
+2026-03-10 18:07:16,443 [INFO] app.services.wayback_service:   [Wayback] New source: https://mythica.com/ (from slashdot.org)
+2026-03-10 18:07:16,537 [INFO] app.services.wayback_service:   [Wayback] New source: https://seeker.dice.com/ (from slashdot.org)
+2026-03-10 18:07:16,630 [INFO] app.services.wayback_service:   [Wayback] New source: https://nytimes.com/ (from slashdot.org)
+2026-03-10 18:07:16,719 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:mdma@cyberus.ca/ (from slashdot.org)
+2026-03-10 18:07:16,814 [INFO] app.services.wayback_service:   [Wayback] New source: https://freecode.com/ (from slashdot.org)
+2026-03-10 18:07:16,910 [INFO] app.services.wayback_service:   [Wayback] New source: https://zdnet.com/ (from slashdot.org)
+2026-03-10 18:07:17,003 [INFO] app.services.wayback_service:   [Wayback] New source: https://govexec.com/ (from slashdot.org)
+2026-03-10 18:07:17,099 [INFO] app.services.wayback_service:   [Wayback] New source: https://cowboyneal.org/ (from slashdot.org)
+2026-03-10 18:07:17,194 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:fin_head@hotmail.com/ (from slashdot.org)
+2026-03-10 18:07:17,289 [INFO] app.services.wayback_service:   [Wayback] New source: https://exit118.com/ (from slashdot.org)
+2026-03-10 18:07:17,382 [INFO] app.services.wayback_service:   [Wayback] New source: https://linuxorbit.com/ (from slashdot.org)
+2026-03-10 18:07:17,481 [INFO] app.services.wayback_service:   [Wayback] New source: https://alexchiu.com/ (from slashdot.org)
+2026-03-10 18:07:17,578 [INFO] app.services.wayback_service:   [Wayback] New source: https://rottentomatoes.com/ (from slashdot.org)
+2026-03-10 18:07:17,671 [INFO] app.services.wayback_service:   [Wayback] New source: https://craphound.com/ (from slashdot.org)
+2026-03-10 18:07:17,769 [INFO] app.services.wayback_service:   [Wayback] New source: https://science.nasa.gov/ (from slashdot.org)
+2026-03-10 18:07:17,865 [INFO] app.services.wayback_service:   [Wayback] New source: https://linux.com/ (from slashdot.org)
+2026-03-10 18:07:17,959 [INFO] app.services.wayback_service:   [Wayback] New source: https://devnull.net/ (from slashdot.org)
+2026-03-10 18:07:18,053 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:cliff@slashdot.org/ (from slashdot.org)
+2026-03-10 18:07:18,149 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:mfporter@tetsujinnospam.org/ (from slashdot.org)
+2026-03-10 18:07:18,244 [INFO] app.services.wayback_service:   [Wayback] New source: https://undersweet.com/ (from slashdot.org)
+2026-03-10 18:07:18,341 [INFO] app.services.wayback_service:   [Wayback] New source: https://andovernews.com/ (from slashdot.org)
+2026-03-10 18:07:18,436 [INFO] app.services.wayback_service:   [Wayback] New source: https://netzone.com/ (from slashdot.org)
+2026-03-10 18:07:18,529 [INFO] app.services.wayback_service:   [Wayback] New source: https://osdn.com/ (from slashdot.org)
+2026-03-10 18:07:18,620 [INFO] app.services.wayback_service:   [Wayback] New source: https://themes.org/ (from slashdot.org)
+2026-03-10 18:07:18,713 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:michael@nospam.slashdot.org/ (from slashdot.org)
+2026-03-10 18:07:18,809 [INFO] app.services.wayback_service:   [Wayback] New source: https://dcd.uscourts.gov/ (from slashdot.org)
+2026-03-10 18:07:18,901 [INFO] app.services.wayback_service:   [Wayback] New source: https://cnn.com/ (from slashdot.org)
+2026-03-10 18:07:18,996 [INFO] app.services.wayback_service:   [Wayback] New source: https://teamlambchop.com/ (from slashdot.org)
+2026-03-10 18:07:19,091 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:jellicle@inch.com/ (from slashdot.org)
+2026-03-10 18:07:19,189 [INFO] app.services.wayback_service:   [Wayback] New source: https://64.28.67.48/ (from slashdot.org)
+2026-03-10 18:07:19,283 [INFO] app.services.wayback_service:   [Wayback] New source: https://scottandmichelle.net/ (from slashdot.org)
+2026-03-10 18:07:19,375 [INFO] app.services.wayback_service:   [Wayback] New source: https://selfserve.osdn.com/ (from slashdot.org)
+2026-03-10 18:07:19,510 [INFO] app.services.wayback_service:   [Wayback] New source: https://ired.com/ (from slashdot.org)
+2026-03-10 18:07:19,601 [INFO] app.services.wayback_service:   [Wayback] New source: https://lng.sourceforge.net/ (from slashdot.org)
+2026-03-10 18:07:19,698 [INFO] app.services.wayback_service:   [Wayback] New source: https://tivocommunity.com/ (from slashdot.org)
+2026-03-10 18:07:19,789 [INFO] app.services.wayback_service:   [Wayback] New source: https://thinkgeek.com/ (from slashdot.org)
+2026-03-10 18:07:19,884 [INFO] app.services.wayback_service:   [Wayback] New source: https://roblimo.com/ (from slashdot.org)
+2026-03-10 18:07:19,977 [INFO] app.services.wayback_service:   [Wayback] New source: https://commodore.ca/ (from slashdot.org)
+2026-03-10 18:07:20,070 [INFO] app.services.wayback_service:   [Wayback] New source: https://jabber.org/ (from slashdot.org)
+2026-03-10 18:07:20,162 [INFO] app.services.wayback_service:   [Wayback] New source: https://hw.tadpole.com/ (from slashdot.org)
+2026-03-10 18:07:20,264 [INFO] app.services.wayback_service:   [Wayback] New source: https://contest.gimp.org/ (from slashdot.org)
+2026-03-10 18:07:20,371 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:hmckee@aa.net/ (from slashdot.org)
+2026-03-10 18:07:20,471 [INFO] app.services.wayback_service:   [Wayback] New source: https://essentialreality.com/ (from slashdot.org)
+2026-03-10 18:07:20,567 [INFO] app.services.wayback_service:   [Wayback] New source: https://news.osdir.com/ (from slashdot.org)
+2026-03-10 18:07:20,661 [INFO] app.services.wayback_service:   [Wayback] New source: https://questionexchange.com/ (from slashdot.org)
+2026-03-10 18:07:20,756 [INFO] app.services.wayback_service:   [Wayback] New source: https://slashcode.com/ (from slashdot.org)
+2026-03-10 18:07:20,865 [INFO] app.services.wayback_service:   [Wayback] New source: https://1.fatbrain.com/ (from slashdot.org)
+2026-03-10 18:07:20,958 [INFO] app.services.wayback_service:   [Wayback] New source: https://monkey.org/ (from slashdot.org)
+2026-03-10 18:07:21,055 [INFO] app.services.wayback_service:   [Wayback] New source: https://andover.net/ (from slashdot.org)
+2026-03-10 18:07:37,760 [INFO] app.services.wayback_service: Wayback [5/22] nytimes.com: 50 snapshots, lang=en, toxicity=1 flags, discovered=29
+2026-03-10 18:07:38,049 [INFO] app.services.wayback_service:   [Wayback] New source: https://nytbroadway.com/ (from nytimes.com)
+2026-03-10 18:07:38,141 [INFO] app.services.wayback_service:   [Wayback] New source: https://eather.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:38,229 [INFO] app.services.wayback_service:   [Wayback] New source: https://nytoday.com/ (from nytimes.com)
+2026-03-10 18:07:38,325 [INFO] app.services.wayback_service:   [Wayback] New source: https://nytco.com/ (from nytimes.com)
+2026-03-10 18:07:38,417 [INFO] app.services.wayback_service:   [Wayback] New source: https://nytdigital.com/ (from nytimes.com)
+2026-03-10 18:07:38,509 [INFO] app.services.wayback_service:   [Wayback] New source: https://play.rbn.com/ (from nytimes.com)
+2026-03-10 18:07:38,598 [INFO] app.services.wayback_service:   [Wayback] New source: https://movies2.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:38,691 [INFO] app.services.wayback_service:   [Wayback] New source: https://business.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:38,782 [INFO] app.services.wayback_service:   [Wayback] New source: https://nytadvertising.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:38,871 [INFO] app.services.wayback_service:   [Wayback] New source: https://email.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:38,960 [INFO] app.services.wayback_service:   [Wayback] New source: https://homedelivery.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:39,064 [INFO] app.services.wayback_service:   [Wayback] New source: https://jobs.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:39,155 [INFO] app.services.wayback_service:   [Wayback] New source: https://nytimes.collegebasketball.upickem.net/ (from nytimes.com)
+2026-03-10 18:07:39,243 [INFO] app.services.wayback_service:   [Wayback] New source: https://query.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:39,330 [INFO] app.services.wayback_service:   [Wayback] New source: https://search.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:39,420 [INFO] app.services.wayback_service:   [Wayback] New source: https://ad.doubleclick.net/ (from nytimes.com)
+2026-03-10 18:07:39,513 [INFO] app.services.wayback_service:   [Wayback] New source: https://ads.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:39,604 [INFO] app.services.wayback_service:   [Wayback] New source: https://archives.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:39,693 [INFO] app.services.wayback_service:   [Wayback] New source: https://postcards.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:39,785 [INFO] app.services.wayback_service:   [Wayback] New source: https://index.map/ (from nytimes.com)
+2026-03-10 18:07:39,883 [INFO] app.services.wayback_service:   [Wayback] New source: https://208.31.25.3/ (from nytimes.com)
+2026-03-10 18:07:39,990 [INFO] app.services.wayback_service:   [Wayback] New source: https://theater.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:40,079 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:katenyt@aol.com/ (from nytimes.com)
+2026-03-10 18:07:40,174 [INFO] app.services.wayback_service:   [Wayback] New source: https://newyorktoday.com/ (from nytimes.com)
+2026-03-10 18:07:40,278 [INFO] app.services.wayback_service:   [Wayback] New source: https://movies.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:40,369 [INFO] app.services.wayback_service:   [Wayback] New source: https://survey.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:40,459 [INFO] app.services.wayback_service:   [Wayback] New source: https://nytadvertising.com/ (from nytimes.com)
+2026-03-10 18:07:40,550 [INFO] app.services.wayback_service:   [Wayback] New source: https://forums.nytimes.com/ (from nytimes.com)
+2026-03-10 18:07:40,641 [INFO] app.services.wayback_service:   [Wayback] New source: https://theater2.nytimes.com/ (from nytimes.com)
+2026-03-10 18:08:11,584 [WARNING] app.services.wayback_service: CDX API error for yoast.com: 
+2026-03-10 18:08:28,197 [INFO] app.services.wayback_service: Wayback [6/22] yoast.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=60
+2026-03-10 18:08:28,470 [INFO] app.services.wayback_service:   [Wayback] New source: https://flickr.com/ (from yoast.com)
+2026-03-10 18:08:28,617 [INFO] app.services.wayback_service:   [Wayback] New source: https://mediatemple.net/ (from yoast.com)
+2026-03-10 18:08:28,710 [INFO] app.services.wayback_service:   [Wayback] New source: https://mediadonis.net/ (from yoast.com)
+2026-03-10 18:08:28,805 [INFO] app.services.wayback_service:   [Wayback] New source: https://melcarson.com/ (from yoast.com)
+2026-03-10 18:08:28,900 [INFO] app.services.wayback_service:   [Wayback] New source: https://tools.seobook.com/ (from yoast.com)
+2026-03-10 18:08:28,994 [INFO] app.services.wayback_service:   [Wayback] New source: https://onetomarket.com/ (from yoast.com)
+2026-03-10 18:08:29,084 [INFO] app.services.wayback_service:   [Wayback] New source: https://sakoo.net/ (from yoast.com)
+2026-03-10 18:08:29,180 [INFO] app.services.wayback_service:   [Wayback] New source: https://technorati.com/ (from yoast.com)
+2026-03-10 18:08:29,276 [INFO] app.services.wayback_service:   [Wayback] New source: https://linkspiel.de/ (from yoast.com)
+2026-03-10 18:08:29,368 [INFO] app.services.wayback_service:   [Wayback] New source: https://demib.dk/ (from yoast.com)
+2026-03-10 18:08:29,464 [INFO] app.services.wayback_service:   [Wayback] New source: https://altha.nl/ (from yoast.com)
+2026-03-10 18:08:29,558 [INFO] app.services.wayback_service:   [Wayback] New source: https://t.co/ (from yoast.com)
+2026-03-10 18:08:29,650 [INFO] app.services.wayback_service:   [Wayback] New source: https://merchsupply.com/ (from yoast.com)
+2026-03-10 18:08:29,744 [INFO] app.services.wayback_service:   [Wayback] New source: https://pepperjamnetwork.com/ (from yoast.com)
+2026-03-10 18:08:29,837 [INFO] app.services.wayback_service:   [Wayback] New source: https://buysellads.com/ (from yoast.com)
+2026-03-10 18:08:29,934 [INFO] app.services.wayback_service:   [Wayback] New source: https://validator.w3.org/ (from yoast.com)
+2026-03-10 18:08:30,027 [INFO] app.services.wayback_service:   [Wayback] New source: https://plus.google.com/ (from yoast.com)
+2026-03-10 18:08:30,124 [INFO] app.services.wayback_service:   [Wayback] New source: https://index.shtml/ (from yoast.com)
+2026-03-10 18:08:30,215 [INFO] app.services.wayback_service:   [Wayback] New source: https://martijnbeijk.com/ (from yoast.com)
+2026-03-10 18:08:30,308 [INFO] app.services.wayback_service:   [Wayback] New source: https://vimeo.com/ (from yoast.com)
+2026-03-10 18:08:30,401 [INFO] app.services.wayback_service:   [Wayback] New source: https://jenniferslegg.com/ (from yoast.com)
+2026-03-10 18:08:30,500 [INFO] app.services.wayback_service:   [Wayback] New source: https://searchwritten.com/ (from yoast.com)
+2026-03-10 18:08:30,597 [INFO] app.services.wayback_service:   [Wayback] New source: https://yoast.blip.tv/ (from yoast.com)
+2026-03-10 18:08:30,709 [INFO] app.services.wayback_service:   [Wayback] New source: https://feeds.feedburner.com/ (from yoast.com)
+2026-03-10 18:08:30,850 [INFO] app.services.wayback_service:   [Wayback] New source: https://sponsoredreviews.com/ (from yoast.com)
+2026-03-10 18:08:30,939 [INFO] app.services.wayback_service:   [Wayback] New source: https://quixapp.com/ (from yoast.com)
+2026-03-10 18:08:31,035 [INFO] app.services.wayback_service:   [Wayback] New source: https://ebhosting.co.uk/ (from yoast.com)
+2026-03-10 18:08:31,130 [INFO] app.services.wayback_service:   [Wayback] New source: https://m4m.nl/ (from yoast.com)
+2026-03-10 18:08:31,224 [INFO] app.services.wayback_service:   [Wayback] New source: https://krisjones.com/ (from yoast.com)
+2026-03-10 18:08:31,317 [INFO] app.services.wayback_service:   [Wayback] New source: https://jdevalk.stumbleupon.com/ (from yoast.com)
+2026-03-10 18:08:31,407 [INFO] app.services.wayback_service:   [Wayback] New source: https://optimizeyourweb.com/ (from yoast.com)
+2026-03-10 18:08:31,501 [INFO] app.services.wayback_service:   [Wayback] New source: https://twittercounter.com/ (from yoast.com)
+2026-03-10 18:08:31,596 [INFO] app.services.wayback_service:   [Wayback] New source: https://dixonjones.com/ (from yoast.com)
+2026-03-10 18:08:31,689 [INFO] app.services.wayback_service:   [Wayback] New source: https://chapter42.com/ (from yoast.com)
+2026-03-10 18:08:31,780 [INFO] app.services.wayback_service:   [Wayback] New source: https://facebook.com/ (from yoast.com)
+2026-03-10 18:08:31,874 [INFO] app.services.wayback_service:   [Wayback] New source: https://friendfeed.com/ (from yoast.com)
+2026-03-10 18:08:31,968 [INFO] app.services.wayback_service:   [Wayback] New source: https://orangevalley.nl/ (from yoast.com)
+2026-03-10 18:08:32,063 [INFO] app.services.wayback_service:   [Wayback] New source: https://socialmediablog.nl/ (from yoast.com)
+2026-03-10 18:08:32,156 [INFO] app.services.wayback_service:   [Wayback] New source: https://mariekevanderakt.nl/ (from yoast.com)
+2026-03-10 18:08:32,251 [INFO] app.services.wayback_service:   [Wayback] New source: https://eduardblacquiere.com/ (from yoast.com)
+2026-03-10 18:08:32,347 [INFO] app.services.wayback_service:   [Wayback] New source: https://linkedin.com/ (from yoast.com)
+2026-03-10 18:08:32,444 [INFO] app.services.wayback_service:   [Wayback] New source: https://orangevalley.com/ (from yoast.com)
+2026-03-10 18:08:32,538 [INFO] app.services.wayback_service:   [Wayback] New source: https://davidnaylor.co.uk/ (from yoast.com)
+2026-03-10 18:08:32,633 [INFO] app.services.wayback_service:   [Wayback] New source: https://yoast.nl/ (from yoast.com)
+2026-03-10 18:08:32,728 [INFO] app.services.wayback_service:   [Wayback] New source: https://shoemoney.com/ (from yoast.com)
+2026-03-10 18:08:32,821 [INFO] app.services.wayback_service:   [Wayback] New source: https://ordpress.org/ (from yoast.com)
+2026-03-10 18:08:32,913 [INFO] app.services.wayback_service:   [Wayback] New source: https://anthonyshapley.co.uk/ (from yoast.com)
+2026-03-10 18:08:33,008 [INFO] app.services.wayback_service:   [Wayback] New source: https://10e20.com/ (from yoast.com)
+2026-03-10 18:08:33,103 [INFO] app.services.wayback_service:   [Wayback] New source: https://p-community.org/ (from yoast.com)
+2026-03-10 18:08:33,198 [INFO] app.services.wayback_service:   [Wayback] New source: https://3-edge.com/ (from yoast.com)
+2026-03-10 18:08:33,290 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailchimp.com/ (from yoast.com)
+2026-03-10 18:08:33,385 [INFO] app.services.wayback_service:   [Wayback] New source: https://mybaptism.com/ (from yoast.com)
+2026-03-10 18:08:33,479 [INFO] app.services.wayback_service:   [Wayback] New source: https://basvandenbeld.com/ (from yoast.com)
+2026-03-10 18:08:33,573 [INFO] app.services.wayback_service:   [Wayback] New source: https://sugarrae.com/ (from yoast.com)
+2026-03-10 18:08:33,664 [INFO] app.services.wayback_service:   [Wayback] New source: https://feeds2.feedburner.com/ (from yoast.com)
+2026-03-10 18:08:33,760 [INFO] app.services.wayback_service:   [Wayback] New source: https://blip.tv/ (from yoast.com)
+2026-03-10 18:08:33,854 [INFO] app.services.wayback_service:   [Wayback] New source: https://twitter.com/ (from yoast.com)
+2026-03-10 18:08:33,945 [INFO] app.services.wayback_service:   [Wayback] New source: https://feedproxy.google.com/ (from yoast.com)
+2026-03-10 18:08:57,139 [INFO] app.services.wayback_service: Wayback [7/22] elegantthemes.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=11
+2026-03-10 18:08:57,412 [INFO] app.services.wayback_service:   [Wayback] New source: https://privacy-policy.truste.com/ (from elegantthemes.com)
+2026-03-10 18:08:57,506 [INFO] app.services.wayback_service:   [Wayback] New source: https://mcafeesecure.com/ (from elegantthemes.com)
+2026-03-10 18:08:57,602 [INFO] app.services.wayback_service:   [Wayback] New source: https://godaddygirls.info/ (from elegantthemes.com)
+2026-03-10 18:08:57,790 [INFO] app.services.wayback_service:   [Wayback] New source: https://safeweb.norton.com/ (from elegantthemes.com)
+2026-03-10 18:08:57,923 [INFO] app.services.wayback_service:   [Wayback] New source: https://bbb.org/ (from elegantthemes.com)
+2026-03-10 18:08:58,063 [INFO] app.services.wayback_service:   [Wayback] New source: https://godaddy.tv/ (from elegantthemes.com)
+2026-03-10 18:08:58,158 [INFO] app.services.wayback_service:   [Wayback] New source: https://godaddy.com/ (from elegantthemes.com)
+2026-03-10 18:10:32,528 [INFO] app.services.wayback_service: Wayback [8/22] siteground.com: 50 snapshots, lang=en, toxicity=1 flags, discovered=65
+2026-03-10 18:10:32,791 [INFO] app.services.wayback_service:   [Wayback] New source: https://mambo-hosting-directory.com/ (from siteground.com)
+2026-03-10 18:10:32,882 [INFO] app.services.wayback_service:   [Wayback] New source: https://affiliate_program.htm/ (from siteground.com)
+2026-03-10 18:10:32,973 [INFO] app.services.wayback_service:   [Wayback] New source: https://our_servers.htm/ (from siteground.com)
+2026-03-10 18:10:33,069 [INFO] app.services.wayback_service:   [Wayback] New source: https://more_info.htm/ (from siteground.com)
+2026-03-10 18:10:33,160 [INFO] app.services.wayback_service:   [Wayback] New source: https://privacy.htm/ (from siteground.com)
+2026-03-10 18:10:33,250 [INFO] app.services.wayback_service:   [Wayback] New source: https://eb_hosting_basicf.htm/ (from siteground.com)
+2026-03-10 18:10:33,339 [INFO] app.services.wayback_service:   [Wayback] New source: https://links.htm/ (from siteground.com)
+2026-03-10 18:10:33,428 [INFO] app.services.wayback_service:   [Wayback] New source: https://terms_of_use.htm/ (from siteground.com)
+2026-03-10 18:10:33,519 [INFO] app.services.wayback_service:   [Wayback] New source: https://eb_hosting.htm/ (from siteground.com)
+2026-03-10 18:10:33,611 [INFO] app.services.wayback_service:   [Wayback] New source: https://info_coppermine.htm/ (from siteground.com)
+2026-03-10 18:10:33,699 [INFO] app.services.wayback_service:   [Wayback] New source: https://mambo-hosting.htm/ (from siteground.com)
+2026-03-10 18:10:33,787 [INFO] app.services.wayback_service:   [Wayback] New source: https://ebsite_transfer.htm/ (from siteground.com)
+2026-03-10 18:10:33,884 [INFO] app.services.wayback_service:   [Wayback] New source: https://our_features.htm/ (from siteground.com)
+2026-03-10 18:10:33,977 [INFO] app.services.wayback_service:   [Wayback] New source: https://index.htm/ (from siteground.com)
+2026-03-10 18:10:34,070 [INFO] app.services.wayback_service:   [Wayback] New source: https://terms.htm/ (from siteground.com)
+2026-03-10 18:10:34,163 [INFO] app.services.wayback_service:   [Wayback] New source: https://news.htm/ (from siteground.com)
+2026-03-10 18:10:34,255 [INFO] app.services.wayback_service:   [Wayback] New source: https://our_clients.htm/ (from siteground.com)
+2026-03-10 18:10:34,348 [INFO] app.services.wayback_service:   [Wayback] New source: https://oscommerce-hosting-directory.com/ (from siteground.com)
+2026-03-10 18:10:34,440 [INFO] app.services.wayback_service:   [Wayback] New source: https://forum-hosting-directory.com/ (from siteground.com)
+2026-03-10 18:10:34,529 [INFO] app.services.wayback_service:   [Wayback] New source: https://moodle-hosting.htm/ (from siteground.com)
+2026-03-10 18:10:34,620 [INFO] app.services.wayback_service:   [Wayback] New source: https://postnuke-hosting.htm/ (from siteground.com)
+2026-03-10 18:10:34,712 [INFO] app.services.wayback_service:   [Wayback] New source: https://hosting_features.htm/ (from siteground.com)
+2026-03-10 18:10:34,805 [INFO] app.services.wayback_service:   [Wayback] New source: https://support.htm/ (from siteground.com)
+2026-03-10 18:10:34,901 [INFO] app.services.wayback_service:   [Wayback] New source: https://info_zen cart.htm/ (from siteground.com)
+2026-03-10 18:10:35,008 [INFO] app.services.wayback_service:   [Wayback] New source: https://joomla-hosting.htm/ (from siteground.com)
+2026-03-10 18:10:35,098 [INFO] app.services.wayback_service:   [Wayback] New source: https://php-nuke-hosting.htm/ (from siteground.com)
+2026-03-10 18:10:35,193 [INFO] app.services.wayback_service:   [Wayback] New source: https://domain_names.php/ (from siteground.com)
+2026-03-10 18:10:35,281 [INFO] app.services.wayback_service:   [Wayback] New source: https://login_page.htm/ (from siteground.com)
+2026-03-10 18:10:35,370 [INFO] app.services.wayback_service:   [Wayback] New source: https://eb_hosting_multiple.htm/ (from siteground.com)
+2026-03-10 18:10:35,463 [INFO] app.services.wayback_service:   [Wayback] New source: https://forum.siteground.com/ (from siteground.com)
+2026-03-10 18:10:35,556 [INFO] app.services.wayback_service:   [Wayback] New source: https://mediawiki-hosting.htm/ (from siteground.com)
+2026-03-10 18:10:35,647 [INFO] app.services.wayback_service:   [Wayback] New source: https://oscommerce-hosting.htm/ (from siteground.com)
+2026-03-10 18:10:35,741 [INFO] app.services.wayback_service:   [Wayback] New source: https://order.php/ (from siteground.com)
+2026-03-10 18:10:35,836 [INFO] app.services.wayback_service:   [Wayback] New source: https://customer_login.htm/ (from siteground.com)
+2026-03-10 18:10:35,926 [INFO] app.services.wayback_service:   [Wayback] New source: https://ordpress-hosting.htm/ (from siteground.com)
+2026-03-10 18:10:36,024 [INFO] app.services.wayback_service:   [Wayback] New source: https://affiliates.php/ (from siteground.com)
+2026-03-10 18:10:36,133 [INFO] app.services.wayback_service:   [Wayback] New source: https://faq.siteground.com/ (from siteground.com)
+2026-03-10 18:10:36,224 [INFO] app.services.wayback_service:   [Wayback] New source: https://joomla-hosting-directory.com/ (from siteground.com)
+2026-03-10 18:10:36,315 [INFO] app.services.wayback_service:   [Wayback] New source: https://eb_design.htm/ (from siteground.com)
+2026-03-10 18:10:36,408 [INFO] app.services.wayback_service:   [Wayback] New source: https://besthostsdirectory.com/ (from siteground.com)
+2026-03-10 18:10:36,497 [INFO] app.services.wayback_service:   [Wayback] New source: https://info_phpbb.htm/ (from siteground.com)
+2026-03-10 18:10:36,582 [INFO] app.services.wayback_service:   [Wayback] New source: https://resellers_program.htm/ (from siteground.com)
+2026-03-10 18:10:36,678 [INFO] app.services.wayback_service:   [Wayback] New source: https://info_flash.htm/ (from siteground.com)
+2026-03-10 18:10:36,767 [INFO] app.services.wayback_service:   [Wayback] New source: https://our_price.htm/ (from siteground.com)
+2026-03-10 18:10:36,858 [INFO] app.services.wayback_service:   [Wayback] New source: https://contact_us.htm/ (from siteground.com)
+2026-03-10 18:10:36,948 [INFO] app.services.wayback_service:   [Wayback] New source: https://ecommerce_hosting_pack.htm/ (from siteground.com)
+2026-03-10 18:10:37,037 [INFO] app.services.wayback_service:   [Wayback] New source: https://phpbb-hosting.htm/ (from siteground.com)
+2026-03-10 18:10:37,131 [INFO] app.services.wayback_service:   [Wayback] New source: https://order.htm/ (from siteground.com)
+2026-03-10 18:10:37,223 [INFO] app.services.wayback_service:   [Wayback] New source: https://order_hosting.php/ (from siteground.com)
+2026-03-10 18:10:37,315 [INFO] app.services.wayback_service:   [Wayback] New source: https://liveperson.com/ (from siteground.com)
+2026-03-10 18:10:37,410 [INFO] app.services.wayback_service:   [Wayback] New source: https://siteground_reviews.htm/ (from siteground.com)
+2026-03-10 18:10:37,510 [INFO] app.services.wayback_service:   [Wayback] New source: https://resellers_login.htm/ (from siteground.com)
+2026-03-10 18:10:37,604 [INFO] app.services.wayback_service:   [Wayback] New source: https://our_support.htm/ (from siteground.com)
+2026-03-10 18:10:37,695 [INFO] app.services.wayback_service:   [Wayback] New source: https://create_website.htm/ (from siteground.com)
+2026-03-10 18:10:37,786 [INFO] app.services.wayback_service:   [Wayback] New source: https://best-joomla-templates.com/ (from siteground.com)
+2026-03-10 18:10:37,877 [INFO] app.services.wayback_service:   [Wayback] New source: https://info_dreamweaver.htm/ (from siteground.com)
+2026-03-10 18:10:37,967 [INFO] app.services.wayback_service:   [Wayback] New source: https://vps-hosting.com/ (from siteground.com)
+2026-03-10 18:10:38,058 [INFO] app.services.wayback_service:   [Wayback] New source: https://server.iad.liveperson.net/ (from siteground.com)
+2026-03-10 18:10:38,151 [INFO] app.services.wayback_service:   [Wayback] New source: https://info_oscommerce.htm/ (from siteground.com)
+2026-03-10 18:10:38,242 [INFO] app.services.wayback_service:   [Wayback] New source: https://drupal-hosting.htm/ (from siteground.com)
+2026-03-10 18:10:38,336 [INFO] app.services.wayback_service:   [Wayback] New source: https://info_postnuke.htm/ (from siteground.com)
+2026-03-10 18:10:38,427 [INFO] app.services.wayback_service:   [Wayback] New source: https://info_mambo.htm/ (from siteground.com)
+2026-03-10 18:10:38,517 [INFO] app.services.wayback_service:   [Wayback] New source: https://indows_hosting.htm/ (from siteground.com)
+2026-03-10 18:10:38,622 [INFO] app.services.wayback_service:   [Wayback] New source: https://kb.siteground.com/ (from siteground.com)
+2026-03-10 18:10:38,711 [INFO] app.services.wayback_service:   [Wayback] New source: https://support.php/ (from siteground.com)
+2026-03-10 18:11:03,016 [INFO] app.services.wayback_service: Wayback [9/22] cloudways.com: 22 snapshots, lang=en, toxicity=0 flags, discovered=3
+2026-03-10 18:11:03,291 [INFO] app.services.wayback_service:   [Wayback] New source: https://stackpath.com/ (from cloudways.com)
+2026-03-10 18:11:03,383 [INFO] app.services.wayback_service:   [Wayback] New source: https://gaditek.com/ (from cloudways.com)
+2026-03-10 18:11:03,474 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:commingsoon@cloudways.com/ (from cloudways.com)
+2026-03-10 18:11:30,812 [INFO] app.services.wayback_service: Wayback [10/22] mashable.com: 50 snapshots, lang=en, toxicity=1 flags, discovered=165
+2026-03-10 18:11:31,125 [INFO] app.services.wayback_service:   [Wayback] New source: https://my.mashable.com/ (from mashable.com)
+2026-03-10 18:11:31,219 [INFO] app.services.wayback_service:   [Wayback] New source: https://tweetdeck.com/ (from mashable.com)
+2026-03-10 18:11:31,316 [INFO] app.services.wayback_service:   [Wayback] New source: https://9rules.com/ (from mashable.com)
+2026-03-10 18:11:31,413 [INFO] app.services.wayback_service:   [Wayback] New source: https://ave.google.com/ (from mashable.com)
+2026-03-10 18:11:31,510 [INFO] app.services.wayback_service:   [Wayback] New source: https://binarymoon.co.uk/ (from mashable.com)
+2026-03-10 18:11:31,608 [INFO] app.services.wayback_service:   [Wayback] New source: https://news.com.com/ (from mashable.com)
+2026-03-10 18:11:31,702 [INFO] app.services.wayback_service:   [Wayback] New source: https://motorola.com/ (from mashable.com)
+2026-03-10 18:11:31,795 [INFO] app.services.wayback_service:   [Wayback] New source: https://fusionflashconcerts.com/ (from mashable.com)
+2026-03-10 18:11:31,892 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:petecashmore@gmail.com/ (from mashable.com)
+2026-03-10 18:11:31,988 [INFO] app.services.wayback_service:   [Wayback] New source: https://my.msn.com/ (from mashable.com)
+2026-03-10 18:11:32,086 [INFO] app.services.wayback_service:   [Wayback] New source: https://mashable.hi5.com/ (from mashable.com)
+2026-03-10 18:11:32,181 [INFO] app.services.wayback_service:   [Wayback] New source: https://haiminisholdings.com/ (from mashable.com)
+2026-03-10 18:11:32,279 [INFO] app.services.wayback_service:   [Wayback] New source: https://add.my.yahoo.com/ (from mashable.com)
+2026-03-10 18:11:32,368 [INFO] app.services.wayback_service:   [Wayback] New source: https://imeem.com/ (from mashable.com)
+2026-03-10 18:11:32,471 [INFO] app.services.wayback_service:   [Wayback] New source: https://meetup.meetup.com/ (from mashable.com)
+2026-03-10 18:11:32,572 [INFO] app.services.wayback_service:   [Wayback] New source: https://fabbr.com/ (from mashable.com)
+2026-03-10 18:11:32,669 [INFO] app.services.wayback_service:   [Wayback] New source: https://mybloglog.com/ (from mashable.com)
+2026-03-10 18:11:32,760 [INFO] app.services.wayback_service:   [Wayback] New source: https://blogday.org/ (from mashable.com)
+2026-03-10 18:11:32,850 [INFO] app.services.wayback_service:   [Wayback] New source: https://oddcast.com/ (from mashable.com)
+2026-03-10 18:11:32,941 [INFO] app.services.wayback_service:   [Wayback] New source: https://visualtwitter.com/ (from mashable.com)
+2026-03-10 18:11:33,039 [INFO] app.services.wayback_service:   [Wayback] New source: https://coolhunting.com/ (from mashable.com)
+2026-03-10 18:11:33,129 [INFO] app.services.wayback_service:   [Wayback] New source: https://brandnoise.typepad.com/ (from mashable.com)
+2026-03-10 18:11:33,221 [INFO] app.services.wayback_service:   [Wayback] New source: https://slide.com/ (from mashable.com)
+2026-03-10 18:11:33,362 [INFO] app.services.wayback_service:   [Wayback] New source: https://m.mashable.com/ (from mashable.com)
+2026-03-10 18:11:33,457 [INFO] app.services.wayback_service:   [Wayback] New source: https://shopdropping.net/ (from mashable.com)
+2026-03-10 18:11:33,550 [INFO] app.services.wayback_service:   [Wayback] New source: https://converdge.com/ (from mashable.com)
+2026-03-10 18:11:33,648 [INFO] app.services.wayback_service:   [Wayback] New source: https://infinimedia.com/ (from mashable.com)
+2026-03-10 18:11:33,744 [INFO] app.services.wayback_service:   [Wayback] New source: https://microsoftstartupzone.com/ (from mashable.com)
+2026-03-10 18:11:33,841 [INFO] app.services.wayback_service:   [Wayback] New source: https://mashtracker.mashable.com/ (from mashable.com)
+2026-03-10 18:11:33,940 [INFO] app.services.wayback_service:   [Wayback] New source: https://conduit.com/ (from mashable.com)
+2026-03-10 18:11:34,033 [INFO] app.services.wayback_service:   [Wayback] New source: https://market.mashable.com/ (from mashable.com)
+2026-03-10 18:11:34,125 [INFO] app.services.wayback_service:   [Wayback] New source: https://vcasmo.com/ (from mashable.com)
+2026-03-10 18:11:34,217 [INFO] app.services.wayback_service:   [Wayback] New source: https://mashable.disqus.com/ (from mashable.com)
+2026-03-10 18:11:34,309 [INFO] app.services.wayback_service:   [Wayback] New source: https://shakewellbeforeuse.com/ (from mashable.com)
+2026-03-10 18:11:34,403 [INFO] app.services.wayback_service:   [Wayback] New source: https://kuler.adobe.com/ (from mashable.com)
+2026-03-10 18:11:34,545 [INFO] app.services.wayback_service:   [Wayback] New source: https://completewaveguide.com/ (from mashable.com)
+2026-03-10 18:11:34,640 [INFO] app.services.wayback_service:   [Wayback] New source: https://tagged.com/ (from mashable.com)
+2026-03-10 18:11:34,749 [INFO] app.services.wayback_service:   [Wayback] New source: https://commentful.com/ (from mashable.com)
+2026-03-10 18:11:34,891 [INFO] app.services.wayback_service:   [Wayback] New source: https://zocdoc.com/ (from mashable.com)
+2026-03-10 18:11:34,988 [INFO] app.services.wayback_service:   [Wayback] New source: https://ave-samples-gallery.appspot.com/ (from mashable.com)
+2026-03-10 18:11:35,126 [INFO] app.services.wayback_service:   [Wayback] New source: https://informit.com/ (from mashable.com)
+2026-03-10 18:11:35,223 [INFO] app.services.wayback_service:   [Wayback] New source: https://revyver.com/ (from mashable.com)
+2026-03-10 18:11:35,317 [INFO] app.services.wayback_service:   [Wayback] New source: https://digg.com/ (from mashable.com)
+2026-03-10 18:11:35,408 [INFO] app.services.wayback_service:   [Wayback] New source: https://apps.facebook.com/ (from mashable.com)
+2026-03-10 18:11:35,501 [INFO] app.services.wayback_service:   [Wayback] New source: https://dynamic.fmpub.net/ (from mashable.com)
+2026-03-10 18:11:35,863 [INFO] app.services.wayback_service:   [Wayback] New source: https://frappr.com/ (from mashable.com)
+2026-03-10 18:11:35,957 [INFO] app.services.wayback_service:   [Wayback] New source: https://ndu.edu/ (from mashable.com)
+2026-03-10 18:11:36,049 [INFO] app.services.wayback_service:   [Wayback] New source: https://mashable.jobamatic.com/ (from mashable.com)
+2026-03-10 18:11:36,147 [INFO] app.services.wayback_service:   [Wayback] New source: https://grooveshark.com/ (from mashable.com)
+2026-03-10 18:11:36,242 [INFO] app.services.wayback_service:   [Wayback] New source: https://koolanoo.com/ (from mashable.com)
+2026-03-10 18:11:36,337 [INFO] app.services.wayback_service:   [Wayback] New source: https://michaelgracie.com/ (from mashable.com)
+2026-03-10 18:11:36,430 [INFO] app.services.wayback_service:   [Wayback] New source: https://simplyhired.com/ (from mashable.com)
+2026-03-10 18:11:36,526 [INFO] app.services.wayback_service:   [Wayback] New source: https://blippr.com/ (from mashable.com)
+2026-03-10 18:11:36,622 [INFO] app.services.wayback_service:   [Wayback] New source: https://box.net/ (from mashable.com)
+2026-03-10 18:11:36,717 [INFO] app.services.wayback_service:   [Wayback] New source: https://viksoe.dk/ (from mashable.com)
+2026-03-10 18:11:36,817 [INFO] app.services.wayback_service:   [Wayback] New source: https://subtracts.userplane.com/ (from mashable.com)
+2026-03-10 18:11:36,909 [INFO] app.services.wayback_service:   [Wayback] New source: https://feedburner.google.com/ (from mashable.com)
+2026-03-10 18:11:36,998 [INFO] app.services.wayback_service:   [Wayback] New source: https://tuaw.com/ (from mashable.com)
+2026-03-10 18:11:37,091 [INFO] app.services.wayback_service:   [Wayback] New source: https://globalgiving.com/ (from mashable.com)
+2026-03-10 18:11:37,183 [INFO] app.services.wayback_service:   [Wayback] New source: https://microsoft.com/ (from mashable.com)
+2026-03-10 18:11:37,322 [INFO] app.services.wayback_service:   [Wayback] New source: https://concentricsky.com/ (from mashable.com)
+2026-03-10 18:11:37,416 [INFO] app.services.wayback_service:   [Wayback] New source: https://thespacecraft.spaces.live.com/ (from mashable.com)
+2026-03-10 18:11:37,515 [INFO] app.services.wayback_service:   [Wayback] New source: https://blogrovr.com/ (from mashable.com)
+2026-03-10 18:11:37,608 [INFO] app.services.wayback_service:   [Wayback] New source: https://blackhat.com/ (from mashable.com)
+2026-03-10 18:11:37,701 [INFO] app.services.wayback_service:   [Wayback] New source: https://kapitall.com/ (from mashable.com)
+2026-03-10 18:11:37,797 [INFO] app.services.wayback_service:   [Wayback] New source: https://3-markup.com/ (from mashable.com)
+2026-03-10 18:11:37,890 [INFO] app.services.wayback_service:   [Wayback] New source: https://tokyo-genki.com/ (from mashable.com)
+2026-03-10 18:11:37,983 [INFO] app.services.wayback_service:   [Wayback] New source: https://multiply.com/ (from mashable.com)
+2026-03-10 18:11:38,076 [INFO] app.services.wayback_service:   [Wayback] New source: https://fr.mashable.com/ (from mashable.com)
+2026-03-10 18:11:38,165 [INFO] app.services.wayback_service:   [Wayback] New source: https://earth.google.com/ (from mashable.com)
+2026-03-10 18:11:38,260 [INFO] app.services.wayback_service:   [Wayback] New source: https://marco-za.blogspot.com/ (from mashable.com)
+2026-03-10 18:11:38,356 [INFO] app.services.wayback_service:   [Wayback] New source: https://mobuzztv.com/ (from mashable.com)
+2026-03-10 18:11:38,450 [INFO] app.services.wayback_service:   [Wayback] New source: https://inwhatyouwant.ca/ (from mashable.com)
+2026-03-10 18:11:38,546 [INFO] app.services.wayback_service:   [Wayback] New source: https://nailbiter.net/ (from mashable.com)
+2026-03-10 18:11:38,639 [INFO] app.services.wayback_service:   [Wayback] New source: https://tribler.org/ (from mashable.com)
+2026-03-10 18:11:38,733 [INFO] app.services.wayback_service:   [Wayback] New source: https://text-link-ads.com/ (from mashable.com)
+2026-03-10 18:11:38,824 [INFO] app.services.wayback_service:   [Wayback] New source: https://coqroq.com/ (from mashable.com)
+2026-03-10 18:11:38,964 [INFO] app.services.wayback_service:   [Wayback] New source: https://myspace.com/ (from mashable.com)
+2026-03-10 18:11:39,056 [INFO] app.services.wayback_service:   [Wayback] New source: https://bing.com/ (from mashable.com)
+2026-03-10 18:11:39,153 [INFO] app.services.wayback_service:   [Wayback] New source: https://ikio.com/ (from mashable.com)
+2026-03-10 18:11:39,251 [INFO] app.services.wayback_service:   [Wayback] New source: https://xanga.com/ (from mashable.com)
+2026-03-10 18:11:39,346 [INFO] app.services.wayback_service:   [Wayback] New source: https://tiredandtested.com/ (from mashable.com)
+2026-03-10 18:11:39,487 [INFO] app.services.wayback_service:   [Wayback] New source: https://feeds.my.aol.com/ (from mashable.com)
+2026-03-10 18:11:39,583 [INFO] app.services.wayback_service:   [Wayback] New source: https://bloglines.com/ (from mashable.com)
+2026-03-10 18:11:39,728 [INFO] app.services.wayback_service:   [Wayback] New source: https://rocketboom.com/ (from mashable.com)
+2026-03-10 18:11:39,823 [INFO] app.services.wayback_service:   [Wayback] New source: https://rackspace.com/ (from mashable.com)
+2026-03-10 18:11:39,965 [INFO] app.services.wayback_service:   [Wayback] New source: https://randomculture.com/ (from mashable.com)
+2026-03-10 18:11:40,058 [INFO] app.services.wayback_service:   [Wayback] New source: https://blog.n-gage.com/ (from mashable.com)
+2026-03-10 18:11:40,159 [INFO] app.services.wayback_service:   [Wayback] New source: https://addtoany.com/ (from mashable.com)
+2026-03-10 18:11:40,255 [INFO] app.services.wayback_service:   [Wayback] New source: https://trendwatching.com/ (from mashable.com)
+2026-03-10 18:11:40,350 [INFO] app.services.wayback_service:   [Wayback] New source: https://pronetadvertising.com/ (from mashable.com)
+2026-03-10 18:11:40,444 [INFO] app.services.wayback_service:   [Wayback] New source: https://scribd.com/ (from mashable.com)
+2026-03-10 18:11:40,536 [INFO] app.services.wayback_service:   [Wayback] New source: https://tagworld.com/ (from mashable.com)
+2026-03-10 18:11:40,628 [INFO] app.services.wayback_service:   [Wayback] New source: https://ebware.com/ (from mashable.com)
+2026-03-10 18:11:40,724 [INFO] app.services.wayback_service:   [Wayback] New source: https://eventbrite.com/ (from mashable.com)
+2026-03-10 18:11:40,819 [INFO] app.services.wayback_service:   [Wayback] New source: https://s26.sitemeter.com/ (from mashable.com)
+2026-03-10 18:11:40,914 [INFO] app.services.wayback_service:   [Wayback] New source: https://meijerhalloween.com/ (from mashable.com)
+2026-03-10 18:11:41,011 [INFO] app.services.wayback_service:   [Wayback] New source: https://newsgator.com/ (from mashable.com)
+2026-03-10 18:11:41,106 [INFO] app.services.wayback_service:   [Wayback] New source: https://influxinsights.com/ (from mashable.com)
+2026-03-10 18:11:41,200 [INFO] app.services.wayback_service:   [Wayback] New source: https://adpulp.com/ (from mashable.com)
+2026-03-10 18:11:41,294 [INFO] app.services.wayback_service:   [Wayback] New source: https://live.com/ (from mashable.com)
+2026-03-10 18:11:41,388 [INFO] app.services.wayback_service:   [Wayback] New source: https://demo.com/ (from mashable.com)
+2026-03-10 18:11:41,482 [INFO] app.services.wayback_service:   [Wayback] New source: https://rizzn.com/ (from mashable.com)
+2026-03-10 18:11:41,578 [INFO] app.services.wayback_service:   [Wayback] New source: https://fusion.google.com/ (from mashable.com)
+2026-03-10 18:11:41,674 [INFO] app.services.wayback_service:   [Wayback] New source: https://mtv.com/ (from mashable.com)
+2026-03-10 18:11:41,769 [INFO] app.services.wayback_service:   [Wayback] New source: https://discoverbing.com/ (from mashable.com)
+2026-03-10 18:11:41,870 [INFO] app.services.wayback_service:   [Wayback] New source: https://lushpad.com/ (from mashable.com)
+2026-03-10 18:11:41,971 [INFO] app.services.wayback_service:   [Wayback] New source: https://codes.mashable.com/ (from mashable.com)
+2026-03-10 18:11:42,068 [INFO] app.services.wayback_service:   [Wayback] New source: https://planningnewbie.blogspot.com/ (from mashable.com)
+2026-03-10 18:11:42,161 [INFO] app.services.wayback_service:   [Wayback] New source: https://seesmic.com/ (from mashable.com)
+2026-03-10 18:11:42,254 [INFO] app.services.wayback_service:   [Wayback] New source: https://javascript:void($('akst_form').style.display='none');/ (from mashable.com)
+2026-03-10 18:11:42,350 [INFO] app.services.wayback_service:   [Wayback] New source: https://news.bbc.co.uk/ (from mashable.com)
+2026-03-10 18:11:42,444 [INFO] app.services.wayback_service:   [Wayback] New source: https://influxis.com/ (from mashable.com)
+2026-03-10 18:11:42,537 [INFO] app.services.wayback_service:   [Wayback] New source: https://livejournal.com/ (from mashable.com)
+2026-03-10 18:11:42,659 [INFO] app.services.wayback_service:   [Wayback] New source: https://grasshopper.com/ (from mashable.com)
+2026-03-10 18:11:42,753 [INFO] app.services.wayback_service:   [Wayback] New source: https://bivingsreport.com/ (from mashable.com)
+2026-03-10 18:11:42,851 [INFO] app.services.wayback_service:   [Wayback] New source: https://new.facebook.com/ (from mashable.com)
+2026-03-10 18:11:42,997 [INFO] app.services.wayback_service:   [Wayback] New source: https://federatedmedia.net/ (from mashable.com)
+2026-03-10 18:11:43,092 [INFO] app.services.wayback_service:   [Wayback] New source: https://familybuilder.com/ (from mashable.com)
+2026-03-10 18:11:43,185 [INFO] app.services.wayback_service:   [Wayback] New source: https://tamar.stumbleupon.com/ (from mashable.com)
+2026-03-10 18:11:43,279 [INFO] app.services.wayback_service:   [Wayback] New source: https://hyperorg.com/ (from mashable.com)
+2026-03-10 18:11:43,376 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:advertising@mashable.com/ (from mashable.com)
+2026-03-10 18:11:43,469 [INFO] app.services.wayback_service:   [Wayback] New source: https://nypost.com/ (from mashable.com)
+2026-03-10 18:11:43,565 [INFO] app.services.wayback_service:   [Wayback] New source: https://jobs.mashable.com/ (from mashable.com)
+2026-03-10 18:11:43,658 [INFO] app.services.wayback_service:   [Wayback] New source: https://store.yahoo.com/ (from mashable.com)
+2026-03-10 18:11:43,754 [INFO] app.services.wayback_service:   [Wayback] New source: https://arstechnica.com/ (from mashable.com)
+2026-03-10 18:11:43,895 [INFO] app.services.wayback_service:   [Wayback] New source: https://viigo.com/ (from mashable.com)
+2026-03-10 18:11:44,038 [INFO] app.services.wayback_service:   [Wayback] New source: https://blogs.zdnet.com/ (from mashable.com)
+2026-03-10 18:11:44,142 [INFO] app.services.wayback_service:   [Wayback] New source: https://interop.com/ (from mashable.com)
+2026-03-10 18:11:44,241 [INFO] app.services.wayback_service:   [Wayback] New source: https://netvibes.com/ (from mashable.com)
+2026-03-10 18:11:44,333 [INFO] app.services.wayback_service:   [Wayback] New source: https://amazon.com/ (from mashable.com)
+2026-03-10 18:11:44,429 [INFO] app.services.wayback_service:   [Wayback] New source: https://edgecast.com/ (from mashable.com)
+2026-03-10 18:11:44,522 [INFO] app.services.wayback_service:   [Wayback] New source: https://secure.infotoday.com/ (from mashable.com)
+2026-03-10 18:11:44,627 [INFO] app.services.wayback_service:   [Wayback] New source: https://bs.serving-sys.com/ (from mashable.com)
+2026-03-10 18:11:44,720 [INFO] app.services.wayback_service:   [Wayback] New source: https://getsearchperks.com/ (from mashable.com)
+2026-03-10 18:11:44,864 [INFO] app.services.wayback_service:   [Wayback] New source: https://friendster.com/ (from mashable.com)
+2026-03-10 18:11:44,953 [INFO] app.services.wayback_service:   [Wayback] New source: https://m.bing.com/ (from mashable.com)
+2026-03-10 18:11:45,049 [INFO] app.services.wayback_service:   [Wayback] New source: https://mileysavefuzzy.com/ (from mashable.com)
+2026-03-10 18:11:45,187 [INFO] app.services.wayback_service:   [Wayback] New source: https://snapshot.compete.com/ (from mashable.com)
+2026-03-10 18:11:45,285 [INFO] app.services.wayback_service:   [Wayback] New source: https://zoints.com/ (from mashable.com)
+2026-03-10 18:11:45,388 [INFO] app.services.wayback_service:   [Wayback] New source: https://spaces.live.com/ (from mashable.com)
+2026-03-10 18:11:45,484 [INFO] app.services.wayback_service:   [Wayback] New source: https://online.wsj.com/ (from mashable.com)
+2026-03-10 18:11:45,579 [INFO] app.services.wayback_service:   [Wayback] New source: https://invites.mashable.com/ (from mashable.com)
+2026-03-10 18:11:45,720 [INFO] app.services.wayback_service:   [Wayback] New source: https://mashable.bebo.com/ (from mashable.com)
+2026-03-10 18:11:45,810 [INFO] app.services.wayback_service:   [Wayback] New source: https://buddyuniversity.com/ (from mashable.com)
+2026-03-10 18:11:45,953 [INFO] app.services.wayback_service:   [Wayback] New source: https://thisspartanlife.com/ (from mashable.com)
+2026-03-10 18:11:46,047 [INFO] app.services.wayback_service:   [Wayback] New source: https://psdtohtml.com/ (from mashable.com)
+2026-03-10 18:11:46,144 [INFO] app.services.wayback_service:   [Wayback] New source: https://umd.facebook.com/ (from mashable.com)
+2026-03-10 18:12:01,162 [INFO] app.services.wayback_service: Wayback [11/22] mcdonalds.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=3
+2026-03-10 18:12:01,430 [INFO] app.services.wayback_service:   [Wayback] New source: https://164.109.33.197/ (from mcdonalds.com)
+2026-03-10 18:12:01,523 [INFO] app.services.wayback_service:   [Wayback] New source: https://rmhc.org/ (from mcdonalds.com)
+2026-03-10 18:12:01,614 [INFO] app.services.wayback_service:   [Wayback] New source: https://mcdonalds.promotions.com/ (from mcdonalds.com)
+2026-03-10 18:12:27,268 [INFO] app.services.wayback_service: Wayback [12/22] wp-rocket.me: 50 snapshots, lang=en, toxicity=0 flags, discovered=9
+2026-03-10 18:12:27,542 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:contact@wp-rocket.me/ (from wp-rocket.me)
+2026-03-10 18:12:27,635 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:love@wp-rocket.me/ (from wp-rocket.me)
+2026-03-10 18:12:27,728 [INFO] app.services.wayback_service:   [Wayback] New source: https://blog.wp-rocket.me/ (from wp-rocket.me)
+2026-03-10 18:12:27,875 [INFO] app.services.wayback_service:   [Wayback] New source: https://docs.wp-rocket.me/ (from wp-rocket.me)
+2026-03-10 18:12:28,065 [INFO] app.services.wayback_service:   [Wayback] New source: https://support.wp-rocket.me/ (from wp-rocket.me)
+2026-03-10 18:12:28,162 [INFO] app.services.wayback_service:   [Wayback] New source: https://javascript:alert('bientôt disponible.');/ (from wp-rocket.me)
+2026-03-10 18:12:48,902 [INFO] app.services.wayback_service: Wayback [13/22] aol.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=16
+2026-03-10 18:12:49,165 [INFO] app.services.wayback_service:   [Wayback] New source: https://aim.com/ (from aol.com)
+2026-03-10 18:12:49,253 [INFO] app.services.wayback_service:   [Wayback] New source: https://corp.aol.com/ (from aol.com)
+2026-03-10 18:12:49,346 [INFO] app.services.wayback_service:   [Wayback] New source: https://ads.web.aol.com/ (from aol.com)
+2026-03-10 18:12:49,437 [INFO] app.services.wayback_service:   [Wayback] New source: https://dynamic.aol.com/ (from aol.com)
+2026-03-10 18:12:49,527 [INFO] app.services.wayback_service:   [Wayback] New source: https://calendar.aol.com/ (from aol.com)
+2026-03-10 18:12:49,618 [INFO] app.services.wayback_service:   [Wayback] New source: https://groups.aol.com/ (from aol.com)
+2026-03-10 18:12:49,709 [INFO] app.services.wayback_service:   [Wayback] New source: https://my.aol.com/ (from aol.com)
+2026-03-10 18:12:49,802 [INFO] app.services.wayback_service:   [Wayback] New source: https://icq.com/ (from aol.com)
+2026-03-10 18:12:49,890 [INFO] app.services.wayback_service:   [Wayback] New source: https://r.aol.com/ (from aol.com)
+2026-03-10 18:12:49,991 [INFO] app.services.wayback_service:   [Wayback] New source: https://finance.aol.com/ (from aol.com)
+2026-03-10 18:12:50,125 [INFO] app.services.wayback_service:   [Wayback] New source: https://free.aol.com/ (from aol.com)
+2026-03-10 18:12:50,220 [INFO] app.services.wayback_service:   [Wayback] New source: https://ebmail.aol.com/ (from aol.com)
+2026-03-10 18:12:50,309 [INFO] app.services.wayback_service:   [Wayback] New source: https://ar.atwola.com/ (from aol.com)
+2026-03-10 18:12:50,400 [INFO] app.services.wayback_service:   [Wayback] New source: https://hometown.aol.com/ (from aol.com)
+2026-03-10 18:12:50,493 [INFO] app.services.wayback_service:   [Wayback] New source: https://ebcenter.love.aol.com/ (from aol.com)
+2026-03-10 18:13:21,253 [WARNING] app.services.wayback_service: CDX API error for burgerking.com: 
+2026-03-10 18:13:56,975 [INFO] app.services.wayback_service: Wayback [14/22] burgerking.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=5
+2026-03-10 18:13:57,248 [INFO] app.services.wayback_service:   [Wayback] New source: https://hatshot.htm/ (from burgerking.com)
+2026-03-10 18:13:57,339 [INFO] app.services.wayback_service:   [Wayback] New source: https://burgerbucks.htm/ (from burgerking.com)
+2026-03-10 18:13:57,430 [INFO] app.services.wayback_service:   [Wayback] New source: https://elisten.htm/ (from burgerking.com)
+2026-03-10 18:13:57,525 [INFO] app.services.wayback_service:   [Wayback] New source: https://locator\search.asp/ (from burgerking.com)
+2026-03-10 18:13:57,617 [INFO] app.services.wayback_service:   [Wayback] New source: https://legal.htm/ (from burgerking.com)
+2026-03-10 18:14:11,969 [INFO] app.services.wayback_service: Wayback [15/22] ted.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=10
+2026-03-10 18:14:12,227 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:wurman@ted.com/ (from ted.com)
+2026-03-10 18:14:12,324 [INFO] app.services.wayback_service:   [Wayback] New source: https://preclick.com/ (from ted.com)
+2026-03-10 18:14:12,411 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:webmaster@ted.com/ (from ted.com)
+2026-03-10 18:14:12,503 [INFO] app.services.wayback_service:   [Wayback] New source: https://googleplot.cfm/ (from ted.com)
+2026-03-10 18:14:12,595 [INFO] app.services.wayback_service:   [Wayback] New source: https://registration.shtml/ (from ted.com)
+2026-03-10 18:14:12,688 [INFO] app.services.wayback_service:   [Wayback] New source: https://tedlinks.html/ (from ted.com)
+2026-03-10 18:14:12,780 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:intofeedback@macromedia.com/ (from ted.com)
+2026-03-10 18:14:12,869 [INFO] app.services.wayback_service:   [Wayback] New source: https://rsw.html/ (from ted.com)
+2026-03-10 18:14:12,963 [INFO] app.services.wayback_service:   [Wayback] New source: https://ted7.shtml/ (from ted.com)
+2026-03-10 18:14:13,058 [INFO] app.services.wayback_service:   [Wayback] New source: https://past.html/ (from ted.com)
+2026-03-10 18:14:34,783 [INFO] app.services.wayback_service: Wayback [16/22] yahoo.com: 50 snapshots, lang=en, toxicity=1 flags, discovered=46
+2026-03-10 18:14:35,053 [INFO] app.services.wayback_service:   [Wayback] New source: https://ny.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:35,144 [INFO] app.services.wayback_service:   [Wayback] New source: https://yahoo.fr/ (from yahoo.com)
+2026-03-10 18:14:35,233 [INFO] app.services.wayback_service:   [Wayback] New source: https://messenger.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:35,324 [INFO] app.services.wayback_service:   [Wayback] New source: https://yahoo.dk/ (from yahoo.com)
+2026-03-10 18:14:35,420 [INFO] app.services.wayback_service:   [Wayback] New source: https://sports.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:35,512 [INFO] app.services.wayback_service:   [Wayback] New source: https://personals.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:35,607 [INFO] app.services.wayback_service:   [Wayback] New source: https://yahoo.com.au/ (from yahoo.com)
+2026-03-10 18:14:35,703 [INFO] app.services.wayback_service:   [Wayback] New source: https://sfbay.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:35,799 [INFO] app.services.wayback_service:   [Wayback] New source: https://health.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:35,937 [INFO] app.services.wayback_service:   [Wayback] New source: https://miami.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:36,029 [INFO] app.services.wayback_service:   [Wayback] New source: https://yahoo.four11.com/ (from yahoo.com)
+2026-03-10 18:14:36,121 [INFO] app.services.wayback_service:   [Wayback] New source: https://yp.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:36,213 [INFO] app.services.wayback_service:   [Wayback] New source: https://yahoo.co.uk/ (from yahoo.com)
+2026-03-10 18:14:36,301 [INFO] app.services.wayback_service:   [Wayback] New source: https://events.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:36,388 [INFO] app.services.wayback_service:   [Wayback] New source: https://howto.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:36,482 [INFO] app.services.wayback_service:   [Wayback] New source: https://classifieds.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:36,574 [INFO] app.services.wayback_service:   [Wayback] New source: https://headlines.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:36,666 [INFO] app.services.wayback_service:   [Wayback] New source: https://maps.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:36,758 [INFO] app.services.wayback_service:   [Wayback] New source: https://shopguide.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:36,853 [INFO] app.services.wayback_service:   [Wayback] New source: https://la.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:36,943 [INFO] app.services.wayback_service:   [Wayback] New source: https://my.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:37,037 [INFO] app.services.wayback_service:   [Wayback] New source: https://yahoo.no/ (from yahoo.com)
+2026-03-10 18:14:37,132 [INFO] app.services.wayback_service:   [Wayback] New source: https://quote.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:37,225 [INFO] app.services.wayback_service:   [Wayback] New source: https://austin.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:37,321 [INFO] app.services.wayback_service:   [Wayback] New source: https://search.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:37,414 [INFO] app.services.wayback_service:   [Wayback] New source: https://yahoo.de/ (from yahoo.com)
+2026-03-10 18:14:37,507 [INFO] app.services.wayback_service:   [Wayback] New source: https://local.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:37,605 [INFO] app.services.wayback_service:   [Wayback] New source: https://dc.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:37,696 [INFO] app.services.wayback_service:   [Wayback] New source: https://mail.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:37,789 [INFO] app.services.wayback_service:   [Wayback] New source: https://atlanta.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:37,882 [INFO] app.services.wayback_service:   [Wayback] New source: https://seattle.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:37,980 [INFO] app.services.wayback_service:   [Wayback] New source: https://us.rmi.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:38,076 [INFO] app.services.wayback_service:   [Wayback] New source: https://shopyahoo.com/ (from yahoo.com)
+2026-03-10 18:14:38,173 [INFO] app.services.wayback_service:   [Wayback] New source: https://rd.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:38,271 [INFO] app.services.wayback_service:   [Wayback] New source: https://chat.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:38,359 [INFO] app.services.wayback_service:   [Wayback] New source: https://minn.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:38,452 [INFO] app.services.wayback_service:   [Wayback] New source: https://yahoo.com.sg/ (from yahoo.com)
+2026-03-10 18:14:38,543 [INFO] app.services.wayback_service:   [Wayback] New source: https://dailynews.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:38,644 [INFO] app.services.wayback_service:   [Wayback] New source: https://eather.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:38,736 [INFO] app.services.wayback_service:   [Wayback] New source: https://boston.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:38,821 [INFO] app.services.wayback_service:   [Wayback] New source: https://chi.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:38,917 [INFO] app.services.wayback_service:   [Wayback] New source: https://yahoo.se/ (from yahoo.com)
+2026-03-10 18:14:39,012 [INFO] app.services.wayback_service:   [Wayback] New source: https://yahooligans.com/ (from yahoo.com)
+2026-03-10 18:14:39,109 [INFO] app.services.wayback_service:   [Wayback] New source: https://yahoo.ca/ (from yahoo.com)
+2026-03-10 18:14:39,200 [INFO] app.services.wayback_service:   [Wayback] New source: https://dfw.yahoo.com/ (from yahoo.com)
+2026-03-10 18:14:53,125 [INFO] app.services.wayback_service: Wayback [17/22] lays.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=20
+2026-03-10 18:14:53,397 [INFO] app.services.wayback_service:   [Wayback] New source: https://faq.html/ (from lays.com)
+2026-03-10 18:14:53,490 [INFO] app.services.wayback_service:   [Wayback] New source: https://instoresnow.asp/ (from lays.com)
+2026-03-10 18:14:53,581 [INFO] app.services.wayback_service:   [Wayback] New source: https://news.html/ (from lays.com)
+2026-03-10 18:14:53,690 [INFO] app.services.wayback_service:   [Wayback] New source: https://biz.html/ (from lays.com)
+2026-03-10 18:14:53,796 [INFO] app.services.wayback_service:   [Wayback] New source: https://investor.html/ (from lays.com)
+2026-03-10 18:14:53,884 [INFO] app.services.wayback_service:   [Wayback] New source: https://sitemap.html/ (from lays.com)
+2026-03-10 18:14:53,978 [INFO] app.services.wayback_service:   [Wayback] New source: https://fritolay.com/ (from lays.com)
+2026-03-10 18:14:54,070 [INFO] app.services.wayback_service:   [Wayback] New source: https://company2.html/ (from lays.com)
+2026-03-10 18:14:54,174 [INFO] app.services.wayback_service:   [Wayback] New source: https://contact.html/ (from lays.com)
+2026-03-10 18:14:54,265 [INFO] app.services.wayback_service:   [Wayback] New source: https://terms.asp/ (from lays.com)
+2026-03-10 18:14:54,356 [INFO] app.services.wayback_service:   [Wayback] New source: https://abouttrips.asp/ (from lays.com)
+2026-03-10 18:14:54,445 [INFO] app.services.wayback_service:   [Wayback] New source: https://ixl.com/ (from lays.com)
+2026-03-10 18:14:54,536 [INFO] app.services.wayback_service:   [Wayback] New source: https://consumer.html/ (from lays.com)
+2026-03-10 18:14:54,627 [INFO] app.services.wayback_service:   [Wayback] New source: https://privacy.asp/ (from lays.com)
+2026-03-10 18:14:54,717 [INFO] app.services.wayback_service:   [Wayback] New source: https://laysstax.com/ (from lays.com)
+2026-03-10 18:14:54,808 [INFO] app.services.wayback_service:   [Wayback] New source: https://policies.html/ (from lays.com)
+2026-03-10 18:14:54,898 [INFO] app.services.wayback_service:   [Wayback] New source: https://javascript:opentellafriendwindow('tellafriend.asp')/ (from lays.com)
+2026-03-10 18:14:54,988 [INFO] app.services.wayback_service:   [Wayback] New source: https://company.html/ (from lays.com)
+2026-03-10 18:14:55,077 [INFO] app.services.wayback_service:   [Wayback] New source: https://rules.asp/ (from lays.com)
+2026-03-10 18:14:55,167 [INFO] app.services.wayback_service:   [Wayback] New source: https://previouspicks.asp/ (from lays.com)
+2026-03-10 18:15:17,458 [INFO] app.services.wayback_service: Wayback [18/22] tumblr.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=36
+2026-03-10 18:15:17,817 [INFO] app.services.wayback_service:   [Wayback] New source: https://staff.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:17,915 [INFO] app.services.wayback_service:   [Wayback] New source: https://pokergirl.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:18,009 [INFO] app.services.wayback_service:   [Wayback] New source: https://foomandoonian.net/ (from tumblr.com)
+2026-03-10 18:15:18,098 [INFO] app.services.wayback_service:   [Wayback] New source: https://adobe.com/ (from tumblr.com)
+2026-03-10 18:15:18,190 [INFO] app.services.wayback_service:   [Wayback] New source: https://bitchville.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:18,282 [INFO] app.services.wayback_service:   [Wayback] New source: https://langer.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:18,424 [INFO] app.services.wayback_service:   [Wayback] New source: https://venustong.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:18,519 [INFO] app.services.wayback_service:   [Wayback] New source: https://xkrissy.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:18,618 [INFO] app.services.wayback_service:   [Wayback] New source: https://skyrockette.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:18,714 [INFO] app.services.wayback_service:   [Wayback] New source: https://copycats.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:18,808 [INFO] app.services.wayback_service:   [Wayback] New source: https://blog.petervidani.com/ (from tumblr.com)
+2026-03-10 18:15:18,899 [INFO] app.services.wayback_service:   [Wayback] New source: https://nfldraft.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:18,994 [INFO] app.services.wayback_service:   [Wayback] New source: https://littlemiss.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:19,087 [INFO] app.services.wayback_service:   [Wayback] New source: https://pixelcase.com.au/ (from tumblr.com)
+2026-03-10 18:15:19,181 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:support@tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:19,274 [INFO] app.services.wayback_service:   [Wayback] New source: https://cubicle17.com/ (from tumblr.com)
+2026-03-10 18:15:19,368 [INFO] app.services.wayback_service:   [Wayback] New source: https://thismightsuck.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:19,457 [INFO] app.services.wayback_service:   [Wayback] New source: https://allthatglittersispink.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:19,552 [INFO] app.services.wayback_service:   [Wayback] New source: https://picturesandbox.com/ (from tumblr.com)
+2026-03-10 18:15:19,643 [INFO] app.services.wayback_service:   [Wayback] New source: https://kungfugrippe.com/ (from tumblr.com)
+2026-03-10 18:15:19,738 [INFO] app.services.wayback_service:   [Wayback] New source: https://pixeled.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:19,833 [INFO] app.services.wayback_service:   [Wayback] New source: https://lab111.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:19,928 [INFO] app.services.wayback_service:   [Wayback] New source: https://davidmacdowell.deviantart.com/ (from tumblr.com)
+2026-03-10 18:15:20,022 [INFO] app.services.wayback_service:   [Wayback] New source: https://andrewpile.com/ (from tumblr.com)
+2026-03-10 18:15:20,116 [INFO] app.services.wayback_service:   [Wayback] New source: https://laissez-faire.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:20,214 [INFO] app.services.wayback_service:   [Wayback] New source: https://davidville.com/ (from tumblr.com)
+2026-03-10 18:15:20,309 [INFO] app.services.wayback_service:   [Wayback] New source: https://bunkercomplex.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:20,408 [INFO] app.services.wayback_service:   [Wayback] New source: https://twitpic.com/ (from tumblr.com)
+2026-03-10 18:15:20,503 [INFO] app.services.wayback_service:   [Wayback] New source: https://gondaba.com/ (from tumblr.com)
+2026-03-10 18:15:20,600 [INFO] app.services.wayback_service:   [Wayback] New source: https://joelaz.com/ (from tumblr.com)
+2026-03-10 18:15:20,694 [INFO] app.services.wayback_service:   [Wayback] New source: https://bluesiren.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:20,788 [INFO] app.services.wayback_service:   [Wayback] New source: https://thresca.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:20,880 [INFO] app.services.wayback_service:   [Wayback] New source: https://cavaz.tumblr.com/ (from tumblr.com)
+2026-03-10 18:15:38,625 [INFO] app.services.wayback_service: Wayback [19/22] walmart.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=16
+2026-03-10 18:15:38,945 [INFO] app.services.wayback_service:   [Wayback] New source: https://aolsucks.com/ (from walmart.com)
+2026-03-10 18:15:39,034 [INFO] app.services.wayback_service:   [Wayback] New source: https://almartstores.com/ (from walmart.com)
+2026-03-10 18:15:39,130 [INFO] app.services.wayback_service:   [Wayback] New source: https://rempub.com/ (from walmart.com)
+2026-03-10 18:15:39,223 [INFO] app.services.wayback_service:   [Wayback] New source: https://mailto:help@walmart.com/ (from walmart.com)
+2026-03-10 18:15:39,317 [INFO] app.services.wayback_service:   [Wayback] New source: https://ssl.linksynergy.com/ (from walmart.com)
+2026-03-10 18:15:39,416 [INFO] app.services.wayback_service:   [Wayback] New source: https://samsclub.com/ (from walmart.com)
+2026-03-10 18:15:39,511 [INFO] app.services.wayback_service:   [Wayback] New source: https://onlinecreditcenter2.com/ (from walmart.com)
+2026-03-10 18:15:39,604 [INFO] app.services.wayback_service:   [Wayback] New source: https://investor.walmartstores.com/ (from walmart.com)
+2026-03-10 18:15:39,701 [INFO] app.services.wayback_service:   [Wayback] New source: https://almart.triaddigital.com/ (from walmart.com)
+2026-03-10 18:15:39,794 [INFO] app.services.wayback_service:   [Wayback] New source: https://ebsurveyor.net/ (from walmart.com)
+2026-03-10 18:15:39,889 [INFO] app.services.wayback_service:   [Wayback] New source: https://msds.walmartstores.com/ (from walmart.com)
+2026-03-10 18:15:39,983 [INFO] app.services.wayback_service:   [Wayback] New source: https://stats.internet-audit.com/ (from walmart.com)
+2026-03-10 18:15:40,092 [INFO] app.services.wayback_service:   [Wayback] New source: https://comment.htm/ (from walmart.com)
+2026-03-10 18:15:40,186 [INFO] app.services.wayback_service:   [Wayback] New source: https://almartfacts.com/ (from walmart.com)
+2026-03-10 18:15:40,284 [INFO] app.services.wayback_service:   [Wayback] New source: https://internet-audit.com/ (from walmart.com)
+2026-03-10 18:15:40,380 [INFO] app.services.wayback_service:   [Wayback] New source: https://almartcreditcard.com/ (from walmart.com)
+2026-03-10 18:16:06,091 [INFO] app.services.wayback_service: Wayback [20/22] blockbuster.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=11
+2026-03-10 18:16:06,438 [INFO] app.services.wayback_service:   [Wayback] New source: https://sho.com/ (from blockbuster.com)
+2026-03-10 18:16:06,530 [INFO] app.services.wayback_service:   [Wayback] New source: https://promo.blockbuster.com/ (from blockbuster.com)
+2026-03-10 18:16:06,621 [INFO] app.services.wayback_service:   [Wayback] New source: https://investor.blockbuster.com/ (from blockbuster.com)
+2026-03-10 18:16:06,712 [INFO] app.services.wayback_service:   [Wayback] New source: https://freeflix.com/ (from blockbuster.com)
+2026-03-10 18:16:06,801 [INFO] app.services.wayback_service:   [Wayback] New source: https://pwr.com/ (from blockbuster.com)
+2026-03-10 18:16:06,895 [INFO] app.services.wayback_service:   [Wayback] New source: https://thestore24.com/ (from blockbuster.com)
+2026-03-10 18:16:06,999 [INFO] app.services.wayback_service:   [Wayback] New source: https://ebentertainmentondemand.com/ (from blockbuster.com)
+2026-03-10 18:16:07,088 [INFO] app.services.wayback_service:   [Wayback] New source: https://nintendo.com/ (from blockbuster.com)
+2026-03-10 18:16:07,194 [INFO] app.services.wayback_service:   [Wayback] New source: https://knowhivaids.org/ (from blockbuster.com)
+2026-03-10 18:16:07,284 [INFO] app.services.wayback_service:   [Wayback] New source: https://aol.com/ (from blockbuster.com)
+2026-03-10 18:16:07,378 [INFO] app.services.wayback_service:   [Wayback] New source: https://atomfilms.blockbuster.com/ (from blockbuster.com)
+2026-03-10 18:16:35,165 [INFO] app.services.wayback_service: Wayback [21/22] dunkindonuts.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=3
+2026-03-10 18:16:35,424 [INFO] app.services.wayback_service:   [Wayback] New source: https://clicktracks.com/ (from dunkindonuts.com)
+2026-03-10 18:16:35,526 [INFO] app.services.wayback_service:   [Wayback] New source: https://dunkin-baskin-togos.com/ (from dunkindonuts.com)
+2026-03-10 18:16:35,617 [INFO] app.services.wayback_service:   [Wayback] New source: https://bbnplanet.com/ (from dunkindonuts.com)
+2026-03-10 18:17:01,907 [INFO] app.services.wayback_service: Wayback [22/22] gravatar.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=12
+2026-03-10 18:17:02,176 [INFO] app.services.wayback_service:   [Wayback] New source: https://site.gravatar.com/ (from gravatar.com)
+2026-03-10 18:17:02,270 [INFO] app.services.wayback_service:   [Wayback] New source: https://donate.php/ (from gravatar.com)
+2026-03-10 18:17:02,364 [INFO] app.services.wayback_service:   [Wayback] New source: https://faq.php/ (from gravatar.com)
+2026-03-10 18:17:02,460 [INFO] app.services.wayback_service:   [Wayback] New source: https://docs.gravatar.com/ (from gravatar.com)
+2026-03-10 18:17:02,556 [INFO] app.services.wayback_service:   [Wayback] New source: https://popular.php/ (from gravatar.com)
+2026-03-10 18:17:02,650 [INFO] app.services.wayback_service:   [Wayback] New source: https://polarphase.com/ (from gravatar.com)
+2026-03-10 18:17:02,741 [INFO] app.services.wayback_service:   [Wayback] New source: https://blog.gravatar.com/ (from gravatar.com)
+2026-03-10 18:17:02,836 [INFO] app.services.wayback_service:   [Wayback] New source: https://privacy.php/ (from gravatar.com)
+2026-03-10 18:17:02,932 [INFO] app.services.wayback_service:   [Wayback] New source: https://support.gravatar.com/ (from gravatar.com)
+2026-03-10 18:17:03,026 [INFO] app.services.wayback_service:   [Wayback] New source: https://signup.php/ (from gravatar.com)
+2026-03-10 18:17:03,121 [INFO] app.services.wayback_service:   [Wayback] New source: https://automattic.com/ (from gravatar.com)
+2026-03-10 18:17:03,219 [INFO] app.services.wayback_service:   [Wayback] New source: https://implement.php/ (from gravatar.com)
+2026-03-10 18:17:03,313 [INFO] app.services.wayback_service: Wayback check complete: 22/22 candidates, 651 new sources discovered
+2026-03-10 18:17:03,313 [INFO] app.routes.crawl: [Recheck All] Wayback done. Starting scoring…
+2026-03-10 18:17:04,158 [INFO] app.services.scoring_service: Scored 218 candidates
+2026-03-10 18:17:04,158 [INFO] app.routes.crawl: [Recheck All] Full re-check complete ✓

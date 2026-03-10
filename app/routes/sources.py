@@ -17,6 +17,7 @@ router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
 
 NICHES = [
+    "General",
     "Technology", "Finance", "Health", "Education", "Travel",
     "Gaming", "News", "Entertainment", "Business", "Science",
     "Sports", "Lifestyle", "Food", "Real Estate", "Crypto",
@@ -71,7 +72,7 @@ async def add_source_form(request: Request):
 async def create_source(
     request: Request,
     url: str = Form(...),
-    niche: str = Form(...),
+    niche: str = Form("General"),
     notes: str = Form(None),
     db: AsyncSession = Depends(get_db),
 ):

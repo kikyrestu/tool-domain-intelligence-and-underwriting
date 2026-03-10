@@ -21,10 +21,14 @@ async def run():
 
     print("Scoring all...")
     try:
+        import json
         async with async_session() as db:
             result = await db.execute(select(CandidateDomain))
             candidates = result.scalars().all()
-            tox = {c.id: scan_candidate(c, []) for c in candidates}
+            tox = {
+                c.id: json.loads(c.toxicity_flags) if c.toxicity_flags else scan_candidate(c, [])
+                for c in candidates
+            }
             n = await score_candidates(db, toxicity_map=tox)
             print(f"Scored: {n}")
     except Exception as e:

@@ -22,16 +22,16 @@
         <p class="text-sm text-gray-500">Domain Dead</p>
         <p class="text-3xl font-bold text-red-600 mt-1">{{ dead_count }}</p>
     </div>
-    <div class="bg-white rounded-lg border border-gray-200 p-5">
-        <p class="text-sm text-gray-500">Available</p>
+    <a href="/candidates?availability=available" class="bg-white rounded-lg border border-green-300 p-5 hover:bg-green-50">
+        <p class="text-sm text-gray-500">Buyable <span class="text-xs text-gray-400">(RDAP available)</span></p>
         <p class="text-3xl font-bold text-green-600 mt-1">{{ avail_count }}</p>
-    </div>
+    </a>
 </div>
 
 <!-- Label Summary -->
 <div class="grid grid-cols-4 gap-4 mb-6">
     <a href="/candidates?label=Available" class="bg-green-50 rounded-lg border border-green-200 p-5 hover:bg-green-100 transition">
-        <p class="text-sm text-green-700 font-medium">Available</p>
+        <p class="text-sm text-green-700 font-medium">Label: Available</p>
         <p class="text-3xl font-bold text-green-700 mt-1">{{ available_label_count }}</p>
     </a>
     <a href="/candidates?label=Watchlist" class="bg-blue-50 rounded-lg border border-blue-200 p-5 hover:bg-blue-100 transition">

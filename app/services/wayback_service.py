@@ -4,18 +4,24 @@ language detection, and content drift measurement.
 """
 
 import asyncio
+import json
 import logging
 import re
 from datetime import datetime, date, timezone
+from urllib.parse import urlparse
 
 import httpx
+from bs4 import BeautifulSoup
 from langdetect import detect, LangDetectException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.candidate import CandidateDomain
+from app.models.source import Source
 from app.config import get_settings
 from app.services.proxy_service import ProxyService
+from app.services.toxicity_service import scan_candidate
+from app.utils.ssrf_guard import is_safe_url
 
 logger = logging.getLogger(__name__)
 
@@ -25,27 +31,43 @@ TIMEOUT = 30
 
 
 async def _get_snapshots(domain: str, client: httpx.AsyncClient) -> list[dict]:
-    """Fetch snapshot list from Wayback CDX API."""
-    params = {
+    """Fetch snapshot list from Wayback CDX API.
+
+    Primary query: statuscode:200 only.
+    Fallback query (no statuscode filter): used when primary returns 0 results,
+    because some domains only have redirect (301/302) snapshots archived.
+    """
+    base_params = {
         "url": domain,
         "output": "json",
         "fl": "timestamp,statuscode,mimetype,original",
-        "filter": "statuscode:200",
         "collapse": "timestamp:6",  # 1 per month
         "limit": 50,
     }
-    try:
-        resp = await client.get(WAYBACK_CDX_URL, params=params, timeout=TIMEOUT, follow_redirects=True)
-        if resp.status_code != 200:
+
+    async def _fetch_cdx(params: dict) -> list[dict]:
+        try:
+            resp = await client.get(WAYBACK_CDX_URL, params=params, timeout=TIMEOUT, follow_redirects=True)
+            if resp.status_code != 200:
+                return []
+            data = resp.json()
+            if not data or len(data) < 2:
+                return []
+            headers = data[0]
+            return [dict(zip(headers, row)) for row in data[1:]]
+        except Exception as e:
+            logger.warning("CDX API error for %s: %s", domain, e)
             return []
-        data = resp.json()
-        if not data or len(data) < 2:
-            return []
-        headers = data[0]
-        return [dict(zip(headers, row)) for row in data[1:]]
-    except Exception as e:
-        logger.warning("CDX API error for %s: %s", domain, e)
-        return []
+
+    # Primary: only successful page loads
+    snapshots = await _fetch_cdx({**base_params, "filter": "statuscode:200"})
+    if snapshots:
+        return snapshots
+
+    # Fallback: include 301/302 redirects — domain may have only redirected historically
+    logger.debug("CDX primary (statuscode:200) returned 0 for %s — retrying without statuscode filter", domain)
+    snapshots = await _fetch_cdx(base_params)
+    return snapshots
 
 
 def _select_snapshots(snapshots: list[dict], count: int = 5) -> list[dict]:
@@ -61,14 +83,17 @@ def _select_snapshots(snapshots: list[dict], count: int = 5) -> list[dict]:
 
 
 async def _fetch_content(domain: str, timestamp: str, client: httpx.AsyncClient) -> str | None:
-    """Fetch snapshot content from Wayback Machine."""
+    """Fetch snapshot content from Wayback Machine. Retries once on failure."""
     url = f"{WAYBACK_WEB_URL}/{timestamp}id_/{domain}"
-    try:
-        resp = await client.get(url, timeout=TIMEOUT, follow_redirects=True)
-        if resp.status_code == 200:
-            return resp.text
-    except Exception:
-        pass
+    for attempt in range(2):
+        try:
+            resp = await client.get(url, timeout=TIMEOUT, follow_redirects=True)
+            if resp.status_code == 200:
+                return resp.text
+        except Exception:
+            pass
+        if attempt == 0:
+            await asyncio.sleep(2)  # brief backoff before retry
     return None
 
 
@@ -79,6 +104,36 @@ def _extract_text(html: str) -> str:
     text = re.sub(r'<[^>]+>', ' ', text)
     text = re.sub(r'\s+', ' ', text).strip()
     return text
+
+
+def _extract_outbound_domains(html: str, current_domain: str) -> set[str]:
+    """Extract unique outbound root domains from snapshot HTML (excludes current domain and Wayback wrapper URLs)."""
+    found: set[str] = set()
+    try:
+        soup = BeautifulSoup(html, "html.parser")
+        for tag in soup.find_all("a", href=True):
+            href = tag["href"]
+            # Strip Wayback wrapper prefix (e.g. /web/20050101000000id_/https://...)
+            if href.startswith("/web/"):
+                m = re.search(r'/web/\d+(?:id_)?/(https?://.+)', href)
+                if m:
+                    href = m.group(1)
+            try:
+                parsed = urlparse(href if href.startswith("http") else f"https://{href}")
+                netloc = parsed.netloc.lower().lstrip("www.")
+                if not netloc or netloc == current_domain.lower().lstrip("www."):
+                    continue
+                # Sanity: must look like domain.tld
+                if "." not in netloc or len(netloc) > 100:
+                    continue
+                candidate_url = f"https://{netloc}/"
+                if is_safe_url(candidate_url):
+                    found.add(netloc)
+            except Exception:
+                continue
+    except Exception:
+        pass
+    return found
 
 
 def _detect_language(text: str) -> str:
@@ -151,13 +206,15 @@ async def analyze_domain(domain: str) -> dict:
         try:
             result["first_seen"] = date(int(first_ts[:4]), int(first_ts[4:6]), int(first_ts[6:8]))
             result["last_seen"] = date(int(last_ts[:4]), int(last_ts[4:6]), int(last_ts[6:8]))
-            result["years_active"] = int(last_ts[:4]) - int(first_ts[:4])
+            # Minimum 1 so "has history in one year" is distinguishable from "no history" (None)
+            result["years_active"] = max(1, int(last_ts[:4]) - int(first_ts[:4]))
         except (ValueError, IndexError):
             pass
 
         # Select and analyze key snapshots
         selected = _select_snapshots(all_snapshots, settings.WAYBACK_SAMPLE_SIZE)
         texts = []
+        discovered_domains: set[str] = set()
 
         for snap in selected:
             ts = snap["timestamp"]
@@ -169,6 +226,8 @@ async def analyze_domain(domain: str) -> dict:
                 detail["content_length"] = len(text)
                 detail["language"] = _detect_language(text)
                 texts.append(text)
+                # Collect outbound domains from this snapshot (Layer 4b)
+                discovered_domains |= _extract_outbound_domains(content, domain)
 
             result["snapshot_details"].append(detail)
             await asyncio.sleep(settings.WAYBACK_DELAY_SECONDS)
@@ -181,6 +240,12 @@ async def analyze_domain(domain: str) -> dict:
         # Content drift
         result["content_drift"] = _content_drift(texts)
 
+        # Return snapshot texts so caller can run toxicity scan
+        result["snapshot_texts"] = texts
+
+        # Return collected outbound domains for source auto-creation
+        result["discovered_domains"] = discovered_domains
+
     return result
 
 
@@ -191,10 +256,18 @@ async def check_single(domain: str) -> dict:
 
 async def check_candidates(db: AsyncSession, source_id: int | None = None):
     """
-    Batch Wayback check for all candidates that haven't been checked yet.
+    Batch Wayback check for candidates that:
+    - have never been checked (wayback_checked_at IS NULL), OR
+    - previously failed (wayback_check_failed = True)
     Updates DB directly.
     """
-    query = select(CandidateDomain).where(CandidateDomain.wayback_checked_at.is_(None))
+    from sqlalchemy import or_
+    query = select(CandidateDomain).where(
+        or_(
+            CandidateDomain.wayback_checked_at.is_(None),
+            CandidateDomain.wayback_check_failed == True,
+        )
+    )
     if source_id:
         query = query.where(CandidateDomain.source_id == source_id)
 
@@ -207,6 +280,7 @@ async def check_candidates(db: AsyncSession, source_id: int | None = None):
 
     logger.info("Starting Wayback check for %d candidates", len(candidates))
     checked = 0
+    new_sources = 0
 
     for candidate in candidates:
         try:
@@ -218,18 +292,54 @@ async def check_candidates(db: AsyncSession, source_id: int | None = None):
             candidate.wayback_years_active = data.get("years_active")
             candidate.dominant_language = data.get("dominant_language")
             candidate.content_drift_detected = data.get("content_drift", False)
+
+            snapshot_texts = data.get("snapshot_texts", [])
+
+            # If CDX found snapshots but all individual fetches failed, mark for retry
+            if data["total_snapshots"] > 0 and not snapshot_texts:
+                logger.warning("Wayback %s: %d CDX snapshots but 0 fetched — will retry",
+                               candidate.domain, data["total_snapshots"])
+                candidate.wayback_check_failed = True
+                await db.commit()
+                continue
+
             candidate.wayback_checked_at = datetime.now(timezone.utc)
+            candidate.wayback_check_failed = False
+
+            # Run toxicity scan with real snapshot texts and persist to DB
+            flags = scan_candidate(candidate, snapshot_texts)
+            candidate.toxicity_flags = json.dumps(flags)
 
             checked += 1
-            logger.info("Wayback [%d/%d] %s: %d snapshots, lang=%s",
+            logger.info("Wayback [%d/%d] %s: %d snapshots, lang=%s, toxicity=%d flags, discovered=%d",
                         checked, len(candidates), candidate.domain,
-                        data["total_snapshots"], data.get("dominant_language"))
+                        data["total_snapshots"], data.get("dominant_language"),
+                        len(flags), len(data.get("discovered_domains", set())))
+
+            # --- Layer 4b: auto-create Source for each discovered outbound domain ---
+            for disc_domain in data.get("discovered_domains", set()):
+                source_url = f"https://{disc_domain}/"
+                existing = await db.execute(
+                    select(Source).where(Source.url == source_url)
+                )
+                if existing.scalar_one_or_none() is None:
+                    new_src = Source(
+                        url=source_url,
+                        niche=candidate.niche or "General",
+                        notes=f"Auto-discovered via Wayback scan of {candidate.domain}",
+                        is_active=False,  # owner must review before crawling
+                    )
+                    db.add(new_src)
+                    new_sources += 1
+                    logger.info("  [Wayback] New source: %s (from %s)", source_url, candidate.domain)
 
         except Exception as e:
             logger.error("Wayback error for %s: %s", candidate.domain, e)
-            candidate.wayback_checked_at = datetime.now(timezone.utc)
+            # Mark as failed (not as checked) so it will be retried next run
+            candidate.wayback_check_failed = True
 
         await db.commit()
 
-    logger.info("Wayback check complete: %d/%d", checked, len(candidates))
+    logger.info("Wayback check complete: %d/%d candidates, %d new sources discovered",
+                checked, len(candidates), new_sources)
     return checked

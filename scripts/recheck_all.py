@@ -88,11 +88,15 @@ async def step2_fix_rdap():
 
 async def step3_rescore():
     """Re-score all candidates."""
+    import json
     print("=== STEP 3: Re-score all candidates ===")
     async with async_session() as db:
         result = await db.execute(select(CandidateDomain))
         candidates = result.scalars().all()
-        tox = {c.id: scan_candidate(c, []) for c in candidates}
+        tox = {
+            c.id: json.loads(c.toxicity_flags) if c.toxicity_flags else scan_candidate(c, [])
+            for c in candidates
+        }
         n = await score_candidates(db, toxicity_map=tox)
         print(f"  Scored: {n}\n")
 

@@ -17,7 +17,22 @@ BLACKLIST = {
 }
 
 # Purchasable TLDs
-VALID_TLDS = {"com", "net", "org", "io", "co", "info", "biz", "me", "xyz", "dev", "app"}
+VALID_TLDS = {
+    # Generic / high-value
+    "com", "net", "org", "io", "co", "info", "biz", "xyz", "dev", "app",
+    # Tech / startup favourites
+    "ai", "gg", "sh", "so", "to", "fm", "ws", "la", "is", "mn", "ly",
+    # Country codes with broad secondary market
+    "me", "tv", "cc", "am", "im", "ms", "pw", "gl", "vc",
+    # New gTLDs with active resale market
+    "click", "online", "site", "store", "tech", "space", "blog",
+    "news", "media", "club", "top", "live", "digital", "network",
+    "solutions", "services", "agency", "studio", "design", "plus",
+    # Regional / language-neutral
+    "us", "uk", "eu",
+    # Australian second-level (tldextract returns last segment of suffix)
+    "au",
+}
 
 
 def extract_domain(url: str) -> str | None:

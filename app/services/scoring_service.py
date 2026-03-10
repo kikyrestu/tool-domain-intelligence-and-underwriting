@@ -72,19 +72,34 @@ def _score_continuity(candidate: CandidateDomain) -> float:
     else:
         drift_score = 100
 
-    return snap_score * 0.4 + lang_score * 0.3 + drift_score * 0.3
+    continuity = snap_score * 0.4 + lang_score * 0.3 + drift_score * 0.3
+
+    # MX penalty: active MX records suggest the domain is in use for email.
+    # Reduces continuity (makes it less attractive as a grab) — a small signal.
+    if candidate.dns_mx_records:
+        continuity = max(0.0, continuity - 10)
+
+    return continuity
 
 
-def _score_cleanliness(toxicity_flags: list[dict]) -> float:
+def _score_cleanliness(candidate: CandidateDomain, toxicity_flags: list[dict]) -> float:
     """
     Component 3: Cleanliness score (0-100).
     Starts at 100, each medium flag -30, any high flag = 0.
+    Parked domains get -40. Parking flag in toxicity_flags is skipped if
+    is_parked is already True to avoid double-counting.
     """
     score = 100.0
     for flag in toxicity_flags:
         if flag.get("severity") == "high":
             return 0.0
+        # Skip parking category if is_parked already applies the penalty
+        if flag.get("category") == "parking" and candidate.is_parked:
+            continue
         score -= 30
+
+    if candidate.is_parked:
+        score -= 40
 
     return max(0.0, score)
 
@@ -115,25 +130,19 @@ def _determine_label(candidate: CandidateDomain, total: float,
     if not status or status == "check_failed":
         return "Uncertain"
 
-    # AVAILABLE: domain dead + bisa diambil
-    if not is_alive and status in ("available", "expired"):
+    # AVAILABLE: domain dead/alive + RDAP confirms it can be registered
+    # expiring_soon is NOT included — domain still has a legal owner
+    if status in ("available", "expired"):
         return "Available"
 
-    # AVAILABLE: domain down + expiring_soon (sangat dekat expired)
-    if not is_alive and status == "expiring_soon":
-        return "Available"
-
-    # WATCHLIST: domain expiring (tapi belum pasti bisa diambil)
+    # WATCHLIST: expiring soon/watchlist — still owned, but watch for drop
+    # Also covers dead+expiring_soon (still someone's domain, not buyable yet)
     if status in ("expiring_soon", "expiring_watchlist"):
         return "Watchlist"
 
     # WATCHLIST: domain dead + registered — menarik tapi belum bisa dibeli
     if not is_alive and status == "registered":
         return "Watchlist"
-
-    # AVAILABLE: alive but available/expired (rare edge case)
-    if status in ("available", "expired"):
-        return "Available"
 
     # Fallback
     if total < 30:
@@ -149,7 +158,7 @@ def calculate_score(candidate: CandidateDomain, toxicity_flags: list[dict]) -> d
     """
     s_avail = _score_availability(candidate)
     s_cont = _score_continuity(candidate)
-    s_clean = _score_cleanliness(toxicity_flags)
+    s_clean = _score_cleanliness(candidate, toxicity_flags)
 
     total = round(s_avail * 0.3 + s_cont * 0.4 + s_clean * 0.3, 1)
 
@@ -163,11 +172,17 @@ def calculate_score(candidate: CandidateDomain, toxicity_flags: list[dict]) -> d
     # Domain status context
     reasons.append("Domain alive" if is_alive else "Domain dead")
     reasons.append(status.replace("_", " ").title())
+    if candidate.dns_mx_records:
+        reasons.append("MX active")
+    if candidate.is_parked:
+        reasons.append("🅿️ parked")
 
     snaps = candidate.wayback_total_snapshots or 0
     if snaps > 0:
         years = candidate.wayback_years_active or 0
         reasons.append(f"{years}yr history" if years else f"{snaps} snapshots")
+    elif label == "Available":
+        reasons.append("⚠️ no history data")
 
     if candidate.dominant_language and candidate.dominant_language != "unknown":
         reasons.append(candidate.dominant_language.upper())

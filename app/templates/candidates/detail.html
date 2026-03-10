@@ -17,6 +17,12 @@
 
         <!-- Score Circle -->
         <div class="flex items-center gap-6">
+            <form method="post" action="/candidates/{{ c.id }}/star">
+                <button type="submit" title="{% if c.is_starred %}Unstar{% else %}Star this domain{% endif %}"
+                        class="text-3xl leading-none hover:scale-110 transition-transform">
+                    {% if c.is_starred %}⭐{% else %}☆{% endif %}
+                </button>
+            </form>
             <form method="post" action="/candidates/{{ c.id }}/delete" onsubmit="return confirm('Delete this candidate?')">
                 <button type="submit" class="px-3 py-2 bg-red-600 text-white text-xs font-medium rounded-lg hover:bg-red-700">Delete</button>
             </form>

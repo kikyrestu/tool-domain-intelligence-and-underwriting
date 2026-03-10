@@ -1,5 +1,6 @@
 """Crawl routes — trigger crawl, RDAP, Wayback, Score."""
 
+import json
 import logging
 import os
 from fastapi import APIRouter, Depends, Request, BackgroundTasks
@@ -58,8 +59,7 @@ async def _background_crawl(source_id: int):
 
         toxicity_map: dict[int, list[dict]] = {}
         for c in candidates:
-            flags = scan_candidate(c, [])
-            toxicity_map[c.id] = flags
+            toxicity_map[c.id] = json.loads(c.toxicity_flags) if c.toxicity_flags else scan_candidate(c, [])
 
         await score_candidates(db, source_id=source_id, toxicity_map=toxicity_map)
 
@@ -90,8 +90,7 @@ async def _background_score(source_id: int | None = None):
 
         toxicity_map: dict[int, list[dict]] = {}
         for c in candidates:
-            flags = scan_candidate(c, [])  # Text flags already processed during Wayback
-            toxicity_map[c.id] = flags
+            toxicity_map[c.id] = json.loads(c.toxicity_flags) if c.toxicity_flags else scan_candidate(c, [])
 
         await score_candidates(db, source_id=source_id, toxicity_map=toxicity_map)
 
@@ -148,6 +147,35 @@ async def trigger_score(
 @router.post("/score-all")
 async def trigger_score_all(background_tasks: BackgroundTasks):
     background_tasks.add_task(_background_score, None)
+    return RedirectResponse(url="/candidates", status_code=303)
+
+
+async def _background_recheck_all():
+    """Full re-check pipeline: RDAP → Wayback → Score semua kandidat."""
+    logger.info("[Recheck All] Starting RDAP re-check for all candidates…")
+    async with async_session() as db:
+        await whois_check(db, source_id=None)
+
+    logger.info("[Recheck All] RDAP done. Starting Wayback re-check…")
+    async with async_session() as db:
+        await wayback_check(db, source_id=None)
+
+    logger.info("[Recheck All] Wayback done. Starting scoring…")
+    async with async_session() as db:
+        result = await db.execute(select(CandidateDomain))
+        candidates = result.scalars().all()
+        toxicity_map: dict[int, list[dict]] = {}
+        for c in candidates:
+            toxicity_map[c.id] = json.loads(c.toxicity_flags) if c.toxicity_flags else scan_candidate(c, [])
+        await score_candidates(db, source_id=None, toxicity_map=toxicity_map)
+
+    logger.info("[Recheck All] Full re-check complete ✓")
+
+
+@router.post("/recheck-all")
+async def trigger_recheck_all(background_tasks: BackgroundTasks):
+    """Trigger full re-check pipeline for ALL candidates in background."""
+    background_tasks.add_task(_background_recheck_all)
     return RedirectResponse(url="/candidates", status_code=303)
 
 

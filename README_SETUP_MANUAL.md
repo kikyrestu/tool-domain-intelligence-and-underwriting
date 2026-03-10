@@ -75,12 +75,8 @@ pip install -r requirements.txt
 2. Buka file `.env` (bisa pakai Notepad), ubah bagian ini:
 
    ```env
-   # Sesuaikan dengan yang dibuat di langkah 2
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_NAME=domainiq_db
-   DB_USER=domainiq_user
-   DB_PASSWORD=passwordkuat
+   # Ganti user/password/dbname sesuai yang dibuat di langkah 2
+   DATABASE_URL=postgresql+asyncpg://domainiq_user:passwordkuat@localhost:5432/domainiq_db
 
    AUTH_USERNAME=admin
    AUTH_PASSWORD=PasswordLoginDashboard!
@@ -129,9 +125,9 @@ Buka **Services** (Win+R → `services.msc`) → cari `postgresql` → klik **St
 
 ### Error: `password authentication failed for user "domainiq_user"`
 
-**Penyebab:** Password di `DB_PASSWORD` salah atau user belum dibuat.
+**Penyebab:** Password di `DATABASE_URL` salah atau user belum dibuat.
 
-1. Periksa kembali `DB_PASSWORD` di file `.env`.
+1. Periksa kembali password di `DATABASE_URL` dalam file `.env`.
 2. Reset password user di PostgreSQL:
 
    ```bash
@@ -141,7 +137,7 @@ Buka **Services** (Win+R → `services.msc`) → cari `postgresql` → klik **St
    ALTER USER domainiq_user WITH PASSWORD 'password-baru';
    \q
    ```
-3. Update `DB_PASSWORD` di `.env` sesuai password baru.
+3. Update `DATABASE_URL` di `.env` sesuai password baru.
 
 ---
 
@@ -178,7 +174,11 @@ GRANT ALL PRIVILEGES ON DATABASE domainiq_db TO domainiq_user;
 
 ### Error: `SSL connection has been closed unexpectedly`
 
-Pastikan `DB_HOST=localhost` — jangan pakai host cloud di sini.
+Hapus `?ssl=require` dari `DATABASE_URL` — itu hanya untuk cloud, bukan lokal:
+
+```env
+DATABASE_URL=postgresql+asyncpg://domainiq_user:passwordkuat@localhost:5432/domainiq_db
+```
 
 ---
 
@@ -202,14 +202,9 @@ python -c "
 import asyncio, asyncpg, os
 from dotenv import load_dotenv
 load_dotenv()
+url = os.getenv('DATABASE_URL', '').replace('postgresql+asyncpg://', 'postgresql://')
 async def test():
-    conn = await asyncpg.connect(
-        host=os.getenv('DB_HOST','localhost'),
-        port=int(os.getenv('DB_PORT', 5432)),
-        database=os.getenv('DB_NAME'),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'),
-    )
+    conn = await asyncpg.connect(url)
     ver = await conn.fetchval('SELECT version()')
     print('OK — Terhubung ke:', ver[:50])
     await conn.close()

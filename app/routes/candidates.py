@@ -27,6 +27,7 @@ async def list_candidates(
     niche: str = Query(None),
     q: str = Query(None),
     sort: str = Query("created_at"),
+    starred: bool = Query(False),
     db: AsyncSession = Depends(get_db),
 ):
     query = select(CandidateDomain)
@@ -48,6 +49,9 @@ async def list_candidates(
 
     if q:
         query = query.where(CandidateDomain.domain.ilike(f"%{q}%"))
+
+    if starred:
+        query = query.where(CandidateDomain.is_starred == True)
 
     # Count
     count_query = select(func.count()).select_from(query.subquery())
@@ -100,6 +104,10 @@ async def list_candidates(
         select(func.count()).where(CandidateDomain.label == "Discard")
     )).scalar()
 
+    starred_count = (await db.execute(
+        select(func.count()).where(CandidateDomain.is_starred == True)
+    )).scalar()
+
     # Niches for filter dropdown
     niche_result = await db.execute(
         select(CandidateDomain.niche).distinct()
@@ -124,6 +132,7 @@ async def list_candidates(
         "watchlist_count": watchlist_count,
         "uncertain_count": uncertain_count,
         "discard_count": discard_count,
+        "starred_count": starred_count,
         "niches": niches,
         "current_status": status,
         "current_availability": availability,
@@ -131,6 +140,7 @@ async def list_candidates(
         "current_niche": niche,
         "current_q": q,
         "current_sort": sort,
+        "current_starred": starred,
     })
 
 
@@ -173,6 +183,19 @@ async def candidate_detail(
         "flags": flags,
         "domain_age": domain_age,
     })
+
+
+@router.post("/candidates/{candidate_id}/star")
+async def toggle_star(
+    candidate_id: int,
+    db: AsyncSession = Depends(get_db),
+):
+    candidate = await db.get(CandidateDomain, candidate_id)
+    if candidate:
+        candidate.is_starred = not candidate.is_starred
+        await db.commit()
+        await db.refresh(candidate)
+    return RedirectResponse(url=f"/candidates/{candidate_id}", status_code=303)
 
 
 @router.post("/candidates/{candidate_id}/notes")
