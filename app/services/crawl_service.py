@@ -644,7 +644,9 @@ async def run_crawl(source_id: int, db: AsyncSession):
         links = _extract_outbound_links(html, source.url)
         logger.info("Fetched HTML: %d chars, extracted %d links from %s", len(html), len(links), source.url)
         links = links[:settings.MAX_CANDIDATES_PER_CRAWL]
-        job.total_links_found = len(links)
+
+        with db.no_autoflush:
+            job.total_links_found = len(links)
 
         # 3. Check domains concurrently (using ROOT domain, not specific URL)
         semaphore = asyncio.Semaphore(MAX_CONCURRENT)
@@ -704,9 +706,13 @@ async def run_crawl(source_id: int, db: AsyncSession):
         return job
 
     except Exception as e:
-        job.status = "failed"
-        job.error_message = str(e)
-        job.completed_at = datetime.now(timezone.utc)
-        await db.commit()
         logger.error("Crawl failed: %s", e)
+        try:
+            await db.rollback()
+            job.status = "failed"
+            job.error_message = str(e)[:500]
+            job.completed_at = datetime.now(timezone.utc)
+            await db.commit()
+        except Exception as commit_err:
+            logger.error("Failed to save crawl failure state: %s", commit_err)
         return job
