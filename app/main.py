@@ -10,7 +10,7 @@ from sqlalchemy import text
 
 from app.database import engine, Base
 from app.services.scheduler_service import run_scheduler
-from app.routes import dashboard, sources, crawl, candidates, export, logs
+from app.routes import dashboard, sources, crawl, candidates, export, logs, suggested_sources
 from app.auth import BasicAuthMiddleware
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
@@ -24,9 +24,19 @@ async def lifespan(app: FastAPI):
         # Auto-add new columns that may not exist on older DBs
         migrations = [
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS is_starred BOOLEAN DEFAULT FALSE",
+            "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS dns_mx_records BOOLEAN",
+            "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS is_parked BOOLEAN DEFAULT FALSE",
+            "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS toxicity_flags TEXT",
+            "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS wayback_check_failed BOOLEAN DEFAULT FALSE",
+            "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS label_reason TEXT",
+            "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS owner_notes TEXT",
         ]
         for sql in migrations:
             await conn.execute(text(sql))
+
+        # Create new tables that may not exist yet
+        from app.models.suggested_source import SuggestedSource  # noqa: F401 — ensure table registered
+        await conn.run_sync(Base.metadata.create_all)
 
     # Start background scheduler (re-check starred domains)
     from app.config import get_settings
@@ -57,6 +67,7 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 # Routes
 app.include_router(dashboard.router)
 app.include_router(sources.router)
+app.include_router(suggested_sources.router)
 app.include_router(crawl.router)
 app.include_router(candidates.router)
 app.include_router(export.router)

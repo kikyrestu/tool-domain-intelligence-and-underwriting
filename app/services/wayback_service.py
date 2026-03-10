@@ -316,22 +316,28 @@ async def check_candidates(db: AsyncSession, source_id: int | None = None):
                         data["total_snapshots"], data.get("dominant_language"),
                         len(flags), len(data.get("discovered_domains", set())))
 
-            # --- Layer 4b: auto-create Source for each discovered outbound domain ---
+            # --- Layer 4b: save discovered outbound domains as suggestions (not live sources) ---
+            from app.models.suggested_source import SuggestedSource
             for disc_domain in data.get("discovered_domains", set()):
                 source_url = f"https://{disc_domain}/"
-                existing = await db.execute(
+                # Skip if already a live source
+                existing_src = await db.execute(
                     select(Source).where(Source.url == source_url)
                 )
-                if existing.scalar_one_or_none() is None:
-                    new_src = Source(
+                if existing_src.scalar_one_or_none() is not None:
+                    continue
+                # Skip if already suggested
+                existing_sug = await db.execute(
+                    select(SuggestedSource).where(SuggestedSource.url == source_url)
+                )
+                if existing_sug.scalar_one_or_none() is None:
+                    db.add(SuggestedSource(
                         url=source_url,
+                        discovered_from=candidate.domain,
                         niche=candidate.niche or "General",
-                        notes=f"Auto-discovered via Wayback scan of {candidate.domain}",
-                        is_active=False,  # owner must review before crawling
-                    )
-                    db.add(new_src)
+                    ))
                     new_sources += 1
-                    logger.info("  [Wayback] New source: %s (from %s)", source_url, candidate.domain)
+                    logger.info("  [Wayback] Suggested source: %s (from %s)", source_url, candidate.domain)
 
         except Exception as e:
             logger.error("Wayback error for %s: %s", candidate.domain, e)

@@ -8,8 +8,7 @@ from functools import lru_cache
 
 
 class Settings(BaseSettings):
-    # Database — bisa pakai DATABASE_URL langsung (legacy)
-    # atau pakai field terpisah (DB_HOST, DB_NAME, DB_USER, DB_PASSWORD)
+    # Database — bisa pakai DATABASE_URL langsung ATAU field terpisah
     DATABASE_URL: str = ""
 
     DB_HOST: str = ""
@@ -17,11 +16,10 @@ class Settings(BaseSettings):
     DB_NAME: str = ""
     DB_USER: str = ""
     DB_PASSWORD: str = ""
-    DB_SSL: bool = True  # set False untuk koneksi lokal tanpa SSL
+    DB_SSL: bool = False  # True untuk cloud/Neon yang wajib SSL
 
     @model_validator(mode="after")
     def assemble_db_url(self) -> "Settings":
-        """Rakit DATABASE_URL dari field terpisah jika DATABASE_URL belum diset."""
         if not self.DATABASE_URL and self.DB_HOST and self.DB_NAME:
             ssl_param = "?ssl=require" if self.DB_SSL else ""
             self.DATABASE_URL = (
@@ -30,7 +28,7 @@ class Settings(BaseSettings):
             )
         if not self.DATABASE_URL:
             raise ValueError(
-                "Set DATABASE_URL atau DB_HOST + DB_NAME + DB_USER + DB_PASSWORD di .env"
+                "Set DATABASE_URL atau DB_HOST+DB_NAME+DB_USER+DB_PASSWORD di .env"
             )
         return self
 

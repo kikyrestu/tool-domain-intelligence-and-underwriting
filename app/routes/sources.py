@@ -57,6 +57,7 @@ async def list_sources(request: Request, db: AsyncSession = Depends(get_db)):
         "request": request,
         "sources": sources,
         "stats": source_stats,
+        "niches": NICHES,
     })
 
 
@@ -119,6 +120,44 @@ async def source_detail(request: Request, source_id: int, db: AsyncSession = Dep
         "jobs": jobs,
         "candidates": candidates,
     })
+
+
+@router.post("/sources/bulk-delete")
+async def bulk_delete_sources(request: Request, db: AsyncSession = Depends(get_db)):
+    form = await request.form()
+    ids = [int(v) for v in form.getlist("ids") if str(v).isdigit()]
+    for source_id in ids:
+        source = await db.get(Source, source_id)
+        if source:
+            await db.delete(source)
+    await db.commit()
+    return RedirectResponse(url="/sources", status_code=303)
+
+
+@router.post("/sources/{source_id}/toggle")
+async def toggle_source(source_id: int, db: AsyncSession = Depends(get_db)):
+    source = await db.get(Source, source_id)
+    if source:
+        source.is_active = not source.is_active
+        await db.commit()
+    return RedirectResponse(url="/sources", status_code=303)
+
+
+@router.post("/sources/{source_id}/edit")
+async def edit_source(
+    source_id: int,
+    url: str = Form(...),
+    niche: str = Form("General"),
+    notes: str = Form(None),
+    db: AsyncSession = Depends(get_db),
+):
+    source = await db.get(Source, source_id)
+    if source:
+        source.url = url.strip()
+        source.niche = niche
+        source.notes = notes.strip() if notes else None
+        await db.commit()
+    return RedirectResponse(url="/sources", status_code=303)
 
 
 @router.post("/sources/{source_id}/delete")

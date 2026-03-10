@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% block title %}Suggested Sources — Domain IQ{% endblock %}
+{% block nav_sources %}font-semibold text-indigo-600{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900">Suggested Sources</h1>
+        <p class="text-sm text-gray-500 mt-1">
+            Domain outbound yang ditemukan Wayback Machine — pilih mana yang mau di-approve jadi source crawl.
+        </p>
+    </div>
+    <a href="/sources" class="text-sm text-gray-500 hover:text-gray-700">← Back to Sources</a>
+</div>
+
+{% if suggestions %}
+
+<!-- Bulk action bar -->
+<div id="bulk-bar" class="hidden mb-3 flex items-center gap-3 bg-indigo-50 border border-indigo-200 rounded-lg px-4 py-2 flex-wrap">
+    <span id="bulk-count" class="text-sm font-medium text-indigo-700">0 selected</span>
+
+    <!-- Bulk approve -->
+    <form id="bulk-approve-form" method="post" action="/sources/suggested/bulk-approve">
+        <div id="bulk-approve-ids"></div>
+        <select name="niche" class="text-sm border border-gray-300 rounded px-2 py-1 mr-1">
+            {% for n in niches %}
+            <option value="{{ n }}">{{ n }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" onclick="return injectBulkIds('bulk-approve-ids')"
+            class="px-3 py-1 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700">
+            ✓ Approve Selected
+        </button>
+    </form>
+
+    <!-- Bulk reject -->
+    <form id="bulk-reject-form" method="post" action="/sources/suggested/bulk-reject"
+        onsubmit="return injectBulkIds('bulk-reject-ids') && confirm('Reject dan hapus ' + document.querySelectorAll('.row-check:checked').length + ' suggestion(s)?')">
+        <div id="bulk-reject-ids"></div>
+        <button type="submit"
+            class="px-3 py-1 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700">
+            ✗ Reject Selected
+        </button>
+    </form>
+
+    <button onclick="selectNone()" class="text-sm text-gray-500 hover:text-gray-700 underline">Clear</button>
+</div>
+
+<div class="bg-white rounded-lg border border-gray-200">
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-4 py-3 w-8">
+                        <input type="checkbox" id="select-all" onchange="toggleAll(this)"
+                            class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                    </th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Suggested URL</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Discovered From</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Niche</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {% for sug in suggestions %}
+                <tr class="hover:bg-gray-50">
+                    <td class="px-4 py-3">
+                        <input type="checkbox" value="{{ sug.id }}" class="row-check rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" onchange="onCheckChange()">
+                    </td>
+                    <td class="px-5 py-3 text-sm">
+                        <a href="{{ sug.url }}" target="_blank" rel="noopener noreferrer"
+                            class="text-indigo-600 hover:text-indigo-800 font-medium">
+                            {{ sug.url[:70] }}{% if sug.url|length > 70 %}...{% endif %}
+                        </a>
+                    </td>
+                    <td class="px-5 py-3 text-sm text-gray-500">
+                        <span class="font-mono text-xs bg-gray-100 px-1.5 py-0.5 rounded">{{ sug.discovered_from }}</span>
+                    </td>
+                    <td class="px-5 py-3 text-sm">
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-blue-100 text-blue-700">
+                            {{ sug.niche }}
+                        </span>
+                    </td>
+                    <td class="px-5 py-3 text-sm text-gray-400">
+                        {{ sug.created_at.strftime('%d %b %Y') if sug.created_at else '—' }}
+                    </td>
+                    <td class="px-5 py-3 text-sm">
+                        <div class="flex items-center gap-3">
+                            <button onclick="openApprove({{ sug.id }}, {{ sug.url | tojson }}, {{ sug.niche | tojson }})"
+                                class="text-green-600 hover:text-green-800 font-medium">Approve</button>
+                            <form method="post" action="/sources/suggested/{{ sug.id }}/reject" class="inline"
+                                onsubmit="return confirm('Reject dan hapus suggestion ini?')">
+                                <button type="submit" class="text-red-500 hover:text-red-700 font-medium">Reject</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Approve Modal -->
+<dialog id="approve-modal" class="rounded-xl shadow-2xl p-0 w-full max-w-md backdrop:bg-black/40">
+    <form method="post" id="approve-form" action="">
+        <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+            <h3 class="text-base font-semibold text-gray-900">Approve Source</h3>
+            <button type="button" onclick="document.getElementById('approve-modal').close()"
+                class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+        </div>
+        <div class="px-6 py-4 space-y-4">
+            <div>
+                <p class="text-xs text-gray-500 mb-1">URL</p>
+                <p id="approve-url-display" class="text-sm font-medium text-gray-800 break-all"></p>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Niche</label>
+                <select id="approve-niche" name="niche"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    {% for n in niches %}
+                    <option value="{{ n }}">{{ n }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Notes <span class="text-gray-400 font-normal">(opsional)</span></label>
+                <textarea name="notes" rows="2"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+                    placeholder="Kosongkan untuk pakai notes default"></textarea>
+            </div>
+        </div>
+        <div class="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
+            <button type="button" onclick="document.getElementById('approve-modal').close()"
+                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                Cancel
+            </button>
+            <button type="submit"
+                class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700">
+                ✓ Approve & Add Source
+            </button>
+        </div>
+    </form>
+</dialog>
+
+{% else %}
+<div class="bg-white rounded-lg border border-gray-200 p-10 text-center">
+    <p class="text-gray-400 text-lg">No suggestions yet</p>
+    <p class="text-gray-400 text-sm mt-1">Wayback scan akan otomatis menambahkan domain yang ditemukan di sini</p>
+    <a href="/sources" class="inline-flex items-center mt-4 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700">
+        ← Back to Sources
+    </a>
+</div>
+{% endif %}
+
+<script>
+function toggleAll(cb) {
+    document.querySelectorAll('.row-check').forEach(c => c.checked = cb.checked);
+    onCheckChange();
+}
+
+function selectNone() {
+    document.querySelectorAll('.row-check').forEach(c => c.checked = false);
+    document.getElementById('select-all').checked = false;
+    onCheckChange();
+}
+
+function onCheckChange() {
+    const checked = document.querySelectorAll('.row-check:checked');
+    const bar = document.getElementById('bulk-bar');
+    document.getElementById('bulk-count').textContent = checked.length + ' selected';
+    bar.classList.toggle('hidden', checked.length === 0);
+    const all = document.querySelectorAll('.row-check');
+    document.getElementById('select-all').indeterminate = checked.length > 0 && checked.length < all.length;
+    document.getElementById('select-all').checked = checked.length === all.length;
+}
+
+function injectBulkIds(containerId) {
+    const checked = document.querySelectorAll('.row-check:checked');
+    if (!checked.length) return false;
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    checked.forEach(c => {
+        const inp = document.createElement('input');
+        inp.type = 'hidden';
+        inp.name = 'ids';
+        inp.value = c.value;
+        container.appendChild(inp);
+    });
+    return true;
+}
+
+function openApprove(id, url, niche) {
+    document.getElementById('approve-form').action = '/sources/suggested/' + id + '/approve';
+    document.getElementById('approve-url-display').textContent = url;
+    document.getElementById('approve-niche').value = niche;
+    document.getElementById('approve-modal').showModal();
+}
+</script>
+{% endblock %}
