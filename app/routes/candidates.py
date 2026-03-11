@@ -4,7 +4,7 @@ from datetime import date
 from fastapi import APIRouter, Depends, Request, Form, Query
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
-from sqlalchemy import select, func, or_
+from sqlalchemy import select, func, or_, asc, desc
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
@@ -27,6 +27,7 @@ async def list_candidates(
     niche: str = Query(None),
     q: str = Query(None),
     sort: str = Query("created_at"),
+    order: str = Query("desc"),
     starred: bool = Query(False),
     db: AsyncSession = Depends(get_db),
 ):
@@ -58,10 +59,25 @@ async def list_candidates(
     total = (await db.execute(count_query)).scalar()
 
     # Sort
+    sort_dir = desc if order == "desc" else asc
     if sort == "domain":
-        query = query.order_by(CandidateDomain.domain)
+        query = query.order_by(asc(CandidateDomain.domain))
     elif sort == "score":
-        query = query.order_by(CandidateDomain.score_total.desc().nulls_last())
+        query = query.order_by(sort_dir(CandidateDomain.score_total).nulls_last())
+    elif sort == "expires":
+        query = query.order_by(asc(CandidateDomain.whois_expiry_date).nulls_last() if order != "desc" else desc(CandidateDomain.whois_expiry_date).nulls_last())
+    elif sort == "snapshots":
+        query = query.order_by(sort_dir(CandidateDomain.wayback_total_snapshots).nulls_last())
+    elif sort == "niche":
+        query = query.order_by(sort_dir(CandidateDomain.niche))
+    elif sort == "availability":
+        query = query.order_by(sort_dir(CandidateDomain.availability_status))
+    elif sort == "label":
+        query = query.order_by(sort_dir(CandidateDomain.label))
+    elif sort == "lang":
+        query = query.order_by(sort_dir(CandidateDomain.dominant_language).nulls_last())
+    elif sort == "status":
+        query = query.order_by(sort_dir(CandidateDomain.is_domain_alive).nulls_last())
     else:
         query = query.order_by(CandidateDomain.created_at.desc())
 
@@ -140,6 +156,7 @@ async def list_candidates(
         "current_niche": niche,
         "current_q": q,
         "current_sort": sort,
+        "current_order": order,
         "current_starred": starred,
     })
 

@@ -125,6 +125,13 @@
                 <option value="created_at" {% if current_sort == 'created_at' %}selected{% endif %}>Newest</option>
                 <option value="domain" {% if current_sort == 'domain' %}selected{% endif %}>Domain</option>
                 <option value="score" {% if current_sort == 'score' %}selected{% endif %}>Score</option>
+                <option value="expires" {% if current_sort == 'expires' %}selected{% endif %}>Expires</option>
+                <option value="snapshots" {% if current_sort == 'snapshots' %}selected{% endif %}>Snapshots</option>
+                <option value="niche" {% if current_sort == 'niche' %}selected{% endif %}>Niche</option>
+                <option value="availability" {% if current_sort == 'availability' %}selected{% endif %}>Availability</option>
+                <option value="label" {% if current_sort == 'label' %}selected{% endif %}>Label</option>
+                <option value="lang" {% if current_sort == 'lang' %}selected{% endif %}>Language</option>
+                <option value="status" {% if current_sort == 'status' %}selected{% endif %}>Status</option>
             </select>
         </div>
         <button type="submit" class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700">Filter</button>
@@ -167,18 +174,40 @@
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
+                {% set _q = current_q or '' %}
+                {% set _status = current_status or '' %}
+                {% set _avail = current_availability or '' %}
+                {% set _label = current_label or '' %}
+                {% set _niche = current_niche or '' %}
+                {% set _starred = '&starred=true' if current_starred else '' %}
+                {% macro sort_link(col, label, default_order='desc', align='left') %}
+                    {% set is_active = current_sort == col %}
+                    {% if is_active %}
+                        {% set next_order = 'asc' if current_order == 'desc' else 'desc' %}
+                        {% set arrow = ' ↓' if current_order == 'desc' else ' ↑' %}
+                    {% else %}
+                        {% set next_order = default_order %}
+                        {% set arrow = '' %}
+                    {% endif %}
+                    <th class="px-4 py-3 text-{{ align }} text-xs font-medium uppercase">
+                        <a href="/candidates?page=1&status={{ _status }}&availability={{ _avail }}&label={{ _label }}&niche={{ _niche }}&q={{ _q }}&sort={{ col }}&order={{ next_order }}{{ _starred }}"
+                           class="inline-flex items-center gap-0.5 hover:text-indigo-600 transition-colors {% if is_active %}text-indigo-600{% else %}text-gray-500{% endif %}">
+                            {{ label }}{% if arrow %}<span class="text-indigo-400">{{ arrow }}</span>{% endif %}
+                        </a>
+                    </th>
+                {% endmacro %}
                 <tr>
                     <th class="px-3 py-3 w-8"><input type="checkbox" id="selectAll" class="rounded border-gray-300" title="Select all"></th>
                     <th class="px-3 py-3 w-8"></th>
-                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Domain</th>
-                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Niche</th>
-                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Availability</th>
-                    <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Score</th>
-                    <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Label</th>
-                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Snapshots</th>
-                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Lang</th>
-                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Expires</th>
+                    {{ sort_link('domain', 'Domain', 'asc') }}
+                    {{ sort_link('niche', 'Niche', 'asc') }}
+                    {{ sort_link('status', 'Status', 'desc') }}
+                    {{ sort_link('availability', 'Availability', 'asc') }}
+                    {{ sort_link('score', 'Score', 'desc', 'center') }}
+                    {{ sort_link('label', 'Label', 'asc', 'center') }}
+                    {{ sort_link('snapshots', 'Snapshots', 'desc') }}
+                    {{ sort_link('lang', 'Lang', 'asc') }}
+                    {{ sort_link('expires', 'Expires', 'asc') }}
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
@@ -260,12 +289,12 @@
     {% if total_pages > 1 %}
     <div class="px-5 py-3 border-t border-gray-200 flex justify-center gap-2">
         {% if page > 1 %}
-        <a href="/candidates?page={{ page - 1 }}&status={{ current_status or '' }}&availability={{ current_availability or '' }}&label={{ current_label or '' }}&niche={{ current_niche or '' }}&q={{ current_q or '' }}&sort={{ current_sort }}"
+        <a href="/candidates?page={{ page - 1 }}&status={{ current_status or '' }}&availability={{ current_availability or '' }}&label={{ current_label or '' }}&niche={{ current_niche or '' }}&q={{ current_q or '' }}&sort={{ current_sort }}&order={{ current_order }}"
            class="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">&larr; Prev</a>
         {% endif %}
         <span class="px-3 py-1 text-sm text-gray-500">Page {{ page }} of {{ total_pages }}</span>
         {% if page < total_pages %}
-        <a href="/candidates?page={{ page + 1 }}&status={{ current_status or '' }}&availability={{ current_availability or '' }}&label={{ current_label or '' }}&niche={{ current_niche or '' }}&q={{ current_q or '' }}&sort={{ current_sort }}"
+        <a href="/candidates?page={{ page + 1 }}&status={{ current_status or '' }}&availability={{ current_availability or '' }}&label={{ current_label or '' }}&niche={{ current_niche or '' }}&q={{ current_q or '' }}&sort={{ current_sort }}&order={{ current_order }}"
            class="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">Next &rarr;</a>
         {% endif %}
     </div>
