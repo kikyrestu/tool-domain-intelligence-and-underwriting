@@ -3,6 +3,7 @@
 import json
 import logging
 import os
+from datetime import datetime, timedelta
 from fastapi import APIRouter, Depends, Request, BackgroundTasks
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -113,13 +114,25 @@ async def _background_score(source_id: int | None = None):
 @router.get("/crawl/active-partial")
 async def active_crawls_partial(request: Request, db: AsyncSession = Depends(get_db)):
     """Return partial HTML with progress bars for all running pipeline jobs."""
+    from datetime import timezone as tz
+    cutoff = datetime.now(tz.utc).replace(tzinfo=None) - timedelta(hours=3)
     result = await db.execute(
         select(CrawlJob)
-        .where(CrawlJob.current_step.in_(["crawling", "rdap", "wayback", "scoring"]))
+        .where(
+            CrawlJob.current_step.in_(["crawling", "rdap", "wayback", "scoring"]),
+            CrawlJob.started_at >= cutoff,
+        )
         .options(selectinload(CrawlJob.source))
         .order_by(CrawlJob.created_at.desc())
     )
-    active_jobs = result.scalars().all()
+    all_jobs = result.scalars().all()
+    # Deduplicate: only show the latest job per source
+    seen = set()
+    active_jobs = []
+    for job in all_jobs:
+        if job.source_id not in seen:
+            seen.add(job.source_id)
+            active_jobs.append(job)
     return templates.TemplateResponse("partials/active_crawls.html", {
         "request": request,
         "active_jobs": active_jobs,
