@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends, Request, BackgroundTasks
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db, async_session
@@ -40,17 +41,30 @@ for _mod in ("app.services.crawl_service", "app.services.whois_service",
 async def _background_crawl(source_id: int):
     """Run full pipeline in background: crawl → WHOIS → Wayback → Score."""
     async with async_session() as db:
-        await run_crawl(source_id, db)
+        result = await run_crawl(source_id, db)
+    job_id = result.id if result else None
+
+    async def _update_step(step: str):
+        if not job_id:
+            return
+        async with async_session() as db:
+            job = await db.get(CrawlJob, job_id)
+            if job:
+                job.current_step = step
+                await db.commit()
 
     logger.info("Crawl done for source %d, starting RDAP check…", source_id)
+    await _update_step("rdap")
     async with async_session() as db:
         await whois_check(db, source_id=source_id)
 
     logger.info("RDAP done for source %d, starting Wayback check…", source_id)
+    await _update_step("wayback")
     async with async_session() as db:
         await wayback_check(db, source_id=source_id)
 
     logger.info("Wayback done for source %d, starting scoring…", source_id)
+    await _update_step("scoring")
     async with async_session() as db:
         query = select(CandidateDomain)
         query = query.where(CandidateDomain.source_id == source_id)
@@ -63,6 +77,7 @@ async def _background_crawl(source_id: int):
 
         await score_candidates(db, source_id=source_id, toxicity_map=toxicity_map)
 
+    await _update_step("done")
     logger.info("Full pipeline complete for source %d ✓", source_id)
 
 
@@ -93,6 +108,22 @@ async def _background_score(source_id: int | None = None):
             toxicity_map[c.id] = json.loads(c.toxicity_flags) if c.toxicity_flags else scan_candidate(c, [])
 
         await score_candidates(db, source_id=source_id, toxicity_map=toxicity_map)
+
+
+@router.get("/crawl/active-partial")
+async def active_crawls_partial(request: Request, db: AsyncSession = Depends(get_db)):
+    """Return partial HTML with progress bars for all running pipeline jobs."""
+    result = await db.execute(
+        select(CrawlJob)
+        .where(CrawlJob.current_step.in_(["crawling", "rdap", "wayback", "scoring"]))
+        .options(selectinload(CrawlJob.source))
+        .order_by(CrawlJob.created_at.desc())
+    )
+    active_jobs = result.scalars().all()
+    return templates.TemplateResponse("partials/active_crawls.html", {
+        "request": request,
+        "active_jobs": active_jobs,
+    })
 
 
 @router.post("/crawl/{source_id}")

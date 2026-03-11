@@ -28,6 +28,13 @@
     </a>
 </div>
 
+<!-- Active Crawl Pipeline (auto-refresh every 3s via HTMX) -->
+<div id="active-crawls-container"
+     hx-get="/crawl/active-partial"
+     hx-trigger="load, every 3s"
+     hx-swap="innerHTML">
+</div>
+
 <!-- Label Summary -->
 <div class="grid grid-cols-4 gap-4 mb-6">
     <a href="/candidates?label=Available" class="bg-green-50 rounded-lg border border-green-200 p-5 hover:bg-green-100 transition">

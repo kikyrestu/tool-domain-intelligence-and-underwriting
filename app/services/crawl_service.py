@@ -626,7 +626,7 @@ async def run_crawl(source_id: int, db: AsyncSession):
         raise ValueError(f"Source {source_id} not found")
 
     # Create crawl job
-    job = CrawlJob(source_id=source_id, status="running", started_at=datetime.now(timezone.utc))
+    job = CrawlJob(source_id=source_id, status="running", current_step="crawling", started_at=datetime.now(timezone.utc))
     db.add(job)
     await db.flush()
 

@@ -23,6 +23,7 @@ async def lifespan(app: FastAPI):
         await conn.run_sync(Base.metadata.create_all)
         # Auto-add new columns that may not exist on older DBs
         migrations = [
+            "ALTER TABLE crawl_jobs ADD COLUMN IF NOT EXISTS current_step VARCHAR(20)",
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS is_starred BOOLEAN DEFAULT FALSE",
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS dns_mx_records BOOLEAN",
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS is_parked BOOLEAN DEFAULT FALSE",
