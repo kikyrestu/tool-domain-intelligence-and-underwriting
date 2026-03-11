@@ -45,27 +45,29 @@ async def _background_crawl(source_id: int):
         result = await run_crawl(source_id, db)
     job_id = result.id if result else None
 
-    async def _update_step(step: str):
+    async def _update_step(step: str, stage_multiplier: int = 0):
         if not job_id:
             return
         async with async_session() as db:
             job = await db.get(CrawlJob, job_id)
             if job:
                 job.current_step = step
+                if stage_multiplier > 0 and job.total_links_found:
+                    job.processed_count = job.total_links_found * stage_multiplier
                 await db.commit()
 
     logger.info("Crawl done for source %d, starting RDAP check…", source_id)
-    await _update_step("rdap")
+    await _update_step("rdap", 1)
     async with async_session() as db:
         await whois_check(db, source_id=source_id)
 
     logger.info("RDAP done for source %d, starting Wayback check…", source_id)
-    await _update_step("wayback")
+    await _update_step("wayback", 2)
     async with async_session() as db:
         await wayback_check(db, source_id=source_id)
 
     logger.info("Wayback done for source %d, starting scoring…", source_id)
-    await _update_step("scoring")
+    await _update_step("scoring", 3)
     async with async_session() as db:
         query = select(CandidateDomain)
         query = query.where(CandidateDomain.source_id == source_id)
@@ -78,7 +80,7 @@ async def _background_crawl(source_id: int):
 
         await score_candidates(db, source_id=source_id, toxicity_map=toxicity_map)
 
-    await _update_step("done")
+    await _update_step("done", 4)
     logger.info("Full pipeline complete for source %d ✓", source_id)
 
 

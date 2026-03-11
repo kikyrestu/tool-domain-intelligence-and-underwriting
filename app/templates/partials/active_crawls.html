@@ -1,19 +1,35 @@
 {% if active_jobs %}
+<style>
+@keyframes shimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+}
+.bar-shimmer {
+    background: linear-gradient(90deg, #6366f1 30%, #a5b4fc 50%, #6366f1 70%);
+    background-size: 400px 100%;
+    animation: shimmer 1.6s infinite linear;
+}
+</style>
 <div class="bg-white rounded-lg border border-indigo-200 mb-6 shadow-sm">
     <div class="px-5 py-4 border-b border-indigo-100 flex items-center gap-2">
         <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse inline-block"></span>
         <h2 class="text-base font-semibold text-gray-900">Pipeline Berjalan</h2>
         <span class="ml-2 text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-medium">{{ active_jobs|length }} job</span>
-        <span class="ml-auto text-xs text-gray-400">auto-refresh</span>
+        <span class="ml-auto text-xs text-gray-400">auto-refresh tiap 3 detik</span>
     </div>
     <div class="p-5 space-y-5">
         {% for job in active_jobs %}
         {% set step_order = {'crawling': 0, 'rdap': 1, 'wayback': 2, 'scoring': 3} %}
-        {% set step_labels = {'crawling': 'Crawling Links', 'rdap': 'Cek RDAP', 'wayback': 'Wayback', 'scoring': 'Scoring'} %}
+        {% set step_labels = {'crawling': 'Crawling', 'rdap': 'Cek RDAP', 'wayback': 'Wayback', 'scoring': 'Scoring'} %}
         {% set step_desc = {'crawling': 'Mengambil & mengekstrak domain dari source...', 'rdap': 'Mengecek availability & registrar domain...', 'wayback': 'Mengambil histori Wayback Machine...', 'scoring': 'Menghitung skor kandidat...'} %}
-        {% set step_pct = {'crawling': 18, 'rdap': 43, 'wayback': 68, 'scoring': 88} %}
+        {% set total_steps = job.total_links_found * 4 if job.total_links_found else 0 %}
+        {% if total_steps > 0 and job.processed_count > 0 %}
+            {% set pct = [(job.processed_count / total_steps * 100) | int, 99] | min %}
+        {% else %}
+            {% set fallback = {'crawling': 5, 'rdap': 26, 'wayback': 51, 'scoring': 76} %}
+            {% set pct = fallback.get(job.current_step, 5) %}
+        {% endif %}
         {% set cur_idx = step_order.get(job.current_step, 0) %}
-        {% set pct = step_pct.get(job.current_step, 5) %}
         <div>
             <div class="flex justify-between items-start mb-2">
                 <div>
@@ -31,20 +47,25 @@
                 {% for s in all_steps %}
                 {% set s_idx = step_order.get(s, 0) %}
                 <div class="flex-1">
-                    <div class="h-1.5 rounded-full {% if s_idx < cur_idx %}bg-indigo-400{% elif s_idx == cur_idx %}bg-indigo-600{% else %}bg-gray-200{% endif %}"></div>
-                    <span class="text-[9px] text-gray-400 mt-0.5 block text-center truncate">{{ step_labels.get(s, s) }}</span>
+                    <div class="h-1.5 rounded-full overflow-hidden {% if s_idx < cur_idx %}bg-indigo-500{% elif s_idx == cur_idx %}relative{% else %}bg-gray-200{% endif %}">
+                        {% if s_idx == cur_idx %}
+                        <div class="h-full w-full bar-shimmer rounded-full"></div>
+                        {% endif %}
+                    </div>
+                    <span class="text-[9px] {% if s_idx == cur_idx %}text-indigo-600 font-medium{% else %}text-gray-400{% endif %} mt-0.5 block text-center truncate">{{ step_labels.get(s, s) }}</span>
                 </div>
                 {% endfor %}
             </div>
 
             <!-- Progress bar -->
-            <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
-                <div class="bg-gradient-to-r from-indigo-400 to-indigo-600 h-2 rounded-full transition-all duration-700"
+            <div class="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
+                <div class="h-full rounded-full transition-all duration-700 {% if pct < 99 %}bar-shimmer{% else %}bg-indigo-500{% endif %}"
                      style="width: {{ pct }}%"></div>
             </div>
 
-            <div class="text-xs text-gray-400 mt-1">Job #{{ job.id }} &middot;
-                {% if job.total_links_found %}{{ job.total_links_found }} link ditemukan{% endif %}
+            <div class="flex justify-between text-xs text-gray-400 mt-1">
+                <span>Job #{{ job.id }}</span>
+                <span>{{ job.total_links_found }} domain &middot; {{ job.processed_count }}/{{ total_steps }} langkah selesai</span>
             </div>
         </div>
         {% endfor %}

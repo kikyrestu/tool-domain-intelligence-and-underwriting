@@ -13,6 +13,7 @@ class CrawlJob(Base):
     source_id: Mapped[int] = mapped_column(ForeignKey("sources.id", ondelete="CASCADE"), nullable=False)
     status: Mapped[str] = mapped_column(String(20), default="pending", nullable=False)
     current_step: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    processed_count: Mapped[int] = mapped_column(Integer, default=0)
     total_links_found: Mapped[int] = mapped_column(Integer, default=0)
     total_candidates: Mapped[int] = mapped_column(Integer, default=0)
     total_dead_links: Mapped[int] = mapped_column(Integer, default=0)
