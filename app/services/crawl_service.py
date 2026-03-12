@@ -874,13 +874,15 @@ async def run_crawl(source_id: int, db: AsyncSession):
                 return job
             links = _extract_links_from_text(text_content, source.url)
             logger.info("Binary (%s): %d bytes → %d chars text → %d links from %s",
-                        source_ext, len(binary_data), len(text_content), len(links), source.url)            _parser_map = {"pdf": "pdfplumber", "pptx": "python_pptx", "docx": "python_docx", "xlsx": "openpyxl"}
+                        source_ext, len(binary_data), len(text_content), len(links), source.url)
+            _parser_map = {"pdf": "pdfplumber", "pptx": "python_pptx", "docx": "python_docx", "xlsx": "openpyxl"}
             _provenance = {
                 "source_type": source_ext,
                 "parser_type": _parser_map.get(source_ext, source_ext),
                 "source_origin": _src,
                 "extraction_note": f"{source_ext.upper()} document: {len(binary_data)//1024}KB, {len(text_content)} chars extracted",
-            }        else:
+            }
+        else:
             # Standard HTML pipeline
             html = await _fetch_page(source.url)
             if not html:
