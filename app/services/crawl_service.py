@@ -4,7 +4,9 @@ liveness (DNS + HTTP root), filter domains, and save candidates to DB.
 """
 
 import asyncio
+import io
 import logging
+import os
 import random
 import re
 import time
@@ -437,9 +439,23 @@ def _unwrap_redirect(href: str, source_url: str) -> str:
     return full
 
 
-# Regex untuk temukan URL plain-text di konten HTML
+# Regex untuk temukan URL plain-text di konten HTML / teks biasa
 _URL_RE = re.compile(
     r'(?<!["\'=>])(https?://[a-zA-Z0-9\-._~:/?#\[\]@!$&\'()*+,;=%]+)',
+    re.IGNORECASE,
+)
+
+# File extensions that indicate a binary/document source URL (not HTML)
+_BINARY_EXTENSIONS = {
+    "pdf", "pptx", "ppt", "docx", "doc", "xlsx", "xls",
+    "odt", "ods", "odp",
+}
+
+# File extensions to skip when extracting links from HTML — these are page paths,
+# not real domains (e.g. /page.asp, /forum.cfm, /index.php)
+_PAGE_EXT_RE = re.compile(
+    r"\.(?:asp|aspx|cfm|cfml|jsp|jspx|php|php[3-5]|phtml|rb|py|pl|cgi|do|action)"
+    r"(?:[?#]|$)",
     re.IGNORECASE,
 )
 
@@ -453,6 +469,11 @@ def _extract_outbound_links(html: str, source_url: str) -> list[tuple[str, str]]
     seen_domains = set()
 
     def _add(url: str):
+        parsed_url = urlparse(url)
+        # Skip URLs whose path ends with a server-side page extension —
+        # these are page paths on an existing domain, not domain candidates.
+        if _PAGE_EXT_RE.search(parsed_url.path):
+            return
         domain = extract_domain(url)
         if not domain or domain == source_domain:
             return
@@ -482,6 +503,139 @@ def _extract_outbound_links(html: str, source_url: str) -> list[tuple[str, str]]
             continue
         _add(url)
 
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Binary document fetcher + text extractors
+# ---------------------------------------------------------------------------
+_MAX_BINARY_SIZE = 25 * 1024 * 1024  # 25 MB hard limit
+
+
+async def _fetch_binary(url: str) -> bytes | None:
+    """Download a binary file (PDF, PPTX, etc.) up to _MAX_BINARY_SIZE."""
+    if not is_safe_url(url):
+        logger.warning("SSRF guard blocked binary fetch: %s", url)
+        return None
+    try:
+        async with httpx.AsyncClient(headers=_get_headers(), follow_redirects=True) as client:
+            async with client.stream("GET", url, timeout=60) as resp:
+                if resp.status_code != 200:
+                    return None
+                content_length = int(resp.headers.get("content-length", 0))
+                if content_length and content_length > _MAX_BINARY_SIZE:
+                    logger.warning("Binary file too large (%d bytes): %s", content_length, url)
+                    return None
+                chunks = []
+                total = 0
+                async for chunk in resp.aiter_bytes(65536):
+                    total += len(chunk)
+                    if total > _MAX_BINARY_SIZE:
+                        logger.warning("Binary file exceeded size limit mid-stream: %s", url)
+                        return None
+                    chunks.append(chunk)
+                return b"".join(chunks)
+    except Exception as e:
+        logger.debug("Binary fetch failed for %s: %s", url, e)
+        return None
+
+
+def _extract_text_from_pdf(data: bytes) -> str:
+    """Extract all text from a PDF binary."""
+    try:
+        import pdfplumber
+        text_parts = []
+        with pdfplumber.open(io.BytesIO(data)) as pdf:
+            for page in pdf.pages:
+                t = page.extract_text()
+                if t:
+                    text_parts.append(t)
+        return "\n".join(text_parts)
+    except Exception as e:
+        logger.debug("PDF extraction failed: %s", e)
+        return ""
+
+
+def _extract_text_from_pptx(data: bytes) -> str:
+    """Extract all text from a PPTX binary."""
+    try:
+        from pptx import Presentation
+        prs = Presentation(io.BytesIO(data))
+        parts = []
+        for slide in prs.slides:
+            for shape in slide.shapes:
+                if shape.has_text_frame:
+                    for para in shape.text_frame.paragraphs:
+                        parts.append(para.text)
+        return "\n".join(parts)
+    except Exception as e:
+        logger.debug("PPTX extraction failed: %s", e)
+        return ""
+
+
+def _extract_text_from_docx(data: bytes) -> str:
+    """Extract all text from a DOCX binary."""
+    try:
+        import docx
+        doc = docx.Document(io.BytesIO(data))
+        return "\n".join(p.text for p in doc.paragraphs)
+    except Exception as e:
+        logger.debug("DOCX extraction failed: %s", e)
+        return ""
+
+
+def _extract_text_from_xlsx(data: bytes) -> str:
+    """Extract all text/URLs from an XLSX binary."""
+    try:
+        import openpyxl
+        wb = openpyxl.load_workbook(io.BytesIO(data), read_only=True, data_only=True)
+        parts = []
+        for ws in wb.worksheets:
+            for row in ws.iter_rows(values_only=True):
+                for cell in row:
+                    if cell:
+                        parts.append(str(cell))
+        return " ".join(parts)
+    except Exception as e:
+        logger.debug("XLSX extraction failed: %s", e)
+        return ""
+
+
+def _binary_to_text(data: bytes, ext: str) -> str:
+    """Dispatch binary data to the correct text extractor by file extension."""
+    ext = ext.lower()
+    if ext == "pdf":
+        return _extract_text_from_pdf(data)
+    elif ext in ("pptx", "ppt"):
+        return _extract_text_from_pptx(data)
+    elif ext in ("docx", "doc"):
+        return _extract_text_from_docx(data)
+    elif ext in ("xlsx", "xls"):
+        return _extract_text_from_xlsx(data)
+    return ""
+
+
+def _extract_links_from_text(text: str, source_url: str) -> list[tuple[str, str]]:
+    """Run URL regex over plain text and return valid (url, domain) tuples."""
+    source_domain = extract_domain(source_url)
+    results = []
+    seen_domains: set[str] = set()
+    for match in _URL_RE.finditer(text):
+        url = match.group(1).rstrip(".,;)'\"")
+        parsed = urlparse(url)
+        if parsed.scheme not in ("http", "https"):
+            continue
+        if _PAGE_EXT_RE.search(parsed.path):
+            continue
+        domain = extract_domain(url)
+        if not domain or domain == source_domain:
+            continue
+        if not is_valid_candidate(domain):
+            continue
+        if domain in seen_domains:
+            continue
+        seen_domains.add(domain)
+        results.append((url, domain))
     return results
 
 
@@ -631,18 +785,43 @@ async def run_crawl(source_id: int, db: AsyncSession):
     await db.flush()
 
     try:
-        # 1. Fetch source page
-        html = await _fetch_page(source.url)
-        if not html:
-            job.status = "failed"
-            job.error_message = "Failed to fetch source page"
-            job.completed_at = datetime.now(timezone.utc)
-            await db.commit()
-            return job
+        # 1. Fetch source page (HTML or binary document)
+        source_ext = os.path.splitext(urlparse(source.url).path)[1].lstrip(".").lower()
+        if source_ext in _BINARY_EXTENSIONS:
+            # Binary document pipeline
+            logger.info("Binary source detected (%s): %s", source_ext, source.url)
+            binary_data = await _fetch_binary(source.url)
+            if not binary_data:
+                job.status = "failed"
+                job.error_message = "Failed to fetch binary source file"
+                job.completed_at = datetime.now(timezone.utc)
+                await db.commit()
+                return job
+            text_content = _binary_to_text(binary_data, source_ext)
+            if not text_content:
+                job.status = "failed"
+                job.error_message = f"Could not extract text from {source_ext.upper()} file"
+                job.completed_at = datetime.now(timezone.utc)
+                await db.commit()
+                return job
+            links = _extract_links_from_text(text_content, source.url)
+            logger.info("Binary (%s): %d bytes → %d chars text → %d links from %s",
+                        source_ext, len(binary_data), len(text_content), len(links), source.url)
+        else:
+            # Standard HTML pipeline
+            html = await _fetch_page(source.url)
+            if not html:
+                job.status = "failed"
+                job.error_message = "Failed to fetch source page"
+                job.completed_at = datetime.now(timezone.utc)
+                await db.commit()
+                return job
+            links = _extract_outbound_links(html, source.url)
+            logger.info("Fetched HTML: %d chars, extracted %d links from %s", len(html), len(links), source.url)
 
-        # 2. Extract outbound links
-        links = _extract_outbound_links(html, source.url)
-        logger.info("Fetched HTML: %d chars, extracted %d links from %s", len(html), len(links), source.url)
+        # Also scan for binary document links embedded in HTML pages and queue text extraction
+        # (links to .pdf/.pptx/.docx found in anchor tags are already carried as (url, domain)
+        #  by _extract_outbound_links — the domain extraction there is correct, no extra step needed)
         links = links[:settings.MAX_CANDIDATES_PER_CRAWL]
 
         with db.no_autoflush:

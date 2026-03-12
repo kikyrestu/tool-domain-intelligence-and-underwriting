@@ -10,6 +10,9 @@ tldextract
 python-dotenv
 langdetect
 openpyxl
+pdfplumber
+python-pptx
+python-docx
 
 # FastAPI + server
 fastapi

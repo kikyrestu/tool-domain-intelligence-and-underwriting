@@ -14,6 +14,23 @@ BLACKLIST = {
     "doubleclick.net", "googletagmanager.com", "hotjar.com",
     "wordpress.com", "wordpress.org", "wp.com", "medium.com",
     "fontawesome.com", "bootstrapcdn.com", "fonts.googleapis.com",
+    # Web technology/language domains that appear in links but are not purchasable
+    "asp.net", "php.net", "python.org", "ruby-lang.org", "golang.org",
+    "nodejs.org", "perl.org", "java.com", "oracle.com", "coldfusion.com",
+    "adobe.com", "macromedia.com", "iis.net", "nginx.org", "apache.org",
+    "jquery.com", "reactjs.org", "vuejs.org", "angularjs.org", "angular.io",
+    "stackoverflow.com", "stackexchange.com", "superuser.com",
+    "w3schools.com", "developer.mozilla.org", "mdn.io",
+}
+
+# File-like pseudo-TLDs — strings that look like extensions, not real TLDs.
+# tldextract sometimes misreads these as TLDs if the PSL cache is stale.
+_FAKE_EXT_TLDS = {
+    "asp", "aspx", "cfm", "cfml", "jsp", "jspx",
+    "php", "php3", "php4", "php5", "phtml",
+    "html", "htm", "xhtml", "shtml",
+    "rb", "py", "pl", "cgi",
+    "do", "action",
 }
 
 # Purchasable TLDs
@@ -49,6 +66,9 @@ def is_valid_candidate(domain: str) -> bool:
         return False
     ext = tldextract.extract(domain)
     tld = ext.suffix.split(".")[-1] if ext.suffix else ""
+    # Reject pseudo-TLDs that are actually file extensions
+    if tld in _FAKE_EXT_TLDS:
+        return False
     if tld not in VALID_TLDS:
         return False
     return True
