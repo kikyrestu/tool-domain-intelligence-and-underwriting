@@ -3849,3 +3849,52 @@ DETAIL:  Key (domain, source_id)=(TeachingHacks.com, 680) already exists.
 2026-03-12 23:34:06,060 [INFO] app.routes.crawl: Wayback done for source 13, starting scoring…
 2026-03-12 23:34:06,592 [INFO] app.services.scoring_service: Scored 14 candidates
 2026-03-12 23:34:06,834 [INFO] app.routes.crawl: Full pipeline complete for source 13 ✓
+2026-03-12 23:42:56,255 [INFO] app.services.crawl_service: ZenRows[basic] ...b36ad6 OK https://guides.library.cornell.edu/news_online (90061 chars)
+2026-03-12 23:42:56,298 [INFO] app.services.crawl_service: Fetched HTML: 90061 chars, extracted 14 links from https://guides.library.cornell.edu/news_online
+2026-03-12 23:42:57,204 [INFO] app.services.crawl_service: ZenRows[basic] ...5c1c3e OK https://guides.library.cornell.edu/news_online (90061 chars)
+2026-03-12 23:42:57,235 [INFO] app.services.crawl_service: Fetched HTML: 90061 chars, extracted 14 links from https://guides.library.cornell.edu/news_online
+2026-03-12 23:42:59,754 [INFO] app.services.whois_service: [RDAP] IANA bootstrap loaded: 1197 TLDs cached
+2026-03-12 23:43:01,526 [INFO] app.services.crawl_service:   Alive domain abyznewslinks.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:01,527 [INFO] app.services.crawl_service:   Alive domain eastview.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:01,527 [INFO] app.services.crawl_service:   Alive domain abyznewslinks.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:01,527 [INFO] app.services.crawl_service:   Alive domain proquest.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:03,066 [INFO] app.services.crawl_service:   Alive domain eastview.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:03,271 [INFO] app.services.crawl_service:   Alive domain eurotopics.net (HTTP 200) → RDAP: registered
+2026-03-12 23:43:03,653 [INFO] app.services.crawl_service:   Alive domain proquest.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:04,275 [INFO] app.services.crawl_service:   Alive domain eurotopics.net (HTTP 200) → RDAP: registered
+2026-03-12 23:43:04,482 [INFO] app.services.crawl_service:   Alive domain newspaperarchive.com (HTTP 403) → RDAP: registered
+2026-03-12 23:43:04,495 [INFO] app.services.crawl_service:   Alive domain newspaperarchive.com (HTTP 403) → RDAP: registered
+2026-03-12 23:43:05,413 [INFO] app.services.crawl_service:   Alive domain ap.org (HTTP 403) → RDAP: registered
+2026-03-12 23:43:05,708 [INFO] app.services.crawl_service:   Alive domain amdigital.co.uk (HTTP 200) → RDAP: registered
+2026-03-12 23:43:05,900 [INFO] app.services.crawl_service:   Alive domain amdigital.co.uk (HTTP 200) → RDAP: registered
+2026-03-12 23:43:06,552 [INFO] app.services.crawl_service:   Alive domain ap.org (HTTP 403) → RDAP: registered
+2026-03-12 23:43:07,000 [INFO] app.services.crawl_service:   Alive domain asianweek.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:07,209 [INFO] app.services.crawl_service:   Alive domain asianweek.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:09,039 [INFO] app.services.crawl_service:   Alive domain apnews.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:09,044 [INFO] app.services.crawl_service:   Alive domain apnews.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:09,898 [INFO] app.services.crawl_service:   Alive domain nyshistoricnewspapers.org (HTTP 403) → RDAP: registered
+2026-03-12 23:43:10,208 [INFO] app.services.crawl_service:   Alive domain timarit.is (HTTP 200) → RDAP: registered
+2026-03-12 23:43:10,223 [INFO] app.services.crawl_service:   Alive domain timarit.is (HTTP 200) → RDAP: registered
+2026-03-12 23:43:10,683 [INFO] app.services.crawl_service:   Alive domain nyshistoricnewspapers.org (HTTP 403) → RDAP: registered
+2026-03-12 23:43:11,490 [INFO] app.services.crawl_service:   Alive domain nypl.org (HTTP 200) → RDAP: registered
+2026-03-12 23:43:11,724 [INFO] app.services.crawl_service:   Alive domain nypl.org (HTTP 200) → RDAP: registered
+2026-03-12 23:43:13,656 [INFO] app.services.crawl_service:   Alive domain exacteditions.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:14,042 [INFO] app.services.crawl_service:   Alive domain exacteditions.com (HTTP 200) → RDAP: registered
+2026-03-12 23:43:43,148 [INFO] app.services.crawl_service:   Dead domain pantheonsite.io (HTTP fail) → RDAP: registered
+2026-03-12 23:43:43,962 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 1 dead links
+2026-03-12 23:43:43,963 [INFO] app.routes.crawl: Crawl done for source 678, starting RDAP check…
+2026-03-12 23:43:44,807 [INFO] app.services.crawl_service:   Dead domain pantheonsite.io (HTTP fail) → RDAP: registered
+2026-03-12 23:43:44,885 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-12 23:43:44,924 [INFO] app.routes.crawl: RDAP done for source 678, starting Wayback check…
+2026-03-12 23:43:45,448 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-12 23:43:45,490 [INFO] app.routes.crawl: Wayback done for source 678, starting scoring…
+2026-03-12 23:43:45,656 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 1 dead links
+2026-03-12 23:43:45,657 [INFO] app.routes.crawl: Crawl done for source 678, starting RDAP check…
+2026-03-12 23:43:46,156 [INFO] app.services.scoring_service: Scored 15 candidates
+2026-03-12 23:43:46,280 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-12 23:43:46,318 [INFO] app.routes.crawl: RDAP done for source 678, starting Wayback check…
+2026-03-12 23:43:46,435 [INFO] app.routes.crawl: Full pipeline complete for source 678 ✓
+2026-03-12 23:43:46,954 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-12 23:43:46,994 [INFO] app.routes.crawl: Wayback done for source 678, starting scoring…
+2026-03-12 23:43:47,619 [INFO] app.services.scoring_service: Scored 15 candidates
+2026-03-12 23:43:47,901 [INFO] app.routes.crawl: Full pipeline complete for source 678 ✓

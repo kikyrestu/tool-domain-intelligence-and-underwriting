@@ -16,6 +16,7 @@ from urllib.parse import urljoin, urlparse, parse_qs, unquote
 import dns.asyncresolver
 import dns.exception
 import httpx
+import tldextract
 from bs4 import BeautifulSoup
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -778,6 +779,75 @@ async def _check_domain(domain: str, semaphore: asyncio.Semaphore) -> dict:
         return result
 
 
+# Maximum outbound domains to save per depth-2 target domain
+_DEPTH2_MAX_PER_DOMAIN = 20
+
+
+async def _depth2_discovery(alive_domains: list[str], niche: str, db: AsyncSession) -> None:
+    """Crawl homepage of each alive candidate domain, extract outbound links,
+    normalize to root domain via tldextract, and save to suggested_candidates.
+
+    This is a best-effort background step — errors are suppressed per domain.
+    """
+    from app.models.suggested_candidate import SuggestedCandidate
+
+    if not alive_domains:
+        return
+
+    logger.info("[Depth-2] Starting discovery for %d alive domains", len(alive_domains))
+    new_suggestions = 0
+
+    for domain in alive_domains:
+        try:
+            homepage_url = f"https://{domain}/"
+            html = await _fetch_page(homepage_url)
+            if not html:
+                continue
+
+            outbound = _extract_outbound_links(html, homepage_url)
+            added_for_domain = 0
+
+            for _url, _found_domain in outbound[:_DEPTH2_MAX_PER_DOMAIN]:
+                # Normalize to registered root domain — strips subdomains
+                ext = tldextract.extract(_found_domain)
+                if not ext.domain or not ext.suffix:
+                    continue
+                root = f"{ext.domain}.{ext.suffix}"
+
+                # Skip if already a live candidate
+                exists_cand = await db.execute(
+                    select(CandidateDomain).where(CandidateDomain.domain == root)
+                )
+                if exists_cand.scalar_one_or_none() is not None:
+                    continue
+
+                # Skip if already suggested
+                exists_sug = await db.execute(
+                    select(SuggestedCandidate).where(SuggestedCandidate.domain == root)
+                )
+                if exists_sug.scalar_one_or_none() is not None:
+                    continue
+
+                db.add(SuggestedCandidate(
+                    domain=root,
+                    discovered_from=domain,
+                    niche=niche,
+                    discovery_source="crawl",
+                ))
+                added_for_domain += 1
+                new_suggestions += 1
+
+            if added_for_domain:
+                await db.commit()
+                logger.info("[Depth-2] %s → %d new suggested candidates", domain, added_for_domain)
+
+        except Exception as e:
+            logger.debug("[Depth-2] Skipping %s: %s", domain, e)
+            continue
+
+    logger.info("[Depth-2] Discovery complete: %d new suggested candidates total", new_suggestions)
+
+
 async def run_crawl(source_id: int, db: AsyncSession):
     """
     Main crawl pipeline:
@@ -977,6 +1047,16 @@ async def run_crawl(source_id: int, db: AsyncSession):
 
         await db.commit()
         logger.info("Crawl completed: %d candidates, %d dead links", saved, dead_count)
+
+        # 5. Depth-2 discovery: crawl homepage of alive candidates → find more domains
+        #    Results go to suggested_candidates (not direct candidates) to keep scope controlled.
+        alive_domains = [
+            domain for domain, status in domain_status.items()
+            if status.get("is_domain_alive") and status.get("http_status") == 200
+        ]
+        # Cap at 10 alive domains per crawl to avoid explosion
+        await _depth2_discovery(alive_domains[:10], source.niche or "General", db)
+
         return job
 
     except Exception as e:
