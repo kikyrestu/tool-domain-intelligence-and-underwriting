@@ -820,6 +820,12 @@ async def run_crawl(source_id: int, db: AsyncSession):
             await db.flush()
             links = await fetch_domains_from_crtsh(keyword)
             logger.info("crt.sh '%s': %d domain candidates", keyword, len(links))
+            _provenance = {
+                "source_type": "crtsh",
+                "parser_type": "crtsh_api",
+                "source_origin": _src,
+                "extraction_note": f"Certificate Transparency log query: '{keyword}'",
+            }
 
         elif _path.rstrip("/").endswith("robots.txt"):
             # ── Pipeline B: robots.txt → sitemap auto-discovery ────────────
@@ -828,6 +834,12 @@ async def run_crawl(source_id: int, db: AsyncSession):
             await db.flush()
             links = await fetch_links_from_robots(_src)
             logger.info("robots.txt '%s': %d domain candidates", _src, len(links))
+            _provenance = {
+                "source_type": "robots_txt",
+                "parser_type": "sitemap_xml",
+                "source_origin": _src,
+                "extraction_note": "Discovered via robots.txt Sitemap: directives",
+            }
 
         elif _path.endswith(".xml") or _path.endswith(".xml.gz") or "sitemap" in _path:
             # ── Pipeline C: Sitemap XML (direct or index) ──────────────────
@@ -836,6 +848,12 @@ async def run_crawl(source_id: int, db: AsyncSession):
             await db.flush()
             links = await fetch_links_from_sitemap(_src)
             logger.info("Sitemap '%s': %d domain candidates", _src, len(links))
+            _provenance = {
+                "source_type": "sitemap",
+                "parser_type": "sitemap_xml",
+                "source_origin": _src,
+                "extraction_note": "Extracted from sitemap.xml URL index",
+            }
 
         elif source_ext in _BINARY_EXTENSIONS:
             # Binary document pipeline
@@ -856,8 +874,13 @@ async def run_crawl(source_id: int, db: AsyncSession):
                 return job
             links = _extract_links_from_text(text_content, source.url)
             logger.info("Binary (%s): %d bytes → %d chars text → %d links from %s",
-                        source_ext, len(binary_data), len(text_content), len(links), source.url)
-        else:
+                        source_ext, len(binary_data), len(text_content), len(links), source.url)            _parser_map = {"pdf": "pdfplumber", "pptx": "python_pptx", "docx": "python_docx", "xlsx": "openpyxl"}
+            _provenance = {
+                "source_type": source_ext,
+                "parser_type": _parser_map.get(source_ext, source_ext),
+                "source_origin": _src,
+                "extraction_note": f"{source_ext.upper()} document: {len(binary_data)//1024}KB, {len(text_content)} chars extracted",
+            }        else:
             # Standard HTML pipeline
             html = await _fetch_page(source.url)
             if not html:
@@ -868,6 +891,12 @@ async def run_crawl(source_id: int, db: AsyncSession):
                 return job
             links = _extract_outbound_links(html, source.url)
             logger.info("Fetched HTML: %d chars, extracted %d links from %s", len(html), len(links), source.url)
+            _provenance = {
+                "source_type": "html",
+                "parser_type": "beautifulsoup",
+                "source_origin": _src,
+                "extraction_note": f"HTML page crawl: {len(html)} chars, {len(links)} domains extracted",
+            }
 
         # Also scan for binary document links embedded in HTML pages and queue text extraction
         # (links to .pdf/.pptx/.docx found in anchor tags are already carried as (url, domain)
@@ -876,6 +905,15 @@ async def run_crawl(source_id: int, db: AsyncSession):
 
         with db.no_autoflush:
             job.total_links_found = len(links)
+
+        # Fallback provenance — should never hit this if pipeline branches are correct
+        if "_provenance" not in dir():
+            _provenance = {
+                "source_type": "html",
+                "parser_type": "beautifulsoup",
+                "source_origin": _src,
+                "extraction_note": "",
+            }
 
         # 3. Check domains concurrently (using ROOT domain, not specific URL)
         semaphore = asyncio.Semaphore(MAX_CONCURRENT)

@@ -3557,3 +3557,295 @@ DETAIL:  Key (domain, source_id)=(TeachingHacks.com, 680) already exists.
 2026-03-12 22:44:46,476 [INFO] app.routes.crawl: Wayback done for source 680, starting scoring…
 2026-03-12 22:44:47,528 [INFO] app.services.scoring_service: Scored 82 candidates
 2026-03-12 22:44:47,835 [INFO] app.routes.crawl: Full pipeline complete for source 680 ✓
+2026-03-12 23:26:49,538 [INFO] app.services.crawl_service: ZenRows[basic] ...b36ad6 OK https://guides.library.cornell.edu/news_online (90061 chars)
+2026-03-12 23:26:49,584 [INFO] app.services.crawl_service: Fetched HTML: 90061 chars, extracted 14 links from https://guides.library.cornell.edu/news_online
+2026-03-12 23:26:51,041 [INFO] app.services.whois_service: [RDAP] IANA bootstrap loaded: 1197 TLDs cached
+2026-03-12 23:26:51,895 [INFO] app.services.crawl_service:   Alive domain newspaperarchive.com (HTTP 403) → RDAP: registered
+2026-03-12 23:26:52,381 [INFO] app.services.crawl_service:   Alive domain asianweek.com (HTTP 200) → RDAP: registered
+2026-03-12 23:26:53,484 [INFO] app.services.crawl_service:   Alive domain ap.org (HTTP 403) → RDAP: registered
+2026-03-12 23:26:53,756 [INFO] app.services.crawl_service: ZenRows[basic] ...5c1c3e OK https://guides.library.cornell.edu/news_online (90061 chars)
+2026-03-12 23:26:53,787 [INFO] app.services.crawl_service: Fetched HTML: 90061 chars, extracted 14 links from https://guides.library.cornell.edu/news_online
+2026-03-12 23:26:53,801 [INFO] app.services.crawl_service:   Alive domain nyshistoricnewspapers.org (HTTP 403) → RDAP: registered
+2026-03-12 23:26:54,785 [INFO] app.services.crawl_service:   Alive domain apnews.com (HTTP 200) → RDAP: registered
+2026-03-12 23:26:56,200 [INFO] app.services.crawl_service:   Alive domain newspaperarchive.com (HTTP 403) → RDAP: registered
+2026-03-12 23:26:56,627 [INFO] app.services.crawl_service:   Alive domain proquest.com (HTTP 200) → RDAP: registered
+2026-03-12 23:26:56,664 [INFO] app.services.crawl_service:   Alive domain ap.org (HTTP 403) → RDAP: registered
+2026-03-12 23:26:57,077 [INFO] app.services.crawl_service:   Alive domain asianweek.com (HTTP 200) → RDAP: registered
+2026-03-12 23:26:57,716 [INFO] app.services.crawl_service:   Alive domain nypl.org (HTTP 200) → RDAP: registered
+2026-03-12 23:26:57,995 [INFO] app.services.crawl_service:   Alive domain nyshistoricnewspapers.org (HTTP 403) → RDAP: registered
+2026-03-12 23:26:58,618 [INFO] app.services.crawl_service:   Alive domain apnews.com (HTTP 200) → RDAP: registered
+2026-03-12 23:26:59,914 [INFO] app.services.crawl_service:   Alive domain abyznewslinks.com (HTTP 200) → RDAP: registered
+2026-03-12 23:27:00,571 [INFO] app.services.crawl_service:   Alive domain proquest.com (HTTP 200) → RDAP: registered
+2026-03-12 23:27:00,648 [INFO] app.services.crawl_service:   Alive domain nypl.org (HTTP 200) → RDAP: registered
+2026-03-12 23:27:02,969 [INFO] app.services.crawl_service:   Alive domain eurotopics.net (HTTP 200) → RDAP: registered
+2026-03-12 23:27:03,397 [INFO] app.services.crawl_service:   Alive domain abyznewslinks.com (HTTP 200) → RDAP: registered
+2026-03-12 23:27:04,891 [INFO] app.services.crawl_service:   Alive domain eurotopics.net (HTTP 200) → RDAP: registered
+2026-03-12 23:27:05,089 [INFO] app.services.crawl_service:   Alive domain exacteditions.com (HTTP 200) → RDAP: registered
+2026-03-12 23:27:05,724 [INFO] app.services.crawl_service:   Alive domain exacteditions.com (HTTP 200) → RDAP: registered
+2026-03-12 23:27:07,394 [INFO] app.services.crawl_service:   Alive domain eastview.com (HTTP 200) → RDAP: registered
+2026-03-12 23:27:07,776 [INFO] app.services.crawl_service:   Alive domain eastview.com (HTTP 200) → RDAP: registered
+2026-03-12 23:27:08,358 [INFO] app.services.crawl_service:   Alive domain amdigital.co.uk (HTTP 200) → RDAP: registered
+2026-03-12 23:27:08,362 [INFO] app.services.crawl_service:   Alive domain amdigital.co.uk (HTTP 200) → RDAP: registered
+2026-03-12 23:27:18,278 [INFO] app.services.crawl_service:   Alive domain timarit.is (HTTP 200) → RDAP: registered
+2026-03-12 23:27:18,332 [INFO] app.services.crawl_service:   Alive domain timarit.is (HTTP 200) → RDAP: registered
+2026-03-12 23:27:50,998 [WARNING] app.services.whois_service: RDAP all endpoints failed for pantheonsite.io (last=None)
+2026-03-12 23:27:50,999 [INFO] app.services.crawl_service:   Dead domain pantheonsite.io (HTTP fail) → RDAP: registered
+2026-03-12 23:27:51,674 [INFO] app.services.crawl_service:   Dead domain pantheonsite.io (HTTP fail) → RDAP: registered
+2026-03-12 23:27:51,978 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 1 dead links
+2026-03-12 23:27:51,978 [INFO] app.routes.crawl: Crawl done for source 678, starting RDAP check…
+2026-03-12 23:27:52,578 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 1 dead links
+2026-03-12 23:27:52,578 [INFO] app.routes.crawl: Crawl done for source 678, starting RDAP check…
+2026-03-12 23:27:52,717 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-12 23:27:52,759 [INFO] app.routes.crawl: RDAP done for source 678, starting Wayback check…
+2026-03-12 23:27:53,111 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-12 23:27:53,162 [INFO] app.routes.crawl: RDAP done for source 678, starting Wayback check…
+2026-03-12 23:27:53,419 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-12 23:27:53,457 [INFO] app.routes.crawl: Wayback done for source 678, starting scoring…
+2026-03-12 23:27:53,731 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-12 23:27:53,776 [INFO] app.routes.crawl: Wayback done for source 678, starting scoring…
+2026-03-12 23:27:54,121 [INFO] app.services.scoring_service: Scored 15 candidates
+2026-03-12 23:27:54,419 [INFO] app.routes.crawl: Full pipeline complete for source 678 ✓
+2026-03-12 23:27:54,547 [INFO] app.services.scoring_service: Scored 15 candidates
+2026-03-12 23:27:54,828 [INFO] app.routes.crawl: Full pipeline complete for source 678 ✓
+2026-03-12 23:29:39,836 [INFO] app.services.crawl_service: Binary source detected (pdf): https://facstaff.buffalostate.edu/santamrr/Articles/RSS_ideas_for_educators.pdf
+2026-03-12 23:29:43,800 [INFO] app.services.crawl_service: Binary (pdf): 246506 bytes → 49300 chars text → 82 links from https://facstaff.buffalostate.edu/santamrr/Articles/RSS_ideas_for_educators.pdf
+2026-03-12 23:29:44,936 [INFO] app.services.crawl_service: Binary source detected (pdf): https://facstaff.buffalostate.edu/santamrr/Articles/RSS_ideas_for_educators.pdf
+2026-03-12 23:29:46,097 [INFO] app.services.crawl_service:   Dead domain bobsprankle.com (HTTP 404) → RDAP: expiring_soon
+2026-03-12 23:29:46,360 [INFO] app.services.crawl_service:   Alive domain talkr.com (HTTP 200) → RDAP: registered
+2026-03-12 23:29:46,807 [INFO] app.services.crawl_service:   Alive domain pbwiki.com (HTTP 200) → RDAP: registered
+2026-03-12 23:29:47,309 [INFO] app.services.crawl_service:   Alive domain yahoo.com (HTTP 429) → RDAP: registered
+2026-03-12 23:29:48,973 [INFO] app.services.crawl_service: Binary (pdf): 246506 bytes → 49300 chars text → 82 links from https://facstaff.buffalostate.edu/santamrr/Articles/RSS_ideas_for_educators.pdf
+2026-03-12 23:29:50,531 [INFO] app.services.crawl_service:   Alive domain newsisfree.com (HTTP 403) → RDAP: registered
+2026-03-12 23:29:51,128 [INFO] app.services.crawl_service:   Alive domain typepad.com (HTTP 403) → RDAP: registered
+2026-03-12 23:29:51,571 [INFO] app.services.crawl_service:   Alive domain trackslife.com (HTTP 200) → RDAP: registered
+2026-03-12 23:29:52,292 [INFO] app.services.crawl_service:   Dead domain bobsprankle.com (HTTP 404) → RDAP: expiring_soon
+2026-03-12 23:29:52,292 [INFO] app.services.crawl_service:   Alive domain talkr.com (HTTP 200) → RDAP: registered
+2026-03-12 23:29:53,130 [INFO] app.services.crawl_service:   Alive domain pbwiki.com (HTTP 200) → RDAP: registered
+2026-03-12 23:29:53,138 [INFO] app.services.crawl_service:   Dead domain syndic8.com → RDAP: registered
+2026-03-12 23:29:53,386 [INFO] app.services.crawl_service:   Alive domain yahoo.com (HTTP 429) → RDAP: registered
+2026-03-12 23:29:53,386 [INFO] app.services.crawl_service:   Alive domain bloglines.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:29:54,674 [INFO] app.services.crawl_service:   Alive domain librivox.org (HTTP 200) → RDAP: registered
+2026-03-12 23:29:54,922 [INFO] app.services.crawl_service:   Alive domain newsisfree.com (HTTP 403) → RDAP: registered
+2026-03-12 23:29:55,749 [INFO] app.services.crawl_service:   Alive domain typepad.com (HTTP 403) → RDAP: registered
+2026-03-12 23:29:55,996 [INFO] app.services.crawl_service:   Alive domain librivox.org (HTTP 200) → RDAP: registered
+2026-03-12 23:29:56,425 [INFO] app.services.crawl_service:   Alive domain trackslife.com (HTTP 200) → RDAP: registered
+2026-03-12 23:29:56,426 [INFO] app.services.crawl_service:   Alive domain blogdigger.com (HTTP 403) → RDAP: registered
+2026-03-12 23:29:56,628 [INFO] app.services.crawl_service:   Dead domain syndic8.com → RDAP: registered
+2026-03-12 23:29:57,244 [INFO] app.services.crawl_service:   Dead domain osapac.org → RDAP: registered
+2026-03-12 23:29:58,163 [INFO] app.services.crawl_service:   Alive domain bloglines.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:29:59,004 [INFO] app.services.crawl_service:   Alive domain blogdigger.com (HTTP 403) → RDAP: registered
+2026-03-12 23:29:59,436 [INFO] app.services.crawl_service:   Parked domain detected: phonefeeds.com
+2026-03-12 23:29:59,824 [INFO] app.services.crawl_service:   Alive domain feedreader.com (HTTP 200) → RDAP: expiring_soon
+2026-03-12 23:30:00,094 [INFO] app.services.crawl_service:   Alive domain teachers.tv (HTTP 200) → RDAP: registered
+2026-03-12 23:30:00,171 [INFO] app.services.crawl_service:   Dead domain osapac.org → RDAP: registered
+2026-03-12 23:30:00,756 [INFO] app.services.crawl_service:   Alive domain phonefeeds.com (HTTP 200) → RDAP: expiring_soon
+2026-03-12 23:30:01,931 [INFO] app.services.crawl_service:   Alive domain feedreader.com (HTTP 200) → RDAP: expiring_soon
+2026-03-12 23:30:02,168 [INFO] app.services.crawl_service:   Parked domain detected: phonefeeds.com
+2026-03-12 23:30:03,161 [INFO] app.services.crawl_service:   Alive domain phonefeeds.com (HTTP 200) → RDAP: expiring_soon
+2026-03-12 23:30:03,402 [INFO] app.services.crawl_service:   Alive domain teach42.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:03,908 [INFO] app.services.crawl_service:   Alive domain thestar.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:04,408 [INFO] app.services.crawl_service:   Alive domain teachers.tv (HTTP 200) → RDAP: registered
+2026-03-12 23:30:05,227 [INFO] app.services.crawl_service:   Alive domain wikibooks.org (HTTP 200) → RDAP: registered
+2026-03-12 23:30:05,971 [INFO] app.services.crawl_service:   Alive domain thestar.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:06,846 [INFO] app.services.crawl_service:   Alive domain podcastalley.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:07,039 [INFO] app.services.crawl_service:   Alive domain teach42.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:07,601 [INFO] app.services.crawl_service:   Alive domain wikibooks.org (HTTP 200) → RDAP: registered
+2026-03-12 23:30:08,906 [INFO] app.services.crawl_service:   Alive domain feedshake.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:09,534 [INFO] app.services.crawl_service:   Alive domain podcastalley.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:09,725 [INFO] app.services.crawl_service:   Alive domain theglobeandmail.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:11,391 [INFO] app.services.crawl_service:   Dead domain RSScalendar.com (HTTP fail) → RDAP: registered
+2026-03-12 23:30:11,782 [INFO] app.services.crawl_service:   Alive domain newsgator.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:13,095 [INFO] app.services.crawl_service:   Dead domain revision3.com → RDAP: expiring_watchlist
+2026-03-12 23:30:13,528 [INFO] app.services.crawl_service:   Dead domain RSScalendar.com (HTTP fail) → RDAP: registered
+2026-03-12 23:30:15,489 [INFO] app.services.crawl_service:   Dead domain furl.net → RDAP: registered
+2026-03-12 23:30:15,489 [INFO] app.services.crawl_service:   Alive domain feedshake.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:15,490 [INFO] app.services.crawl_service:   Alive domain dodgeit.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:17,589 [INFO] app.services.crawl_service:   Alive domain newsgator.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:17,656 [INFO] app.services.crawl_service:   Dead domain quicktopic.com → RDAP: registered
+2026-03-12 23:30:18,336 [INFO] app.services.crawl_service:   Alive domain theglobeandmail.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:19,041 [INFO] app.services.crawl_service:   Dead domain 43things.com (HTTP 404) → RDAP: registered
+2026-03-12 23:30:19,575 [INFO] app.services.crawl_service:   Dead domain revision3.com → RDAP: expiring_watchlist
+2026-03-12 23:30:19,575 [INFO] app.services.crawl_service:   Alive domain dodgeit.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:20,378 [INFO] app.services.crawl_service:   Alive domain epnweb.org (HTTP 200) → RDAP: registered
+2026-03-12 23:30:20,672 [INFO] app.services.crawl_service:   Alive domain RSSWeather.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:30:21,168 [INFO] app.services.crawl_service:   Dead domain quicktopic.com → RDAP: registered
+2026-03-12 23:30:21,168 [INFO] app.services.crawl_service:   Alive domain Writely.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:30:21,592 [INFO] app.services.crawl_service:   Dead domain furl.net → RDAP: registered
+2026-03-12 23:30:22,527 [INFO] app.services.crawl_service:   Alive domain TeachingHacks.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:23,586 [INFO] app.services.crawl_service:   Alive domain citeulike.org (HTTP 403) → RDAP: registered
+2026-03-12 23:30:23,889 [INFO] app.services.crawl_service:   Alive domain epnweb.org (HTTP 200) → RDAP: registered
+2026-03-12 23:30:24,329 [INFO] app.services.crawl_service:   Alive domain tadalist.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:25,262 [INFO] app.services.crawl_service:   Dead domain 43things.com (HTTP 404) → RDAP: registered
+2026-03-12 23:30:25,730 [INFO] app.services.crawl_service:   Alive domain RSSWeather.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:30:25,775 [INFO] app.services.crawl_service:   Alive domain ourmedia.org (HTTP 200) → RDAP: registered
+2026-03-12 23:30:26,034 [INFO] app.services.crawl_service:   Alive domain Writely.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:30:27,365 [INFO] app.services.crawl_service:   Alive domain TeachingHacks.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:27,997 [INFO] app.services.crawl_service:   Alive domain newsfireRSS.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:28,002 [INFO] app.services.crawl_service:   Alive domain technorati.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:28,221 [INFO] app.services.crawl_service:   Alive domain tadalist.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:28,917 [INFO] app.services.crawl_service:   Alive domain citeulike.org (HTTP 403) → RDAP: registered
+2026-03-12 23:30:29,559 [INFO] app.services.crawl_service:   Alive domain seeita.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:30,135 [INFO] app.services.crawl_service:   Alive domain ourmedia.org (HTTP 200) → RDAP: registered
+2026-03-12 23:30:31,172 [INFO] app.services.crawl_service:   Alive domain feedster.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:31,461 [INFO] app.services.crawl_service:   Alive domain technorati.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:32,712 [INFO] app.services.crawl_service:   Alive domain seeita.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:33,134 [INFO] app.services.crawl_service:   Alive domain RSScontact.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:33,615 [INFO] app.services.crawl_service:   Dead domain reminderfeed.com (HTTP fail) → RDAP: registered
+2026-03-12 23:30:33,988 [INFO] app.services.crawl_service:   Alive domain newsfireRSS.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:35,178 [INFO] app.services.crawl_service:   Alive domain edublogs.org (HTTP 200) → RDAP: registered
+2026-03-12 23:30:35,400 [INFO] app.services.crawl_service:   Alive domain feedster.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:35,400 [INFO] app.services.crawl_service:   Alive domain fuzzyd.co.uk (HTTP 200) → RDAP: registered
+2026-03-12 23:30:35,996 [INFO] app.services.crawl_service:   Alive domain RSScontact.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:37,384 [INFO] app.services.crawl_service:   Dead domain reminderfeed.com (HTTP fail) → RDAP: registered
+2026-03-12 23:30:37,663 [INFO] app.services.crawl_service:   Alive domain fuzzyd.co.uk (HTTP 200) → RDAP: registered
+2026-03-12 23:30:37,966 [INFO] app.services.crawl_service:   Alive domain edublogs.org (HTTP 200) → RDAP: registered
+2026-03-12 23:30:39,031 [INFO] app.services.crawl_service:   Alive domain audible.com (HTTP 403) → RDAP: registered
+2026-03-12 23:30:39,580 [INFO] app.services.crawl_service:   Alive domain blogsieve.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:30:40,475 [INFO] app.services.crawl_service:   Alive domain audible.com (HTTP 403) → RDAP: registered
+2026-03-12 23:30:40,702 [INFO] app.services.crawl_service:   Alive domain blogsieve.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:30:41,139 [INFO] app.services.crawl_service:   Alive domain weblogg-ed.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:41,984 [INFO] app.services.crawl_service:   Alive domain feed2podcast.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:42,482 [INFO] app.services.crawl_service:   Alive domain feed2podcast.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:42,720 [INFO] app.services.crawl_service:   Alive domain weblogg-ed.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:43,529 [INFO] app.services.crawl_service:   Alive domain flickr.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:44,719 [INFO] app.services.crawl_service:   Alive domain edtechtalk.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:45,144 [INFO] app.services.crawl_service:   Alive domain flickr.com (HTTP 200) → RDAP: registered
+2026-03-12 23:30:47,781 [INFO] app.services.crawl_service:   Alive domain merlot.org (HTTP 200) → RDAP: registered
+2026-03-12 23:30:48,205 [INFO] app.services.crawl_service:   Alive domain getfireant.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:30:49,497 [INFO] app.services.crawl_service:   Alive domain merlot.org (HTTP 200) → RDAP: registered
+2026-03-12 23:30:50,514 [INFO] app.services.crawl_service:   Dead domain glnd.k12.va.us (HTTP fail) → RDAP: registered
+2026-03-12 23:30:50,759 [INFO] app.services.crawl_service:   Alive domain getfireant.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:30:56,344 [INFO] app.services.crawl_service:   Dead domain glnd.k12.va.us (HTTP fail) → RDAP: registered
+2026-03-12 23:30:58,862 [INFO] app.services.crawl_service:   Alive domain mailinator.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:00,304 [INFO] app.services.crawl_service:   Alive domain feedburner.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:02,047 [INFO] app.services.crawl_service:   Alive domain icio.us (HTTP 200) → RDAP: registered
+2026-03-12 23:31:02,097 [INFO] app.services.crawl_service:   Dead domain edtechtalk.com (HTTP 522) → RDAP: registered
+2026-03-12 23:31:04,605 [INFO] app.services.crawl_service:   Alive domain mailinator.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:05,042 [INFO] app.services.crawl_service:   Alive domain litefeeds.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:05,949 [INFO] app.services.crawl_service:   Alive domain feedburner.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:07,202 [INFO] app.services.crawl_service:   Dead domain myRSStoolbar.com → RDAP: available
+2026-03-12 23:31:07,720 [INFO] app.services.crawl_service:   Alive domain icio.us (HTTP 200) → RDAP: registered
+2026-03-12 23:31:10,191 [INFO] app.services.crawl_service:   Alive domain litefeeds.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:12,277 [INFO] app.services.crawl_service:   Dead domain myRSStoolbar.com → RDAP: available
+2026-03-12 23:31:13,057 [INFO] app.services.crawl_service:   Alive domain learnerblogs.org (HTTP 200) → RDAP: registered
+2026-03-12 23:31:14,662 [INFO] app.services.crawl_service:   Dead domain feedbeep.com (HTTP fail) → RDAP: registered
+2026-03-12 23:31:15,116 [INFO] app.services.crawl_service:   Dead domain pubsub.com (HTTP fail) → RDAP: registered
+2026-03-12 23:31:15,683 [INFO] app.services.crawl_service:   Alive domain learnerblogs.org (HTTP 200) → RDAP: registered
+2026-03-12 23:31:17,077 [INFO] app.services.crawl_service:   Alive domain trumba.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:17,769 [INFO] app.services.crawl_service:   Dead domain feedbeep.com (HTTP fail) → RDAP: registered
+2026-03-12 23:31:18,181 [INFO] app.services.crawl_service:   Dead domain learningcircuits.org (HTTP 404) → RDAP: registered
+2026-03-12 23:31:18,723 [INFO] app.services.crawl_service:   Alive domain trumba.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:19,035 [INFO] app.services.crawl_service:   Dead domain pubsub.com (HTTP fail) → RDAP: registered
+2026-03-12 23:31:19,563 [INFO] app.services.crawl_service:   Dead domain learningcircuits.org (HTTP 404) → RDAP: registered
+2026-03-12 23:31:20,883 [INFO] app.services.crawl_service:   Alive domain edna.edu.au (HTTP 200) → RDAP: registered
+2026-03-12 23:31:21,180 [INFO] app.services.crawl_service:   Alive domain edna.edu.au (HTTP 200) → RDAP: registered
+2026-03-12 23:31:21,428 [INFO] app.services.crawl_service:   Alive domain attensa.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:31:22,658 [INFO] app.services.crawl_service:   Alive domain attensa.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:31:22,903 [INFO] app.services.crawl_service:   Alive domain Writeboard.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:23,196 [INFO] app.services.crawl_service:   Alive domain Writeboard.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:25,172 [INFO] app.services.crawl_service:   Alive domain blogspot.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:26,346 [INFO] app.services.crawl_service:   Alive domain blogspot.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:26,573 [INFO] app.services.crawl_service:   Alive domain photoshopguys.com (HTTP 403) → RDAP: registered
+2026-03-12 23:31:26,877 [INFO] app.services.crawl_service:   Alive domain photoshopguys.com (HTTP 403) → RDAP: registered
+2026-03-12 23:31:27,080 [INFO] app.services.crawl_service:   Alive domain 21publish.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:27,849 [INFO] app.services.crawl_service:   Alive domain 21publish.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:28,695 [INFO] app.services.crawl_service:   Alive domain topleftpixel.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:29,506 [INFO] app.services.crawl_service:   Dead domain mv.k12.ma.us → RDAP: unknown
+2026-03-12 23:31:29,506 [INFO] app.services.crawl_service:   Dead domain mv.k12.ma.us → RDAP: unknown
+2026-03-12 23:31:29,720 [INFO] app.services.crawl_service:   Alive domain topleftpixel.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:31,395 [INFO] app.services.crawl_service:   Dead domain allRSS.com (HTTP fail) → RDAP: expiring_soon
+2026-03-12 23:31:32,021 [INFO] app.services.crawl_service:   Dead domain allRSS.com (HTTP fail) → RDAP: expiring_soon
+2026-03-12 23:31:32,254 [INFO] app.services.crawl_service:   Alive domain pookmail.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:31:33,576 [INFO] app.services.crawl_service:   Alive domain squeet.com (HTTP 200) → RDAP: expiring_soon
+2026-03-12 23:31:34,000 [INFO] app.services.crawl_service:   Alive domain squeet.com (HTTP 200) → RDAP: expiring_soon
+2026-03-12 23:31:34,001 [INFO] app.services.crawl_service:   Alive domain server.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:34,211 [INFO] app.services.crawl_service:   Alive domain pookmail.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:31:35,806 [INFO] app.services.crawl_service:   Alive domain server.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:35,992 [INFO] app.services.crawl_service:   Dead domain suprglu.com → RDAP: registered
+2026-03-12 23:31:36,001 [INFO] app.services.crawl_service:   Alive domain davidwarlick.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:31:36,006 [INFO] app.services.crawl_service:   Dead domain suprglu.com → RDAP: registered
+2026-03-12 23:31:37,034 [INFO] app.services.crawl_service:   Alive domain davidwarlick.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-12 23:31:38,441 [INFO] app.services.crawl_service:   Alive domain Blogger.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:39,413 [INFO] app.services.crawl_service:   Alive domain Blogger.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:42,788 [INFO] app.services.crawl_service:   Alive domain localendar.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:43,669 [INFO] app.services.crawl_service:   Alive domain localendar.com (HTTP 200) → RDAP: registered
+2026-03-12 23:31:44,026 [INFO] app.services.crawl_service:   Alive domain craigslist.org (HTTP 200) → RDAP: registered
+2026-03-12 23:31:44,272 [INFO] app.services.crawl_service:   Alive domain craigslist.org (HTTP 200) → RDAP: registered
+2026-03-12 23:31:48,643 [INFO] app.services.crawl_service:   Dead domain rss2pdf.com (HTTP fail) → RDAP: registered
+2026-03-12 23:31:53,589 [INFO] app.services.crawl_service:   Dead domain rss2pdf.com (HTTP fail) → RDAP: registered
+2026-03-12 23:31:56,354 [INFO] app.services.crawl_service:   Dead domain blogpulse.com (HTTP fail) → RDAP: registered
+2026-03-12 23:31:58,413 [INFO] app.services.crawl_service:   Dead domain blogpulse.com (HTTP fail) → RDAP: registered
+2026-03-12 23:32:18,014 [INFO] app.services.crawl_service:   Dead domain schoolblogs.com (HTTP fail) → RDAP: registered
+2026-03-12 23:32:18,018 [INFO] app.services.crawl_service:   Dead domain schoolblogs.com (HTTP fail) → RDAP: registered
+2026-03-12 23:32:21,548 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 20 dead links
+2026-03-12 23:32:21,548 [INFO] app.routes.crawl: Crawl done for source 680, starting RDAP check…
+2026-03-12 23:32:21,709 [INFO] app.services.crawl_service: Crawl completed: 0 candidates, 21 dead links
+2026-03-12 23:32:21,710 [INFO] app.routes.crawl: Crawl done for source 680, starting RDAP check…
+2026-03-12 23:32:22,274 [INFO] app.services.whois_service: Starting RDAP check for 2 candidates
+2026-03-12 23:32:22,456 [INFO] app.services.whois_service: Starting RDAP check for 2 candidates
+2026-03-12 23:32:22,791 [INFO] app.services.whois_service:   [1/2] mv.k12.ma.us → unknown
+2026-03-12 23:32:23,240 [INFO] app.services.whois_service:   [1/2] mv.k12.ma.us → unknown
+2026-03-12 23:32:24,857 [INFO] app.services.whois_service:   [2/2] glnd.k12.va.us → unknown
+2026-03-12 23:32:25,176 [INFO] app.services.whois_service:   [2/2] glnd.k12.va.us → unknown
+2026-03-12 23:32:26,146 [INFO] app.services.whois_service: RDAP check completed: 2/2
+2026-03-12 23:32:26,146 [INFO] app.routes.crawl: RDAP done for source 680, starting Wayback check…
+2026-03-12 23:32:26,415 [INFO] app.services.whois_service: RDAP check completed: 2/2
+2026-03-12 23:32:26,415 [INFO] app.routes.crawl: RDAP done for source 680, starting Wayback check…
+2026-03-12 23:32:26,635 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-12 23:32:26,678 [INFO] app.routes.crawl: Wayback done for source 680, starting scoring…
+2026-03-12 23:32:26,895 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-12 23:32:26,934 [INFO] app.routes.crawl: Wayback done for source 680, starting scoring…
+2026-03-12 23:32:27,397 [INFO] app.services.scoring_service: Scored 82 candidates
+2026-03-12 23:32:27,666 [INFO] app.routes.crawl: Full pipeline complete for source 680 ✓
+2026-03-12 23:32:27,789 [INFO] app.services.scoring_service: Scored 82 candidates
+2026-03-12 23:32:28,069 [INFO] app.routes.crawl: Full pipeline complete for source 680 ✓
+2026-03-12 23:33:41,416 [INFO] app.services.crawl_service: ZenRows[basic] ...b36ad6 OK https://en.wikipedia.org/wiki/List_of_the_oldest_currently_registered_Internet_domain_names (243365 chars)
+2026-03-12 23:33:41,540 [INFO] app.services.crawl_service: Fetched HTML: 243365 chars, extracted 15 links from https://en.wikipedia.org/wiki/List_of_the_oldest_currently_registered_Internet_domain_names
+2026-03-12 23:33:43,845 [INFO] app.services.crawl_service:   Alive domain nanog.org (HTTP 403) → RDAP: registered
+2026-03-12 23:33:44,434 [INFO] app.services.crawl_service: ZenRows[basic] ...5c1c3e OK https://en.wikipedia.org/wiki/List_of_the_oldest_currently_registered_Internet_domain_names (242895 chars)
+2026-03-12 23:33:44,612 [INFO] app.services.crawl_service: Fetched HTML: 242895 chars, extracted 15 links from https://en.wikipedia.org/wiki/List_of_the_oldest_currently_registered_Internet_domain_names
+2026-03-12 23:33:45,852 [INFO] app.services.crawl_service:   Alive domain jstor.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:47,589 [INFO] app.services.crawl_service:   Dead domain jottings.com (HTTP fail) → RDAP: registered
+2026-03-12 23:33:47,781 [INFO] app.services.crawl_service:   Alive domain nanog.org (HTTP 403) → RDAP: registered
+2026-03-12 23:33:48,394 [INFO] app.services.crawl_service:   Alive domain illumos.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:48,682 [INFO] app.services.crawl_service:   Alive domain illumos.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:48,682 [INFO] app.services.crawl_service:   Alive domain mediawiki.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:49,310 [INFO] app.services.crawl_service:   Alive domain jstor.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:50,132 [INFO] app.services.crawl_service:   Dead domain jottings.com (HTTP fail) → RDAP: registered
+2026-03-12 23:33:50,857 [INFO] app.services.crawl_service:   Alive domain bsa.org (HTTP 403) → RDAP: registered
+2026-03-12 23:33:51,062 [INFO] app.services.crawl_service:   Alive domain whois.com (HTTP 200) → RDAP: registered
+2026-03-12 23:33:51,305 [INFO] app.services.crawl_service:   Alive domain mediawiki.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:52,122 [INFO] app.services.crawl_service:   Alive domain iana.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:52,122 [INFO] app.services.crawl_service:   Alive domain rfc-editor.org (HTTP 403) → RDAP: registered
+2026-03-12 23:33:52,580 [INFO] app.services.crawl_service:   Alive domain bsa.org (HTTP 403) → RDAP: registered
+2026-03-12 23:33:52,814 [INFO] app.services.crawl_service:   Alive domain whois.com (HTTP 200) → RDAP: registered
+2026-03-12 23:33:53,007 [INFO] app.services.crawl_service:   Alive domain iana.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:54,624 [INFO] app.services.crawl_service:   Alive domain rfc-editor.org (HTTP 403) → RDAP: registered
+2026-03-12 23:33:54,898 [INFO] app.services.crawl_service:   Alive domain wikidata.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:55,386 [INFO] app.services.crawl_service:   Alive domain doi.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:55,625 [INFO] app.services.crawl_service:   Alive domain wikidata.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:55,625 [INFO] app.services.crawl_service:   Alive domain ietf.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:55,822 [INFO] app.services.crawl_service:   Alive domain ietf.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:56,090 [INFO] app.services.crawl_service:   Alive domain cambus.net (HTTP 200) → RDAP: registered
+2026-03-12 23:33:56,516 [INFO] app.services.crawl_service:   Alive domain cambus.net (HTTP 200) → RDAP: registered
+2026-03-12 23:33:56,611 [INFO] app.services.crawl_service:   Alive domain doi.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:57,843 [INFO] app.services.crawl_service:   Alive domain wikimediafoundation.org (HTTP 200) → RDAP: registered
+2026-03-12 23:33:58,009 [INFO] app.services.crawl_service:   Alive domain wikimediafoundation.org (HTTP 200) → RDAP: registered
+2026-03-12 23:34:02,410 [INFO] app.services.crawl_service:   Alive domain who.is (HTTP 200) → RDAP: registered
+2026-03-12 23:34:02,665 [ERROR] app.services.crawl_service: Crawl failed: name '_provenance' is not defined
+2026-03-12 23:34:02,708 [INFO] app.routes.crawl: Crawl done for source 13, starting RDAP check…
+2026-03-12 23:34:03,145 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-12 23:34:03,186 [INFO] app.routes.crawl: RDAP done for source 13, starting Wayback check…
+2026-03-12 23:34:03,623 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-12 23:34:03,671 [INFO] app.routes.crawl: Wayback done for source 13, starting scoring…
+2026-03-12 23:34:04,268 [INFO] app.services.scoring_service: Scored 14 candidates
+2026-03-12 23:34:04,499 [INFO] app.routes.crawl: Full pipeline complete for source 13 ✓
+2026-03-12 23:34:04,769 [INFO] app.services.crawl_service:   Alive domain who.is (HTTP 200) → RDAP: registered
+2026-03-12 23:34:05,006 [ERROR] app.services.crawl_service: Crawl failed: name '_provenance' is not defined
+2026-03-12 23:34:05,044 [INFO] app.routes.crawl: Crawl done for source 13, starting RDAP check…
+2026-03-12 23:34:05,548 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-12 23:34:05,587 [INFO] app.routes.crawl: RDAP done for source 13, starting Wayback check…
+2026-03-12 23:34:06,019 [INFO] app.services.wayback_service: No unchecked candidates for Wayback
+2026-03-12 23:34:06,060 [INFO] app.routes.crawl: Wayback done for source 13, starting scoring…
+2026-03-12 23:34:06,592 [INFO] app.services.scoring_service: Scored 14 candidates
+2026-03-12 23:34:06,834 [INFO] app.routes.crawl: Full pipeline complete for source 13 ✓
