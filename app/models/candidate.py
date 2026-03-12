@@ -14,8 +14,9 @@ class CandidateDomain(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     domain: Mapped[str] = mapped_column(String(253), nullable=False)
-    source_id: Mapped[int] = mapped_column(ForeignKey("sources.id", ondelete="CASCADE"), nullable=False)
-    crawl_job_id: Mapped[int] = mapped_column(ForeignKey("crawl_jobs.id", ondelete="CASCADE"), nullable=False)
+    # nullable=True: candidates promoted from suggested_candidates have no source/crawl_job
+    source_id: Mapped[int | None] = mapped_column(ForeignKey("sources.id", ondelete="CASCADE"), nullable=True)
+    crawl_job_id: Mapped[int | None] = mapped_column(ForeignKey("crawl_jobs.id", ondelete="CASCADE"), nullable=True)
     source_url_found: Mapped[str | None] = mapped_column(String(2048), nullable=True)
     original_link: Mapped[str | None] = mapped_column(String(2048), nullable=True)
     niche: Mapped[str] = mapped_column(String(100), nullable=False)

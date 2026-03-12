@@ -11,6 +11,7 @@ from datetime import datetime, date, timezone
 from urllib.parse import urlparse
 
 import httpx
+import tldextract
 from bs4 import BeautifulSoup
 from langdetect import detect, LangDetectException
 from sqlalchemy import select
@@ -319,28 +320,35 @@ async def check_candidates(db: AsyncSession, source_id: int | None = None):
                         data["total_snapshots"], data.get("dominant_language"),
                         len(flags), len(data.get("discovered_domains", set())))
 
-            # --- Layer 4b: save discovered outbound domains as suggestions (not live sources) ---
-            from app.models.suggested_source import SuggestedSource
+            # --- Layer 4b: save discovered outbound domains as suggested_candidates ---
+            from app.models.suggested_candidate import SuggestedCandidate
+            from app.models.candidate import CandidateDomain as _CD
             for disc_domain in data.get("discovered_domains", set()):
-                source_url = f"https://{disc_domain}/"
-                # Skip if already a live source
-                existing_src = await db.execute(
-                    select(Source).where(Source.url == source_url)
+                # Normalize to registered root domain — strips subdomains (blog.x.com → x.com)
+                ext = tldextract.extract(disc_domain)
+                if not ext.domain or not ext.suffix:
+                    continue
+                root_domain = f"{ext.domain}.{ext.suffix}"
+
+                # Skip if already a live candidate
+                existing_cand = await db.execute(
+                    select(_CD).where(_CD.domain == root_domain)
                 )
-                if existing_src.scalar_one_or_none() is not None:
+                if existing_cand.scalar_one_or_none() is not None:
                     continue
                 # Skip if already suggested
                 existing_sug = await db.execute(
-                    select(SuggestedSource).where(SuggestedSource.url == source_url)
+                    select(SuggestedCandidate).where(SuggestedCandidate.domain == root_domain)
                 )
                 if existing_sug.scalar_one_or_none() is None:
-                    db.add(SuggestedSource(
-                        url=source_url,
+                    db.add(SuggestedCandidate(
+                        domain=root_domain,
                         discovered_from=candidate.domain,
                         niche=candidate.niche or "General",
+                        discovery_source="wayback",
                     ))
                     new_sources += 1
-                    logger.info("  [Wayback] Suggested source: %s (from %s)", source_url, candidate.domain)
+                    logger.info("  [Wayback] Suggested candidate: %s (from %s)", root_domain, candidate.domain)
 
         except Exception as e:
             logger.error("Wayback error for %s: %s", candidate.domain, e)

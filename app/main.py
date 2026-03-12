@@ -10,7 +10,7 @@ from sqlalchemy import text
 
 from app.database import engine, Base
 from app.services.scheduler_service import run_scheduler
-from app.routes import dashboard, sources, crawl, candidates, export, logs, suggested_sources
+from app.routes import dashboard, sources, crawl, candidates, export, logs, suggested_sources, suggested_candidates
 from app.auth import BasicAuthMiddleware
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
@@ -36,12 +36,16 @@ async def lifespan(app: FastAPI):
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS parser_type VARCHAR(30)",
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS source_origin VARCHAR(2048)",
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS extraction_note TEXT",
+            # Make source_id and crawl_job_id nullable so promoted suggested_candidates can exist without a crawl job
+            "ALTER TABLE candidate_domains ALTER COLUMN source_id DROP NOT NULL",
+            "ALTER TABLE candidate_domains ALTER COLUMN crawl_job_id DROP NOT NULL",
         ]
         for sql in migrations:
             await conn.execute(text(sql))
 
         # Create new tables that may not exist yet
         from app.models.suggested_source import SuggestedSource  # noqa: F401 — ensure table registered
+        from app.models.suggested_candidate import SuggestedCandidate  # noqa: F401 — ensure table registered
         await conn.run_sync(Base.metadata.create_all)
 
     # Start background scheduler (re-check starred domains)
@@ -73,6 +77,7 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 # Routes
 app.include_router(dashboard.router)
 app.include_router(suggested_sources.router)  # must be before sources (avoids /sources/{id} capturing /sources/suggested)
+app.include_router(suggested_candidates.router)  # must be before candidates router
 app.include_router(sources.router)
 app.include_router(crawl.router)
 app.include_router(candidates.router)

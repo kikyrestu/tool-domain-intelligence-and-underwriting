@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+{% block title %}Suggested Candidates — Domain IQ{% endblock %}
+{% block nav_candidates %}font-semibold text-indigo-600{% endblock %}
+{% block nav_suggested_candidates %}font-semibold text-indigo-600{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900">Suggested Candidates</h1>
+        <p class="text-sm text-gray-500 mt-1">
+            Root domain yang ditemukan sistem (Wayback, crt.sh) — evaluate untuk di-check RDAP + Wayback, atau dismiss jika tidak relevan.
+        </p>
+    </div>
+    <div class="flex items-center gap-3">
+        {% if total > 0 %}
+        <span class="text-sm text-gray-500">{{ total }} domain menunggu</span>
+        {% endif %}
+        <a href="/candidates" class="text-sm text-gray-500 hover:text-gray-700">← Back to Candidates</a>
+    </div>
+</div>
+
+<!-- Info box -->
+<div class="mb-5 p-4 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800">
+    <strong>Cara kerja:</strong> Klik <strong>Evaluate</strong> untuk mengubah domain ini menjadi Candidate. Setelah itu, jalankan
+    <strong>Run WHOIS Check</strong> dan <strong>Run Wayback Check</strong> dari dashboard untuk mendapatkan skor dan label.
+    Domain yang di-evaluate tidak memiliki crawl job — status awal akan kosong hingga check dijalankan.
+</div>
+
+{% if suggestions %}
+
+<!-- Bulk action bar -->
+<div id="bulk-bar" class="hidden mb-3 flex items-center gap-3 bg-indigo-50 border border-indigo-200 rounded-lg px-4 py-2 flex-wrap">
+    <span id="bulk-count" class="text-sm font-medium text-indigo-700">0 selected</span>
+
+    <!-- Bulk evaluate -->
+    <form id="bulk-evaluate-form" method="post" action="/candidates/suggested/bulk-evaluate">
+        <div id="bulk-eval-ids"></div>
+        <select name="niche" class="text-sm border border-gray-300 rounded px-2 py-1 mr-1">
+            {% for n in niches %}
+            <option value="{{ n }}">{{ n }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" onclick="return injectBulkIds('bulk-eval-ids')"
+            class="px-3 py-1 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700">
+            ✓ Evaluate Selected
+        </button>
+    </form>
+
+    <!-- Bulk dismiss -->
+    <form id="bulk-dismiss-form" method="post" action="/candidates/suggested/bulk-dismiss"
+        onsubmit="return injectBulkIds('bulk-dismiss-ids') && confirm('Dismiss ' + document.querySelectorAll('.row-check:checked').length + ' suggestion(s)?')">
+        <div id="bulk-dismiss-ids"></div>
+        <button type="submit"
+            class="px-3 py-1 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700">
+            ✗ Dismiss Selected
+        </button>
+    </form>
+
+    <button onclick="selectNone()" class="text-sm text-gray-500 hover:text-gray-700 underline">Clear</button>
+</div>
+
+<div class="bg-white rounded-lg border border-gray-200">
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-4 py-3 w-8">
+                        <input type="checkbox" id="select-all" onchange="toggleAll(this)"
+                            class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                    </th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Domain</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Discovered From</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Via</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Niche</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Found</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {% for sug in suggestions %}
+                <tr class="hover:bg-gray-50">
+                    <td class="px-4 py-3">
+                        <input type="checkbox" value="{{ sug.id }}" class="row-check rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" onchange="onCheckChange()">
+                    </td>
+                    <td class="px-5 py-3 text-sm">
+                        <a href="https://{{ sug.domain }}/" target="_blank" rel="noopener noreferrer"
+                            class="text-indigo-600 hover:text-indigo-800 font-mono font-medium">
+                            {{ sug.domain }}
+                        </a>
+                    </td>
+                    <td class="px-5 py-3 text-sm text-gray-500">
+                        <span class="font-mono text-xs bg-gray-100 px-1.5 py-0.5 rounded">{{ sug.discovered_from }}</span>
+                    </td>
+                    <td class="px-5 py-3 text-sm">
+                        {% if sug.discovery_source == "wayback" %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-amber-100 text-amber-700">
+                            Wayback
+                        </span>
+                        {% elif sug.discovery_source == "crtsh" %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-purple-100 text-purple-700">
+                            crt.sh
+                        </span>
+                        {% elif sug.discovery_source == "crawl" %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-blue-100 text-blue-700">
+                            Crawl
+                        </span>
+                        {% else %}
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-600">
+                            {{ sug.discovery_source }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    <td class="px-5 py-3 text-sm">
+                        <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-blue-100 text-blue-700">
+                            {{ sug.niche }}
+                        </span>
+                    </td>
+                    <td class="px-5 py-3 text-sm text-gray-400 whitespace-nowrap">
+                        {{ sug.created_at.strftime('%d %b %Y') if sug.created_at else '—' }}
+                    </td>
+                    <td class="px-5 py-3 text-sm">
+                        <div class="flex items-center gap-3">
+                            <button
+                                data-id="{{ sug.id }}"
+                                data-domain="{{ sug.domain }}"
+                                data-niche="{{ sug.niche }}"
+                                onclick="openEvaluate(this)"
+                                class="text-green-600 hover:text-green-800 font-medium">Evaluate</button>
+                            <form method="post" action="/candidates/suggested/{{ sug.id }}/dismiss" class="inline"
+                                onsubmit="return confirm('Dismiss {{ sug.domain }}?')">
+                                <button type="submit" class="text-red-500 hover:text-red-700 font-medium">Dismiss</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% else %}
+<div class="text-center py-20 text-gray-400">
+    <div class="text-5xl mb-4">🔍</div>
+    <p class="text-lg font-medium text-gray-500">Tidak ada suggested candidates</p>
+    <p class="text-sm mt-1">Domain baru akan muncul di sini setelah Wayback check dijalankan.</p>
+</div>
+{% endif %}
+
+<!-- Evaluate Modal -->
+<div id="evaluate-modal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-xl p-6 w-full max-w-md">
+        <h2 class="text-lg font-semibold text-gray-800 mb-1">Evaluate Candidate</h2>
+        <p id="eval-domain-label" class="text-sm text-gray-500 mb-4 font-mono"></p>
+        <form id="evaluate-form" method="post">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Niche</label>
+            <select name="niche" id="eval-niche" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm mb-4">
+                {% for n in niches %}
+                <option value="{{ n }}">{{ n }}</option>
+                {% endfor %}
+            </select>
+            <p class="text-xs text-gray-400 mb-4">
+                Domain akan masuk ke Candidates. Jalankan WHOIS Check dan Wayback Check dari dashboard untuk mendapatkan skor.
+            </p>
+            <div class="flex justify-end gap-3">
+                <button type="button" onclick="closeEvaluate()"
+                    class="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</button>
+                <button type="submit"
+                    class="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700">
+                    ✓ Evaluate
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function toggleAll(cb) {
+    document.querySelectorAll('.row-check').forEach(c => c.checked = cb.checked);
+    onCheckChange();
+}
+function selectNone() {
+    document.querySelectorAll('.row-check, #select-all').forEach(c => c.checked = false);
+    onCheckChange();
+}
+function onCheckChange() {
+    const checked = document.querySelectorAll('.row-check:checked');
+    const bar = document.getElementById('bulk-bar');
+    document.getElementById('bulk-count').textContent = checked.length + ' selected';
+    bar.classList.toggle('hidden', checked.length === 0);
+}
+function injectBulkIds(containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    document.querySelectorAll('.row-check:checked').forEach(cb => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'ids';
+        input.value = cb.value;
+        container.appendChild(input);
+    });
+    return true;
+}
+function openEvaluate(btn) {
+    document.getElementById('eval-domain-label').textContent = btn.dataset.domain;
+    document.getElementById('evaluate-form').action = '/candidates/suggested/' + btn.dataset.id + '/evaluate';
+    const nicheSelect = document.getElementById('eval-niche');
+    for (let opt of nicheSelect.options) {
+        if (opt.value === btn.dataset.niche) { opt.selected = true; break; }
+    }
+    document.getElementById('evaluate-modal').classList.remove('hidden');
+}
+function closeEvaluate() {
+    document.getElementById('evaluate-modal').classList.add('hidden');
+}
+document.getElementById('evaluate-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeEvaluate();
+});
+</script>
+{% endblock %}
