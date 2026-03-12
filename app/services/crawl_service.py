@@ -461,7 +461,10 @@ _PAGE_EXT_RE = re.compile(
 
 
 def _extract_outbound_links(html: str, source_url: str) -> list[tuple[str, str]]:
-    """Extract outbound links from HTML. Returns list of (url, domain)."""
+    """Extract outbound links from HTML. Returns list of (url, domain).
+    Tolerant parser: handles legacy HTML (broken tags, relative URLs,
+    meta refresh redirects, non-UTF-8 encoding already decoded upstream).
+    """
     soup = BeautifulSoup(html, "html.parser")
     source_domain = extract_domain(source_url)
 
@@ -495,7 +498,20 @@ def _extract_outbound_links(html: str, source_url: str) -> list[tuple[str, str]]
             continue
         _add(full_url)
 
-    # 2. Plain-text URLs di body (untuk forum post, blog, dll)
+    # 2. Meta refresh — legacy HTML redirect: <meta http-equiv="refresh" content="0;url=https://...">
+    for meta in soup.find_all("meta"):
+        http_equiv = (meta.get("http-equiv") or "").lower()
+        if http_equiv == "refresh":
+            content = meta.get("content", "")
+            # Format: "N;url=https://..." or "N;URL=https://..."
+            match = re.search(r"url\s*=\s*([^\s;\"']+)", content, re.IGNORECASE)
+            if match:
+                ref_url = match.group(1).strip().strip("'\"")
+                full_url = urljoin(source_url, ref_url)
+                if urlparse(full_url).scheme in ("http", "https"):
+                    _add(full_url)
+
+    # 3. Plain-text URLs di body (untuk forum post, blog, dll)
     for match in _URL_RE.finditer(html):
         url = match.group(1).rstrip(".,;)'\"")
         parsed = urlparse(url)
@@ -905,6 +921,11 @@ async def run_crawl(source_id: int, db: AsyncSession):
                 whois_expiry_date=status.get("whois_expiry_date"),
                 whois_days_left=status.get("whois_days_left"),
                 whois_checked_at=datetime.now(timezone.utc) if status.get("availability_status") else None,
+                # Provenance
+                source_type=_provenance["source_type"],
+                parser_type=_provenance["parser_type"],
+                source_origin=_provenance["source_origin"],
+                extraction_note=_provenance["extraction_note"],
             )
             db.add(candidate)
             saved += 1

@@ -243,6 +243,29 @@
     </form>
 </div>
 
+<!-- Provenance -->
+<div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h2 class="text-lg font-semibold text-gray-800 mb-3">🔍 Provenance</h2>
+    <dl class="space-y-2 text-sm">
+        <div class="flex justify-between">
+            <dt class="text-gray-500">Source Type</dt>
+            <dd><span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 font-mono text-xs">{{ c.source_type or '—' }}</span></dd>
+        </div>
+        <div class="flex justify-between">
+            <dt class="text-gray-500">Parser</dt>
+            <dd><span class="px-2 py-0.5 rounded bg-purple-100 text-purple-700 font-mono text-xs">{{ c.parser_type or '—' }}</span></dd>
+        </div>
+        <div class="flex justify-between">
+            <dt class="text-gray-500">Source Origin</dt>
+            <dd class="text-gray-900 truncate max-w-md text-xs">{{ c.source_origin or '—' }}</dd>
+        </div>
+        <div class="flex justify-between">
+            <dt class="text-gray-500">Extraction Note</dt>
+            <dd class="text-gray-600 text-xs">{{ c.extraction_note or '—' }}</dd>
+        </div>
+    </dl>
+</div>
+
 <!-- Meta -->
 <div class="bg-white rounded-lg shadow p-6 mb-6">
     <h2 class="text-lg font-semibold text-gray-800 mb-3">Meta</h2>

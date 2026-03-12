@@ -32,6 +32,10 @@ async def lifespan(app: FastAPI):
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS wayback_check_failed BOOLEAN DEFAULT FALSE",
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS label_reason TEXT",
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS owner_notes TEXT",
+            "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS source_type VARCHAR(30)",
+            "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS parser_type VARCHAR(30)",
+            "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS source_origin VARCHAR(2048)",
+            "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS extraction_note TEXT",
         ]
         for sql in migrations:
             await conn.execute(text(sql))

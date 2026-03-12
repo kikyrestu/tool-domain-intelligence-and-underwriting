@@ -61,6 +61,12 @@ class CandidateDomain(Base):
     is_starred: Mapped[bool] = mapped_column(Boolean, default=False)
     owner_notes: Mapped[str | None] = mapped_column(Text, nullable=True)
 
+    # Provenance (V1.1)
+    source_type: Mapped[str | None] = mapped_column(String(30), nullable=True)   # html, sitemap, robots_txt, crtsh, pdf, pptx, docx, xlsx
+    parser_type: Mapped[str | None] = mapped_column(String(30), nullable=True)   # beautifulsoup, sitemap_xml, crtsh_api, pdfplumber, python_pptx, python_docx, openpyxl
+    source_origin: Mapped[str | None] = mapped_column(String(2048), nullable=True)  # exact source URL that yielded this candidate
+    extraction_note: Mapped[str | None] = mapped_column(Text, nullable=True)     # human-readable note for owner
+
     # Meta
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow, onupdate=datetime.utcnow)

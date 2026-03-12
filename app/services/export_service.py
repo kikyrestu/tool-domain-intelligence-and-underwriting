@@ -30,6 +30,9 @@ EXPORT_COLUMNS = [
     ("source_url_found", "Source URL"),
     ("owner_notes", "Notes"),
     ("created_at", "Discovered"),
+    ("source_type", "Source Type"),
+    ("parser_type", "Parser Type"),
+    ("extraction_note", "Extraction Note"),
 ]
 
 
@@ -55,6 +58,9 @@ def _candidate_row(c: CandidateDomain) -> list:
         c.source_url_found or "",
         c.owner_notes or "",
         c.created_at.strftime("%Y-%m-%d %H:%M") if c.created_at else "",
+        c.source_type or "",
+        c.parser_type or "",
+        c.extraction_note or "",
     ]
 
 
