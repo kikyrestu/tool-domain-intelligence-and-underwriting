@@ -785,9 +785,43 @@ async def run_crawl(source_id: int, db: AsyncSession):
     await db.flush()
 
     try:
-        # 1. Fetch source page (HTML or binary document)
-        source_ext = os.path.splitext(urlparse(source.url).path)[1].lstrip(".").lower()
-        if source_ext in _BINARY_EXTENSIONS:
+        # 1. Detect source type and route to appropriate pipeline
+        _src = source.url
+        _path = urlparse(_src).path.lower() if _src.startswith("http") else ""
+        source_ext = os.path.splitext(_path)[1].lstrip(".")
+
+        if _src.lower().startswith("crtsh://"):
+            # ── Pipeline A: Certificate Transparency (crt.sh) ──────────────
+            from app.services.crtsh_service import fetch_domains_from_crtsh, parse_crtsh_keyword
+            keyword = parse_crtsh_keyword(_src) or ""
+            if not keyword:
+                job.status = "failed"
+                job.error_message = "crtsh:// URL must include a keyword, e.g. crtsh://technology"
+                job.completed_at = datetime.now(timezone.utc)
+                await db.commit()
+                return job
+            job.current_step = "crtsh"
+            await db.flush()
+            links = await fetch_domains_from_crtsh(keyword)
+            logger.info("crt.sh '%s': %d domain candidates", keyword, len(links))
+
+        elif _path.rstrip("/").endswith("robots.txt"):
+            # ── Pipeline B: robots.txt → sitemap auto-discovery ────────────
+            from app.services.sitemap_service import fetch_links_from_robots
+            job.current_step = "robots_txt"
+            await db.flush()
+            links = await fetch_links_from_robots(_src)
+            logger.info("robots.txt '%s': %d domain candidates", _src, len(links))
+
+        elif _path.endswith(".xml") or _path.endswith(".xml.gz") or "sitemap" in _path:
+            # ── Pipeline C: Sitemap XML (direct or index) ──────────────────
+            from app.services.sitemap_service import fetch_links_from_sitemap
+            job.current_step = "sitemap"
+            await db.flush()
+            links = await fetch_links_from_sitemap(_src)
+            logger.info("Sitemap '%s': %d domain candidates", _src, len(links))
+
+        elif source_ext in _BINARY_EXTENSIONS:
             # Binary document pipeline
             logger.info("Binary source detected (%s): %s", source_ext, source.url)
             binary_data = await _fetch_binary(source.url)
