@@ -22,6 +22,7 @@ from app.config import get_settings
 from app.services.proxy_service import ProxyService
 from app.services.toxicity_service import scan_candidate
 from app.utils.ssrf_guard import is_safe_url
+from app.utils.domain_filter import is_valid_candidate
 
 logger = logging.getLogger(__name__)
 
@@ -120,15 +121,17 @@ def _extract_outbound_domains(html: str, current_domain: str) -> set[str]:
                     href = m.group(1)
             try:
                 parsed = urlparse(href if href.startswith("http") else f"https://{href}")
-                netloc = parsed.netloc.lower().lstrip("www.")
-                if not netloc or netloc == current_domain.lower().lstrip("www."):
+                # Use parsed.hostname to strip userinfo (user:pass@) and port — prevents
+                # mailto:user@domain.com leaking through as a netloc candidate.
+                hostname = (parsed.hostname or "").lower().lstrip("www.")
+                if not hostname or hostname == current_domain.lower().lstrip("www."):
                     continue
-                # Sanity: must look like domain.tld
-                if "." not in netloc or len(netloc) > 100:
+                # Validate TLD — filters .php, .html, .aspx, .asp, etc.
+                if not is_valid_candidate(hostname):
                     continue
-                candidate_url = f"https://{netloc}/"
+                candidate_url = f"https://{hostname}/"
                 if is_safe_url(candidate_url):
-                    found.add(netloc)
+                    found.add(hostname)
             except Exception:
                 continue
     except Exception:
