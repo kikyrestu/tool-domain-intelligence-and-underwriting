@@ -1,3 +1,62 @@
+from app.services.whois_service import _rdap_lookup
+from app.services.wayback_service import analyze_domain
+from app.services.scoring_service import calculate_score
+from app.services.toxicity_service import scan_candidate
+from sqlalchemy import update
+
+# Crawl RDAP/Availability untuk satu domain
+@router.post("/candidates/{candidate_id}/rdap")
+async def crawl_rdap(candidate_id: int, db: AsyncSession = Depends(get_db)):
+    candidate = await db.get(CandidateDomain, candidate_id)
+    if candidate:
+        # Cek DNS resolves
+        dns_resolves = candidate.dns_resolves if candidate.dns_resolves is not None else False
+        rdap = await _rdap_lookup(candidate.domain, dns_resolves=dns_resolves)
+        candidate.availability_status = rdap["status"]
+        candidate.whois_registrar = rdap.get("registrar")
+        candidate.whois_created_date = rdap.get("created_date")
+        candidate.whois_expiry_date = rdap.get("expiry_date")
+        candidate.whois_days_left = rdap.get("days_left")
+        candidate.whois_checked_at = datetime.now()
+        await db.commit()
+        await db.refresh(candidate)
+    return RedirectResponse(url=f"/candidates/{candidate_id}", status_code=303)
+
+# Crawl Wayback/History untuk satu domain
+@router.post("/candidates/{candidate_id}/wayback")
+async def crawl_wayback(candidate_id: int, db: AsyncSession = Depends(get_db)):
+    candidate = await db.get(CandidateDomain, candidate_id)
+    if candidate:
+        data = await analyze_domain(candidate.domain)
+        candidate.wayback_total_snapshots = data.get("total_snapshots", 0)
+        candidate.wayback_first_seen = data.get("first_seen")
+        candidate.wayback_last_seen = data.get("last_seen")
+        candidate.wayback_years_active = data.get("years_active")
+        candidate.dominant_language = data.get("dominant_language")
+        candidate.content_drift_detected = data.get("content_drift", False)
+        candidate.wayback_checked_at = datetime.now()
+        candidate.wayback_check_failed = False
+        await db.commit()
+        await db.refresh(candidate)
+    return RedirectResponse(url=f"/candidates/{candidate_id}", status_code=303)
+
+# Score satu domain
+@router.post("/candidates/{candidate_id}/score")
+async def score_candidate(candidate_id: int, db: AsyncSession = Depends(get_db)):
+    candidate = await db.get(CandidateDomain, candidate_id)
+    if candidate:
+        toxicity_flags = scan_candidate(candidate)
+        result = calculate_score(candidate, toxicity_flags)
+        candidate.score_availability = result["score_availability"]
+        candidate.score_continuity = result["score_continuity"]
+        candidate.score_cleanliness = result["score_cleanliness"]
+        candidate.score_total = result["score_total"]
+        candidate.label = result["label"]
+        candidate.label_reason = result["reason"]
+        candidate.toxicity_flags = str(toxicity_flags)
+        await db.commit()
+        await db.refresh(candidate)
+    return RedirectResponse(url=f"/candidates/{candidate_id}", status_code=303)
 """Candidates routes — list, detail, notes."""
 
 from datetime import date
