@@ -3898,3 +3898,448 @@ DETAIL:  Key (domain, source_id)=(TeachingHacks.com, 680) already exists.
 2026-03-12 23:43:46,994 [INFO] app.routes.crawl: Wayback done for source 678, starting scoring…
 2026-03-12 23:43:47,619 [INFO] app.services.scoring_service: Scored 15 candidates
 2026-03-12 23:43:47,901 [INFO] app.routes.crawl: Full pipeline complete for source 678 ✓
+2026-03-13 14:22:43,394 [INFO] app.services.crawl_service: ZenRows[basic] ...b36ad6 OK https://prlab.co/blog/top-media-outlets-for-news-coverage/ (264845 chars)
+2026-03-13 14:22:43,564 [INFO] app.services.crawl_service: Fetched HTML: 264845 chars, extracted 27 links from https://prlab.co/blog/top-media-outlets-for-news-coverage/
+2026-03-13 14:22:46,436 [INFO] app.services.whois_service: [RDAP] IANA bootstrap loaded: 1198 TLDs cached
+2026-03-13 14:22:50,767 [INFO] app.services.crawl_service:   Alive domain newscaststudio.com (HTTP 403) → RDAP: expiring_watchlist
+2026-03-13 14:22:51,410 [INFO] app.services.crawl_service:   Alive domain cision.com (HTTP 200) → RDAP: registered
+2026-03-13 14:22:51,411 [INFO] app.services.crawl_service:   Dead domain mykajabi.com → RDAP: expiring_watchlist
+2026-03-13 14:22:54,553 [INFO] app.services.crawl_service:   Alive domain niemanlab.org (HTTP 403) → RDAP: registered
+2026-03-13 14:22:55,905 [INFO] app.services.crawl_service:   Alive domain hubspot.com (HTTP 200) → RDAP: registered
+2026-03-13 14:22:59,379 [INFO] app.services.crawl_service:   Dead domain gstatic.com (HTTP 404) → RDAP: registered
+2026-03-13 14:23:01,439 [INFO] app.services.crawl_service: ZenRows[basic] ...5c1c3e OK https://prlab.co/blog/top-media-outlets-for-news-coverage/ (264845 chars)
+2026-03-13 14:23:01,525 [INFO] app.services.crawl_service: Fetched HTML: 264845 chars, extracted 27 links from https://prlab.co/blog/top-media-outlets-for-news-coverage/
+2026-03-13 14:23:03,131 [INFO] app.services.crawl_service:   Alive domain indiatimes.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:03,248 [INFO] app.services.crawl_service:   Alive domain adweek.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-13 14:23:06,331 [INFO] app.services.crawl_service:   Dead domain mykajabi.com → RDAP: expiring_watchlist
+2026-03-13 14:23:07,368 [INFO] app.services.crawl_service:   Alive domain niemanlab.org (HTTP 403) → RDAP: registered
+2026-03-13 14:23:09,500 [INFO] app.services.crawl_service:   Alive domain euractiv.com (HTTP 403) → RDAP: registered
+2026-03-13 14:23:09,525 [WARNING] app.services.whois_service: RDAP all endpoints failed for journalism.co.uk (last=None)
+2026-03-13 14:23:09,525 [INFO] app.services.crawl_service:   Alive domain journalism.co.uk (HTTP 200) → RDAP: registered
+2026-03-13 14:23:10,017 [INFO] app.services.crawl_service:   Alive domain cision.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:10,457 [INFO] app.services.crawl_service:   Alive domain newscaststudio.com (HTTP 403) → RDAP: expiring_watchlist
+2026-03-13 14:23:14,017 [INFO] app.services.crawl_service:   Alive domain hubspot.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:14,017 [INFO] app.services.crawl_service:   Alive domain adweek.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-13 14:23:16,992 [INFO] app.services.crawl_service:   Alive domain statista.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:17,352 [INFO] app.services.crawl_service:   Alive domain hypebeast.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:17,864 [INFO] app.services.crawl_service:   Alive domain journalism.co.uk (HTTP 200) → RDAP: registered
+2026-03-13 14:23:17,865 [INFO] app.services.crawl_service:   Alive domain itnews.com.au (HTTP 200) → RDAP: registered
+2026-03-13 14:23:18,271 [INFO] app.services.crawl_service:   Alive domain indiatimes.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:19,294 [INFO] app.services.crawl_service:   Dead domain gstatic.com (HTTP 404) → RDAP: registered
+2026-03-13 14:23:19,519 [INFO] app.services.crawl_service:   Alive domain euractiv.com (HTTP 403) → RDAP: registered
+2026-03-13 14:23:20,294 [INFO] app.services.crawl_service:   Alive domain similarweb.com (HTTP 200) → RDAP: expiring_soon
+2026-03-13 14:23:22,917 [INFO] app.services.crawl_service:   Alive domain cordcuttersnews.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-13 14:23:24,144 [INFO] app.services.crawl_service:   Alive domain nucamp.co (HTTP 200) → RDAP: registered
+2026-03-13 14:23:25,519 [INFO] app.services.crawl_service:   Alive domain techspot.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:28,432 [INFO] app.services.crawl_service:   Alive domain hypebeast.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:28,432 [INFO] app.services.crawl_service:   Alive domain techspot.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:28,447 [INFO] app.services.crawl_service:   Alive domain itnews.com.au (HTTP 200) → RDAP: registered
+2026-03-13 14:23:29,961 [INFO] app.services.crawl_service:   Alive domain similarweb.com (HTTP 200) → RDAP: expiring_soon
+2026-03-13 14:23:30,943 [INFO] app.services.crawl_service:   Dead domain digitalnewsreport.org (HTTP fail) → RDAP: registered
+2026-03-13 14:23:30,945 [INFO] app.services.crawl_service:   Alive domain nytimes.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:33,501 [INFO] app.services.crawl_service:   Alive domain statista.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:34,505 [INFO] app.services.crawl_service:   Alive domain clutch.co (HTTP 403) → RDAP: registered
+2026-03-13 14:23:34,510 [INFO] app.services.crawl_service:   Alive domain ox.ac.uk (HTTP 200) → RDAP: registered
+2026-03-13 14:23:35,070 [INFO] app.services.crawl_service:   Alive domain cordcuttersnews.com (HTTP 200) → RDAP: expiring_watchlist
+2026-03-13 14:23:35,238 [INFO] app.services.crawl_service:   Alive domain nucamp.co (HTTP 200) → RDAP: registered
+2026-03-13 14:23:36,420 [INFO] app.services.crawl_service:   Alive domain apnews.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:38,724 [INFO] app.services.crawl_service:   Dead domain digitalnewsreport.org (HTTP fail) → RDAP: registered
+2026-03-13 14:23:39,849 [INFO] app.services.crawl_service:   Alive domain nytimes.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:40,199 [INFO] app.services.crawl_service:   Alive domain semrush.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:40,349 [INFO] app.services.crawl_service:   Alive domain clutch.co (HTTP 403) → RDAP: registered
+2026-03-13 14:23:40,586 [INFO] app.services.crawl_service:   Alive domain ox.ac.uk (HTTP 200) → RDAP: registered
+2026-03-13 14:23:42,263 [INFO] app.services.crawl_service:   Alive domain emersoncollegepolling.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:42,714 [INFO] app.services.crawl_service:   Alive domain cairoscene.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:42,715 [INFO] app.services.crawl_service:   Alive domain thedesk.net (HTTP 200) → RDAP: registered
+2026-03-13 14:23:42,847 [INFO] app.services.crawl_service:   Alive domain cairoscene.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:43,381 [INFO] app.services.crawl_service:   Alive domain apnews.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:44,420 [INFO] app.services.crawl_service:   Alive domain wsj.com (HTTP 401) → RDAP: expiring_watchlist
+2026-03-13 14:23:44,421 [INFO] app.services.crawl_service:   Alive domain wsj.com (HTTP 401) → RDAP: expiring_watchlist
+2026-03-13 14:23:44,612 [INFO] app.services.crawl_service:   Alive domain thedesk.net (HTTP 200) → RDAP: registered
+2026-03-13 14:23:46,163 [INFO] app.services.crawl_service:   Alive domain emersoncollegepolling.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:46,385 [INFO] app.services.crawl_service:   Alive domain semrush.com (HTTP 200) → RDAP: registered
+2026-03-13 14:23:47,882 [INFO] app.services.crawl_service: Crawl completed: 27 candidates, 3 dead links
+2026-03-13 14:23:47,882 [INFO] app.services.crawl_service: [Depth-2] Starting discovery for 10 alive domains
+2026-03-13 14:23:47,922 [ERROR] app.services.crawl_service: Crawl failed: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "uq_candidates_domain_source"
+DETAIL:  Key (domain, source_id)=(niemanlab.org, 681) already exists.
+[SQL: INSERT INTO candidate_domains (domain, source_id, crawl_job_id, source_url_found, original_link, niche, http_status, dns_resolves, is_domain_alive, dns_mx_records, is_parked, availability_status, whois_registrar, whois_created_date, whois_expiry_date, whois_days_left, dns_has_records, whois_checked_at, wayback_total_snapshots, wayback_first_seen, wayback_last_seen, wayback_years_active, dominant_language, content_drift_detected, wayback_checked_at, wayback_check_failed, score_availability, score_continuity, score_cleanliness, score_total, label, label_reason, toxicity_flags, is_starred, owner_notes, source_type, parser_type, source_origin, extraction_note, created_at, updated_at) VALUES ($1::VARCHAR, $2::INTEGER, $3::INTEGER, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR, $7::INTEGER, $8::BOOLEAN, $9::BOOLEAN, $10::BOOLEAN, $11::BOOLEAN, $12::VARCHAR, $13::VARCHAR, $14::DATE, $15::DATE, $16::INTEGER, $17::BOOLEAN, $18::TIMESTAMP WITH TIME ZONE, $19::INTEGER, $20::DATE, $21::DATE, $22::INTEGER, $23::VARCHAR, $24::BOOLEAN, $25::TIMESTAMP WITH TIME ZONE, $26::BOOLEAN, $27::FLOAT, $28::FLOAT, $29::FLOAT, $30::FLOAT, $31::VARCHAR, $32::VARCHAR, $33::VARCHAR, $34::BOOLEAN, $35::VARCHAR, $36::VARCHAR, $37::VARCHAR, $38::VARCHAR, $39::VARCHAR, $40::TIMESTAMP WITH TIME ZONE, $41::TIMESTAMP WITH TIME ZONE) RETURNING candidate_domains.id]
+[parameters: ('niemanlab.org', 681, 103, 'https://prlab.co/blog/top-media-outlets-for-news-coverage/', 'https://www.niemanlab.org/2025/06/for-the-first-time-social-media-overtakes-tv-as-americans-top-news-source/', 'General', 403, True, True, True, False, 'registered', 'pair Networks, Inc. d/b/a pair Domains', datetime.date(2008, 8, 11), datetime.date(2026, 8, 11), 151, None, datetime.datetime(2026, 3, 13, 7, 23, 46, 633635, tzinfo=datetime.timezone.utc), 0, None, None, None, None, False, None, False, None, None, None, None, None, None, None, False, None, 'html', 'beautifulsoup', 'https://prlab.co/blog/top-media-outlets-for-news-coverage/', 'HTML page crawl: 264845 chars, 27 domains extracted', datetime.datetime(2026, 3, 13, 7, 23, 46, 633908), datetime.datetime(2026, 3, 13, 7, 23, 46, 633910))]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-03-13 14:23:47,923 [INFO] app.routes.crawl: Crawl done for source 681, starting RDAP check…
+2026-03-13 14:23:48,550 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-13 14:23:48,590 [INFO] app.routes.crawl: RDAP done for source 681, starting Wayback check…
+2026-03-13 14:23:49,365 [INFO] app.services.wayback_service: Starting Wayback check for 27 candidates
+2026-03-13 14:23:50,829 [INFO] app.services.crawl_service: ZenRows[basic] ...b36ad6 OK https://journalism.co.uk/ (111084 chars)
+2026-03-13 14:23:51,808 [INFO] app.services.crawl_service: [Depth-2] journalism.co.uk → 3 new suggested candidates
+2026-03-13 14:23:53,730 [INFO] app.services.crawl_service: ZenRows[basic] ...5c1c3e OK https://cision.com/ (116594 chars)
+2026-03-13 14:23:54,907 [INFO] app.services.crawl_service: [Depth-2] cision.com → 5 new suggested candidates
+2026-03-13 14:23:59,291 [INFO] app.services.crawl_service: ZenRows[basic] ...b36ad6 OK https://adweek.com/ (653000 chars)
+2026-03-13 14:24:00,812 [INFO] app.services.crawl_service: [Depth-2] adweek.com → 3 new suggested candidates
+2026-03-13 14:24:08,230 [INFO] app.services.crawl_service: ZenRows[basic] ...5c1c3e OK https://hubspot.com/ (674767 chars)
+2026-03-13 14:24:10,007 [INFO] app.services.crawl_service: [Depth-2] hubspot.com → 2 new suggested candidates
+2026-03-13 14:24:13,643 [INFO] app.services.crawl_service: ZenRows[basic] ...b36ad6 OK https://indiatimes.com/ (205046 chars)
+2026-03-13 14:24:14,123 [INFO] app.services.crawl_service: [Depth-2] indiatimes.com → 1 new suggested candidates
+2026-03-13 14:24:19,873 [INFO] app.services.wayback_service: Wayback [1/27] niemanlab.org: 50 snapshots, lang=en, toxicity=2 flags, discovered=81
+2026-03-13 14:24:20,237 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: capitalnewyork.com (from niemanlab.org)
+2026-03-13 14:24:20,427 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: newsonomics.com (from niemanlab.org)
+2026-03-13 14:24:20,596 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: progressivegrocer.com (from niemanlab.org)
+2026-03-13 14:24:20,679 [ERROR] app.services.wayback_service: Wayback error for niemanlab.org: Multiple rows were found when one or none was required
+2026-03-13 14:24:37,014 [INFO] app.services.wayback_service: Wayback [2/27] emersoncollegepolling.com: 43 snapshots, lang=en, toxicity=0 flags, discovered=1
+2026-03-13 14:24:37,462 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: twimg.com (from emersoncollegepolling.com)
+2026-03-13 14:24:48,833 [INFO] app.services.crawl_service: ZenRows[basic] ...5c1c3e OK https://statista.com/ (522422 chars)
+2026-03-13 14:24:50,650 [INFO] app.services.crawl_service: [Depth-2] statista.com → 8 new suggested candidates
+2026-03-13 14:24:54,874 [INFO] app.services.wayback_service: Wayback [3/27] ox.ac.uk: 50 snapshots, lang=en, toxicity=0 flags, discovered=16
+2026-03-13 14:24:55,635 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: oup.co.uk (from ox.ac.uk)
+2026-03-13 14:24:57,600 [INFO] app.services.crawl_service: ZenRows[basic] ...b36ad6 OK https://itnews.com.au/ (139021 chars)
+2026-03-13 14:24:58,544 [INFO] app.services.crawl_service: [Depth-2] itnews.com.au → 4 new suggested candidates
+2026-03-13 14:25:22,321 [INFO] app.services.wayback_service: Wayback [4/27] journalism.co.uk: 50 snapshots, lang=en, toxicity=0 flags, discovered=8
+2026-03-13 14:25:22,653 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: mousetrapmedia.co.uk (from journalism.co.uk)
+2026-03-13 14:25:22,847 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: journalistsforum.com (from journalism.co.uk)
+2026-03-13 14:25:23,124 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: hich.net (from journalism.co.uk)
+2026-03-13 14:25:23,241 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: freelancejournalism.com (from journalism.co.uk)
+2026-03-13 14:25:23,369 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: guyclapperton.co.uk (from journalism.co.uk)
+2026-03-13 14:25:23,501 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: newsphotography.co.uk (from journalism.co.uk)
+2026-03-13 14:25:39,065 [INFO] app.services.crawl_service: ScraperAPI[plain] ...0e2ce7 OK https://similarweb.com/ (835206 chars)
+2026-03-13 14:25:39,740 [INFO] app.services.crawl_service: [Depth-2] similarweb.com → 2 new suggested candidates
+2026-03-13 14:25:43,073 [INFO] app.services.crawl_service: ZenRows[basic] ...b36ad6 OK https://techspot.com/ (180056 chars)
+2026-03-13 14:25:43,610 [INFO] app.services.crawl_service: [Depth-2] techspot.com → 1 new suggested candidates
+2026-03-13 14:25:46,441 [INFO] app.services.crawl_service: ZenRows[basic] ...5c1c3e OK https://hypebeast.com/ (319898 chars)
+2026-03-13 14:25:47,574 [INFO] app.services.crawl_service: [Depth-2] hypebeast.com → 6 new suggested candidates
+2026-03-13 14:25:47,575 [INFO] app.services.crawl_service: [Depth-2] Discovery complete: 35 new suggested candidates total
+2026-03-13 14:25:47,576 [INFO] app.routes.crawl: Crawl done for source 681, starting RDAP check…
+2026-03-13 14:25:48,118 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-13 14:25:48,157 [INFO] app.routes.crawl: RDAP done for source 681, starting Wayback check…
+2026-03-13 14:25:48,768 [INFO] app.services.wayback_service: Starting Wayback check for 24 candidates
+2026-03-13 14:25:54,107 [INFO] app.services.wayback_service: Wayback [5/27] cision.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=25
+2026-03-13 14:25:54,426 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: observergroup.com (from cision.com)
+2026-03-13 14:25:54,768 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: mediasource.com (from cision.com)
+2026-03-13 14:25:54,932 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: cisionwire.com (from cision.com)
+2026-03-13 14:25:55,771 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: cisionjobs.com (from cision.com)
+2026-03-13 14:26:13,426 [INFO] app.services.wayback_service: Wayback [6/27] cordcuttersnews.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=6
+2026-03-13 14:26:13,872 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: poplightdesign.com (from cordcuttersnews.com)
+2026-03-13 14:26:13,998 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: cordcuttingforums.com (from cordcuttersnews.com)
+2026-03-13 14:26:14,133 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: google.com (from cordcuttersnews.com)
+2026-03-13 14:26:14,487 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: eepurl.com (from cordcuttersnews.com)
+2026-03-13 14:26:14,668 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: mythemeshop.com (from cordcuttersnews.com)
+2026-03-13 14:26:15,127 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: amzn.to (from cordcuttersnews.com)
+2026-03-13 14:26:19,731 [WARNING] app.services.wayback_service: CDX API error for cision.com: 
+2026-03-13 14:26:37,282 [INFO] app.services.wayback_service: Wayback [1/24] cision.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=27
+2026-03-13 14:26:37,562 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: journalisttweets.com (from cision.com)
+2026-03-13 14:26:38,492 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: gotomeeting.com (from cision.com)
+2026-03-13 14:26:46,618 [WARNING] app.services.wayback_service: CDX API error for digitalnewsreport.org: 
+2026-03-13 14:26:56,021 [INFO] app.services.wayback_service: Wayback [2/24] cordcuttersnews.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=6
+2026-03-13 14:27:00,480 [INFO] app.services.wayback_service: Wayback [7/27] digitalnewsreport.org: 50 snapshots, lang=en, toxicity=0 flags, discovered=10
+2026-03-13 14:27:00,811 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: ofcom.org.uk (from digitalnewsreport.org)
+2026-03-13 14:27:00,942 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: newsworks.org.uk (from digitalnewsreport.org)
+2026-03-13 14:27:01,129 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: canberra.edu.au (from digitalnewsreport.org)
+2026-03-13 14:27:01,292 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: edelman.co.uk (from digitalnewsreport.org)
+2026-03-13 14:27:01,438 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: google.co.uk (from digitalnewsreport.org)
+2026-03-13 14:27:01,809 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: bbc.co.uk (from digitalnewsreport.org)
+2026-03-13 14:27:01,992 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: towcenter.org (from digitalnewsreport.org)
+2026-03-13 14:27:17,573 [INFO] app.services.wayback_service: Wayback [3/24] digitalnewsreport.org: 50 snapshots, lang=en, toxicity=0 flags, discovered=10
+2026-03-13 14:27:24,779 [INFO] app.services.wayback_service: Wayback [8/27] nytimes.com: 50 snapshots, lang=en, toxicity=1 flags, discovered=27
+2026-03-13 14:27:25,041 [ERROR] app.services.wayback_service: Wayback error for nytimes.com: Multiple rows were found when one or none was required
+2026-03-13 14:27:32,953 [INFO] app.services.wayback_service: Wayback [4/24] nytimes.com: 50 snapshots, lang=en, toxicity=1 flags, discovered=27
+2026-03-13 14:27:33,241 [ERROR] app.services.wayback_service: Wayback error for nytimes.com: Multiple rows were found when one or none was required
+2026-03-13 14:27:45,799 [INFO] app.services.wayback_service: Wayback [9/27] semrush.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=18
+2026-03-13 14:27:46,329 [INFO] app.services.wayback_service: Wayback [5/24] semrush.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=18
+2026-03-13 14:27:46,338 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: digg.com (from semrush.com)
+2026-03-13 14:27:46,466 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: delicious.com (from semrush.com)
+2026-03-13 14:27:46,553 [ERROR] app.services.wayback_service: Wayback error for semrush.com: Multiple rows were found when one or none was required
+2026-03-13 14:27:47,177 [ERROR] app.services.wayback_service: Wayback error for semrush.com: Multiple rows were found when one or none was required
+2026-03-13 14:28:09,766 [INFO] app.services.wayback_service: Wayback [6/24] apnews.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=4
+2026-03-13 14:28:10,267 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: apdigitalnews.com (from apnews.com)
+2026-03-13 14:28:10,310 [INFO] app.services.wayback_service: Wayback [10/27] apnews.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=4
+2026-03-13 14:28:10,462 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: netscape.com (from apnews.com)
+2026-03-13 14:28:10,580 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: apnewstracker.com (from apnews.com)
+2026-03-13 14:28:31,303 [INFO] app.services.wayback_service: Wayback [11/27] thedesk.net: 50 snapshots, lang=en, toxicity=0 flags, discovered=37
+2026-03-13 14:28:32,017 [INFO] app.services.wayback_service: Wayback [7/24] thedesk.net: 50 snapshots, lang=en, toxicity=0 flags, discovered=37
+2026-03-13 14:28:32,019 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: thehill.com (from thedesk.net)
+2026-03-13 14:28:32,530 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: riskltd.com (from thedesk.net)
+2026-03-13 14:28:33,628 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: reviewgeek.com (from thedesk.net)
+2026-03-13 14:28:34,195 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: excelergy.com (from thedesk.net)
+2026-03-13 14:28:34,381 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: ordpress.org (from thedesk.net)
+2026-03-13 14:28:34,822 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: enermetrix.com (from thedesk.net)
+2026-03-13 14:28:35,318 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: amerexenergy.com (from thedesk.net)
+2026-03-13 14:28:35,499 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: matthewkeys.net (from thedesk.net)
+2026-03-13 14:28:35,637 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: geekwire.com (from thedesk.net)
+2026-03-13 14:28:35,804 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: skystra.com (from thedesk.net)
+2026-03-13 14:28:35,930 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: rsvpify.com (from thedesk.net)
+2026-03-13 14:28:36,057 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: techhive.com (from thedesk.net)
+2026-03-13 14:28:36,175 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: fiercevideo.com (from thedesk.net)
+2026-03-13 14:28:36,320 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: kw3000.com (from thedesk.net)
+2026-03-13 14:28:36,440 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: fb.com (from thedesk.net)
+2026-03-13 14:28:36,579 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: fuld.com (from thedesk.net)
+2026-03-13 14:28:36,699 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: scudderpublishing.com (from thedesk.net)
+2026-03-13 14:28:36,833 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: commerex.com (from thedesk.net)
+2026-03-13 14:28:36,952 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: ired.com (from thedesk.net)
+2026-03-13 14:28:37,212 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: cjr.org (from thedesk.net)
+2026-03-13 14:28:37,333 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: nexttv.com (from thedesk.net)
+2026-03-13 14:28:37,490 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: fiercewireless.com (from thedesk.net)
+2026-03-13 14:28:37,649 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: deloitte.com (from thedesk.net)
+2026-03-13 14:28:37,777 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: chbroadband.com (from thedesk.net)
+2026-03-13 14:28:37,965 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: fxo.co (from thedesk.net)
+2026-03-13 14:28:38,105 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: theverge.com (from thedesk.net)
+2026-03-13 14:28:38,263 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: altra.com (from thedesk.net)
+2026-03-13 14:28:38,796 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: pfriendship.com (from thedesk.net)
+2026-03-13 14:28:38,950 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: pocket-lint.com (from thedesk.net)
+2026-03-13 14:28:39,115 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: pwcglobal.com (from thedesk.net)
+2026-03-13 14:28:39,332 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: caminus.com (from thedesk.net)
+2026-03-13 14:28:58,257 [INFO] app.services.wayback_service: Wayback [12/27] hypebeast.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=45
+2026-03-13 14:28:59,071 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: overkillshop.com (from hypebeast.com)
+2026-03-13 14:28:59,191 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: spymac.com (from hypebeast.com)
+2026-03-13 14:28:59,513 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: niketown.com (from hypebeast.com)
+2026-03-13 14:28:59,862 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: glltn.com (from hypebeast.com)
+2026-03-13 14:28:59,999 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: kikstyoshop.com (from hypebeast.com)
+2026-03-13 14:29:00,137 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: onder-wall.com (from hypebeast.com)
+2026-03-13 14:29:00,302 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: vanssyndicate.com (from hypebeast.com)
+2026-03-13 14:29:00,494 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: hypetrak.com (from hypebeast.com)
+2026-03-13 14:29:00,773 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: lining.com (from hypebeast.com)
+2026-03-13 14:29:00,890 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: ramones.com (from hypebeast.com)
+2026-03-13 14:29:01,005 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: burton.com (from hypebeast.com)
+2026-03-13 14:29:01,129 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: esoldout.com (from hypebeast.com)
+2026-03-13 14:29:01,256 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: play.com (from hypebeast.com)
+2026-03-13 14:29:01,395 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: honeyee.com (from hypebeast.com)
+2026-03-13 14:29:01,636 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: cmonwealth.com (from hypebeast.com)
+2026-03-13 14:29:01,753 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: edbangerrecords.com (from hypebeast.com)
+2026-03-13 14:29:01,874 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: kix-files.com (from hypebeast.com)
+2026-03-13 14:29:01,992 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: doverstreetmarket.com (from hypebeast.com)
+2026-03-13 14:29:02,106 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: yahoo.net (from hypebeast.com)
+2026-03-13 14:29:02,298 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: kixandthecity.com (from hypebeast.com)
+2026-03-13 14:29:02,442 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: bape.com (from hypebeast.com)
+2026-03-13 14:29:02,558 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: sneakerfreaker.com (from hypebeast.com)
+2026-03-13 14:29:02,674 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: vintagekicks.com (from hypebeast.com)
+2026-03-13 14:29:02,792 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: rocstar.com (from hypebeast.com)
+2026-03-13 14:29:02,914 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: hypebeast.tv (from hypebeast.com)
+2026-03-13 14:29:03,044 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: umbrobykimjones.com (from hypebeast.com)
+2026-03-13 14:29:03,173 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: jdsports.co.uk (from hypebeast.com)
+2026-03-13 14:29:03,288 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: adbrite.com (from hypebeast.com)
+2026-03-13 14:29:03,399 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: 8five2.com (from hypebeast.com)
+2026-03-13 14:29:03,550 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: quantcast.com (from hypebeast.com)
+2026-03-13 14:29:03,660 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: kikstyo.com (from hypebeast.com)
+2026-03-13 14:29:03,777 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: nixonnow.com (from hypebeast.com)
+2026-03-13 14:29:03,910 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: mac.com (from hypebeast.com)
+2026-03-13 14:29:04,042 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: hypequest.com (from hypebeast.com)
+2026-03-13 14:29:04,170 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: jumpman23.com (from hypebeast.com)
+2026-03-13 14:29:04,287 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: anoutcommune.com (from hypebeast.com)
+2026-03-13 14:29:04,400 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: joinred.com (from hypebeast.com)
+2026-03-13 14:29:04,513 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: 101medialab.com (from hypebeast.com)
+2026-03-13 14:29:04,624 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: thenorthface.com (from hypebeast.com)
+2026-03-13 14:29:04,752 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: hypecrew.com (from hypebeast.com)
+2026-03-13 14:29:04,913 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: undftd.com (from hypebeast.com)
+2026-03-13 14:29:15,156 [WARNING] app.services.wayback_service: CDX API error for hypebeast.com: 
+2026-03-13 14:29:34,908 [INFO] app.services.wayback_service: Wayback [8/24] hypebeast.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=23
+2026-03-13 14:29:35,336 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: doblog.com (from hypebeast.com)
+2026-03-13 14:29:35,509 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: rbk.com (from hypebeast.com)
+2026-03-13 14:29:35,665 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: hufsf.com (from hypebeast.com)
+2026-03-13 14:29:35,924 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: star-j.com (from hypebeast.com)
+2026-03-13 14:29:36,148 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: alifenyc.com (from hypebeast.com)
+2026-03-13 14:29:36,439 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: nike.com (from hypebeast.com)
+2026-03-13 14:29:36,550 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: crookedtongues.com (from hypebeast.com)
+2026-03-13 14:29:36,752 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: wordpress.com (from hypebeast.com)
+2026-03-13 14:29:36,873 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: d.com (from hypebeast.com)
+2026-03-13 14:29:37,105 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: sneakernews.com (from hypebeast.com)
+2026-03-13 14:29:37,225 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: commonprojects.com (from hypebeast.com)
+2026-03-13 14:29:37,728 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: greyone.com (from hypebeast.com)
+2026-03-13 14:29:37,924 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: kenlu.net (from hypebeast.com)
+2026-03-13 14:29:38,217 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: mashkulture.net (from hypebeast.com)
+2026-03-13 14:29:38,696 [INFO] app.services.wayback_service: Wayback [13/27] wsj.com: 50 snapshots, lang=en, toxicity=1 flags, discovered=72
+2026-03-13 14:29:38,988 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: apple.com (from wsj.com)
+2026-03-13 14:29:39,143 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: thesun.co.uk (from wsj.com)
+2026-03-13 14:29:39,257 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: barrons.com (from wsj.com)
+2026-03-13 14:29:39,346 [ERROR] app.services.wayback_service: Wayback error for wsj.com: Multiple rows were found when one or none was required
+2026-03-13 14:29:54,795 [INFO] app.services.wayback_service: Wayback [9/24] wsj.com: 50 snapshots, lang=en, toxicity=1 flags, discovered=72
+2026-03-13 14:29:55,327 [ERROR] app.services.wayback_service: Wayback error for wsj.com: Multiple rows were found when one or none was required
+2026-03-13 14:29:55,703 [INFO] app.services.wayback_service: Wayback [14/27] similarweb.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=15
+2026-03-13 14:29:56,331 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: searchelper.com (from similarweb.com)
+2026-03-13 14:29:56,462 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: zivmeltzer.com (from similarweb.com)
+2026-03-13 14:29:56,660 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: lifehacker.com (from similarweb.com)
+2026-03-13 14:29:56,870 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: statcounter.com (from similarweb.com)
+2026-03-13 14:29:57,358 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: similargroup.com (from similarweb.com)
+2026-03-13 14:29:57,555 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: uservoice.com (from similarweb.com)
+2026-03-13 14:29:57,738 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: similarsites.com (from similarweb.com)
+2026-03-13 14:29:58,037 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: topsite.com (from similarweb.com)
+2026-03-13 14:29:58,161 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: similarstumble.com (from similarweb.com)
+2026-03-13 14:30:02,014 [WARNING] app.services.wayback_service: CDX API error for indiatimes.com: All connection attempts failed
+2026-03-13 14:30:07,814 [INFO] app.services.wayback_service: Wayback [10/24] similarweb.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=15
+2026-03-13 14:30:44,186 [INFO] app.services.wayback_service: Wayback [11/24] indiatimes.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=122
+2026-03-13 14:30:44,445 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: propertytimes.com (from indiatimes.com)
+2026-03-13 14:30:44,685 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: doublebyte.net (from indiatimes.com)
+2026-03-13 14:30:44,991 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: timescity.com (from indiatimes.com)
+2026-03-13 14:30:45,678 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: mediaturf.net (from indiatimes.com)
+2026-03-13 14:30:46,215 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: soundbuzz.com (from indiatimes.com)
+2026-03-13 14:30:46,639 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: aircanada.com (from indiatimes.com)
+2026-03-13 14:30:46,788 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: educationtimes.com (from indiatimes.com)
+2026-03-13 14:30:47,119 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: tradingpundit.com (from indiatimes.com)
+2026-03-13 14:30:47,991 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: stgcareers.com (from indiatimes.com)
+2026-03-13 14:30:48,568 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: timesofmoney.com (from indiatimes.com)
+2026-03-13 14:30:49,132 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: timesclassifieds.com (from indiatimes.com)
+2026-03-13 14:30:49,576 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: filmfare.com (from indiatimes.com)
+2026-03-13 14:30:49,738 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: planetmonline.com (from indiatimes.com)
+2026-03-13 14:30:49,855 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: timesgroup.com (from indiatimes.com)
+2026-03-13 14:30:49,973 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: economictimes.com (from indiatimes.com)
+2026-03-13 14:30:50,225 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: lakmeindia.com (from indiatimes.com)
+2026-03-13 14:30:50,387 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: dhakdhak.com (from indiatimes.com)
+2026-03-13 14:30:50,528 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: netcarrots.com (from indiatimes.com)
+2026-03-13 14:30:50,843 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: shaadi.com (from indiatimes.com)
+2026-03-13 14:30:50,978 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: timesjobs.com (from indiatimes.com)
+2026-03-13 14:30:51,141 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: timesofindia.com (from indiatimes.com)
+2026-03-13 14:30:51,334 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: timescardindia.com (from indiatimes.com)
+2026-03-13 14:30:51,683 [INFO] app.services.wayback_service: Wayback [15/27] indiatimes.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=117
+2026-03-13 14:30:51,724 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: timesbankindia.com (from indiatimes.com)
+2026-03-13 14:30:52,298 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: klm.com (from indiatimes.com)
+2026-03-13 14:30:52,412 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: feminaindia.com (from indiatimes.com)
+2026-03-13 14:30:52,534 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: netsrus.net (from indiatimes.com)
+2026-03-13 14:30:53,283 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: timescricketrating.com (from indiatimes.com)
+2026-03-13 14:30:53,446 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: plexustech.net (from indiatimes.com)
+2026-03-13 14:30:53,559 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: etinvest.com (from indiatimes.com)
+2026-03-13 14:30:53,679 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: xmts.net (from indiatimes.com)
+2026-03-13 14:30:53,835 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: timesmm.com (from indiatimes.com)
+2026-03-13 14:30:55,067 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: navbharattimes.com (from indiatimes.com)
+2026-03-13 14:30:57,482 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: indiaday.org (from indiatimes.com)
+2026-03-13 14:31:17,995 [INFO] app.services.wayback_service: Wayback [12/24] itnews.com.au: 50 snapshots, lang=en, toxicity=1 flags, discovered=22
+2026-03-13 14:31:18,293 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: authoritynetwork.com (from itnews.com.au)
+2026-03-13 14:31:18,460 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: sony.com (from itnews.com.au)
+2026-03-13 14:31:18,739 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: byte.com (from itnews.com.au)
+2026-03-13 14:31:18,851 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: pcauthority.com.au (from itnews.com.au)
+2026-03-13 14:31:18,962 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: informationweek.com (from itnews.com.au)
+2026-03-13 14:31:19,082 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: doubleclick.net (from itnews.com.au)
+2026-03-13 14:31:19,199 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: cmpnetmail.com (from itnews.com.au)
+2026-03-13 14:31:19,315 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: techweb.com (from itnews.com.au)
+2026-03-13 14:31:19,429 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: itresellers.com.au (from itnews.com.au)
+2026-03-13 14:31:19,538 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: dwr.com.au (from itnews.com.au)
+2026-03-13 14:31:19,645 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: hotjobs.com.au (from itnews.com.au)
+2026-03-13 14:31:19,754 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: crn.com (from itnews.com.au)
+2026-03-13 14:31:19,871 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: ajb.com.au (from itnews.com.au)
+2026-03-13 14:31:19,989 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: crn.com.au (from itnews.com.au)
+2026-03-13 14:31:20,180 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: vioclicks.com (from itnews.com.au)
+2026-03-13 14:31:20,290 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: atomicmpc.com.au (from itnews.com.au)
+2026-03-13 14:31:20,402 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: designcafe.com.au (from itnews.com.au)
+2026-03-13 14:31:20,526 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: inntmag.com (from itnews.com.au)
+2026-03-13 14:31:23,263 [INFO] app.services.wayback_service: Wayback [16/27] itnews.com.au: 50 snapshots, lang=en, toxicity=1 flags, discovered=22
+2026-03-13 14:31:43,129 [INFO] app.services.wayback_service: Wayback [17/27] techspot.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=78
+2026-03-13 14:31:43,402 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: foood.net (from techspot.com)
+2026-03-13 14:31:43,605 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: adserver.com (from techspot.com)
+2026-03-13 14:31:43,725 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: esselbach.com (from techspot.com)
+2026-03-13 14:31:43,842 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: greymagic.com (from techspot.com)
+2026-03-13 14:31:44,223 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: efytimes.com (from techspot.com)
+2026-03-13 14:31:44,377 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: azzo.com (from techspot.com)
+2026-03-13 14:31:44,734 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: forbes.com (from techspot.com)
+2026-03-13 14:31:44,943 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: ibm.com (from techspot.com)
+2026-03-13 14:31:45,069 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: 3dspotlight.com (from techspot.com)
+2026-03-13 14:31:45,399 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: pricegrabber.com (from techspot.com)
+2026-03-13 14:31:45,520 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: viaarena.com (from techspot.com)
+2026-03-13 14:31:45,637 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: fortune.com (from techspot.com)
+2026-03-13 14:31:45,749 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: ad-flow.com (from techspot.com)
+2026-03-13 14:31:45,870 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: sun.com (from techspot.com)
+2026-03-13 14:31:45,984 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: lostremote.com (from techspot.com)
+2026-03-13 14:31:46,398 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: versiontracker.com (from techspot.com)
+2026-03-13 14:31:46,778 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: dailytech.com (from techspot.com)
+2026-03-13 14:31:47,012 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: gameshout.com (from techspot.com)
+2026-03-13 14:31:47,548 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: go.com (from techspot.com)
+2026-03-13 14:31:47,716 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: xbitlabs.com (from techspot.com)
+2026-03-13 14:31:47,861 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: imation.com (from techspot.com)
+2026-03-13 14:31:47,993 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: zdnet.co.uk (from techspot.com)
+2026-03-13 14:31:48,114 [ERROR] app.services.wayback_service: Wayback error for techspot.com: Multiple rows were found when one or none was required
+2026-03-13 14:31:56,596 [INFO] app.services.wayback_service: Wayback [13/24] niemanlab.org: 50 snapshots, lang=en, toxicity=2 flags, discovered=81
+2026-03-13 14:31:57,821 [ERROR] app.services.wayback_service: Wayback error for niemanlab.org: Multiple rows were found when one or none was required
+2026-03-13 14:32:05,201 [INFO] app.services.wayback_service: Wayback [18/27] cairoscene.com: 50 snapshots, lang=en, toxicity=2 flags, discovered=6
+2026-03-13 14:32:05,468 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: tazkarty.net (from cairoscene.com)
+2026-03-13 14:32:05,584 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: cairozoom.com (from cairoscene.com)
+2026-03-13 14:32:05,688 [ERROR] app.services.wayback_service: Wayback error for cairoscene.com: Multiple rows were found when one or none was required
+2026-03-13 14:32:22,888 [INFO] app.services.wayback_service: Wayback [14/24] techspot.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=78
+2026-03-13 14:32:26,260 [INFO] app.services.wayback_service: Wayback [19/27] statista.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=4
+2026-03-13 14:32:26,403 [ERROR] app.services.wayback_service: Wayback error for techspot.com: Multiple rows were found when one or none was required
+2026-03-13 14:32:27,301 [ERROR] app.services.wayback_service: Wayback error for statista.com: Multiple rows were found when one or none was required
+2026-03-13 14:32:51,800 [INFO] app.services.wayback_service: Wayback [20/27] adweek.com: 50 snapshots, lang=en, toxicity=1 flags, discovered=32
+2026-03-13 14:32:52,252 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: iwantmedia.com (from adweek.com)
+2026-03-13 14:32:52,358 [ERROR] app.services.wayback_service: Wayback error for adweek.com: Multiple rows were found when one or none was required
+2026-03-13 14:32:58,049 [WARNING] app.services.wayback_service: CDX API error for cairoscene.com: 
+2026-03-13 14:33:08,778 [INFO] app.services.wayback_service: Wayback [15/24] cairoscene.com: 50 snapshots, lang=en, toxicity=2 flags, discovered=6
+2026-03-13 14:33:09,219 [ERROR] app.services.wayback_service: Wayback error for cairoscene.com: Multiple rows were found when one or none was required
+2026-03-13 14:33:15,080 [INFO] app.services.wayback_service: Wayback [21/27] nucamp.co: 50 snapshots, lang=en, toxicity=0 flags, discovered=0
+2026-03-13 14:33:38,686 [INFO] app.services.wayback_service: Wayback [16/24] statista.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=4
+2026-03-13 14:33:38,706 [INFO] app.services.wayback_service: Wayback [22/27] hubspot.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=9
+2026-03-13 14:33:39,022 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: dailyhub.com (from hubspot.com)
+2026-03-13 14:33:39,087 [ERROR] app.services.wayback_service: Wayback error for statista.com: Multiple rows were found when one or none was required
+2026-03-13 14:33:39,599 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: smallbusiness20.com (from hubspot.com)
+2026-03-13 14:33:39,720 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: smallbusinesshub.com (from hubspot.com)
+2026-03-13 14:33:39,836 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: ebsitegrader.com (from hubspot.com)
+2026-03-13 14:33:40,063 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: inboundmarketing.com (from hubspot.com)
+2026-03-13 14:33:54,745 [INFO] app.services.wayback_service: Wayback [17/24] adweek.com: 50 snapshots, lang=en, toxicity=1 flags, discovered=32
+2026-03-13 14:33:55,189 [ERROR] app.services.wayback_service: Wayback error for adweek.com: Multiple rows were found when one or none was required
+2026-03-13 14:34:05,230 [INFO] app.services.wayback_service: Wayback [18/24] nucamp.co: 50 snapshots, lang=en, toxicity=0 flags, discovered=0
+2026-03-13 14:34:10,844 [INFO] app.services.wayback_service: Wayback [23/27] euractiv.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=1
+2026-03-13 14:34:12,633 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: cabestan.com (from euractiv.com)
+2026-03-13 14:34:20,497 [INFO] app.services.wayback_service: Wayback [19/24] hubspot.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=9
+2026-03-13 14:34:36,873 [INFO] app.services.wayback_service: Wayback [20/24] euractiv.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=1
+2026-03-13 14:34:38,082 [INFO] app.services.wayback_service: Wayback [24/27] newscaststudio.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=14
+2026-03-13 14:34:38,656 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: tvnewsinsider.com (from newscaststudio.com)
+2026-03-13 14:34:38,976 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: infivestudios.com (from newscaststudio.com)
+2026-03-13 14:34:39,145 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: smudgednewsprint.com (from newscaststudio.com)
+2026-03-13 14:34:39,573 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: chromavault.com (from newscaststudio.com)
+2026-03-13 14:34:39,776 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: vanityurlshorteners.com (from newscaststudio.com)
+2026-03-13 14:34:39,931 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: mybestfriendalice.com (from newscaststudio.com)
+2026-03-13 14:34:40,204 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: fxgroup.tv (from newscaststudio.com)
+2026-03-13 14:34:40,396 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: fontrack.com (from newscaststudio.com)
+2026-03-13 14:34:40,602 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: hdmediaventures.com (from newscaststudio.com)
+2026-03-13 14:34:40,920 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: printninja.com (from newscaststudio.com)
+2026-03-13 14:34:41,256 [ERROR] app.services.wayback_service: Wayback error for newscaststudio.com: Multiple rows were found when one or none was required
+2026-03-13 14:34:48,904 [INFO] app.services.wayback_service: Wayback [25/27] mykajabi.com: 1 snapshots, lang=en, toxicity=1 flags, discovered=1
+2026-03-13 14:34:49,248 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: securepaynet.net (from mykajabi.com)
+2026-03-13 14:34:53,346 [INFO] app.services.wayback_service: Wayback [21/24] newscaststudio.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=14
+2026-03-13 14:34:54,565 [ERROR] app.services.wayback_service: Wayback error for newscaststudio.com: Multiple rows were found when one or none was required
+2026-03-13 14:35:08,337 [INFO] app.services.wayback_service: Wayback [26/27] clutch.co: 50 snapshots, lang=en, toxicity=0 flags, discovered=5
+2026-03-13 14:35:10,193 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: hotjar.com (from clutch.co)
+2026-03-13 14:35:10,438 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: issuu.com (from clutch.co)
+2026-03-13 14:35:11,338 [INFO] app.services.wayback_service: Wayback [22/24] mykajabi.com: 1 snapshots, lang=en, toxicity=1 flags, discovered=1
+2026-03-13 14:35:23,083 [INFO] app.services.wayback_service: Wayback [23/24] clutch.co: 50 snapshots, lang=en, toxicity=0 flags, discovered=5
+2026-03-13 14:35:30,554 [INFO] app.services.wayback_service: Wayback [27/27] gstatic.com: 4 snapshots, lang=en, toxicity=0 flags, discovered=13
+2026-03-13 14:35:34,357 [INFO] app.services.wayback_service: Wayback check complete: 27/27 candidates, 160 new sources discovered
+2026-03-13 14:35:34,357 [INFO] app.routes.crawl: Wayback done for source 681, starting scoring…
+2026-03-13 14:35:35,697 [INFO] app.services.scoring_service: Scored 27 candidates
+2026-03-13 14:35:36,207 [INFO] app.routes.crawl: Full pipeline complete for source 681 ✓
+2026-03-13 14:35:56,974 [WARNING] app.services.wayback_service: CDX API error for gstatic.com: 
+2026-03-13 14:36:35,775 [INFO] app.services.wayback_service: Wayback [24/24] gstatic.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=13
+2026-03-13 14:36:37,294 [INFO] app.services.wayback_service: Wayback check complete: 24/24 candidates, 68 new sources discovered
+2026-03-13 14:36:37,295 [INFO] app.routes.crawl: Wayback done for source 681, starting scoring…
+2026-03-13 14:36:38,453 [INFO] app.services.scoring_service: Scored 27 candidates
+2026-03-13 14:36:38,770 [INFO] app.routes.crawl: Full pipeline complete for source 681 ✓
+2026-03-14 04:04:29,816 [INFO] app.services.whois_service: [RDAP] IANA bootstrap loaded: 1198 TLDs cached
+2026-03-14 04:06:26,186 [WARNING] app.services.whois_service: RDAP all endpoints failed for glnd.k12.va.us (last=None)
+2026-03-14 05:03:42,415 [WARNING] app.services.whois_service: RDAP all endpoints failed for mv.k12.ma.us (last=None)
+2026-03-14 07:06:33,136 [INFO] app.routes.crawl: [Recheck All] Starting RDAP re-check for candidates…
+2026-03-14 07:06:33,369 [INFO] app.services.whois_service: No unchecked candidates found
+2026-03-14 07:06:33,422 [INFO] app.routes.crawl: [Recheck All] RDAP done. Starting Wayback re-check…
+2026-03-14 07:06:33,671 [INFO] app.services.wayback_service: Starting Wayback check for 4 candidates
+2026-03-14 07:06:53,127 [INFO] app.services.wayback_service: Wayback [1/4] hotjar.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=12
+2026-03-14 07:06:53,436 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: ihomewell.com (from hotjar.com)
+2026-03-14 07:06:53,651 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: mybduuniform.com (from hotjar.com)
+2026-03-14 07:06:53,764 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: ecohk.com (from hotjar.com)
+2026-03-14 07:06:53,877 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: 220idea.com (from hotjar.com)
+2026-03-14 07:06:54,066 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: definition.org.uk (from hotjar.com)
+2026-03-14 07:07:08,634 [INFO] app.services.wayback_service: Wayback [2/4] issuu.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=7
+2026-03-14 07:07:09,139 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: friendfeed.com (from issuu.com)
+2026-03-14 07:07:09,298 [ERROR] app.services.wayback_service: Wayback error for issuu.com: Multiple rows were found when one or none was required
+2026-03-14 07:07:41,275 [INFO] app.services.wayback_service: Wayback [3/4] securepaynet.net: 50 snapshots, lang=en, toxicity=0 flags, discovered=0
+2026-03-14 07:07:55,744 [INFO] app.services.wayback_service: Wayback [4/4] printninja.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=17
+2026-03-14 07:07:56,060 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: conniegabbertdesign.com (from printninja.com)
+2026-03-14 07:07:56,178 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: comodo.com (from printninja.com)
+2026-03-14 07:07:56,298 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: skottieyoung.com (from printninja.com)
+2026-03-14 07:07:56,419 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: sfgate.com (from printninja.com)
+2026-03-14 07:07:56,541 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: antarctic-press.com (from printninja.com)
+2026-03-14 07:07:56,658 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: columbiabusinesstimes.com (from printninja.com)
+2026-03-14 07:07:56,789 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: rickgeary.com (from printninja.com)
+2026-03-14 07:07:56,905 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: chicagopressmen.com (from printninja.com)
+2026-03-14 07:07:57,019 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: paypal.com (from printninja.com)
+2026-03-14 07:07:57,136 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: strongfemaleprotagonist.com (from printninja.com)
+2026-03-14 07:07:57,261 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: stripe.com (from printninja.com)
+2026-03-14 07:07:57,459 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: bbb.org (from printninja.com)
+2026-03-14 07:07:57,575 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: aceprepress.com (from printninja.com)
+2026-03-14 07:07:57,693 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: trustpilot.com (from printninja.com)
+2026-03-14 07:07:57,777 [ERROR] app.services.wayback_service: Wayback error for printninja.com: Multiple rows were found when one or none was required
+2026-03-14 07:07:57,853 [INFO] app.services.wayback_service: Wayback check complete: 4/4 candidates, 20 new sources discovered
+2026-03-14 07:07:57,854 [INFO] app.routes.crawl: [Recheck All] Wayback done. Starting scoring…
+2026-03-14 07:07:58,428 [INFO] app.services.scoring_service: Scored 5 candidates
+2026-03-14 07:07:58,429 [INFO] app.routes.crawl: [Recheck All] Full re-check complete ✓

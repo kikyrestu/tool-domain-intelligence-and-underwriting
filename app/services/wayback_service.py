@@ -265,17 +265,21 @@ async def check_candidates(db: AsyncSession, source_id: int | None = None, candi
     - previously failed (wayback_check_failed = True)
     Updates DB directly.
     """
-    from sqlalchemy import or_
-    query = select(CandidateDomain).where(
-        or_(
-            CandidateDomain.wayback_checked_at.is_(None),
-            CandidateDomain.wayback_check_failed == True,
-        )
-    )
+    query = select(CandidateDomain)
     if candidate_ids:
+        # If explicitly asking for specific IDs, check them regardless of previous status
         query = query.where(CandidateDomain.id.in_(candidate_ids))
-    elif source_id:
-        query = query.where(CandidateDomain.source_id == source_id)
+    else:
+        # Otherwise, only check those that need it
+        from sqlalchemy import or_
+        query = query.where(
+            or_(
+                CandidateDomain.wayback_checked_at.is_(None),
+                CandidateDomain.wayback_check_failed == True,
+            )
+        )
+        if source_id:
+            query = query.where(CandidateDomain.source_id == source_id)
 
     result = await db.execute(query)
     candidates = result.scalars().all()
