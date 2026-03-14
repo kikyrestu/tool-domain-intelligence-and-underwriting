@@ -15,6 +15,7 @@ from app.database import get_db, async_session
 from app.models.crawl_job import CrawlJob
 from app.models.candidate import CandidateDomain
 from app.services.crawl_service import run_crawl
+from app.services.crawl_service import check_alive_candidates
 from app.services.whois_service import check_candidates as whois_check
 from app.services.wayback_service import check_candidates as wayback_check
 from app.services.toxicity_service import scan_candidate
@@ -199,8 +200,12 @@ async def trigger_score_all(background_tasks: BackgroundTasks):
 
 
 async def _background_recheck_all(candidate_ids: list[int] | None = None):
-    """Full re-check pipeline: RDAP → Wayback → Score semua atau kandidat tertentu."""
-    logger.info("[Recheck All] Starting RDAP re-check for candidates…")
+    """Full re-check pipeline: Alive Check → RDAP → Wayback → Score semua atau kandidat tertentu."""
+    logger.info("[Recheck All] Starting Alive re-check for candidates…")
+    async with async_session() as db:
+        await check_alive_candidates(db, source_id=None, candidate_ids=candidate_ids)
+
+    logger.info("[Recheck All] Alive check done. Starting RDAP re-check for candidates…")
     async with async_session() as db:
         await whois_check(db, source_id=None, candidate_ids=candidate_ids)
 

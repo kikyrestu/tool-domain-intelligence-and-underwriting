@@ -1070,3 +1070,106 @@ async def run_crawl(source_id: int, db: AsyncSession):
         except Exception as commit_err:
             logger.error("Failed to save crawl failure state: %s", commit_err)
         return job
+
+async def check_alive_candidates(db: AsyncSession, source_id: int | None = None, candidate_ids: list[int] | None = None):
+    """
+    Batch update is_domain_alive status (DNS + HTTP) for candidates.
+    Force checks if candidate_ids is provided, otherwise only checks those with is_domain_alive IS NULL.
+    """
+    from sqlalchemy import or_
+    query = select(CandidateDomain)
+    if candidate_ids:
+        query = query.where(CandidateDomain.id.in_(candidate_ids))
+    else:
+        query = query.where(CandidateDomain.is_domain_alive.is_(None))
+        if source_id:
+            query = query.where(CandidateDomain.source_id == source_id)
+
+    result = await db.execute(query)
+    candidates = result.scalars().all()
+
+    if not candidates:
+        logger.info("[Alive Check] No candidates need checking")
+        return 0
+
+    logger.info("[Alive Check] Starting alive check for %d candidates", len(candidates))
+    checked = 0
+    semaphore = asyncio.Semaphore(MAX_CONCURRENT)
+    ALIVE_STATUSES = {200, 201, 204, 301, 302, 303, 307, 308, 401, 402, 405, 407}
+    BLOCKED_STATUSES = {403, 429}
+
+    async def _check(candidate: CandidateDomain):
+        async with semaphore:
+            domain = candidate.domain
+            resolves = False
+            mx_records = False
+            
+            # DNS A/AAAA
+            try:
+                if await dns.asyncresolver.resolve(domain, "A"):
+                    resolves = True
+            except Exception:
+                pass
+            if not resolves:
+                try:
+                    if await dns.asyncresolver.resolve(domain, "AAAA"):
+                        resolves = True
+                except Exception:
+                    pass
+
+            # DNS MX
+            try:
+                if await dns.asyncresolver.resolve(domain, "MX"):
+                    mx_records = True
+            except Exception:
+                pass
+            
+            candidate.dns_resolves = resolves
+            candidate.dns_mx_records = mx_records
+
+            if not resolves:
+                candidate.is_domain_alive = False
+                candidate.http_status = None
+                return
+
+            # HTTP
+            alive = False
+            http_status = None
+            parked = False
+            
+            # Skip if SSRF guard blocks it (though domain names usually won't)
+            if not is_safe_url(f"https://{domain}/"):
+                candidate.is_domain_alive = True
+                return
+
+            for url in [f"https://{domain}/", f"http://{domain}/"]:
+                try:
+                    async with httpx.AsyncClient(headers=_get_headers(), follow_redirects=True, http2=True) as client:
+                        resp = await client.get(url, timeout=TIMEOUT)
+                        http_status = resp.status_code
+                        if resp.status_code in ALIVE_STATUSES:
+                            alive = True
+                            if resp.status_code == 200:
+                                parked = _is_parked(resp.text)
+                            break
+                        elif resp.status_code in BLOCKED_STATUSES:
+                            alive = resolves
+                            break
+                except Exception:
+                    continue
+            
+            candidate.http_status = http_status
+            candidate.is_domain_alive = alive
+            candidate.is_parked = parked
+
+    # Run checks concurrently in small batches to not lock up event loop
+    batch_size = 50
+    for i in range(0, len(candidates), batch_size):
+        batch = candidates[i:i+batch_size]
+        tasks = [_check(c) for c in batch]
+        await asyncio.gather(*tasks)
+        checked += len(batch)
+        await db.commit()
+    
+    logger.info("[Alive Check] Completed for %d candidates", checked)
+    return checked

@@ -4343,3 +4343,21 @@ DETAIL:  Key (domain, source_id)=(niemanlab.org, 681) already exists.
 2026-03-14 07:07:57,854 [INFO] app.routes.crawl: [Recheck All] Wayback done. Starting scoring…
 2026-03-14 07:07:58,428 [INFO] app.services.scoring_service: Scored 5 candidates
 2026-03-14 07:07:58,429 [INFO] app.routes.crawl: [Recheck All] Full re-check complete ✓
+2026-03-14 07:47:17,052 [INFO] app.routes.crawl: [Recheck All] Starting RDAP re-check for candidates…
+2026-03-14 07:47:17,316 [INFO] app.services.whois_service: Starting RDAP check for 5 candidates
+2026-03-14 07:47:17,627 [INFO] app.services.whois_service: [RDAP] IANA bootstrap loaded: 1198 TLDs cached
+2026-03-14 07:47:18,430 [INFO] app.services.whois_service:   [1/5] hotjar.com → registered
+2026-03-14 07:47:20,330 [INFO] app.services.whois_service:   [2/5] issuu.com → expiring_watchlist
+2026-03-14 07:47:22,411 [INFO] app.services.whois_service:   [3/5] securepaynet.net → registered
+2026-03-14 07:47:24,566 [INFO] app.services.whois_service:   [4/5] printninja.com → registered
+2026-03-14 07:47:26,635 [INFO] app.services.whois_service:   [5/5] hdmediaventures.com → expiring_watchlist
+2026-03-14 07:47:27,950 [INFO] app.services.whois_service: RDAP check completed: 5/5
+2026-03-14 07:47:27,950 [INFO] app.routes.crawl: [Recheck All] RDAP done. Starting Wayback re-check…
+2026-03-14 07:47:28,154 [INFO] app.services.wayback_service: Starting Wayback check for 5 candidates
+2026-03-14 07:48:00,483 [INFO] app.services.wayback_service: Wayback [1/5] hotjar.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=12
+2026-03-14 07:48:26,268 [INFO] app.services.wayback_service: Wayback [2/5] issuu.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=7
+2026-03-14 07:48:26,681 [ERROR] app.services.wayback_service: Wayback error for issuu.com: Multiple rows were found when one or none was required
+2026-03-14 07:49:00,442 [INFO] app.services.wayback_service: Wayback [3/5] securepaynet.net: 50 snapshots, lang=en, toxicity=0 flags, discovered=0
+2026-03-14 07:49:24,008 [INFO] app.services.wayback_service: Wayback [4/5] printninja.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=17
+2026-03-14 07:49:24,670 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: resellerratings.com (from printninja.com)
+2026-03-14 07:49:25,273 [ERROR] app.services.wayback_service: Wayback error for printninja.com: Multiple rows were found when one or none was required
