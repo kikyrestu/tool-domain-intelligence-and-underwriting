@@ -210,13 +210,16 @@ def calculate_score(candidate: CandidateDomain, toxicity_flags: list[dict]) -> d
 
 
 async def score_candidates(db: AsyncSession, source_id: int | None = None,
-                           toxicity_map: dict[int, list[dict]] | None = None):
+                           toxicity_map: dict[int, list[dict]] | None = None,
+                           candidate_ids: list[int] | None = None):
     """
     Score all candidates. If toxicity_map provided, use it;
     otherwise score without toxicity data (clean assumed).
     """
     query = select(CandidateDomain)
-    if source_id:
+    if candidate_ids:
+        query = query.where(CandidateDomain.id.in_(candidate_ids))
+    elif source_id:
         query = query.where(CandidateDomain.source_id == source_id)
 
     result = await db.execute(query)

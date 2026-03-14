@@ -10,22 +10,33 @@
     </div>
     <div class="flex gap-2 flex-wrap">
         <form method="post" action="/whois-all" class="inline">
-            <button type="submit" class="px-3 py-2 bg-emerald-600 text-white text-xs font-medium rounded-lg hover:bg-emerald-700">RDAP All</button>
+            <button type="submit"
+                class="px-3 py-2 bg-emerald-600 text-white text-xs font-medium rounded-lg hover:bg-emerald-700">RDAP
+                All</button>
         </form>
         <form method="post" action="/wayback-all" class="inline">
-            <button type="submit" class="px-3 py-2 bg-purple-600 text-white text-xs font-medium rounded-lg hover:bg-purple-700">Wayback All</button>
+            <button type="submit"
+                class="px-3 py-2 bg-purple-600 text-white text-xs font-medium rounded-lg hover:bg-purple-700">Wayback
+                All</button>
         </form>
         <form method="post" action="/score-all" class="inline">
-            <button type="submit" class="px-3 py-2 bg-amber-600 text-white text-xs font-medium rounded-lg hover:bg-amber-700">Score All</button>
+            <button type="submit"
+                class="px-3 py-2 bg-amber-600 text-white text-xs font-medium rounded-lg hover:bg-amber-700">Score
+                All</button>
         </form>
         <form method="post" action="/recheck-all" class="inline">
-            <button type="submit" class="px-3 py-2 bg-indigo-600 text-white text-xs font-medium rounded-lg hover:bg-indigo-700"
-                    onclick="return confirm('Re-check all candidates (RDAP + Wayback + Score)? This runs in the background.')">
+            <button type="submit"
+                class="px-3 py-2 bg-indigo-600 text-white text-xs font-medium rounded-lg hover:bg-indigo-700"
+                onclick="return confirm('Re-check all candidates (RDAP + Wayback + Score)? This runs in the background.')">
                 🔄 Recheck All Now
             </button>
         </form>
         <a href="/export/csv{% if current_availability %}?status={{ current_availability }}{% endif %}"
-           class="px-3 py-2 bg-white border border-gray-300 text-gray-700 text-xs font-medium rounded-lg hover:bg-gray-50">Export CSV</a>
+            class="px-3 py-2 bg-white border border-gray-300 text-gray-700 text-xs font-medium rounded-lg hover:bg-gray-50">Export
+            CSV</a>
+        <a href="/export/xlsx{% if current_availability %}?status={{ current_availability }}{% endif %}"
+            class="px-3 py-2 bg-white border border-green-400 text-green-700 text-xs font-medium rounded-lg hover:bg-green-50">Export
+            Excel</a>
     </div>
 </div>
 
@@ -79,35 +90,39 @@
         <div class="flex-1 min-w-[180px]">
             <label class="block text-xs font-medium text-gray-500 mb-1">Search</label>
             <input type="text" name="q" value="{{ current_q or '' }}" placeholder="Domain name..."
-                   class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
         </div>
         <div>
             <label class="block text-xs font-medium text-gray-500 mb-1">Availability</label>
             <select name="availability" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
                 <option value="">All</option>
-                <option value="available" {% if current_availability == 'available' %}selected{% endif %}>Available</option>
-                <option value="expired" {% if current_availability == 'expired' %}selected{% endif %}>Expired</option>
-                <option value="expiring_soon" {% if current_availability == 'expiring_soon' %}selected{% endif %}>Expiring Soon</option>
-                <option value="expiring_watchlist" {% if current_availability == 'expiring_watchlist' %}selected{% endif %}>Watchlist</option>
-                <option value="registered" {% if current_availability == 'registered' %}selected{% endif %}>Registered</option>
+                <option value="available" {% if current_availability=='available' %}selected{% endif %}>Available
+                </option>
+                <option value="expired" {% if current_availability=='expired' %}selected{% endif %}>Expired</option>
+                <option value="expiring_soon" {% if current_availability=='expiring_soon' %}selected{% endif %}>Expiring
+                    Soon</option>
+                <option value="expiring_watchlist" {% if current_availability=='expiring_watchlist' %}selected{% endif
+                    %}>Watchlist</option>
+                <option value="registered" {% if current_availability=='registered' %}selected{% endif %}>Registered
+                </option>
             </select>
         </div>
         <div>
             <label class="block text-xs font-medium text-gray-500 mb-1">Label</label>
             <select name="label" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
                 <option value="">All</option>
-                <option value="Available" {% if current_label == 'Available' %}selected{% endif %}>Available</option>
-                <option value="Watchlist" {% if current_label == 'Watchlist' %}selected{% endif %}>Watchlist</option>
-                <option value="Uncertain" {% if current_label == 'Uncertain' %}selected{% endif %}>Uncertain</option>
-                <option value="Discard" {% if current_label == 'Discard' %}selected{% endif %}>Discard</option>
+                <option value="Available" {% if current_label=='Available' %}selected{% endif %}>Available</option>
+                <option value="Watchlist" {% if current_label=='Watchlist' %}selected{% endif %}>Watchlist</option>
+                <option value="Uncertain" {% if current_label=='Uncertain' %}selected{% endif %}>Uncertain</option>
+                <option value="Discard" {% if current_label=='Discard' %}selected{% endif %}>Discard</option>
             </select>
         </div>
         <div>
             <label class="block text-xs font-medium text-gray-500 mb-1">Domain Status</label>
             <select name="status" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
                 <option value="">All</option>
-                <option value="dead" {% if current_status == 'dead' %}selected{% endif %}>Dead</option>
-                <option value="alive" {% if current_status == 'alive' %}selected{% endif %}>Alive</option>
+                <option value="dead" {% if current_status=='dead' %}selected{% endif %}>Dead</option>
+                <option value="alive" {% if current_status=='alive' %}selected{% endif %}>Alive</option>
             </select>
         </div>
         <div>
@@ -115,236 +130,270 @@
             <select name="niche" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
                 <option value="">All</option>
                 {% for n in niches %}
-                <option value="{{ n }}" {% if current_niche == n %}selected{% endif %}>{{ n }}</option>
+                <option value="{{ n }}" {% if current_niche==n %}selected{% endif %}>{{ n }}</option>
                 {% endfor %}
             </select>
         </div>
         <div>
             <label class="block text-xs font-medium text-gray-500 mb-1">Sort</label>
             <select name="sort" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                <option value="created_at" {% if current_sort == 'created_at' %}selected{% endif %}>Newest</option>
-                <option value="domain" {% if current_sort == 'domain' %}selected{% endif %}>Domain</option>
-                <option value="score" {% if current_sort == 'score' %}selected{% endif %}>Score</option>
-                <option value="expires" {% if current_sort == 'expires' %}selected{% endif %}>Expires</option>
-                <option value="snapshots" {% if current_sort == 'snapshots' %}selected{% endif %}>Snapshots</option>
-                <option value="niche" {% if current_sort == 'niche' %}selected{% endif %}>Niche</option>
-                <option value="availability" {% if current_sort == 'availability' %}selected{% endif %}>Availability</option>
-                <option value="label" {% if current_sort == 'label' %}selected{% endif %}>Label</option>
-                <option value="lang" {% if current_sort == 'lang' %}selected{% endif %}>Language</option>
-                <option value="status" {% if current_sort == 'status' %}selected{% endif %}>Status</option>
+                <option value="created_at" {% if current_sort=='created_at' %}selected{% endif %}>Newest</option>
+                <option value="domain" {% if current_sort=='domain' %}selected{% endif %}>Domain</option>
+                <option value="score" {% if current_sort=='score' %}selected{% endif %}>Score</option>
+                <option value="expires" {% if current_sort=='expires' %}selected{% endif %}>Expires</option>
+                <option value="snapshots" {% if current_sort=='snapshots' %}selected{% endif %}>Snapshots</option>
+                <option value="niche" {% if current_sort=='niche' %}selected{% endif %}>Niche</option>
+                <option value="availability" {% if current_sort=='availability' %}selected{% endif %}>Availability
+                </option>
+                <option value="label" {% if current_sort=='label' %}selected{% endif %}>Label</option>
+                <option value="lang" {% if current_sort=='lang' %}selected{% endif %}>Language</option>
+                <option value="status" {% if current_sort=='status' %}selected{% endif %}>Status</option>
             </select>
         </div>
-        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700">Filter</button>
-        <a href="/candidates" class="px-4 py-2 bg-white border border-gray-300 text-gray-600 text-sm rounded-lg hover:bg-gray-50">Reset</a>
+        <button type="submit"
+            class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700">Filter</button>
+        <a href="/candidates"
+            class="px-4 py-2 bg-white border border-gray-300 text-gray-600 text-sm rounded-lg hover:bg-gray-50">Reset</a>
         <a href="/candidates?starred=true{% if current_status %}&status={{ current_status }}{% endif %}{% if current_label %}&label={{ current_label }}{% endif %}"
-           class="px-4 py-2 text-sm font-medium rounded-lg border {% if current_starred %}bg-yellow-100 border-yellow-400 text-yellow-700{% else %}bg-white border-gray-300 text-gray-600 hover:bg-yellow-50{% endif %}">⭐ Starred</a>
+            class="px-4 py-2 text-sm font-medium rounded-lg border {% if current_starred %}bg-yellow-100 border-yellow-400 text-yellow-700{% else %}bg-white border-gray-300 text-gray-600 hover:bg-yellow-50{% endif %}">⭐
+            Starred</a>
     </form>
 </div>
 
 <!-- Results -->
 {% if candidates %}
 <form id="bulkForm" method="post" action="/candidates/bulk-delete">
-<div class="bg-white rounded-lg border border-gray-200">
-    <div class="px-5 py-3 border-b border-gray-200 flex items-center justify-between">
-        <span class="text-sm text-gray-500">
-            Showing {{ candidates|length }} of {{ total }} results (page {{ page }}/{{ total_pages }})
-        </span>
-        <div class="flex items-center gap-2">
-            <button type="submit" id="bulkDeleteBtn" class="hidden px-3 py-1.5 bg-red-600 text-white text-xs font-medium rounded-lg hover:bg-red-700"
+    <div class="bg-white rounded-lg border border-gray-200">
+        <div class="px-5 py-3 border-b border-gray-200 flex items-center justify-between">
+            <span class="text-sm text-gray-500">
+                Showing {{ candidates|length }} of {{ total }} results (page {{ page }}/{{ total_pages }})
+            </span>
+            <div class="flex items-center gap-2">
+                <button type="submit" id="bulkDeleteBtn"
+                    class="hidden px-3 py-1.5 bg-red-600 text-white text-xs font-medium rounded-lg hover:bg-red-700"
                     onclick="return confirm('Delete selected candidates?')">
-                Delete Selected (<span id="selectedCount">0</span>)
-            </button>
+                    Delete Selected (<span id="selectedCount">0</span>)
+                </button>
+            </div>
         </div>
-    </div>
 
-    <!-- Bulk Label Bar (hidden until checkboxes selected) -->
-    <div id="bulkLabelBar" class="hidden px-5 py-2 bg-gray-50 border-b border-gray-200 flex items-center gap-2">
-        <span class="text-xs text-gray-600">Set label to:</span>
-        <select id="bulkLabelSelect" class="px-2 py-1 border border-gray-300 rounded text-xs">
-            <option value="Available">Available</option>
-            <option value="Watchlist">Watchlist</option>
-            <option value="Uncertain">Uncertain</option>
-            <option value="Discard">Discard</option>
-        </select>
-        <button type="button" id="applyLabelBtn" class="px-3 py-1.5 bg-indigo-600 text-white text-xs font-medium rounded-lg hover:bg-indigo-700">
-            Apply (<span class="labelCount">0</span>)
-        </button>
-    </div>
+        <div id="bulkLabelBar"
+            class="hidden px-5 py-2 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <button type="button" id="bulkCheckBtn"
+                    class="px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-700">
+                    Check Selected (<span class="labelCount">0</span>)
+                </button>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-xs text-gray-600">Set label to:</span>
+                <select id="bulkLabelSelect" class="px-2 py-1 border border-gray-300 rounded text-xs">
+                    <option value="Available">Available</option>
+                    <option value="Watchlist">Watchlist</option>
+                    <option value="Uncertain">Uncertain</option>
+                    <option value="Discard">Discard</option>
+                </select>
+                <button type="button" id="applyLabelBtn"
+                    class="px-3 py-1.5 bg-indigo-600 text-white text-xs font-medium rounded-lg hover:bg-indigo-700">
+                    Apply (<span class="labelCount">0</span>)
+                </button>
+            </div>
+        </div>
 
-    <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-                {% set _q = current_q or '' %}
-                {% set _status = current_status or '' %}
-                {% set _avail = current_availability or '' %}
-                {% set _label = current_label or '' %}
-                {% set _niche = current_niche or '' %}
-                {% set _starred = '&starred=true' if current_starred else '' %}
-                {% macro sort_link(col, label, default_order='desc', align='left') %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    {% set _q = current_q or '' %}
+                    {% set _status = current_status or '' %}
+                    {% set _avail = current_availability or '' %}
+                    {% set _label = current_label or '' %}
+                    {% set _niche = current_niche or '' %}
+                    {% set _starred = '&starred=true' if current_starred else '' %}
+                    {% macro sort_link(col, label, default_order='desc', align='left') %}
                     {% set is_active = current_sort == col %}
                     {% if is_active %}
-                        {% set next_order = 'asc' if current_order == 'desc' else 'desc' %}
-                        {% set arrow = ' ↓' if current_order == 'desc' else ' ↑' %}
+                    {% set next_order = 'asc' if current_order == 'desc' else 'desc' %}
+                    {% set arrow = ' ↓' if current_order == 'desc' else ' ↑' %}
                     {% else %}
-                        {% set next_order = default_order %}
-                        {% set arrow = '' %}
+                    {% set next_order = default_order %}
+                    {% set arrow = '' %}
                     {% endif %}
                     <th class="px-4 py-3 text-{{ align }} text-xs font-medium uppercase">
                         <a href="/candidates?page=1&status={{ _status }}&availability={{ _avail }}&label={{ _label }}&niche={{ _niche }}&q={{ _q }}&sort={{ col }}&order={{ next_order }}{{ _starred }}"
-                           class="inline-flex items-center gap-0.5 hover:text-indigo-600 transition-colors {% if is_active %}text-indigo-600{% else %}text-gray-500{% endif %}">
+                            class="inline-flex items-center gap-0.5 hover:text-indigo-600 transition-colors {% if is_active %}text-indigo-600{% else %}text-gray-500{% endif %}">
                             {{ label }}{% if arrow %}<span class="text-indigo-400">{{ arrow }}</span>{% endif %}
                         </a>
                     </th>
-                {% endmacro %}
-                <tr>
-                    <th class="px-3 py-3 w-8"><input type="checkbox" id="selectAll" class="rounded border-gray-300" title="Select all"></th>
-                    <th class="px-3 py-3 w-8"></th>
-                    {{ sort_link('domain', 'Domain', 'asc') }}
-                    {{ sort_link('niche', 'Niche', 'asc') }}
-                    {{ sort_link('status', 'Status', 'desc') }}
-                    {{ sort_link('availability', 'Availability', 'asc') }}
-                    {{ sort_link('score', 'Score', 'desc', 'center') }}
-                    {{ sort_link('label', 'Label', 'asc', 'center') }}
-                    {{ sort_link('snapshots', 'Snapshots', 'desc') }}
-                    {{ sort_link('lang', 'Lang', 'asc') }}
-                    {{ sort_link('expires', 'Expires', 'asc') }}
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-                {% for c in candidates %}
-                <tr class="hover:bg-gray-50 {% if c.is_starred %}bg-yellow-50{% endif %}">
-                    <td class="px-3 py-3"><input type="checkbox" name="ids" value="{{ c.id }}" class="row-check rounded border-gray-300"></td>
-                    <td class="px-3 py-3">
-                        <form method="post" action="/candidates/{{ c.id }}/star">
-                            <button type="submit" title="{% if c.is_starred %}Unstar{% else %}Star{% endif %}" class="text-lg leading-none hover:scale-110 transition-transform">{% if c.is_starred %}⭐{% else %}☆{% endif %}</button>
-                        </form>
-                    </td>
-                    <td class="px-4 py-3 text-sm font-medium">
-                        <a href="/candidates/{{ c.id }}" class="text-indigo-600 hover:underline">{{ c.domain }}</a>
-                    </td>
-                    <td class="px-4 py-3 text-xs">
-                        <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">{{ c.niche }}</span>
-                    </td>
-                    <td class="px-4 py-3 text-xs">
-                        {% if c.is_domain_alive == true %}
-                        <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Alive</span>
-                        {% elif c.is_domain_alive == false %}
-                        <span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700">Dead</span>
-                        {% else %}
-                        <span class="text-gray-400">—</span>
-                        {% endif %}
-                    </td>
-                    <td class="px-4 py-3 text-xs">
-                        {% if c.availability_status == 'available' %}
-                        <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Available</span>
-                        {% elif c.availability_status == 'expired' %}
-                        <span class="px-2 py-0.5 rounded-full bg-orange-100 text-orange-700">Expired</span>
-                        {% elif c.availability_status == 'expiring_soon' %}
-                        <span class="px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Exp. Soon</span>
-                        {% elif c.availability_status == 'expiring_watchlist' %}
-                        <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">Watchlist</span>
-                        {% elif c.availability_status == 'registered' %}
-                        <span class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">Registered</span>
-                        {% elif c.availability_status == 'check_failed' %}
-                        <span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700">Failed</span>
-                        {% else %}
-                        <span class="text-gray-400">—</span>
-                        {% endif %}
-                    </td>
-                    <td class="px-4 py-3 text-center">
-                        {% if c.score_total is not none %}
-                        <span class="text-sm font-bold
+                    {% endmacro %}
+                    <tr>
+                        <th class="px-3 py-3 w-8"><input type="checkbox" id="selectAll" class="rounded border-gray-300"
+                                title="Select all"></th>
+                        <th class="px-3 py-3 w-8"></th>
+                        {{ sort_link('domain', 'Domain', 'asc') }}
+                        {{ sort_link('niche', 'Niche', 'asc') }}
+                        {{ sort_link('status', 'Status', 'desc') }}
+                        {{ sort_link('availability', 'Availability', 'asc') }}
+                        {{ sort_link('score', 'Score', 'desc', 'center') }}
+                        {{ sort_link('label', 'Label', 'asc', 'center') }}
+                        {{ sort_link('snapshots', 'Snapshots', 'desc') }}
+                        {{ sort_link('lang', 'Lang', 'asc') }}
+                        {{ sort_link('expires', 'Expires', 'asc') }}
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    {% for c in candidates %}
+                    <tr class="hover:bg-gray-50 {% if c.is_starred %}bg-yellow-50{% endif %}">
+                        <td class="px-3 py-3"><input type="checkbox" name="ids" value="{{ c.id }}"
+                                class="row-check rounded border-gray-300"></td>
+                        <td class="px-3 py-3">
+                            <form method="post" action="/candidates/{{ c.id }}/star">
+                                <button type="submit" title="{% if c.is_starred %}Unstar{% else %}Star{% endif %}"
+                                    class="text-lg leading-none hover:scale-110 transition-transform">{% if c.is_starred
+                                    %}⭐{% else %}☆{% endif %}</button>
+                            </form>
+                        </td>
+                        <td class="px-4 py-3 text-sm font-medium">
+                            <a href="/candidates/{{ c.id }}" class="text-indigo-600 hover:underline">{{ c.domain }}</a>
+                        </td>
+                        <td class="px-4 py-3 text-xs">
+                            <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">{{ c.niche }}</span>
+                        </td>
+                        <td class="px-4 py-3 text-xs">
+                            {% if c.is_domain_alive == true %}
+                            <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Alive</span>
+                            {% elif c.is_domain_alive == false %}
+                            <span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700">Dead</span>
+                            {% else %}
+                            <span class="text-gray-400">—</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-4 py-3 text-xs">
+                            {% if c.availability_status == 'available' %}
+                            <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Available</span>
+                            {% elif c.availability_status == 'expired' %}
+                            <span class="px-2 py-0.5 rounded-full bg-orange-100 text-orange-700">Expired</span>
+                            {% elif c.availability_status == 'expiring_soon' %}
+                            <span class="px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Exp. Soon</span>
+                            {% elif c.availability_status == 'expiring_watchlist' %}
+                            <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">Watchlist</span>
+                            {% elif c.availability_status == 'registered' %}
+                            <span class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">Registered</span>
+                            {% elif c.availability_status == 'check_failed' %}
+                            <span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700">Failed</span>
+                            {% else %}
+                            <span class="text-gray-400">—</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-4 py-3 text-center">
+                            {% if c.score_total is not none %}
+                            <span class="text-sm font-bold
                             {% if c.score_total >= 70 %}text-green-600
                             {% elif c.score_total >= 40 %}text-yellow-600
                             {% else %}text-red-600{% endif %}">{{ c.score_total|round(0)|int }}</span>
-                        {% else %}
-                        <span class="text-gray-400 text-xs">—</span>
-                        {% endif %}
-                    </td>
-                    <td class="px-4 py-3 text-center text-xs">
-                        {% if c.label == 'Available' %}
-                        <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-medium">Available</span>
-                        {% elif c.label == 'Watchlist' %}
-                        <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-medium">Watchlist</span>
-                        {% elif c.label == 'Uncertain' %}
-                        <span class="px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700 font-medium">Uncertain</span>
-                        {% elif c.label == 'Discard' %}
-                        <span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-medium">Discard</span>
-                        {% else %}
-                        <span class="text-gray-400">—</span>
-                        {% endif %}
-                    </td>
-                    <td class="px-4 py-3 text-sm text-gray-600">{{ c.wayback_total_snapshots or '—' }}</td>
-                    <td class="px-4 py-3 text-sm text-gray-600">{{ (c.dominant_language or '—')|upper }}</td>
-                    <td class="px-4 py-3 text-sm {% if c.whois_days_left is not none and c.whois_days_left < 30 %}text-red-600 font-medium{% elif c.whois_days_left is not none and c.whois_days_left < 90 %}text-yellow-600{% else %}text-gray-500{% endif %}">
-                        {{ c.whois_expiry_date or '—' }}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                            {% else %}
+                            <span class="text-gray-400 text-xs">—</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-4 py-3 text-center text-xs">
+                            {% if c.label == 'Available' %}
+                            <span
+                                class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-medium">Available</span>
+                            {% elif c.label == 'Watchlist' %}
+                            <span
+                                class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-medium">Watchlist</span>
+                            {% elif c.label == 'Uncertain' %}
+                            <span
+                                class="px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700 font-medium">Uncertain</span>
+                            {% elif c.label == 'Discard' %}
+                            <span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-medium">Discard</span>
+                            {% else %}
+                            <span class="text-gray-400">—</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-4 py-3 text-sm text-gray-600">{{ c.wayback_total_snapshots or '—' }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-600">{{ (c.dominant_language or '—')|upper }}</td>
+                        <td
+                            class="px-4 py-3 text-sm {% if c.whois_days_left is not none and c.whois_days_left < 30 %}text-red-600 font-medium{% elif c.whois_days_left is not none and c.whois_days_left < 90 %}text-yellow-600{% else %}text-gray-500{% endif %}">
+                            {{ c.whois_expiry_date or '—' }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-    <!-- Pagination -->
-    {% if total_pages > 1 %}
-    <div class="px-5 py-3 border-t border-gray-200 flex justify-center gap-2">
-        {% if page > 1 %}
-        <a href="/candidates?page={{ page - 1 }}&status={{ current_status or '' }}&availability={{ current_availability or '' }}&label={{ current_label or '' }}&niche={{ current_niche or '' }}&q={{ current_q or '' }}&sort={{ current_sort }}&order={{ current_order }}"
-           class="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">&larr; Prev</a>
-        {% endif %}
-        <span class="px-3 py-1 text-sm text-gray-500">Page {{ page }} of {{ total_pages }}</span>
-        {% if page < total_pages %}
-        <a href="/candidates?page={{ page + 1 }}&status={{ current_status or '' }}&availability={{ current_availability or '' }}&label={{ current_label or '' }}&niche={{ current_niche or '' }}&q={{ current_q or '' }}&sort={{ current_sort }}&order={{ current_order }}"
-           class="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">Next &rarr;</a>
+        <!-- Pagination -->
+        {% if total_pages > 1 %}
+        <div class="px-5 py-3 border-t border-gray-200 flex justify-center gap-2">
+            {% if page > 1 %}
+            <a href="/candidates?page={{ page - 1 }}&status={{ current_status or '' }}&availability={{ current_availability or '' }}&label={{ current_label or '' }}&niche={{ current_niche or '' }}&q={{ current_q or '' }}&sort={{ current_sort }}&order={{ current_order }}"
+                class="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">&larr; Prev</a>
+            {% endif %}
+            <span class="px-3 py-1 text-sm text-gray-500">Page {{ page }} of {{ total_pages }}</span>
+            {% if page < total_pages %} <a
+                href="/candidates?page={{ page + 1 }}&status={{ current_status or '' }}&availability={{ current_availability or '' }}&label={{ current_label or '' }}&niche={{ current_niche or '' }}&q={{ current_q or '' }}&sort={{ current_sort }}&order={{ current_order }}"
+                class="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">Next &rarr;</a>
+                {% endif %}
+        </div>
         {% endif %}
     </div>
-    {% endif %}
-</div>
 </form>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const selectAll = document.getElementById('selectAll');
-    const bulkBtn = document.getElementById('bulkDeleteBtn');
-    const countSpan = document.getElementById('selectedCount');
-    const checks = document.querySelectorAll('.row-check');
-    const labelBar = document.getElementById('bulkLabelBar');
-    const applyLabelBtn = document.getElementById('applyLabelBtn');
-    const labelSelect = document.getElementById('bulkLabelSelect');
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectAll = document.getElementById('selectAll');
+        const bulkBtn = document.getElementById('bulkDeleteBtn');
+        const countSpan = document.getElementById('selectedCount');
+        const checks = document.querySelectorAll('.row-check');
+        const labelBar = document.getElementById('bulkLabelBar');
+        const applyLabelBtn = document.getElementById('applyLabelBtn');
+        const labelSelect = document.getElementById('bulkLabelSelect');
 
-    function updateBtn() {
-        const checked = document.querySelectorAll('.row-check:checked');
-        const n = checked.length;
-        countSpan.textContent = n;
-        labelBar.querySelectorAll('.labelCount').forEach(s => s.textContent = n);
-        bulkBtn.classList.toggle('hidden', n === 0);
-        labelBar.classList.toggle('hidden', n === 0);
-    }
+        function updateBtn() {
+            const checked = document.querySelectorAll('.row-check:checked');
+            const n = checked.length;
+            countSpan.textContent = n;
+            labelBar.querySelectorAll('.labelCount').forEach(s => s.textContent = n);
+            bulkBtn.classList.toggle('hidden', n === 0);
+            labelBar.classList.toggle('hidden', n === 0);
+        }
 
-    selectAll.addEventListener('change', function() {
-        checks.forEach(c => c.checked = selectAll.checked);
-        updateBtn();
-    });
-    checks.forEach(c => c.addEventListener('change', updateBtn));
-
-    applyLabelBtn.addEventListener('click', function() {
-        const checked = document.querySelectorAll('.row-check:checked');
-        if (checked.length === 0) return;
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = '/candidates/bulk-label';
-        const lbl = document.createElement('input');
-        lbl.type = 'hidden'; lbl.name = 'label'; lbl.value = labelSelect.value;
-        form.appendChild(lbl);
-        checked.forEach(c => {
-            const h = document.createElement('input');
-            h.type = 'hidden'; h.name = 'ids'; h.value = c.value;
-            form.appendChild(h);
+        selectAll.addEventListener('change', function () {
+            checks.forEach(c => c.checked = selectAll.checked);
+            updateBtn();
         });
-        document.body.appendChild(form);
-        form.submit();
+        checks.forEach(c => c.addEventListener('change', updateBtn));
+
+        applyLabelBtn.addEventListener('click', function () {
+            submitBulkAction('/candidates/bulk-label', { label: labelSelect.value });
+        });
+
+        document.getElementById('bulkCheckBtn').addEventListener('click', function () {
+            submitBulkAction('/candidates/bulk-check');
+        });
+
+        function submitBulkAction(actionUrl, extraData = {}) {
+            const checked = document.querySelectorAll('.row-check:checked');
+            if (checked.length === 0) return;
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = actionUrl;
+
+            for (const [key, value] of Object.entries(extraData)) {
+                const input = document.createElement('input');
+                input.type = 'hidden'; input.name = key; input.value = value;
+                form.appendChild(input);
+            }
+
+            checked.forEach(c => {
+                const h = document.createElement('input');
+                h.type = 'hidden'; h.name = 'ids'; h.value = c.value;
+                form.appendChild(h);
+            });
+            document.body.appendChild(form);
+            form.submit();
+        }
     });
-});
 </script>
 {% else %}
 <div class="bg-white rounded-lg border border-gray-200 p-10 text-center">

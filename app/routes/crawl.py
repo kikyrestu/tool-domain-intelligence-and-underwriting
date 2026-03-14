@@ -84,24 +84,26 @@ async def _background_crawl(source_id: int):
     logger.info("Full pipeline complete for source %d ✓", source_id)
 
 
-async def _background_whois(source_id: int | None = None):
+async def _background_whois(source_id: int | None = None, candidate_ids: list[int] | None = None):
     """Run RDAP batch check in background."""
     async with async_session() as db:
-        await whois_check(db, source_id=source_id)
+        await whois_check(db, source_id=source_id, candidate_ids=candidate_ids)
 
 
-async def _background_wayback(source_id: int | None = None):
+async def _background_wayback(source_id: int | None = None, candidate_ids: list[int] | None = None):
     """Run Wayback batch check in background."""
     async with async_session() as db:
-        await wayback_check(db, source_id=source_id)
+        await wayback_check(db, source_id=source_id, candidate_ids=candidate_ids)
 
 
-async def _background_score(source_id: int | None = None):
+async def _background_score(source_id: int | None = None, candidate_ids: list[int] | None = None):
     """Run scoring pipeline: toxicity scan → score calculation."""
     async with async_session() as db:
         # Collect toxicity flags per candidate
         query = select(CandidateDomain)
-        if source_id:
+        if candidate_ids:
+            query = query.where(CandidateDomain.id.in_(candidate_ids))
+        elif source_id:
             query = query.where(CandidateDomain.source_id == source_id)
         result = await db.execute(query)
         candidates = result.scalars().all()
@@ -110,7 +112,7 @@ async def _background_score(source_id: int | None = None):
         for c in candidates:
             toxicity_map[c.id] = json.loads(c.toxicity_flags) if c.toxicity_flags else scan_candidate(c, [])
 
-        await score_candidates(db, source_id=source_id, toxicity_map=toxicity_map)
+        await score_candidates(db, source_id=source_id, toxicity_map=toxicity_map, candidate_ids=candidate_ids)
 
 
 @router.get("/crawl/active-partial")
@@ -196,24 +198,27 @@ async def trigger_score_all(background_tasks: BackgroundTasks):
     return RedirectResponse(url="/candidates", status_code=303)
 
 
-async def _background_recheck_all():
-    """Full re-check pipeline: RDAP → Wayback → Score semua kandidat."""
-    logger.info("[Recheck All] Starting RDAP re-check for all candidates…")
+async def _background_recheck_all(candidate_ids: list[int] | None = None):
+    """Full re-check pipeline: RDAP → Wayback → Score semua atau kandidat tertentu."""
+    logger.info("[Recheck All] Starting RDAP re-check for candidates…")
     async with async_session() as db:
-        await whois_check(db, source_id=None)
+        await whois_check(db, source_id=None, candidate_ids=candidate_ids)
 
     logger.info("[Recheck All] RDAP done. Starting Wayback re-check…")
     async with async_session() as db:
-        await wayback_check(db, source_id=None)
+        await wayback_check(db, source_id=None, candidate_ids=candidate_ids)
 
     logger.info("[Recheck All] Wayback done. Starting scoring…")
     async with async_session() as db:
-        result = await db.execute(select(CandidateDomain))
+        query = select(CandidateDomain)
+        if candidate_ids:
+            query = query.where(CandidateDomain.id.in_(candidate_ids))
+        result = await db.execute(query)
         candidates = result.scalars().all()
         toxicity_map: dict[int, list[dict]] = {}
         for c in candidates:
             toxicity_map[c.id] = json.loads(c.toxicity_flags) if c.toxicity_flags else scan_candidate(c, [])
-        await score_candidates(db, source_id=None, toxicity_map=toxicity_map)
+        await score_candidates(db, source_id=None, toxicity_map=toxicity_map, candidate_ids=candidate_ids)
 
     logger.info("[Recheck All] Full re-check complete ✓")
 

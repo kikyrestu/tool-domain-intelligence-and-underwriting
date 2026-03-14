@@ -258,7 +258,7 @@ async def check_single(domain: str) -> dict:
     return await analyze_domain(domain)
 
 
-async def check_candidates(db: AsyncSession, source_id: int | None = None):
+async def check_candidates(db: AsyncSession, source_id: int | None = None, candidate_ids: list[int] | None = None):
     """
     Batch Wayback check for candidates that:
     - have never been checked (wayback_checked_at IS NULL), OR
@@ -272,7 +272,9 @@ async def check_candidates(db: AsyncSession, source_id: int | None = None):
             CandidateDomain.wayback_check_failed == True,
         )
     )
-    if source_id:
+    if candidate_ids:
+        query = query.where(CandidateDomain.id.in_(candidate_ids))
+    elif source_id:
         query = query.where(CandidateDomain.source_id == source_id)
 
     result = await db.execute(query)

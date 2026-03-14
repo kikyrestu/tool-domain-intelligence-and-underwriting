@@ -1,8 +1,22 @@
+"""Candidates routes — list, detail, notes."""
+
+from datetime import date, datetime
+from fastapi import APIRouter, Depends, Request, Form, Query, BackgroundTasks
+from fastapi.responses import RedirectResponse
+from fastapi.templating import Jinja2Templates
+from sqlalchemy import select, func, or_, asc, desc, update
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.database import get_db
+from app.models.candidate import CandidateDomain
 from app.services.whois_service import _rdap_lookup
 from app.services.wayback_service import analyze_domain
 from app.services.scoring_service import calculate_score
-from app.services.toxicity_service import scan_candidate
-from sqlalchemy import update
+from app.services.toxicity_service import scan_candidate, check_language_mismatch, check_young_domain
+from app.routes.crawl import _background_recheck_all
+
+router = APIRouter()
+templates = Jinja2Templates(directory="app/templates")
 
 # Crawl RDAP/Availability untuk satu domain
 @router.post("/candidates/{candidate_id}/rdap")
@@ -57,21 +71,6 @@ async def score_candidate(candidate_id: int, db: AsyncSession = Depends(get_db))
         await db.commit()
         await db.refresh(candidate)
     return RedirectResponse(url=f"/candidates/{candidate_id}", status_code=303)
-"""Candidates routes — list, detail, notes."""
-
-from datetime import date
-from fastapi import APIRouter, Depends, Request, Form, Query
-from fastapi.responses import RedirectResponse
-from fastapi.templating import Jinja2Templates
-from sqlalchemy import select, func, or_, asc, desc
-from sqlalchemy.ext.asyncio import AsyncSession
-
-from app.database import get_db
-from app.models.candidate import CandidateDomain
-from app.services.toxicity_service import check_language_mismatch, check_young_domain
-
-router = APIRouter()
-templates = Jinja2Templates(directory="app/templates")
 
 PAGE_SIZE = 50
 
@@ -220,6 +219,58 @@ async def list_candidates(
     })
 
 
+@router.post("/candidates/bulk-delete")
+async def bulk_delete_candidates(
+    request: Request,
+    db: AsyncSession = Depends(get_db),
+):
+    form = await request.form()
+    ids = form.getlist("ids")
+    if ids:
+        int_ids = [int(i) for i in ids]
+        result = await db.execute(
+            select(CandidateDomain).where(CandidateDomain.id.in_(int_ids))
+        )
+        for candidate in result.scalars().all():
+            await db.delete(candidate)
+        await db.commit()
+    return RedirectResponse(url="/candidates", status_code=303)
+
+
+@router.post("/candidates/bulk-label")
+async def bulk_label_candidates(
+    request: Request,
+    db: AsyncSession = Depends(get_db),
+):
+    form = await request.form()
+    ids = form.getlist("ids")
+    new_label = form.get("label", "")
+    valid_labels = {"Available", "Watchlist", "Uncertain", "Discard"}
+    if ids and new_label in valid_labels:
+        int_ids = [int(i) for i in ids]
+        result = await db.execute(
+            select(CandidateDomain).where(CandidateDomain.id.in_(int_ids))
+        )
+        for candidate in result.scalars().all():
+            candidate.label = new_label
+            candidate.label_reason = f"Manually set to {new_label}"
+        await db.commit()
+    return RedirectResponse(url="/candidates", status_code=303)
+
+
+@router.post("/candidates/bulk-check")
+async def bulk_check_candidates(
+    request: Request,
+    background_tasks: BackgroundTasks,
+):
+    form = await request.form()
+    ids = form.getlist("ids")
+    if ids:
+        int_ids = [int(i) for i in ids]
+        background_tasks.add_task(_background_recheck_all, int_ids)
+    return RedirectResponse(url="/candidates", status_code=303)
+
+
 @router.get("/candidates/{candidate_id}")
 async def candidate_detail(
     request: Request,
@@ -299,40 +350,4 @@ async def delete_candidate(
     return RedirectResponse(url="/candidates", status_code=303)
 
 
-@router.post("/candidates/bulk-delete")
-async def bulk_delete_candidates(
-    request: Request,
-    db: AsyncSession = Depends(get_db),
-):
-    form = await request.form()
-    ids = form.getlist("ids")
-    if ids:
-        int_ids = [int(i) for i in ids]
-        result = await db.execute(
-            select(CandidateDomain).where(CandidateDomain.id.in_(int_ids))
-        )
-        for candidate in result.scalars().all():
-            await db.delete(candidate)
-        await db.commit()
-    return RedirectResponse(url="/candidates", status_code=303)
-
-
-@router.post("/candidates/bulk-label")
-async def bulk_label_candidates(
-    request: Request,
-    db: AsyncSession = Depends(get_db),
-):
-    form = await request.form()
-    ids = form.getlist("ids")
-    new_label = form.get("label", "")
-    valid_labels = {"Available", "Watchlist", "Uncertain", "Discard"}
-    if ids and new_label in valid_labels:
-        int_ids = [int(i) for i in ids]
-        result = await db.execute(
-            select(CandidateDomain).where(CandidateDomain.id.in_(int_ids))
-        )
-        for candidate in result.scalars().all():
-            candidate.label = new_label
-            candidate.label_reason = f"Manually set to {new_label}"
-        await db.commit()
-    return RedirectResponse(url="/candidates", status_code=303)
+# END ROUTE MOVEMENT
