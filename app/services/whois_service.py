@@ -352,6 +352,14 @@ async def check_candidates(db: AsyncSession, source_id: int | None = None, candi
         try:
             data = await _rdap_lookup(candidate.domain)
 
+            # Registered domains are not actionable — delete from candidates
+            if data["status"] == "registered":
+                await db.delete(candidate)
+                await db.commit()
+                checked += 1
+                logger.info("  [%d/%d] %s → registered → DELETED", checked, len(candidates), candidate.domain)
+                continue
+
             candidate.availability_status = data["status"]
             candidate.whois_registrar = data.get("registrar")
             candidate.whois_created_date = data.get("created_date")

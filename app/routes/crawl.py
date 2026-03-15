@@ -10,6 +10,7 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy import select
 from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import delete as sa_delete
 
 from app.database import get_db, async_session
 from app.models.crawl_job import CrawlJob
@@ -246,6 +247,20 @@ async def _background_recheck_all(candidate_ids: list[int] | None = None):
 async def trigger_recheck_all(background_tasks: BackgroundTasks):
     """Trigger full re-check pipeline for ALL candidates in background."""
     background_tasks.add_task(_background_recheck_all)
+    return RedirectResponse(url="/candidates", status_code=303)
+
+
+@router.post("/purge-registered")
+async def purge_registered(db: AsyncSession = Depends(get_db)):
+    """Delete all candidates with availability_status='registered' from database."""
+    result = await db.execute(
+        sa_delete(CandidateDomain).where(
+            CandidateDomain.availability_status == "registered"
+        )
+    )
+    await db.commit()
+    count = result.rowcount
+    logger.info("Purged %d registered domains from candidates", count)
     return RedirectResponse(url="/candidates", status_code=303)
 
 

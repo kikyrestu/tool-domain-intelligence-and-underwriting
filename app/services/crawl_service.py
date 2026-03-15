@@ -1025,6 +1025,11 @@ async def run_crawl(source_id: int, db: AsyncSession):
             if not status["is_domain_alive"]:
                 dead_count += 1
 
+            # Skip registered domains — not actionable for expired domain buying
+            if status.get("availability_status") == "registered":
+                logger.debug("Skipped registered domain %s", domain)
+                continue
+
             # Check if domain already exists for this source
             existing = await db.execute(
                 select(CandidateDomain).where(
