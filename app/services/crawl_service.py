@@ -841,14 +841,19 @@ async def _depth2_discovery(alive_domains: list[str], niche: str, db: AsyncSessi
                 if exists_sug.scalar_one_or_none() is not None:
                     continue
 
-                db.add(SuggestedCandidate(
-                    domain=root,
-                    discovered_from=domain,
-                    niche=niche,
-                    discovery_source="crawl",
-                ))
-                added_for_domain += 1
-                new_suggestions += 1
+                try:
+                    async with db.begin_nested():
+                        db.add(SuggestedCandidate(
+                            domain=root,
+                            discovered_from=domain,
+                            niche=niche,
+                            discovery_source="crawl",
+                        ))
+                    added_for_domain += 1
+                    new_suggestions += 1
+                except Exception:
+                    # Duplicate — skip
+                    continue
 
             if added_for_domain:
                 await db.commit()
@@ -1012,7 +1017,7 @@ async def run_crawl(source_id: int, db: AsyncSession):
         check_results = await asyncio.gather(*check_tasks)
         domain_status = dict(zip(unique_domains, check_results))
 
-        # 4. Save candidates
+        # 4. Save candidates (with savepoint per insert to survive IntegrityError)
         dead_count = 0
         saved = 0
         for (url, domain) in links:
@@ -1030,32 +1035,38 @@ async def run_crawl(source_id: int, db: AsyncSession):
             if existing.scalar_one_or_none():
                 continue
 
-            candidate = CandidateDomain(
-                domain=domain,
-                source_id=source_id,
-                crawl_job_id=job.id,
-                source_url_found=source.url,
-                original_link=url,
-                niche=source.niche,
-                http_status=status["http_status"],
-                dns_resolves=status["dns_resolves"],
-                dns_mx_records=status.get("dns_mx_records", False),
-                is_domain_alive=status["is_domain_alive"],
-                is_parked=status.get("is_parked", False),
-                availability_status=status.get("availability_status"),
-                whois_registrar=status.get("whois_registrar"),
-                whois_created_date=status.get("whois_created_date"),
-                whois_expiry_date=status.get("whois_expiry_date"),
-                whois_days_left=status.get("whois_days_left"),
-                whois_checked_at=datetime.now(timezone.utc) if status.get("availability_status") else None,
-                # Provenance
-                source_type=_provenance["source_type"],
-                parser_type=_provenance["parser_type"],
-                source_origin=_provenance["source_origin"],
-                extraction_note=_provenance["extraction_note"],
-            )
-            db.add(candidate)
-            saved += 1
+            try:
+                async with db.begin_nested():
+                    candidate = CandidateDomain(
+                        domain=domain,
+                        source_id=source_id,
+                        crawl_job_id=job.id,
+                        source_url_found=source.url,
+                        original_link=url,
+                        niche=source.niche,
+                        http_status=status["http_status"],
+                        dns_resolves=status["dns_resolves"],
+                        dns_mx_records=status.get("dns_mx_records", False),
+                        is_domain_alive=status["is_domain_alive"],
+                        is_parked=status.get("is_parked", False),
+                        availability_status=status.get("availability_status"),
+                        whois_registrar=status.get("whois_registrar"),
+                        whois_created_date=status.get("whois_created_date"),
+                        whois_expiry_date=status.get("whois_expiry_date"),
+                        whois_days_left=status.get("whois_days_left"),
+                        whois_checked_at=datetime.now(timezone.utc) if status.get("availability_status") else None,
+                        # Provenance
+                        source_type=_provenance["source_type"],
+                        parser_type=_provenance["parser_type"],
+                        source_origin=_provenance["source_origin"],
+                        extraction_note=_provenance["extraction_note"],
+                    )
+                    db.add(candidate)
+                saved += 1
+            except Exception:
+                # IntegrityError (duplicate) — skip silently, other run already inserted
+                logger.debug("Skipped duplicate domain %s for source %d", domain, source_id)
+                continue
 
         job.total_candidates = saved
         job.total_dead_links = dead_count

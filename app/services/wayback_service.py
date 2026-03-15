@@ -347,14 +347,19 @@ async def check_candidates(db: AsyncSession, source_id: int | None = None, candi
                     select(SuggestedCandidate).where(SuggestedCandidate.domain == root_domain)
                 )
                 if existing_sug.scalar_one_or_none() is None:
-                    db.add(SuggestedCandidate(
-                        domain=root_domain,
-                        discovered_from=candidate.domain,
-                        niche=candidate.niche or "General",
-                        discovery_source="wayback",
-                    ))
-                    new_sources += 1
-                    logger.info("  [Wayback] Suggested candidate: %s (from %s)", root_domain, candidate.domain)
+                    try:
+                        async with db.begin_nested():
+                            db.add(SuggestedCandidate(
+                                domain=root_domain,
+                                discovered_from=candidate.domain,
+                                niche=candidate.niche or "General",
+                                discovery_source="wayback",
+                            ))
+                        new_sources += 1
+                        logger.info("  [Wayback] Suggested candidate: %s (from %s)", root_domain, candidate.domain)
+                    except Exception:
+                        # Duplicate — skip
+                        continue
 
         except Exception as e:
             logger.error("Wayback error for %s: %s", candidate.domain, e)
