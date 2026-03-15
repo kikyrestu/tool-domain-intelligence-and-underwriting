@@ -289,14 +289,11 @@ async def _rdap_lookup(domain: str, dns_resolves: bool = False) -> dict:
             delta = dt - now
             result["days_left"] = delta.days
 
-            if delta.days < -45:
-                # H+45 sudah lewat → domain seharusnya sudah lepas ke publik
-                result["status"] = "available"
-            elif delta.days < 0:
-                # H-0 s/d H+45 → expired tapi masih grace period, belum lepas
+            if delta.days < 0:
+                result["status"] = "expired"
+            elif delta.days < 30:
                 result["status"] = "expiring_soon"
-            elif delta.days <= 14:
-                # H-14 → expiry tinggal ≤14 hari, pantau
+            elif delta.days < 90:
                 result["status"] = "expiring_watchlist"
             else:
                 result["status"] = "registered"

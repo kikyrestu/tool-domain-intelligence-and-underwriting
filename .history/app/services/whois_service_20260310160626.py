@@ -289,14 +289,11 @@ async def _rdap_lookup(domain: str, dns_resolves: bool = False) -> dict:
             delta = dt - now
             result["days_left"] = delta.days
 
-            if delta.days < -45:
-                # H+45 sudah lewat → domain seharusnya sudah lepas ke publik
-                result["status"] = "available"
-            elif delta.days < 0:
-                # H-0 s/d H+45 → expired tapi masih grace period, belum lepas
+            if delta.days < 0:
+                result["status"] = "expired"
+            elif delta.days < 30:
                 result["status"] = "expiring_soon"
-            elif delta.days <= 14:
-                # H-14 → expiry tinggal ≤14 hari, pantau
+            elif delta.days < 90:
                 result["status"] = "expiring_watchlist"
             else:
                 result["status"] = "registered"
@@ -313,7 +310,7 @@ async def check_single(domain: str) -> dict:
     return await _rdap_lookup(domain)
 
 
-async def check_candidates(db: AsyncSession, source_id: int | None = None, candidate_ids: list[int] | None = None):
+async def check_candidates(db: AsyncSession, source_id: int | None = None):
     """
     Batch RDAP check for candidates that:
     - have never been checked (whois_checked_at IS NULL), OR
@@ -322,21 +319,15 @@ async def check_candidates(db: AsyncSession, source_id: int | None = None, candi
     """
     settings = get_settings()
 
-    query = select(CandidateDomain)
-    if candidate_ids:
-        # If explicitly asking for specific IDs, check them regardless of previous status
-        query = query.where(CandidateDomain.id.in_(candidate_ids))
-    else:
-        # Otherwise, only check those that need it
-        from sqlalchemy import or_
-        query = query.where(
-            or_(
-                CandidateDomain.whois_checked_at.is_(None),
-                CandidateDomain.availability_status.in_(["check_failed", "unknown"]),
-            )
+    from sqlalchemy import or_
+    query = select(CandidateDomain).where(
+        or_(
+            CandidateDomain.whois_checked_at.is_(None),
+            CandidateDomain.availability_status.in_(["check_failed", "unknown"]),
         )
-        if source_id:
-            query = query.where(CandidateDomain.source_id == source_id)
+    )
+    if source_id:
+        query = query.where(CandidateDomain.source_id == source_id)
 
     result = await db.execute(query)
     candidates = result.scalars().all()

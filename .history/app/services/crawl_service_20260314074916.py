@@ -29,7 +29,6 @@ from app.services.toxicity_service import TOXICITY_PATTERNS
 from app.utils.ssrf_guard import is_safe_url
 from app.utils.domain_filter import extract_domain, is_valid_candidate, BLACKLIST
 from app.config import get_settings
-from app.services.state_service import set_state
 
 logger = logging.getLogger(__name__)
 
@@ -138,10 +137,7 @@ async def _try_scraperapi(url: str, key: str, js: bool = False, residential: boo
         async with httpx.AsyncClient(follow_redirects=True) as client:
             resp = await client.get("https://api.scraperapi.com/", params=params, timeout=60)
             if resp.status_code == 200 and len(resp.text) > 500 and not _is_challenge_page(resp.text, resp.status_code):
-                await set_state("scraperapi_exhausted", "false")
                 return resp.text
-            elif resp.status_code in (402, 403, 429):
-                await set_state("scraperapi_exhausted", "true")
     except Exception as e:
         logger.debug("ScraperAPI error: %s", e)
     return None
@@ -158,10 +154,7 @@ async def _try_scrapingbee(url: str, key: str, js: bool = False, stealth: bool =
         async with httpx.AsyncClient(follow_redirects=True) as client:
             resp = await client.get("https://app.scrapingbee.com/api/v1/", params=params, timeout=60)
             if resp.status_code == 200 and len(resp.text) > 500 and not _is_challenge_page(resp.text, resp.status_code):
-                await set_state("scrapingbee_exhausted", "false")
                 return resp.text
-            elif resp.status_code in (402, 403, 429):
-                await set_state("scrapingbee_exhausted", "true")
     except Exception as e:
         logger.debug("Scrapingbee error: %s", e)
     return None
@@ -177,10 +170,7 @@ async def _try_crawlbase(url: str, key: str, js: bool = False) -> str | None:
         async with httpx.AsyncClient(follow_redirects=True) as client:
             resp = await client.get("https://api.crawlbase.com/", params=params, timeout=60)
             if resp.status_code == 200 and len(resp.text) > 500 and not _is_challenge_page(resp.text, resp.status_code):
-                await set_state("crawlbase_exhausted", "false")
                 return resp.text
-            elif resp.status_code in (402, 403, 429):
-                await set_state("crawlbase_exhausted", "true")
     except Exception as e:
         logger.debug("Crawlbase error: %s", e)
     return None
@@ -237,10 +227,7 @@ async def _fetch_page(url: str) -> str | None:
                 resp_zr = await client_zr.get_async(url, params=zr_params)
                 if resp_zr and len(resp_zr.text) > 500 and not _is_challenge_page(resp_zr.text, resp_zr.status_code):
                     logger.info("ZenRows[%s] ...%s OK %s (%d chars)", label, api_key[-6:], url, len(resp_zr.text))
-                    await set_state("zenrows_exhausted", "false")
                     return resp_zr.text
-                elif resp_zr and resp_zr.status_code in (402, 403, 429):
-                    await set_state("zenrows_exhausted", "true")
                 logger.debug("ZenRows[%s] bad response %s, escalating", label, url)
         except Exception as e:
             logger.debug("ZenRows failed %s: %s", url, e)

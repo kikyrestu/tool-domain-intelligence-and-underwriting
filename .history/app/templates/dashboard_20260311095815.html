@@ -8,60 +8,6 @@
     <p class="text-sm text-gray-500 mt-1">Overview of your domain intelligence pipeline</p>
 </div>
 
-{% if zenrows_exhausted or scraperapi_exhausted or scrapingbee_exhausted or crawlbase_exhausted %}
-<div class="mb-6 space-y-3">
-    {% if zenrows_exhausted %}
-    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg shadow-sm">
-        <div class="flex items-center">
-            <svg class="h-6 w-6 text-red-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <p class="text-sm text-red-800"><strong class="font-semibold text-red-900">API Quota Error:</strong> ZenRows
-                API quota appears to be exhausted or the key is invalid. Crawling will use fallbacks which may be slower
-                or fail entirely.</p>
-        </div>
-    </div>
-    {% endif %}
-    {% if scraperapi_exhausted %}
-    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg shadow-sm">
-        <div class="flex items-center">
-            <svg class="h-6 w-6 text-red-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <p class="text-sm text-red-800"><strong class="font-semibold text-red-900">API Quota Error:</strong>
-                ScraperAPI quota appears to be exhausted or the key is invalid.</p>
-        </div>
-    </div>
-    {% endif %}
-    {% if scrapingbee_exhausted %}
-    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg shadow-sm">
-        <div class="flex items-center">
-            <svg class="h-6 w-6 text-red-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <p class="text-sm text-red-800"><strong class="font-semibold text-red-900">API Quota Error:</strong>
-                Scrapingbee quota appears to be exhausted or the key is invalid.</p>
-        </div>
-    </div>
-    {% endif %}
-    {% if crawlbase_exhausted %}
-    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg shadow-sm">
-        <div class="flex items-center">
-            <svg class="h-6 w-6 text-red-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <p class="text-sm text-red-800"><strong class="font-semibold text-red-900">API Quota Error:</strong>
-                Crawlbase quota appears to be exhausted or the key is invalid.</p>
-        </div>
-    </div>
-    {% endif %}
-</div>
-{% endif %}
-
 <!-- Top Summary -->
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
     <div class="bg-white rounded-lg border border-gray-200 p-5">
@@ -76,36 +22,34 @@
         <p class="text-sm text-gray-500">Domain Dead</p>
         <p class="text-3xl font-bold text-red-600 mt-1">{{ dead_count }}</p>
     </div>
-    <a href="/candidates?availability=available"
-        class="bg-white rounded-lg border border-green-300 p-5 hover:bg-green-50">
+    <a href="/candidates?availability=available" class="bg-white rounded-lg border border-green-300 p-5 hover:bg-green-50">
         <p class="text-sm text-gray-500">Buyable <span class="text-xs text-gray-400">(RDAP available)</span></p>
         <p class="text-3xl font-bold text-green-600 mt-1">{{ avail_count }}</p>
     </a>
 </div>
 
 <!-- Active Crawl Pipeline (auto-refresh every 3s via HTMX) -->
-<div id="active-crawls-container" hx-get="/crawl/active-partial" hx-trigger="load, every 3s" hx-swap="innerHTML">
+<div id="active-crawls-container"
+     hx-get="/crawl/active-partial"
+     hx-trigger="load, every 3s"
+     hx-swap="innerHTML">
 </div>
 
 <!-- Label Summary -->
 <div class="grid grid-cols-4 gap-4 mb-6">
-    <a href="/candidates?label=Available"
-        class="bg-green-50 rounded-lg border border-green-200 p-5 hover:bg-green-100 transition">
+    <a href="/candidates?label=Available" class="bg-green-50 rounded-lg border border-green-200 p-5 hover:bg-green-100 transition">
         <p class="text-sm text-green-700 font-medium">Label: Available</p>
         <p class="text-3xl font-bold text-green-700 mt-1">{{ available_label_count }}</p>
     </a>
-    <a href="/candidates?label=Watchlist"
-        class="bg-blue-50 rounded-lg border border-blue-200 p-5 hover:bg-blue-100 transition">
+    <a href="/candidates?label=Watchlist" class="bg-blue-50 rounded-lg border border-blue-200 p-5 hover:bg-blue-100 transition">
         <p class="text-sm text-blue-700 font-medium">Watchlist</p>
         <p class="text-3xl font-bold text-blue-700 mt-1">{{ watchlist_count }}</p>
     </a>
-    <a href="/candidates?label=Uncertain"
-        class="bg-yellow-50 rounded-lg border border-yellow-200 p-5 hover:bg-yellow-100 transition">
+    <a href="/candidates?label=Uncertain" class="bg-yellow-50 rounded-lg border border-yellow-200 p-5 hover:bg-yellow-100 transition">
         <p class="text-sm text-yellow-700 font-medium">Uncertain</p>
         <p class="text-3xl font-bold text-yellow-700 mt-1">{{ uncertain_count }}</p>
     </a>
-    <a href="/candidates?label=Discard"
-        class="bg-red-50 rounded-lg border border-red-200 p-5 hover:bg-red-100 transition">
+    <a href="/candidates?label=Discard" class="bg-red-50 rounded-lg border border-red-200 p-5 hover:bg-red-100 transition">
         <p class="text-sm text-red-700 font-medium">Discard</p>
         <p class="text-3xl font-bold text-red-700 mt-1">{{ discard_count }}</p>
     </a>
@@ -113,17 +57,10 @@
 
 <!-- Quick Actions + Export -->
 <div class="flex flex-wrap gap-3 mb-8">
-    <a href="/sources/add"
-        class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700">+ Add Source</a>
-    <a href="/candidates"
-        class="px-4 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50">View
-        Candidates</a>
-    <a href="/export/csv"
-        class="px-4 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50">Export
-        CSV</a>
-    <a href="/export/xlsx"
-        class="px-4 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50">Export
-        XLSX</a>
+    <a href="/sources/add" class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700">+ Add Source</a>
+    <a href="/candidates" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50">View Candidates</a>
+    <a href="/export/csv" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50">Export CSV</a>
+    <a href="/export/xlsx" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50">Export XLSX</a>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
@@ -141,8 +78,7 @@
                     <span class="font-medium text-gray-900">{{ ns.count }}</span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div class="bg-indigo-500 h-2 rounded-full"
-                        style="width: {{ (ns.count / candidate_count * 100) if candidate_count else 0 }}%"></div>
+                    <div class="bg-indigo-500 h-2 rounded-full" style="width: {{ (ns.count / candidate_count * 100) if candidate_count else 0 }}%"></div>
                 </div>
             </div>
             {% endfor %}
@@ -184,8 +120,7 @@
                         </td>
                         <td class="px-4 py-2 text-sm">{{ job.total_candidates }}</td>
                         <td class="px-4 py-2 text-sm text-red-600">{{ job.total_dead_links }}</td>
-                        <td class="px-4 py-2 text-xs text-gray-500">{{ job.created_at.strftime('%d %b %H:%M') if
-                            job.created_at else '—' }}</td>
+                        <td class="px-4 py-2 text-xs text-gray-500">{{ job.created_at.strftime('%d %b %H:%M') if job.created_at else '—' }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -219,32 +154,20 @@
                     <td class="px-5 py-3 text-sm font-medium">
                         <a href="/candidates/{{ c.id }}" class="text-indigo-600 hover:underline">{{ c.domain }}</a>
                     </td>
-                    <td class="px-5 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">{{
-                            c.niche }}</span></td>
+                    <td class="px-5 py-3 text-xs"><span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">{{ c.niche }}</span></td>
                     <td class="px-5 py-3 text-center">
-                        <span
-                            class="text-lg font-bold {% if c.score_total >= 70 %}text-green-600{% elif c.score_total >= 40 %}text-yellow-600{% else %}text-red-600{% endif %}">{{
-                            c.score_total|round(0)|int }}</span>
+                        <span class="text-lg font-bold {% if c.score_total >= 70 %}text-green-600{% elif c.score_total >= 40 %}text-yellow-600{% else %}text-red-600{% endif %}">{{ c.score_total|round(0)|int }}</span>
                     </td>
                     <td class="px-5 py-3 text-center text-xs">
-                        {% if c.label == 'Available' %}<span
-                            class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-medium">Available</span>
-                        {% elif c.label == 'Watchlist' %}<span
-                            class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-medium">Watchlist</span>
-                        {% elif c.label == 'Uncertain' %}<span
-                            class="px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700 font-medium">Uncertain</span>
-                        {% else %}<span
-                            class="px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-medium">Discard</span>{% endif
-                        %}
+                        {% if c.label == 'Available' %}<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-medium">Available</span>
+                        {% elif c.label == 'Watchlist' %}<span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-medium">Watchlist</span>
+                        {% elif c.label == 'Uncertain' %}<span class="px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700 font-medium">Uncertain</span>
+                        {% else %}<span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-medium">Discard</span>{% endif %}
                     </td>
                     <td class="px-5 py-3 text-xs">
-                        {% if c.availability_status == 'available' %}<span
-                            class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Available</span>
-                        {% elif c.availability_status == 'registered' %}<span
-                            class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">Registered</span>
-                        {% elif c.availability_status %}<span
-                            class="px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">{{ c.availability_status
-                            }}</span>
+                        {% if c.availability_status == 'available' %}<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Available</span>
+                        {% elif c.availability_status == 'registered' %}<span class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">Registered</span>
+                        {% elif c.availability_status %}<span class="px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">{{ c.availability_status }}</span>
                         {% else %}<span class="text-gray-400">—</span>{% endif %}
                     </td>
                     <td class="px-5 py-3 text-xs text-gray-500 max-w-xs truncate">{{ c.label_reason or '—' }}</td>
@@ -279,10 +202,8 @@
                     </td>
                     <td class="px-5 py-3 text-sm text-gray-500">{{ c.niche }}</td>
                     <td class="px-5 py-3 text-xs">
-                        {% if c.is_domain_alive == false %}<span
-                            class="px-2 py-0.5 rounded-full bg-red-100 text-red-700">Dead</span>
-                        {% elif c.is_domain_alive == true %}<span
-                            class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Alive</span>
+                        {% if c.is_domain_alive == false %}<span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700">Dead</span>
+                        {% elif c.is_domain_alive == true %}<span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700">Alive</span>
                         {% else %}<span class="text-gray-400">—</span>{% endif %}
                     </td>
                 </tr>

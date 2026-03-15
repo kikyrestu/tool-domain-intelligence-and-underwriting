@@ -46,7 +46,6 @@ async def lifespan(app: FastAPI):
         # Create new tables that may not exist yet
         from app.models.suggested_source import SuggestedSource  # noqa: F401 — ensure table registered
         from app.models.suggested_candidate import SuggestedCandidate  # noqa: F401 — ensure table registered
-        from app.models.system_state import SystemState  # noqa: F401 — ensure table registered
         await conn.run_sync(Base.metadata.create_all)
 
     # Start background scheduler (re-check starred domains)

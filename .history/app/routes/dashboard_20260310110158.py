@@ -10,7 +10,6 @@ from app.database import get_db
 from app.models.source import Source
 from app.models.crawl_job import CrawlJob
 from app.models.candidate import CandidateDomain
-from app.services.state_service import get_state
 
 router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
@@ -80,12 +79,6 @@ async def dashboard(request: Request, db: AsyncSession = Depends(get_db)):
     )
     recent_candidates = recent_candidates_result.scalars().all()
 
-    # API quotas
-    zenrows_exhausted = await get_state("zenrows_exhausted") == "true"
-    scraperapi_exhausted = await get_state("scraperapi_exhausted") == "true"
-    scrapingbee_exhausted = await get_state("scrapingbee_exhausted") == "true"
-    crawlbase_exhausted = await get_state("crawlbase_exhausted") == "true"
-
     return templates.TemplateResponse("dashboard.html", {
         "request": request,
         "source_count": source_count,
@@ -102,10 +95,6 @@ async def dashboard(request: Request, db: AsyncSession = Depends(get_db)):
         "recent_jobs": recent_jobs,
         "top_candidates": top_candidates,
         "recent_candidates": recent_candidates,
-        "zenrows_exhausted": zenrows_exhausted,
-        "scraperapi_exhausted": scraperapi_exhausted,
-        "scrapingbee_exhausted": scrapingbee_exhausted,
-        "crawlbase_exhausted": crawlbase_exhausted,
     })
 
 

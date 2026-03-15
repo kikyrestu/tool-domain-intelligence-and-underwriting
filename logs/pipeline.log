@@ -4361,3 +4361,40 @@ DETAIL:  Key (domain, source_id)=(niemanlab.org, 681) already exists.
 2026-03-14 07:49:24,008 [INFO] app.services.wayback_service: Wayback [4/5] printninja.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=17
 2026-03-14 07:49:24,670 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: resellerratings.com (from printninja.com)
 2026-03-14 07:49:25,273 [ERROR] app.services.wayback_service: Wayback error for printninja.com: Multiple rows were found when one or none was required
+2026-03-14 07:49:59,279 [INFO] app.services.wayback_service: Wayback [5/5] hdmediaventures.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=19
+2026-03-14 07:49:59,599 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: michaelphill.com (from hdmediaventures.com)
+2026-03-14 07:49:59,944 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: dribbble.com (from hdmediaventures.com)
+2026-03-14 07:50:00,155 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: orhsipbackgroundvault.com (from hdmediaventures.com)
+2026-03-14 07:50:00,272 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: dakdillon.com (from hdmediaventures.com)
+2026-03-14 07:50:00,394 [INFO] app.services.wayback_service:   [Wayback] Suggested candidate: getf.ly (from hdmediaventures.com)
+2026-03-14 07:50:00,525 [ERROR] app.services.wayback_service: Wayback error for hdmediaventures.com: Multiple rows were found when one or none was required
+2026-03-14 07:50:00,666 [INFO] app.services.wayback_service: Wayback check complete: 5/5 candidates, 6 new sources discovered
+2026-03-14 07:50:00,666 [INFO] app.routes.crawl: [Recheck All] Wayback done. Starting scoring…
+2026-03-14 07:50:01,034 [INFO] app.services.scoring_service: Scored 5 candidates
+2026-03-14 07:50:01,035 [INFO] app.routes.crawl: [Recheck All] Full re-check complete ✓
+2026-03-14 07:58:21,098 [INFO] app.routes.crawl: [Recheck All] Starting RDAP re-check for candidates…
+2026-03-14 07:58:21,339 [INFO] app.services.whois_service: Starting RDAP check for 6 candidates
+2026-03-14 07:58:22,294 [INFO] app.services.whois_service:   [1/6] gstatic.com → registered
+2026-03-14 07:58:24,374 [INFO] app.services.whois_service:   [2/6] hotjar.com → registered
+2026-03-14 07:58:26,762 [INFO] app.services.whois_service:   [3/6] issuu.com → expiring_watchlist
+2026-03-14 07:58:28,998 [INFO] app.services.whois_service:   [4/6] securepaynet.net → registered
+2026-03-14 07:58:31,257 [INFO] app.services.whois_service:   [5/6] printninja.com → registered
+2026-03-14 07:58:33,478 [INFO] app.services.whois_service:   [6/6] hdmediaventures.com → expiring_watchlist
+2026-03-14 07:58:34,730 [INFO] app.services.whois_service: RDAP check completed: 6/6
+2026-03-14 07:58:34,731 [INFO] app.routes.crawl: [Recheck All] RDAP done. Starting Wayback re-check…
+2026-03-14 07:58:34,982 [INFO] app.services.wayback_service: Starting Wayback check for 6 candidates
+2026-03-14 07:58:48,667 [INFO] app.services.wayback_service: Wayback [1/6] gstatic.com: 4 snapshots, lang=en, toxicity=0 flags, discovered=13
+2026-03-14 07:59:08,670 [INFO] app.services.wayback_service: Wayback [2/6] hotjar.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=12
+2026-03-14 07:59:34,040 [INFO] app.services.wayback_service: Wayback [3/6] issuu.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=7
+2026-03-14 07:59:34,621 [ERROR] app.services.wayback_service: Wayback error for issuu.com: Multiple rows were found when one or none was required
+2026-03-14 08:00:18,383 [INFO] app.services.wayback_service: Wayback [4/6] securepaynet.net: 50 snapshots, lang=en, toxicity=0 flags, discovered=0
+2026-03-14 08:00:36,300 [INFO] app.services.wayback_service: Wayback [5/6] printninja.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=17
+2026-03-14 08:00:38,067 [ERROR] app.services.wayback_service: Wayback error for printninja.com: Multiple rows were found when one or none was required
+2026-03-14 08:00:59,039 [INFO] app.services.wayback_service: Wayback [6/6] hdmediaventures.com: 50 snapshots, lang=en, toxicity=0 flags, discovered=19
+2026-03-14 08:01:00,036 [ERROR] app.services.wayback_service: Wayback error for hdmediaventures.com: Multiple rows were found when one or none was required
+2026-03-14 08:01:00,151 [INFO] app.services.wayback_service: Wayback check complete: 6/6 candidates, 0 new sources discovered
+2026-03-14 08:01:00,152 [INFO] app.routes.crawl: [Recheck All] Wayback done. Starting scoring…
+2026-03-14 08:01:00,524 [INFO] app.services.scoring_service: Scored 6 candidates
+2026-03-14 08:01:00,524 [INFO] app.routes.crawl: [Recheck All] Full re-check complete ✓
+2026-03-14 11:45:45,092 [INFO] app.services.whois_service: [RDAP] IANA bootstrap loaded: 1198 TLDs cached
+2026-03-14 16:49:45,200 [INFO] app.services.whois_service: [RDAP] IANA bootstrap loaded: 1198 TLDs cached

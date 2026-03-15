@@ -26,12 +26,12 @@ logger = logging.getLogger(__name__)
 
 # Availability status → score mapping
 AVAILABILITY_SCORES = {
-    "available": 100,       # Tier 1: bisa langsung beli
-    "expiring_soon": 70,    # Tier 2: expired tapi masih grace period (H-0 s/d H+45)
-    "expiring_watchlist": 60, # Tier 2: expiry ≤14 hari (H-14)
-    "registered": 5,        # Discard: masih aktif, expiry jauh
+    "available": 100,
+    "expired": 90,
+    "expiring_soon": 70,
+    "expiring_watchlist": 50,
+    "registered": 10,
     "check_failed": 30,
-    "unknown": 20,
 }
 
 
@@ -109,10 +109,10 @@ def _determine_label(candidate: CandidateDomain, total: float,
     """
     Determine label based on domain context, not just score.
 
-    Tier 1 — Available  = domain bisa langsung dibeli (available / expired >45 hari)
-    Tier 2 — Watchlist  = expiring_watchlist (H-14) / expiring_soon (H-0 s/d H+45)
-    Uncertain  = data belum cukup (no WHOIS, check_failed)
-    Discard    = registered (expiry masih jauh), alive+registered, high toxicity
+    Available  = domain dead + (available/expired) — benar-benar bisa dibeli
+    Watchlist  = expiring soon/watchlist, atau domain dead + registered — pantau
+    Uncertain  = data belum cukup (no WHOIS, check_failed, no wayback)
+    Discard    = domain alive + registered, high toxicity, skor sangat rendah
     """
     has_high_toxicity = any(f.get("severity") == "high" for f in toxicity_flags)
     status = candidate.availability_status or ""
@@ -122,21 +122,26 @@ def _determine_label(candidate: CandidateDomain, total: float,
     if has_high_toxicity:
         return "Discard"
 
-    # AUTO-DISCARD: registered (expiry masih jauh, bukan kandidat beli)
-    if status == "registered":
+    # AUTO-DISCARD: domain masih alive + registered (bukan kandidat beli)
+    if is_alive and status == "registered":
         return "Discard"
 
     # UNCERTAIN: belum ada data WHOIS atau check gagal
-    if not status or status in ("check_failed", "unknown"):
+    if not status or status == "check_failed":
         return "Uncertain"
 
-    # TIER 1 — AVAILABLE: domain bisa langsung register
-    if status == "available":
+    # AVAILABLE: domain dead/alive + RDAP confirms it can be registered
+    # expiring_soon is NOT included — domain still has a legal owner
+    if status in ("available", "expired"):
         return "Available"
 
-    # TIER 2 — WATCHLIST: expiring_watchlist (H-14) / expiring_soon (H-0 s/d H+45)
-    # Domain masih dalam grace period atau hampir expired, pantau
+    # WATCHLIST: expiring soon/watchlist — still owned, but watch for drop
+    # Also covers dead+expiring_soon (still someone's domain, not buyable yet)
     if status in ("expiring_soon", "expiring_watchlist"):
+        return "Watchlist"
+
+    # WATCHLIST: domain dead + registered — menarik tapi belum bisa dibeli
+    if not is_alive and status == "registered":
         return "Watchlist"
 
     # Fallback
