@@ -99,6 +99,14 @@ async def list_candidates(
 
     if availability:
         query = query.where(CandidateDomain.availability_status == availability)
+    else:
+        # Default: hide registered domains (not actionable for expired domain buying)
+        query = query.where(
+            or_(
+                CandidateDomain.availability_status != "registered",
+                CandidateDomain.availability_status.is_(None),
+            )
+        )
 
     if label:
         query = query.where(CandidateDomain.label == label)

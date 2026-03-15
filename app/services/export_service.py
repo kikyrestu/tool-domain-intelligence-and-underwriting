@@ -5,7 +5,7 @@ import io
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
-from sqlalchemy import select
+from sqlalchemy import select, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.candidate import CandidateDomain
@@ -73,6 +73,14 @@ async def _get_candidates(
     query = select(CandidateDomain)
     if status_filter:
         query = query.where(CandidateDomain.availability_status == status_filter)
+    else:
+        # Default: exclude registered domains (not actionable)
+        query = query.where(
+            or_(
+                CandidateDomain.availability_status != "registered",
+                CandidateDomain.availability_status.is_(None),
+            )
+        )
     if niche_filter:
         query = query.where(CandidateDomain.niche == niche_filter)
     if label_filter:
