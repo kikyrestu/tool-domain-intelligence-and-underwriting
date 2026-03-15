@@ -150,6 +150,20 @@ async def trigger_crawl(
     background_tasks: BackgroundTasks,
     db: AsyncSession = Depends(get_db),
 ):
+    # Guard: prevent duplicate crawl on same source
+    from datetime import timezone as tz
+    cutoff = datetime.now(tz.utc).replace(tzinfo=None) - timedelta(hours=3)
+    existing = await db.execute(
+        select(CrawlJob).where(
+            CrawlJob.source_id == source_id,
+            CrawlJob.current_step.in_(["crawling", "rdap", "wayback", "scoring"]),
+            CrawlJob.started_at >= cutoff,
+        )
+    )
+    if existing.scalar_one_or_none():
+        logger.warning("Crawl already running for source %d, skipping duplicate trigger", source_id)
+        return RedirectResponse(url=f"/sources/{source_id}", status_code=303)
+
     background_tasks.add_task(_background_crawl, source_id)
     return RedirectResponse(url=f"/sources/{source_id}", status_code=303)
 

@@ -856,6 +856,10 @@ async def _depth2_discovery(alive_domains: list[str], niche: str, db: AsyncSessi
 
         except Exception as e:
             logger.debug("[Depth-2] Skipping %s: %s", domain, e)
+            try:
+                await db.rollback()
+            except Exception:
+                pass
             continue
 
     logger.info("[Depth-2] Discovery complete: %d new suggested candidates total", new_suggestions)
@@ -1059,7 +1063,7 @@ async def run_crawl(source_id: int, db: AsyncSession):
         job.completed_at = datetime.now(timezone.utc)
 
         await db.commit()
-        logger.info("Crawl completed: %d candidates, %d dead links", saved, dead_count)
+        logger.info("Crawl completed: %d candidates saved, %d dead links (source_id=%d)", saved, dead_count, source_id)
 
         # 5. Depth-2 discovery: crawl homepage of alive candidates → find more domains
         #    Results go to suggested_candidates (not direct candidates) to keep scope controlled.
