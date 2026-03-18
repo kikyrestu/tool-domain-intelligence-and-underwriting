@@ -952,6 +952,8 @@ async def run_crawl(source_id: int, db: AsyncSession):
     job = CrawlJob(source_id=source_id, status="running", current_step="crawling", started_at=datetime.now(timezone.utc))
     db.add(job)
     await db.flush()
+    # Commit immediately so concurrent trigger requests can detect this running job.
+    await db.commit()
 
     try:
         # 1. Detect source type and route to appropriate pipeline

@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from fastapi import APIRouter, Depends, Request, BackgroundTasks
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
-from sqlalchemy import select
+from sqlalchemy import select, or_
 from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import delete as sa_delete
@@ -120,12 +120,14 @@ async def _background_score(source_id: int | None = None, candidate_ids: list[in
 @router.get("/crawl/active-partial")
 async def active_crawls_partial(request: Request, db: AsyncSession = Depends(get_db)):
     """Return partial HTML with progress bars for all running pipeline jobs."""
-    from datetime import timezone as tz
-    cutoff = datetime.now(tz.utc).replace(tzinfo=None) - timedelta(hours=3)
+    cutoff = datetime.now().astimezone() - timedelta(hours=3)
     result = await db.execute(
         select(CrawlJob)
         .where(
-            CrawlJob.current_step.in_(["crawling", "rdap", "wayback", "scoring"]),
+            or_(
+                CrawlJob.status == "running",
+                CrawlJob.current_step.in_(["crawling", "rdap", "wayback", "scoring"]),
+            ),
             CrawlJob.started_at >= cutoff,
         )
         .options(selectinload(CrawlJob.source))
@@ -152,12 +154,14 @@ async def trigger_crawl(
     db: AsyncSession = Depends(get_db),
 ):
     # Guard: prevent duplicate crawl on same source
-    from datetime import timezone as tz
-    cutoff = datetime.now(tz.utc).replace(tzinfo=None) - timedelta(hours=3)
+    cutoff = datetime.now().astimezone() - timedelta(hours=3)
     existing = await db.execute(
         select(CrawlJob).where(
             CrawlJob.source_id == source_id,
-            CrawlJob.current_step.in_(["crawling", "rdap", "wayback", "scoring"]),
+            or_(
+                CrawlJob.status == "running",
+                CrawlJob.current_step.in_(["crawling", "rdap", "wayback", "scoring"]),
+            ),
             CrawlJob.started_at >= cutoff,
         )
     )
