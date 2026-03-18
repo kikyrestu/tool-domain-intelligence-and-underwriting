@@ -17,6 +17,7 @@ class CrawlJob(Base):
     total_links_found: Mapped[int] = mapped_column(Integer, default=0)
     total_candidates: Mapped[int] = mapped_column(Integer, default=0)
     total_dead_links: Mapped[int] = mapped_column(Integer, default=0)
+    total_registered_filtered: Mapped[int] = mapped_column(Integer, default=0)
     error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
     started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)

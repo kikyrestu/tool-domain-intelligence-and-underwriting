@@ -59,6 +59,7 @@
                     <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                     <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Links Found</th>
                     <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Candidates</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Filtered Registered</th>
                     <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Dead Links</th>
                     <th class="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase">Started</th>
                 </tr>
@@ -80,6 +81,7 @@
                     </td>
                     <td class="px-5 py-3 text-sm text-gray-900">{{ job.total_links_found }}</td>
                     <td class="px-5 py-3 text-sm text-gray-900">{{ job.total_candidates }}</td>
+                    <td class="px-5 py-3 text-sm text-gray-700">{{ job.total_registered_filtered or 0 }}</td>
                     <td class="px-5 py-3 text-sm text-red-600">{{ job.total_dead_links }}</td>
                     <td class="px-5 py-3 text-sm text-gray-500">
                         {{ job.started_at.strftime('%d %b %H:%M') if job.started_at else '—' }}

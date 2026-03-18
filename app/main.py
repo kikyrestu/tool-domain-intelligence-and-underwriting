@@ -25,6 +25,7 @@ async def lifespan(app: FastAPI):
         migrations = [
             "ALTER TABLE crawl_jobs ADD COLUMN IF NOT EXISTS current_step VARCHAR(20)",
             "ALTER TABLE crawl_jobs ADD COLUMN IF NOT EXISTS processed_count INTEGER DEFAULT 0",
+            "ALTER TABLE crawl_jobs ADD COLUMN IF NOT EXISTS total_registered_filtered INTEGER DEFAULT 0",
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS is_starred BOOLEAN DEFAULT FALSE",
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS dns_mx_records BOOLEAN",
             "ALTER TABLE candidate_domains ADD COLUMN IF NOT EXISTS is_parked BOOLEAN DEFAULT FALSE",

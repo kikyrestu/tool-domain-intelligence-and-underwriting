@@ -1019,6 +1019,7 @@ async def run_crawl(source_id: int, db: AsyncSession):
 
         # 4. Save candidates (with savepoint per insert to survive IntegrityError)
         dead_count = 0
+        registered_filtered = 0
         saved = 0
         for (url, domain) in links:
             status = domain_status[domain]
@@ -1027,6 +1028,7 @@ async def run_crawl(source_id: int, db: AsyncSession):
 
             # Skip registered domains — not actionable for expired domain buying
             if status.get("availability_status") == "registered":
+                registered_filtered += 1
                 logger.debug("Skipped registered domain %s", domain)
                 continue
 
@@ -1075,11 +1077,19 @@ async def run_crawl(source_id: int, db: AsyncSession):
 
         job.total_candidates = saved
         job.total_dead_links = dead_count
+        job.total_registered_filtered = registered_filtered
         job.status = "completed"
         job.completed_at = datetime.now(timezone.utc)
 
         await db.commit()
-        logger.info("Crawl completed: %d candidates saved, %d dead links (source_id=%d)", saved, dead_count, source_id)
+        logger.info(
+            "Crawl completed: %d links, %d saved, %d dead, %d registered filtered (source_id=%d)",
+            len(links),
+            saved,
+            dead_count,
+            registered_filtered,
+            source_id,
+        )
 
         # 5. Depth-2 discovery: crawl homepage of alive candidates → find more domains
         #    Results go to suggested_candidates (not direct candidates) to keep scope controlled.

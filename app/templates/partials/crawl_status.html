@@ -1,7 +1,7 @@
 <!-- Partial: crawl status indicator (polled via HTMX) -->
 {% if job.status == 'completed' %}
 <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-700">
-    ✓ Done — {{ job.total_candidates }} candidates, {{ job.total_dead_links }} dead
+    ✓ Done — {{ job.total_links_found }} links, {{ job.total_candidates }} saved, {{ job.total_registered_filtered or 0 }} filtered(registered)
 </span>
 {% elif job.status == 'running' %}
 <span class="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-yellow-100 text-yellow-700"
