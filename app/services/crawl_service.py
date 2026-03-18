@@ -572,6 +572,22 @@ async def _fetch_binary(url: str) -> bytes | None:
 
 def _extract_text_from_pdf(data: bytes) -> str:
     """Extract all text from a PDF binary."""
+    # Try pypdf first (fast, robust for many digital PDFs)
+    try:
+        from pypdf import PdfReader
+        reader = PdfReader(io.BytesIO(data))
+        parts = []
+        for page in reader.pages:
+            t = page.extract_text() or ""
+            if t:
+                parts.append(t)
+        text = "\n".join(parts)
+        if text.strip():
+            return text
+    except Exception as e:
+        logger.debug("PDF extraction via pypdf failed: %s", e)
+
+    # Fallback to pdfplumber for trickier layouts
     try:
         import pdfplumber
         text_parts = []
@@ -584,6 +600,51 @@ def _extract_text_from_pdf(data: bytes) -> str:
     except Exception as e:
         logger.debug("PDF extraction failed: %s", e)
         return ""
+
+
+def _extract_links_from_pdf_annotations(data: bytes, source_url: str) -> list[tuple[str, str]]:
+    """Extract outbound URLs from PDF link annotations (if present)."""
+    try:
+        from pypdf import PdfReader
+
+        source_domain = extract_domain(source_url)
+        results: list[tuple[str, str]] = []
+        seen_domains: set[str] = set()
+
+        reader = PdfReader(io.BytesIO(data))
+        for page in reader.pages:
+            annots = page.get("/Annots") or []
+            for annot_ref in annots:
+                try:
+                    annot = annot_ref.get_object()
+                    action = annot.get("/A")
+                    if not action:
+                        continue
+                    uri = action.get("/URI")
+                    if not uri:
+                        continue
+                    url = str(uri).strip()
+                    parsed = urlparse(url)
+                    if parsed.scheme not in ("http", "https"):
+                        continue
+                    if _PAGE_EXT_RE.search(parsed.path):
+                        continue
+                    domain = extract_domain(url)
+                    if not domain or domain == source_domain:
+                        continue
+                    if not is_valid_candidate(domain):
+                        continue
+                    if domain in seen_domains:
+                        continue
+                    seen_domains.add(domain)
+                    results.append((url, domain))
+                except Exception:
+                    continue
+
+        return results
+    except Exception as e:
+        logger.debug("PDF annotation link extraction failed: %s", e)
+        return []
 
 
 def _extract_text_from_pptx(data: bytes) -> str:
@@ -964,7 +1025,16 @@ async def run_crawl(source_id: int, db: AsyncSession):
                 job.completed_at = datetime.now(timezone.utc)
                 await db.commit()
                 return job
-            links = _extract_links_from_text(text_content, source.url)
+            text_links = _extract_links_from_text(text_content, source.url)
+            links = text_links
+            if source_ext == "pdf":
+                # PDFs often store clickable links in annotations rather than text.
+                # Merge annotation links so crawl does not miss valid outbound domains.
+                anno_links = _extract_links_from_pdf_annotations(binary_data, source.url)
+                merged: dict[str, tuple[str, str]] = {}
+                for url, domain in text_links + anno_links:
+                    merged[domain] = (url, domain)
+                links = list(merged.values())
             logger.info("Binary (%s): %d bytes → %d chars text → %d links from %s",
                         source_ext, len(binary_data), len(text_content), len(links), source.url)
             _parser_map = {"pdf": "pdfplumber", "pptx": "python_pptx", "docx": "python_docx", "xlsx": "openpyxl"}
