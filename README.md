@@ -72,10 +72,10 @@ DB_SSL=true
 start-server.bat
 
 # Atau manual
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn app.main:app --host 0.0.0.0 --port 8888 --reload
 ```
 
-Buka browser: **http://localhost:8000**
+Buka browser: **http://localhost:8888**
 
 Login default: `admin` / `DomainIQ#2026!` *(ganti di `.env`)*
 

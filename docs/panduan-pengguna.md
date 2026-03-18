@@ -2,7 +2,7 @@
 
 ## Cara Akses Dashboard
 
-1. Buka browser, akses: `http://localhost:8000`
+1. Buka browser, akses: `http://localhost:8888`
 2. Login dengan username dan password yang diberikan
 3. Dashboard utama akan tampil otomatis
 
@@ -98,8 +98,8 @@ Skor terdiri dari 3 komponen:
 1. Di halaman Candidates, set filter yang diinginkan (misal: Label = Available)
 2. Klik **"Export CSV"** di bagian atas
 3. Atau buka URL langsung:
-   - `http://localhost:8000/export/xlsx?label=Available`
-   - `http://localhost:8000/export/csv?label=Available`
+   - `http://localhost:8888/export/xlsx?label=Available`
+   - `http://localhost:8888/export/csv?label=Available`
 
 ### Isi file export:
 Domain, Niche, Availability, Link Status, Score, Label, Reason, Registrar, Created, Expires, Days Left, DNS, Snapshots, First Seen, Last Seen, Language, Source URL, Notes, Discovered

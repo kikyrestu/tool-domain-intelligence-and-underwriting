@@ -95,10 +95,10 @@ Double-click file **`start-server.bat`** di folder project.
 Atau lewat terminal (pastikan venv aktif):
 
 ```bash
-python -m uvicorn app.main:app --port 8000
+python -m uvicorn app.main:app --port 8888
 ```
 
-Buka browser ke: **http://localhost:8000**
+Buka browser ke: **http://localhost:8888**
 
 ---
 

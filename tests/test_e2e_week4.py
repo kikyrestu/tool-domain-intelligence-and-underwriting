@@ -4,7 +4,7 @@ import re
 import sys
 import time
 
-BASE = "http://127.0.0.1:8000"
+BASE = "http://127.0.0.1:8888"
 AUTH = ("admin", "admin")
 ok = True
 

@@ -34,8 +34,8 @@ pip install -r requirements.txt --quiet
 echo.
 
 :: 4. Start server + buka browser
-echo [2/2] Starting server at http://localhost:8000 ...
+echo [2/2] Starting server at http://localhost:8888 ...
 echo.
-start "" http://localhost:8000
-python -m uvicorn app.main:app --port 8000
+start "" http://localhost:8888
+python -m uvicorn app.main:app --port 8888
 pause

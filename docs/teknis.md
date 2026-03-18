@@ -3,7 +3,7 @@
 ## Arsitektur
 
 ```
-Browser (localhost:8000)
+Browser (localhost:8888)
   │
   ▼
 FastAPI (Jinja2 + HTMX)
@@ -145,19 +145,19 @@ copy .env.example .env
 # edit .env — isi DATABASE_URL dari Neon dashboard
 
 # 4. Jalankan server
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8888
 
 # 5. Akses di browser
-# http://localhost:8000
+# http://localhost:8888
 ```
 
 ### Menjalankan di background (Windows)
 ```powershell
 # Start server di background
-Start-Process -NoNewWindow uvicorn -ArgumentList "app.main:app","--reload","--port","8000"
+Start-Process -NoNewWindow uvicorn -ArgumentList "app.main:app","--reload","--port","8888"
 
 # Atau pakai pythonw
-pythonw -m uvicorn app.main:app --port 8000
+pythonw -m uvicorn app.main:app --port 8888
 ```
 
 ### Auto-start saat boot (opsional)
@@ -165,7 +165,7 @@ pythonw -m uvicorn app.main:app --port 8000
 ```bat
 @echo off
 cd /d D:\PROJECT\client-10
-python -m uvicorn app.main:app --port 8000
+python -m uvicorn app.main:app --port 8888
 ```
 2. Taruh shortcut di folder Startup: `shell:startup`
 

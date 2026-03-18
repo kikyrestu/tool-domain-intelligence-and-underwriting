@@ -34,7 +34,7 @@ class Settings(BaseSettings):
 
     # App
     APP_HOST: str = "0.0.0.0"
-    APP_PORT: int = 8000
+    APP_PORT: int = 8888
     SECRET_KEY: str = "change-me-in-production"
     AUTH_USERNAME: str = "admin"
     AUTH_PASSWORD: str = "admin"

@@ -3,7 +3,7 @@ import httpx
 import time
 import sys
 
-BASE = "http://127.0.0.1:8000"
+BASE = "http://127.0.0.1:8888"
 client = httpx.Client(base_url=BASE, follow_redirects=True, timeout=30)
 ok = True
 
