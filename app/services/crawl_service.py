@@ -459,6 +459,13 @@ _URL_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Bare domain matcher for documents that contain plain domains without scheme,
+# e.g. "example.com" instead of "https://example.com".
+_BARE_DOMAIN_RE = re.compile(
+    r"(?<![@/\w.-])((?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,24})(?::\d{2,5})?(?:/(?:[^\s\]\[()<>\"']*))?",
+    re.IGNORECASE,
+)
+
 # File extensions that indicate a binary/document source URL (not HTML)
 _BINARY_EXTENSIONS = {
     "pdf", "pptx", "ppt", "docx", "doc", "xlsx", "xls",
@@ -711,6 +718,20 @@ def _extract_links_from_text(text: str, source_url: str) -> list[tuple[str, str]
     source_domain = extract_domain(source_url)
     results = []
     seen_domains: set[str] = set()
+
+    def _add_candidate(url: str, domain: str | None) -> None:
+        if not domain:
+            return
+        domain = domain.lower()
+        if not domain or domain == source_domain:
+            return
+        if not is_valid_candidate(domain):
+            return
+        if domain in seen_domains:
+            return
+        seen_domains.add(domain)
+        results.append((url, domain))
+
     for match in _URL_RE.finditer(text):
         url = match.group(1).rstrip(".,;)'\"")
         parsed = urlparse(url)
@@ -719,14 +740,22 @@ def _extract_links_from_text(text: str, source_url: str) -> list[tuple[str, str]
         if _PAGE_EXT_RE.search(parsed.path):
             continue
         domain = extract_domain(url)
-        if not domain or domain == source_domain:
+        _add_candidate(url, domain)
+
+    # Fallback pass: plain domains without http(s) scheme.
+    for match in _BARE_DOMAIN_RE.finditer(text):
+        raw = match.group(0).rstrip(".,;)'\"")
+        # Skip if this token is already a full URL found above.
+        if raw.startswith(("http://", "https://")):
             continue
-        if not is_valid_candidate(domain):
+        # Normalize to URL so downstream processing stays consistent.
+        url = raw if raw.startswith("www.") else f"https://{raw}"
+        parsed = urlparse(url)
+        if _PAGE_EXT_RE.search(parsed.path):
             continue
-        if domain in seen_domains:
-            continue
-        seen_domains.add(domain)
-        results.append((url, domain))
+        domain = extract_domain(url)
+        _add_candidate(url, domain)
+
     return results
 
 
